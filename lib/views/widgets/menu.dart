@@ -26,7 +26,7 @@ class Menu extends StatelessWidget {
               children: [
                 // top of menu
                 InkWell(
-                  onTap: () => Get.to(() => ProfileScreen()),
+                  onTap: () => Get.to(() => const ProfileScreen()),
                   child: SizedBox(
                     height: MediaQuery.of(context).size.height / 4.5,
                     width: MediaQuery.of(context).size.width,
