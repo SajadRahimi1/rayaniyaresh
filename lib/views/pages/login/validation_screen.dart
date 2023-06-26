@@ -132,7 +132,7 @@ class ValidateCodeScreen extends StatelessWidget {
                           child: Text(
                             "تایید",
                             style: TextStyle(
-                                color: const Color(0xffffffff), fontSize: 12),
+                                color:  Color(0xffffffff), fontSize: 12),
                           ),
                         ),
                       )),
