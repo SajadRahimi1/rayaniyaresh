@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:rayaniyaresh/views/pages/home/profile_screen.dart';
+import 'package:rayaniyaresh/views/pages/menu/aboutus_screen.dart';
 
 class Menu extends StatelessWidget {
   const Menu({Key? key}) : super(key: key);
@@ -21,45 +24,48 @@ class Menu extends StatelessWidget {
             child: Column(
               children: [
                 // top of menu
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 4.5,
-                  width: MediaQuery.of(context).size.width,
-                  child: Stack(
-                    children: [
-                      Image.asset(
-                        "assets/images/images/top_menu.png",
-                        fit: BoxFit.fill,
-                        width: MediaQuery.of(context).size.width,
-                        filterQuality: FilterQuality.medium,
-                      ),
-                      Center(
-                          child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                            radius: MediaQuery.of(context).size.width / 10,
-                            backgroundColor: Colors.white,
-                            child: Center(
-                              child: Icon(
-                                Icons.person_rounded,
-                                color: const Color(0xff004D55),
-                                size: MediaQuery.of(context).size.width / 6,
+                InkWell(
+                  onTap: () => Get.to(() => ProfileScreen()),
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height / 4.5,
+                    width: MediaQuery.of(context).size.width,
+                    child: Stack(
+                      children: [
+                        Image.asset(
+                          "assets/images/images/top_menu.png",
+                          fit: BoxFit.fill,
+                          width: MediaQuery.of(context).size.width,
+                          filterQuality: FilterQuality.medium,
+                        ),
+                        Center(
+                            child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              radius: MediaQuery.of(context).size.width / 10,
+                              backgroundColor: Colors.white,
+                              child: Center(
+                                child: Icon(
+                                  Icons.person_rounded,
+                                  color: const Color(0xff004D55),
+                                  size: MediaQuery.of(context).size.width / 6,
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Text(
-                              "سجاد رحیمی",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize:
-                                      MediaQuery.of(context).size.width / 25),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Text(
+                                "سجاد رحیمی",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 25),
+                              ),
                             ),
-                          ),
-                        ],
-                      ))
-                    ],
+                          ],
+                        ))
+                      ],
+                    ),
                   ),
                 ),
 
@@ -74,12 +80,12 @@ class Menu extends StatelessWidget {
                     children: [
                       // about us list tile
                       ListTile(
-                        // onTap: () {
-                        //   Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //           builder: (context) => const AboutusScreen()));
-                        // },
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const AboutusScreen()));
+                        },
                         title: Text(
                           "درباره ما",
                           style: TextStyle(

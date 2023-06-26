@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart' show TextEditingController;
 import 'package:get/get.dart';
-import 'package:rayaniyaresh/views/pages/home/home_screen.dart';
+import 'package:rayaniyaresh/views/pages/home/main_screen.dart';
 
 class ValidateViewModel extends GetxController {
   ValidateViewModel({required this.phoneNumber});
@@ -46,7 +46,7 @@ class ValidateViewModel extends GetxController {
     // }
   }
 
-  void validateSmsCode() {
+  Future<void> validateSmsCode() async {
     //   showMessage(message: "در حال بررسی کد");
     //   var _request = await checkCode(phoneNumber, inputCode.valueToString());
     //   if (_request.statusCode == 201 && _request.body['status'] == 200) {
@@ -73,9 +73,8 @@ class ValidateViewModel extends GetxController {
     // }
     for (int i = 0; i < 4; i++) {
       correctCode[i].value = 1;
-      Future.delayed(const Duration(seconds: 2), () {});
+      await Future.delayed(const Duration(milliseconds: 200), () {});
     }
-    Future.delayed(const Duration(seconds: 3), () {});
-    Get.offAll(() => const HomeScreen());
+    Get.to(() => const MainScreen());
   }
 }

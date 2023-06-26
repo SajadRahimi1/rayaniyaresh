@@ -1,120 +1,128 @@
-import 'dart:io';
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
-import 'package:rayaniyaresh/viewmodels/home/home_viewmodel.dart';
-import 'package:rayaniyaresh/views/widgets/app_widget.dart';
-import 'package:rayaniyaresh/views/widgets/menu.dart';
+import 'package:rayaniyaresh/views/widgets/banner_slider.dart';
+import 'package:rayaniyaresh/views/widgets/service_widget.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key, this.initPage = 2}) : super(key: key);
-  final int initPage;
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  final GlobalKey<ScaffoldState> _productKey = GlobalKey<ScaffoldState>();
-
-  late final HomeViewController _controller;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _controller = Get.put(HomeViewController(initPage: widget.initPage));
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _productKey.currentState?.dispose();
-    // _controller.dispose();
-  }
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    bool doubleTap = false;
-    return WillPopScope(
-        onWillPop: () async {
-          FocusScope.of(context).unfocus();
-          if (_productKey.currentState?.isDrawerOpen ?? false) {
-            Navigator.of(context).pop();
-            return false;
-          }
-          // double tap to close app
-          if (!doubleTap) {
-            doubleTap = true;
-            var snackBar =
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text("برای خروج دوباره کلیک کنید"),
-              duration: Duration(milliseconds: 1500),
-            ));
-            snackBar.closed.then((value) => doubleTap = false);
-          } else {
-            exit(0);
-          }
-          return false;
-        },
-        child: Directionality(
-            textDirection: TextDirection.rtl,
-            child: SafeArea(
-                child: Scaffold(
-                    key: _productKey,
-                    resizeToAvoidBottomInset: false,
-                    drawer: const Menu(),
-                    appBar: homeAppBar(
-                      context: context,
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: SizedBox(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              // search input
+              Padding(
+                padding: EdgeInsets.only(
+                    top: 20, bottom: MediaQuery.of(context).size.height * 0.05),
+                child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 18,
+                    child: TextField(
+                      onChanged: (value) {
+                        // if (value.isEmpty) {
+                        //   _controller.categories.value =
+                        //       _controller.allSearchCategories;
+                        // } else {
+                        //   _controller.categories.value = [];
+                        //   for (var element in _controller
+                        //       .allCategories.data.categories) {
+                        //     print(element.subCategory);
+                        //     for (var sub in element.subCategory) {
+                        //       if ((sub.title ?? "").contains(value)) {
+                        //         _controller.categories.add(SearchModel(
+                        //             id: sub.id,
+                        //             title: sub.title ?? "",
+                        //             image: sub.image ?? "",
+                        //             description: sub.description ?? "",
+                        //             isCategory: false));
+                        //       }
+                        //     }
+                        //   }
+                        // }
+                      },
+                      maxLines: 1,
+                      style: const TextStyle(fontSize: 12),
+                      decoration: InputDecoration(
+                        suffixIcon: const Icon(
+                          Icons.search,
+                          color: Color(0xff005D67),
+                        ),
+                        hintText: "جستجوی خدمت",
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(color: purple)),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(color: purple)),
+                      ),
+                    )),
+              ),
+
+              // categories
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                // height: MediaQuery.of(context).size.height / 2.5,
+                height: MediaQuery.of(context).size.width / 3.3 * (9 ~/ 2),
+                child: GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      mainAxisExtent: MediaQuery.of(context).size.height / 6.8,
+                      mainAxisSpacing: MediaQuery.of(context).size.width / 40,
+                      crossAxisSpacing: MediaQuery.of(context).size.width / 30,
                     ),
-                    drawerEnableOpenDragGesture: false,
-                    backgroundColor: const Color(0xffffffff),
-                    body: Column(children: [
-                      Expanded(
-                          child: PageView(
-                        controller: _controller.pageController,
-                        physics: const NeverScrollableScrollPhysics(),
-                        children: List.generate(5, (index) => Container()),
-                      )),
-                    ]),
-                    bottomNavigationBar: Obx(() => BottomNavigationBar(
-                          elevation: 1,
-                          selectedItemColor: buttonColor,
-                          unselectedItemColor: const Color(0xff757575),
-                          backgroundColor: const Color(0xffF8FAFB),
-                          iconSize: 20,
-                          selectedFontSize: 11,
-                          unselectedFontSize: 11,
-                          type: BottomNavigationBarType.fixed,
-                          currentIndex: _controller.currentPage.value,
-                          onTap: (value) {
-                            FocusScope.of(context).requestFocus(FocusNode());
+                    itemCount: 9,
+                    // itemCount: 7,
+                    // _controller.categories.data.categories.length,
+                    itemBuilder: (context, index) => ServiceWidget(
+                          isImageAsset: false,
+                          onTap: () {
                             FocusScope.of(context).unfocus();
-                            _controller.currentPage.value = value;
                           },
-                          showUnselectedLabels: true,
-                          // unselectedLabelStyle: TextStyle(color: Color(0xffe3e3e3)),
-                          items: List.generate(
-                              4,
-                              (index) => BottomNavigationBarItem(
-                                    icon: Icon(
-                                      [
-                                        Icons.person,
-                                        Icons.home,
-                                        Icons.book,
-                                        Icons.shopping_cart
-                                      ][index],
-                                      size: 28,
-                                      // filterQuality: FilterQuality.medium,
-                                    ),
-                                    label: [
-                                      "پروفایل",
-                                      "خانه",
-                                      "رزرو",
-                                      "فروشگاه",
-                                      "پیمانکاری"
-                                    ][index],
-                                  )),
-                        ))))));
+                          image: "https://loremflickr.com/320/240",
+                          title: "خدمت $index",
+                        )),
+              ),
+
+              // favorites services
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 4.3,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20.0),
+                      child: Text(
+                        "خدمات محبوب",
+                        style: TextStyle(
+                            color: const Color(0xff252525),
+                            fontWeight: FontWeight.bold,
+                            fontSize: MediaQuery.of(context).size.width / 26),
+                      ),
+                    ),
+                    Expanded(
+                        child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: const BannerSlider(),
+                    ))
+                  ],
+                ),
+              ),
+
+              SizedBox(
+                height: Get.height / 20,
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
