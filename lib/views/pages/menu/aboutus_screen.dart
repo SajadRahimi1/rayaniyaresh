@@ -37,7 +37,7 @@ class AboutusScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
                 color: const Color(0xffffffff),
               ),
-              margin: EdgeInsets.symmetric(horizontal: 5),
+              margin:const EdgeInsets.symmetric(horizontal: 5),
               padding:
                   const EdgeInsets.all(10) + const EdgeInsets.only(top: 10),
               child: const Text(

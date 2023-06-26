@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/views/pages/home/profile_screen.dart';
+import 'package:rayaniyaresh/views/pages/login/get_phone_number_screen.dart';
 import 'package:rayaniyaresh/views/pages/menu/aboutus_screen.dart';
 
 class Menu extends StatelessWidget {
@@ -42,15 +43,10 @@ class Menu extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CircleAvatar(
-                              radius: MediaQuery.of(context).size.width / 10,
+                              radius: MediaQuery.of(context).size.width / 8,
                               backgroundColor: Colors.white,
-                              child: Center(
-                                child: Icon(
-                                  Icons.person_rounded,
-                                  color: const Color(0xff004D55),
-                                  size: MediaQuery.of(context).size.width / 6,
-                                ),
-                              ),
+                              backgroundImage: const NetworkImage(
+                                  "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
@@ -236,12 +232,12 @@ class Menu extends StatelessWidget {
                   // GetStorage storage = GetStorage();
                   // await GetStorage.init();
                   // storage.remove("token");
-                  // Navigator.pushReplacement(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const GetPhoneScreen(
-                  //               isExit: true,
-                  //             )));
+                  onTap: () => Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const GetPhoneScreen(
+                                isExit: true,
+                              ))),
                   // ,
                   title: Text(
                     "خروج",
