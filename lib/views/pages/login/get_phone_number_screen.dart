@@ -131,7 +131,7 @@ class _GetPhoneScreenState extends State<GetPhoneScreen> {
               )),
           onLoading: const Center(
             child: SpinKitThreeBounce(
-              color: Colors.white,
+              color: buttonColor,
               size: 23.0,
             ),
           )),

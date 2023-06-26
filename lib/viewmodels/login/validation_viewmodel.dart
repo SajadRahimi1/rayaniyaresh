@@ -71,8 +71,8 @@ class ValidateViewModel extends GetxController {
     //   }
     // }
     for (int i = 0; i < 4; i++) {
-      Future.delayed(
-          Duration(microseconds: 1500), () => correctCode[i].value = 1);
+      correctCode[i].value = 1;
+      Future.delayed(const Duration(seconds: 2), () {});
     }
   }
 }
