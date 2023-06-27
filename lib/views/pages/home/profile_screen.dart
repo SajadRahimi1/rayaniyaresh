@@ -35,15 +35,17 @@ class ProfileScreen extends StatelessWidget {
                         height: Get.height / 35,
                       ),
                       ProfileTextInput(
+                        controller: TextEditingController(text: "سجاد"),
                         text: "نام",
-                        icon: Icon(Icons.person),
+                        icon: const Icon(Icons.person),
                       ),
                       SizedBox(
                         height: Get.height / 55,
                       ),
                       ProfileTextInput(
+                        controller: TextEditingController(text: "رحیمی"),
                         text: "نام خانوادگی",
-                        icon: Icon(Icons.person),
+                        icon: const Icon(Icons.person),
                       ),
                       SizedBox(
                         height: Get.height / 55,
@@ -51,7 +53,7 @@ class ProfileScreen extends StatelessWidget {
                       ProfileTextInput(
                         text: "شماره تلفن",
                         controller: TextEditingController(text: "09214961842"),
-                        icon: Icon(Icons.phone),
+                        icon: const Icon(Icons.phone),
                         enable: false,
                       ),
                       SizedBox(

@@ -5,6 +5,7 @@ import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/viewmodels/home/main_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/home/home_screen.dart';
 import 'package:rayaniyaresh/views/pages/home/profile_screen.dart';
+import 'package:rayaniyaresh/views/pages/home/reserve_screen.dart';
 import 'package:rayaniyaresh/views/widgets/app_widget.dart';
 import 'package:rayaniyaresh/views/widgets/menu.dart';
 
@@ -78,7 +79,7 @@ class _MainScreenState extends State<MainScreen> {
                         physics: const NeverScrollableScrollPhysics(),
                         children: [
                           // const ProfileScreen(),
-                          Container(),
+                          ReserveScreen(),
                           const HomeScreen(),
                           Container(),
                           Container(),

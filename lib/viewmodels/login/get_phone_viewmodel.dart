@@ -5,7 +5,7 @@ import 'package:rayaniyaresh/views/widgets/loading_widget.dart';
 
 class GetPhoneViewModel extends GetxController with StateMixin {
   RxString phoneNumber = "".obs;
-  RxBool isPhoneValida = false.obs;
+  RxBool isPhoneValida = true.obs;
 
   @override
   void onInit() {
