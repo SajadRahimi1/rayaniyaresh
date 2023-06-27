@@ -7,6 +7,7 @@ class NurseDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RxList<bool> daysSelected = List.generate(7, (index) => false).obs;
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
       appBar: AppBar(
@@ -57,53 +58,57 @@ class NurseDetailScreen extends StatelessWidget {
                   maxLines: 5,
                   overflow: TextOverflow.ellipsis,
                 ),
+                // days
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: Get.height / 20),
-                  child: SizedBox(
-                    width: Get.width,
-                    height: Get.height / 9,
-                    child: ListView.builder(
-                      itemCount: 7,
-                      itemExtent: Get.width / 5,
-                      scrollDirection: Axis.horizontal,
-                      physics: const BouncingScrollPhysics(),
-                      itemBuilder: (context, index) => InkWell(
-                          // onTap: () => _controller
-                          //     .selectedDateIndex
-                          //     .value = index,
-                          child: Container(
-                        // width: MediaQuery.of(
-                        //             context)
-                        //         .size
-                        //         .width /
-                        //     5,
-                        height: MediaQuery.of(context).size.height,
-                        margin: EdgeInsets.only(left: 5),
-                        decoration: const BoxDecoration(
-                          color: const Color(0xffF5F5F5),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(5)),
+                    padding: EdgeInsets.symmetric(vertical: Get.height / 20),
+                    child: SizedBox(
+                      width: Get.width,
+                      height: Get.height / 9,
+                      child: ListView.builder(
+                        itemCount: 7,
+                        itemExtent: Get.width / 5,
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context, index) => InkWell(
+                          onTap: () =>
+                              daysSelected[index] = !daysSelected[index],
+                          child: Obx(() => Container(
+                                // width: MediaQuery.of(
+                                //             context)
+                                //         .size
+                                //         .width /
+                                //     5,
+                                height: MediaQuery.of(context).size.height,
+                                margin: const EdgeInsets.only(left: 5),
+                                decoration: BoxDecoration(
+                                  color: daysSelected[index]
+                                      ? const Color(0xff62E067)
+                                      : const Color(0xffF5F5F5),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5)),
+                                ),
+                                child: Center(
+                                    child: Text(
+                                  "\t" +
+                                      [
+                                        "شنبه",
+                                        "یکشنبه",
+                                        "دوشنبه",
+                                        "سه شنبه",
+                                        "چهارشنبه",
+                                        "پنجشنبه",
+                                        "جمعه",
+                                      ][index] +
+                                      "\t",
+                                  style: TextStyle(
+                                      fontSize:
+                                          MediaQuery.of(context).size.width /
+                                              32),
+                                )),
+                              )),
                         ),
-                        child: Center(
-                            child: Text(
-                          "\t" +
-                              [
-                                "شنبه",
-                                "یکشنبه",
-                                "دوشنبه",
-                                "سه شنبه",
-                                "چهارشنبه",
-                                "پنجشنبه",
-                                "جمعه",
-                              ][index] +
-                              "\t",
-                          style: TextStyle(
-                              fontSize: MediaQuery.of(context).size.width / 32),
-                        )),
-                      )),
-                    ),
-                  ),
-                ),
+                      ),
+                    )),
               ],
             ),
           ),

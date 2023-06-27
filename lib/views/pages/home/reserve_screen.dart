@@ -34,16 +34,16 @@ class ReserveScreen extends StatelessWidget {
                         image: AssetImage(
                             "assets/images/images/reserve_nurse.png"),
                         fit: BoxFit.fill)),
-                child: const Padding(
-                  padding: EdgeInsets.only(right: 8.0),
-                  child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Icon(
-                        Icons.arrow_back,
-                        size: 25,
-                        color: Colors.white,
-                      )),
-                ),
+                // child: const Padding(
+                //   padding: EdgeInsets.only(right: 8.0),
+                //   child: Align(
+                //       alignment: Alignment.centerRight,
+                //       child: Icon(
+                //         Icons.arrow_back,
+                //         size: 25,
+                //         color: Colors.white,
+                //       )),
+                // ),
               ),
             ),
             InkWell(
@@ -61,16 +61,16 @@ class ReserveScreen extends StatelessWidget {
                         image: AssetImage(
                             "assets/images/images/reserve_class.png"),
                         fit: BoxFit.fill)),
-                child: const Padding(
-                  padding: EdgeInsets.only(right: 8.0),
-                  child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Icon(
-                        Icons.arrow_back,
-                        size: 25,
-                        color: Colors.white,
-                      )),
-                ),
+                // child: const Padding(
+                //   padding: EdgeInsets.only(right: 8.0),
+                //   child: Align(
+                //       alignment: Alignment.centerRight,
+                //       child: Icon(
+                //         Icons.arrow_back,
+                //         size: 25,
+                //         color: Colors.white,
+                //       )),
+                // ),
               ),
             ),
           ],
