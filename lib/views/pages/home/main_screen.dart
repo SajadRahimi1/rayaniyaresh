@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/viewmodels/home/main_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/home/home_screen.dart';
+import 'package:rayaniyaresh/views/pages/home/more_screen.dart';
 import 'package:rayaniyaresh/views/pages/home/profile_screen.dart';
 import 'package:rayaniyaresh/views/pages/home/reserve_screen.dart';
 import 'package:rayaniyaresh/views/widgets/app_widget.dart';
@@ -79,10 +80,11 @@ class _MainScreenState extends State<MainScreen> {
                         physics: const NeverScrollableScrollPhysics(),
                         children: [
                           // const ProfileScreen(),
-                          ReserveScreen(),
+                          const ReserveScreen(),
                           const HomeScreen(),
                           Container(),
                           Container(),
+                          const MoreScreen(),
                         ],
                       )),
                     ]),
@@ -104,13 +106,15 @@ class _MainScreenState extends State<MainScreen> {
                           showUnselectedLabels: true,
                           // unselectedLabelStyle: TextStyle(color: Color(0xffe3e3e3)),
                           items: List.generate(
-                              3,
+                              5,
                               (index) => BottomNavigationBarItem(
                                     icon: Icon(
                                       [
                                         Icons.book,
                                         Icons.home,
-                                        Icons.shopping_cart
+                                        Icons.shopping_cart,
+                                        Icons.support_agent_sharp,
+                                        Icons.more_horiz
                                       ][index],
                                       size: 28,
                                       // filterQuality: FilterQuality.medium,
@@ -119,7 +123,8 @@ class _MainScreenState extends State<MainScreen> {
                                       "رزرو",
                                       "خانه",
                                       "فروشگاه",
-                                      "پیمانکاری"
+                                      "پشتیبانی",
+                                      "بیشتر"
                                     ][index],
                                   )),
                         ))))));
