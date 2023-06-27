@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/views/pages/reserve_class/class_category_screen.dart';
 
 class ReserveScreen extends StatelessWidget {
   const ReserveScreen({Key? key}) : super(key: key);
@@ -29,19 +30,43 @@ class ReserveScreen extends StatelessWidget {
                       image:
                           AssetImage("assets/images/images/reserve_nurse.png"),
                       fit: BoxFit.fill)),
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                top: Get.height / 25,
+              child: const Padding(
+                padding: EdgeInsets.only(right: 8.0),
+                child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Icon(
+                      Icons.arrow_back,
+                      size: 25,
+                      color: Colors.white,
+                    )),
               ),
-              width: Get.width / 1.1,
-              height: Get.height / 5,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  image: const DecorationImage(
-                      image:
-                          AssetImage("assets/images/images/reserve_class.png"),
-                      fit: BoxFit.fill)),
+            ),
+            InkWell(
+              onTap: () => Get.to(() => ClassCategoryScreen(),
+                  transition: Transition.downToUp),
+              child: Container(
+                margin: EdgeInsets.only(
+                  top: Get.height / 25,
+                ),
+                width: Get.width / 1.1,
+                height: Get.height / 5,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    image: const DecorationImage(
+                        image: AssetImage(
+                            "assets/images/images/reserve_class.png"),
+                        fit: BoxFit.fill)),
+                child: const Padding(
+                  padding: EdgeInsets.only(right: 8.0),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Icon(
+                        Icons.arrow_back,
+                        size: 25,
+                        color: Colors.white,
+                      )),
+                ),
+              ),
             ),
           ],
         ));
