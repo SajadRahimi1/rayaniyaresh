@@ -5,7 +5,8 @@ import 'package:rayaniyaresh/views/widgets/banner_slider.dart';
 import 'package:rayaniyaresh/views/widgets/service_widget.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key, this.onShopTap}) : super(key: key);
+  final void Function()? onShopTap;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +69,7 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 // height: MediaQuery.of(context).size.height / 2.5,
-                height: MediaQuery.of(context).size.width / 3.3 * (9 ~/ 2),
+                height: MediaQuery.of(context).size.width / 3.9 * (9 ~/ 2),
                 child: GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -88,6 +89,25 @@ class HomeScreen extends StatelessWidget {
                           image: "https://loremflickr.com/320/240",
                           title: "خدمت $index",
                         )),
+              ),
+
+              InkWell(
+                onTap:onShopTap,
+                child: Container(
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.only(bottom: Get.height / 25),
+                    width: Get.width,
+                    height: Get.height / 4.5,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: const DecorationImage(
+                            image: AssetImage("assets/images/images/shop.jpg"),
+                            fit: BoxFit.fill)),
+                    child: Text(
+                      "فروشگاه",
+                      style: TextStyle(
+                          color:const Color(0xffffffff), fontSize: Get.width / 10),
+                    )),
               ),
 
               // favorites services

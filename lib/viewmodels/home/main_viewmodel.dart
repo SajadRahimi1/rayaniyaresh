@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MainViewController extends GetxController {
-  MainViewController({this.initPage = 1});
+  MainViewController({this.initPage = 2});
   final int initPage;
   late final PageController pageController;
-  var currentPage = 1.obs;
+  var currentPage = 2.obs;
   late final GlobalKey<ScaffoldState> globalKey;
 
   @override

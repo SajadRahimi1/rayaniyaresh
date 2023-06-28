@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 
 class AboutusScreen extends StatelessWidget {
   const AboutusScreen({Key? key}) : super(key: key);
@@ -9,21 +10,7 @@ class AboutusScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xffe6e6e6),
-        appBar: AppBar(
-          backgroundColor: const Color(0xffF8FAFB),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: InkWell(
-                onTap: () => Get.back(),
-                child: const Icon(
-                  Icons.arrow_forward,
-                  color: Colors.black,
-                ),
-              ),
-            )
-          ],
-        ),
+        appBar: screensAppbar(context: context, title: "درباره ما"),
         body: Column(
           children: [
             SizedBox(
@@ -37,7 +24,7 @@ class AboutusScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
                 color: const Color(0xffffffff),
               ),
-              margin:const EdgeInsets.symmetric(horizontal: 5),
+              margin: const EdgeInsets.symmetric(horizontal: 5),
               padding:
                   const EdgeInsets.all(10) + const EdgeInsets.only(top: 10),
               child: const Text(

@@ -11,7 +11,7 @@ import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/menu.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key, this.initPage = 1}) : super(key: key);
+  const MainScreen({Key? key, this.initPage = 2}) : super(key: key);
   final int initPage;
 
   @override
@@ -79,10 +79,11 @@ class _MainScreenState extends State<MainScreen> {
                         controller: _controller.pageController,
                         physics: const NeverScrollableScrollPhysics(),
                         children: [
-                          // const ProfileScreen(),
                           const ReserveScreen(),
-                          const HomeScreen(),
                           Container(),
+                          HomeScreen(
+                              onShopTap: () =>
+                                  _controller.currentPage.value = 1),
                           Container(),
                           const MoreScreen(),
                         ],
@@ -111,8 +112,8 @@ class _MainScreenState extends State<MainScreen> {
                                     icon: Icon(
                                       [
                                         Icons.book,
-                                        Icons.home,
                                         Icons.shopping_cart,
+                                        Icons.home,
                                         Icons.support_agent_sharp,
                                         Icons.more_horiz
                                       ][index],
@@ -121,8 +122,8 @@ class _MainScreenState extends State<MainScreen> {
                                     ),
                                     label: [
                                       "رزرو",
-                                      "خانه",
                                       "فروشگاه",
+                                      "خانه",
                                       "پشتیبانی",
                                       "بیشتر"
                                     ][index],
