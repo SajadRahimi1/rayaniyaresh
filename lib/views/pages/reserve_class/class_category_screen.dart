@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/class_services.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/class_subcategory_screen.dart';
+import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/class_category_widget.dart';
 
 class ClassCategoryScreen extends StatelessWidget {
@@ -11,21 +12,8 @@ class ClassCategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RxList<bool> favoritesList = List.generate(8, (index) => false).obs;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xffF8FAFB),
-        elevation: 5,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: IconButton(
-              icon: const Icon(Icons.arrow_forward, color: Color(0xff000000)),
-              onPressed: () => Get.back(),
-            ),
-          )
-        ],
-      ),
+      appBar: screensAppbar(context: context),
       body: GridView.count(
         physics: const BouncingScrollPhysics(),
         crossAxisSpacing: Get.width / 28,

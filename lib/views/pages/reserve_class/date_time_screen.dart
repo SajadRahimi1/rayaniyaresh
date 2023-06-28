@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
+import 'package:rayaniyaresh/views/pages/reserve_class/subcategory_datails_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 
 class DateTimeScreen extends StatelessWidget {
@@ -144,22 +145,28 @@ class DateTimeScreen extends StatelessWidget {
               ),
             ),
           ),
+
+          // button
           Expanded(
               child: Align(
             alignment: Alignment.bottomCenter,
-            child: Container(
-              width: Get.width,
-              height: Get.height / 13,
-              alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15)),
-                  color: buttonColor),
-              child: Text(
-                "مرحله بعدی",
-                style: TextStyle(
-                    color: Color(0xffffffff), fontSize: Get.width / 22),
+            child: InkWell(
+              onTap: () => Get.to(() => SubcategoryDetailScreen(title: title),
+                  transition: Transition.leftToRight),
+              child: Container(
+                width: Get.width,
+                height: Get.height / 13,
+                alignment: Alignment.center,
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15)),
+                    color: buttonColor),
+                child: Text(
+                  "مرحله بعدی",
+                  style: TextStyle(
+                      color: Color(0xffffffff), fontSize: Get.width / 22),
+                ),
               ),
             ),
           ))

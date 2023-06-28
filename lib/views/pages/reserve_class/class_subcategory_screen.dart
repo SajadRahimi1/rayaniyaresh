@@ -26,8 +26,8 @@ class ClassSubcategoryScreen extends StatelessWidget {
         children: List.generate(
           subcategory.length,
           (index) => InkWell(
-            onTap: () =>
-                Get.to(() => DateTimeScreen(title: subcategory[index])),
+            onTap: () => Get.to(() => DateTimeScreen(title: subcategory[index]),
+                transition: Transition.leftToRight),
             child: Container(
               alignment: Alignment.center,
               width: Get.width,
