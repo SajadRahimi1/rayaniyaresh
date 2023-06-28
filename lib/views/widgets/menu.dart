@@ -157,30 +157,30 @@ class Menu extends StatelessWidget {
                       // license list tile
 
                       //support list tile
-                      ListTile(
-                        // onTap: () async {
-                        //   launchUrl(Uri.parse('tel://02155922169'));
-                        // },
-                        title: Text(
-                          "پشتیبانی",
-                          style: TextStyle(
-                              color: const Color(0xff656565),
-                              fontSize: MediaQuery.of(context).size.width / 32),
-                        ),
-                        leading: SizedBox.square(
-                          dimension: MediaQuery.of(context).size.width / 18,
-                          child: Image.asset(
-                            "assets/images/icons/support.png",
-                          ),
-                        ),
-                      ),
+                      // ListTile(
+                      //   // onTap: () async {
+                      //   //   launchUrl(Uri.parse('tel://02155922169'));
+                      //   // },
+                      //   title: Text(
+                      //     "پشتیبانی",
+                      //     style: TextStyle(
+                      //         color: const Color(0xff656565),
+                      //         fontSize: MediaQuery.of(context).size.width / 32),
+                      //   ),
+                      //   leading: SizedBox.square(
+                      //     dimension: MediaQuery.of(context).size.width / 18,
+                      //     child: Image.asset(
+                      //       "assets/images/icons/support.png",
+                      //     ),
+                      //   ),
+                      // ),
 
-                      // exit list tile
-                      const Divider(
-                        color: Color(0xffe5e5e5),
-                        height: 1,
-                        thickness: 0.5,
-                      ),
+                      // // exit list tile
+                      // const Divider(
+                      //   color: Color(0xffe5e5e5),
+                      //   height: 1,
+                      //   thickness: 0.5,
+                      // ),
 
                       //share list tile
                       // ListTile(
