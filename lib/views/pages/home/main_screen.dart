@@ -7,7 +7,7 @@ import 'package:rayaniyaresh/views/pages/home/home_screen.dart';
 import 'package:rayaniyaresh/views/pages/home/more_screen.dart';
 import 'package:rayaniyaresh/views/pages/home/profile_screen.dart';
 import 'package:rayaniyaresh/views/pages/home/reserve_screen.dart';
-import 'package:rayaniyaresh/views/widgets/app_widget.dart';
+import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/menu.dart';
 
 class MainScreen extends StatefulWidget {

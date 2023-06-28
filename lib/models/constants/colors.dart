@@ -3,10 +3,10 @@ import 'package:flutter/material.dart' show Color;
 const Color buttonColor = Color(0xff09B8CB);
 const Color purple = Color(0xff5B3894);
 
-final List randomColor = [
+List randomColor = [
   Color(0xffFF7F50),
   Color(0xff1E90FF),
-  Color(0xffFFD700),
+  Color(0xff3498DB),
   Color(0xff00CED1),
   Color(0xffFF6347),
   Color(0xff8E44AD),
