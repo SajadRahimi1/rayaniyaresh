@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/nurse_widget.dart';
 
 class NurseDetailScreen extends StatelessWidget {
@@ -10,21 +11,7 @@ class NurseDetailScreen extends StatelessWidget {
     RxList<bool> daysSelected = List.generate(7, (index) => false).obs;
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
-      appBar: AppBar(
-        backgroundColor: const Color(0xffF8FAFB),
-        title: const Text(
-          "جزییات پرستار",
-          style: TextStyle(color: Color(0xff000000), fontSize: 18),
-        ),
-        centerTitle: true,
-        // leading: const Icon(Icons.more_vert, color: Color(0xff000000)),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.arrow_forward, color: Color(0xff000000)),
-            onPressed: () => Get.back(),
-          )
-        ],
-      ),
+      appBar: screensAppbar(context: context, title: "جزییات پرستار"),
       body: Column(
         children: [
           // all item except button
