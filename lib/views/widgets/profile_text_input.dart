@@ -11,6 +11,7 @@ class ProfileTextInput extends StatelessWidget {
     this.controller,
     this.keyboardType,
     this.ontap,
+    this.maxLength,
     this.enable = true,
   }) : super(key: key);
   final String text;
@@ -21,23 +22,26 @@ class ProfileTextInput extends StatelessWidget {
   final void Function()? ontap;
   final TextInputType? keyboardType;
   final Widget? icon;
+  final int? maxLength;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: ontap,
       child: TextField(
+          maxLength: maxLength,
           enabled: enable,
           controller: controller,
           keyboardType: keyboardType,
           inputFormatters: [
-            FilteringTextInputFormatter.deny(RegExp("[a-zA-Z]")),
+            // FilteringTextInputFormatter.deny(RegExp("[a-zA-Z]")),
           ],
           onChanged: onChanged,
           style: TextStyle(
             fontSize: MediaQuery.of(context).size.width / 27,
           ),
           decoration: InputDecoration(
+            counter: const SizedBox(),
             icon: icon,
             labelText: text,
             labelStyle: const TextStyle(color: Color(0xff9A7ACD), fontSize: 13),

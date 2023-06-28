@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
+import 'package:rayaniyaresh/views/pages/reserve_class/information_form_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/subcategory_cons_widget.dart';
 
@@ -53,8 +54,8 @@ class SubcategoryDetailScreen extends StatelessWidget {
               child: Align(
             alignment: Alignment.bottomCenter,
             child: InkWell(
-              // onTap: () => Get.to(() => SubcategoryDetailScreen(title: title),
-              //     transition: Transition.leftToRight),
+              onTap: () => Get.to(() =>const InformationFormScreen(),
+                  transition: Transition.leftToRight),
               child: Container(
                 width: Get.width,
                 height: Get.height / 13,
