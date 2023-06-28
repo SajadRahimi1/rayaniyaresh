@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 
 class ConsWidget extends StatelessWidget {
   const ConsWidget({Key? key, required this.image, required this.title})
@@ -14,7 +15,7 @@ class ConsWidget extends StatelessWidget {
           width: MediaQuery.of(context).size.width / 10,
         ),
         title: Text(
-          title,
+          title.toPersianDigit(),
         ),
       ),
     );
