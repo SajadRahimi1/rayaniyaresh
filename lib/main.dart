@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' show GetMaterialApp;
 import 'package:rayaniyaresh/views/pages/login/get_phone_number_screen.dart';

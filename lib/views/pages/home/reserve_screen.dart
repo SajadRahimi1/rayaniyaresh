@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/class_category_screen.dart';
 import 'package:rayaniyaresh/views/pages/reserve_nurse/show_nerse_screen.dart';
+import 'package:lottie/lottie.dart';
 
 class ReserveScreen extends StatelessWidget {
   const ReserveScreen({Key? key}) : super(key: key);
