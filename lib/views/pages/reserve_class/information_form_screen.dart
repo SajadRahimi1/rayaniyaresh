@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
+import 'package:rayaniyaresh/views/widgets/payment_widget.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart' as picker;
 
@@ -9,6 +11,7 @@ class InformationFormScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RxInt education = (-1).obs;
     final TextEditingController textInputController = TextEditingController();
     return Scaffold(
       appBar: screensAppbar(context: context, title: "اطلاعات شخصی"),
@@ -63,6 +66,50 @@ class InformationFormScreen extends StatelessWidget {
                   maxLength: 11,
                   keyboardType: TextInputType.number,
                 ),
+                SizedBox(
+                  width: Get.width,
+                  height: Get.height / 10,
+                  child: Row(
+                    children: [
+                      const Text("میزان تحصیلات : ",
+                          style: TextStyle(fontSize: 14)),
+                      Expanded(
+                          child: ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: 6,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (_, index) => InkWell(
+                                    onTap: () => education.value = index,
+                                    child: Obx(() => Container(
+                                          width: Get.width / 5.5,
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 3,
+                                              vertical: Get.height / 80),
+                                          height: Get.height,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color: education.value == index
+                                                  ? Colors.green
+                                                  : const Color(0xffe5e5e5)),
+                                          child: Text(
+                                            [
+                                              "سیکل",
+                                              "دیپلم",
+                                              "فوق دیپلم",
+                                              "لیسانس",
+                                              "فوق لیسانس",
+                                              "دکترا",
+                                            ][index],
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(fontSize: 14),
+                                          ),
+                                        )),
+                                  )))
+                    ],
+                  ),
+                ),
                 ProfileTextInput(
                   text: "آدرس محل سکونت",
                   icon: Icon(Icons.pin_drop),
@@ -81,7 +128,28 @@ class InformationFormScreen extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
+          // button
+          InkWell(
+            onTap: () {
+              Get.dialog(PaymentWidget());
+            },
+            child: Container(
+              width: Get.width,
+              height: Get.height / 13,
+              alignment: Alignment.center,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15)),
+                  color: buttonColor),
+              child: Text(
+                "مرحله بعدی",
+                style: TextStyle(
+                    color: Color(0xffffffff), fontSize: Get.width / 22),
+              ),
+            ),
+          ),
         ],
       ),
     );
