@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/models/constants/class_services.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/class_subcategory_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
@@ -34,6 +35,11 @@ class ClassCategoryScreen extends StatelessWidget {
                             healthcareServices
                           ][index],
                           title: ["خدمات آموزشی", "بهداشت و ایمنی"][index]));
+                    } else {
+                      showMessage(
+                          title: "امکان انتخاب وجود ندارد",
+                          message: "بزودی این موارد اضافه میشود",
+                          type: MessageType.warning);
                     }
                   },
                   title: [

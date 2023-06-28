@@ -1,4 +1,4 @@
-List learningSerivces = [
+List<String> learningSerivces = [
   "مربی مهد کودک",
   "سالمندیاری",
   "مراقبت جسمی از سالمند",
@@ -16,7 +16,7 @@ List learningSerivces = [
   "کارآفرین پروری مادران",
 ];
 
-List healthcareServices = [
+List<String> healthcareServices = [
   "انجام کمک های اولیه (بزودی)",
   "انجام عملیات کمک های اولیه",
   "انجام عملیات کمک های اولیه هنگام وقوع حادثه (بزودی)",

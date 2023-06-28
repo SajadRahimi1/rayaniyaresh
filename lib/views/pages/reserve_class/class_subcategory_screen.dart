@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/date_time_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
@@ -9,7 +10,7 @@ class ClassSubcategoryScreen extends StatelessWidget {
       {Key? key, required this.title, required this.subcategory})
       : super(key: key);
   final String title;
-  final List subcategory;
+  final List<String> subcategory;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +27,17 @@ class ClassSubcategoryScreen extends StatelessWidget {
         children: List.generate(
           subcategory.length,
           (index) => InkWell(
-            onTap: () => Get.to(() => DateTimeScreen(title: subcategory[index]),
-                transition: Transition.leftToRight),
+            onTap: () {
+              if (!subcategory[index].contains('بزودی')) {
+                Get.to(() => DateTimeScreen(title: subcategory[index]),
+                    transition: Transition.leftToRight);
+              } else {
+                showMessage(
+                    title: "امکان انتخاب وجود ندارد",
+                    message: "بزودی این موارد اضافه میشود",
+                    type: MessageType.warning);
+              }
+            },
             child: Container(
               alignment: Alignment.center,
               width: Get.width,
