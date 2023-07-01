@@ -51,7 +51,7 @@ class Menu extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: Text(
-                                "سجاد رحیمی",
+                                "رایا نیارش",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize:

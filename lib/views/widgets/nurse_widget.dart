@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NurseWidget extends StatelessWidget {
-  const NurseWidget({Key? key, this.onTap,this.evalation}) : super(key: key);
+  const NurseWidget({Key? key, this.onTap, this.evalation}) : super(key: key);
   final void Function()? onTap;
   final double? evalation;
   @override
@@ -45,7 +45,7 @@ class NurseWidget extends StatelessWidget {
                     children: [
                       // name
                       Text(
-                        "آقای سجاد رحیمی",
+                        "رایا نیارش",
                         style: TextStyle(
                           color: Color(0xff000000),
                           fontWeight: FontWeight.bold,
