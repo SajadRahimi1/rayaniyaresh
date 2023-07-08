@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rayaniyaresh/models/models/nurse_model.dart';
 
 class NurseWidget extends StatelessWidget {
-  const NurseWidget({Key? key, this.onTap, this.evalation}) : super(key: key);
+  const NurseWidget({Key? key, this.onTap, this.evalation,required this.model}) : super(key: key);
   final void Function()? onTap;
   final double? evalation;
+  final NurseModel model;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -45,7 +47,7 @@ class NurseWidget extends StatelessWidget {
                     children: [
                       // name
                       Text(
-                        "رایا نیارش",
+                        model.name??"",
                         style: TextStyle(
                           color: Color(0xff000000),
                           fontWeight: FontWeight.bold,
@@ -75,7 +77,7 @@ class NurseWidget extends StatelessWidget {
                             color: Colors.green,
                           ),
                           Text(
-                            " 4.5",
+                           (model.rating??0).toString(),
                             style: TextStyle(
                               color: const Color(0xff000000),
                               fontWeight: FontWeight.bold,
@@ -93,7 +95,7 @@ class NurseWidget extends StatelessWidget {
                             color: Color(0xffa0a0a0),
                           ),
                           Text(
-                            " البرز / کرج",
+                            model.locations??"",
                             style: TextStyle(
                               color: const Color(0xffa0a0a0),
                               fontSize: MediaQuery.of(context).size.width / 28,

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ClassCategoryWidget extends StatelessWidget {
-  const ClassCategoryWidget({Key? key, this.onTap, this.enable=false,required this.title,required this.image}) : super(key: key);
+  const ClassCategoryWidget(
+      {Key? key,
+      this.onTap,
+      this.enable = false,
+      required this.title,
+      required this.image})
+      : super(key: key);
   final void Function()? onTap;
   final bool enable;
-  final String title,image;
+  final String title, image;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -19,7 +25,6 @@ class ClassCategoryWidget extends StatelessWidget {
             image: DecorationImage(
                 image: AssetImage(
                   image,
-                  
                 ),
                 fit: BoxFit.fill)),
         child: Container(
@@ -41,7 +46,6 @@ class ClassCategoryWidget extends StatelessWidget {
                   ])),
           child: Text(
             title,
-            
             maxLines: 1,
             textAlign: TextAlign.center,
             style: TextStyle(

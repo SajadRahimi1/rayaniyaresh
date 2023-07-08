@@ -2,10 +2,11 @@ import 'package:get/get.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/views/pages/login/validation_screen.dart';
 import 'package:rayaniyaresh/views/widgets/loading_widget.dart';
+import 'package:rayaniyaresh/core/services/login/sms_service.dart' as service;
 
 class GetPhoneViewModel extends GetxController with StateMixin {
   RxString phoneNumber = "".obs;
-  RxBool isPhoneValida = true.obs;
+  RxBool isPhoneValida = false.obs;
 
   @override
   void onInit() {
@@ -22,12 +23,16 @@ class GetPhoneViewModel extends GetxController with StateMixin {
   Future<void> sendData() async {
     if (isPhoneValida.value) {
       loading();
-      Future.delayed(const Duration(seconds: 1), () {
+      final _request = await service.sendSms(phoneNumber.value);
+      if (_request.statusCode == 200) {
         Get.back();
         Get.to(() => ValidateCodeScreen(
               phoneNumber: phoneNumber.value,
             ));
-      });
+      } else {
+        Get.back();
+        networkErrorMessage();
+      }
     } else {
       showMessage(
           title: "خطا",

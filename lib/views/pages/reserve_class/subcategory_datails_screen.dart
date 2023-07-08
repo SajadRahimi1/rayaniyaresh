@@ -54,7 +54,7 @@ class SubcategoryDetailScreen extends StatelessWidget {
               child: Align(
             alignment: Alignment.bottomCenter,
             child: InkWell(
-              onTap: () => Get.to(() =>const InformationFormScreen(),
+              onTap: () => Get.to(() => const InformationFormScreen(),
                   transition: Transition.leftToRight),
               child: Container(
                 width: Get.width,

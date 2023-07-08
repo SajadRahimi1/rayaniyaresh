@@ -68,3 +68,8 @@ void showMessage(
       ),
       snackPosition: snackPosition);
 }
+
+void networkErrorMessage() => showMessage(
+    title: "خطا در ارتباط با سرور",
+    message: "در ارتباط با سرور مشکلی پیش آمد. دوباره تلاش کنید",
+    type: MessageType.error);

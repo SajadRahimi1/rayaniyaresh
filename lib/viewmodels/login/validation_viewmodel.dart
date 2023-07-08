@@ -1,12 +1,16 @@
 import 'dart:async';
-
+import 'package:get_storage/get_storage.dart';
 import 'package:flutter/material.dart' show TextEditingController;
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/core/services/message_service.dart';
+import 'package:rayaniyaresh/models/extensions/lisr_extentions.dart';
 import 'package:rayaniyaresh/views/pages/home/main_screen.dart';
+import 'package:rayaniyaresh/core/services/login/sms_service.dart' as service;
 
 class ValidateViewModel extends GetxController {
   ValidateViewModel({required this.phoneNumber});
   final String phoneNumber;
+  final GetStorage _storage = GetStorage();
   RxBool filled = false.obs;
   RxInt time = 120.obs;
   late Timer _timer;
@@ -16,6 +20,7 @@ class ValidateViewModel extends GetxController {
       List.generate(4, (index) => TextEditingController());
   @override
   void onInit() async {
+    await GetStorage.init();
     super.onInit();
     Get.closeAllSnackbars();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -47,34 +52,22 @@ class ValidateViewModel extends GetxController {
   }
 
   Future<void> validateSmsCode() async {
-    //   showMessage(message: "در حال بررسی کد");
-    //   var _request = await checkCode(phoneNumber, inputCode.valueToString());
-    //   if (_request.statusCode == 201 && _request.body['status'] == 200) {
-    //     await _storage.write("token", _request.body['token']);
-    //     await _storage.write("id", _request.body['data']['user']['_id']);
-    //     if (_request.body['data']['user']['firstName'] == null) {
-    //       Get.to(() => const GetNameScreen(),
-    //                       transition: Transition.noTransition);
-    //     } else {
-    //       var name = NameClass();
-    //       name.name = _request.body['data']['user']['firstName'] +
-    //           " " +
-    //           _request.body['data']['user']['lastName'];
-    //       // await _storage.write(
-    //       //     "name",
-    //       //     _request.body['data']['user']['firstName'] +
-    //       //         " " +
-    //       //         _request.body['data']['user']['lastName']);
-    //       Get.offAll(() => const HomeScreen());
-    //     }
-    //   } else if (_request.statusCode == 406) {
-    //     showMessage(message: "کد وارد شده صحیح نیست");
-    //   }
-    // }
-    for (int i = 0; i < 4; i++) {
-      correctCode[i].value = 1;
-      await Future.delayed(const Duration(milliseconds: 200), () {});
+    showMessage(message: "در حال بررسی کد");
+    var _request =
+        await service.checkSms(phoneNumber, inputCode.valueToString());
+    if (_request.statusCode == 200) {
+      await _storage.write("token", _request.body['Token']);
+      await _storage.write("id", _request.body['Id']);
+      Get.to(() => const MainScreen());
+    } else if (_request.statusCode == 400) {
+      showMessage(message: "کد وارد شده صحیح نیست");
+    } else {
+      networkErrorMessage();
     }
-    Get.to(() => const MainScreen());
   }
+  // for (int i = 0; i < 4; i++) {
+  //   correctCode[i].value = 1;
+  //   await Future.delayed(const Duration(milliseconds: 200), () {});
+  // }
+  //
 }

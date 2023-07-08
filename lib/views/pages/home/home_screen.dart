@@ -92,7 +92,7 @@ class HomeScreen extends StatelessWidget {
               ),
 
               InkWell(
-                onTap:onShopTap,
+                onTap: onShopTap,
                 child: Container(
                     alignment: Alignment.center,
                     margin: EdgeInsets.only(bottom: Get.height / 25),
@@ -106,7 +106,8 @@ class HomeScreen extends StatelessWidget {
                     child: Text(
                       "فروشگاه",
                       style: TextStyle(
-                          color:const Color(0xffffffff), fontSize: Get.width / 10),
+                          color: const Color(0xffffffff),
+                          fontSize: Get.width / 10),
                     )),
               ),
 
