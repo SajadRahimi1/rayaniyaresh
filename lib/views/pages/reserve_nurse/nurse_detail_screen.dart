@@ -23,9 +23,10 @@ class NurseDetailScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(
                       vertical: Get.height / 25,
                     ),
-                    child: const NurseWidget(
+                    child: NurseWidget(
                       evalation: 0,
                     )),
+
                 Text(
                   "درباره",
                   style: TextStyle(

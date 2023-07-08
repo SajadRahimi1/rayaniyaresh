@@ -4,7 +4,7 @@ class NurseModel {
   String? about;
   dynamic days;
   dynamic image;
-  int? rating;
+  double? rating;
   List<dynamic>? reserveNurses;
   String? id;
 
@@ -25,7 +25,7 @@ class NurseModel {
         about: json['About'] as String?,
         days: json['Days'] as dynamic,
         image: json['Image'] as dynamic,
-        rating: json['Rating'] as int?,
+        rating: json['Rating'] as double?,
         reserveNurses: json['ReserveNurses'] as List<dynamic>?,
         id: json['Id'] as String?,
       );
@@ -41,6 +41,3 @@ class NurseModel {
         'Id': id,
       };
 }
-
-
-

@@ -15,11 +15,11 @@ class ShowNerseScreen extends StatelessWidget {
         appBar: screensAppbar(context: context, title: "پرستار ها"),
         body: _controller.obx((status) => ListView.builder(
             physics: const BouncingScrollPhysics(),
-            itemCount: _controller.nurseModel?.length ?? 0,
+            itemCount: _controller.nurseModel.length,
             padding: const EdgeInsets.symmetric(horizontal: 10),
             itemBuilder: (_, index) => NurseWidget(
                 model: _controller.nurseModel[index],
-                onTap: () => Get.to(() => const NurseDetailScreen(),
+                onTap: () => Get.to(() =>  NurseDetailScreen(model:),
                     transition: Transition.leftToRight)))));
   }
 }
