@@ -30,7 +30,11 @@ class ClassSubcategoryScreen extends StatelessWidget {
           (index) => InkWell(
             onTap: () {
               if (!(model[index].title ?? "").contains('بزودی')) {
-                Get.to(() => DateTimeScreen(title: model[index].title ?? ""),
+                Get.to(
+                    () => DateTimeScreen(
+                          title: model[index].title ?? "",
+                          model: model[index],
+                        ),
                     transition: Transition.leftToRight);
               } else {
                 showMessage(

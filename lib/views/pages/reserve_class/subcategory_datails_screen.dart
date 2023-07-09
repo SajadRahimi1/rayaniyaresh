@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
+import 'package:rayaniyaresh/models/models/class_model.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/information_form_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/subcategory_cons_widget.dart';
 
 class SubcategoryDetailScreen extends StatelessWidget {
-  const SubcategoryDetailScreen({Key? key, required this.title})
+  const SubcategoryDetailScreen(
+      {Key? key, required this.title, required this.model})
       : super(key: key);
   final String title;
+  final ClassCategories model;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,37 +21,37 @@ class SubcategoryDetailScreen extends StatelessWidget {
           SizedBox(
             height: Get.height / 20,
           ),
-          const ConsWidget(
+          ConsWidget(
             image: "assets/images/icons/checked.png",
-            title: "جمع کل ساعت آموزشی 48 ساعت (عملی و توری)",
+            title: "جمع کل ساعت آموزشی ${model.totallHours} (عملی و توری)",
           ),
-          const ConsWidget(
+          ConsWidget(
             image: "assets/images/icons/checked.png",
-            title: "زمان برگزاری کلاس : 15 روز بعد از ثبت نام نهایی",
+            title: "زمان برگزاری کلاس : ${model.timeHolding}",
           ),
           const ConsWidget(
             image: "assets/images/icons/checked.png",
             title: "ارایه مدرک بین المللی و قابل ترجمه از سازمان فنی و حرفه ای",
           ),
-          const ConsWidget(
+          ConsWidget(
             image: "assets/images/icons/checked.png",
-            title: "مبلغ شهریه 45/000/000 میلیون ریال (نقد و اقساط)",
+            title: "مبلغ شهریه ${model.price} میلیون تومان (نقد و اقساط)",
           ),
           const Text(
             "شرایط اقساط",
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          const ConsWidget(
+          ConsWidget(
             image: "assets/images/icons/checked.png",
-            title: "پیش پرداخت: 15/000/000 میلیون ریال",
+            title: "پیش پرداخت: ${model.prePaid} میلیون ریال",
           ),
-          const ConsWidget(
+          ConsWidget(
             image: "assets/images/icons/checked.png",
-            title: "تعداد قسط ماهانه : 2",
+            title: "تعداد قسط ماهانه : ${model.installmentNumber.toString()}",
           ),
-          const ConsWidget(
+          ConsWidget(
             image: "assets/images/icons/checked.png",
-            title: "مبلغ قسط ماهانه: 15/000/000 میلیون ریال",
+            title: "مبلغ قسط ماهانه: ${model.installmentPrice} میلیون ریال",
           ),
           Expanded(
               child: Align(

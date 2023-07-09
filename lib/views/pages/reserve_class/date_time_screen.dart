@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
+import 'package:rayaniyaresh/models/models/class_model.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/subcategory_datails_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 
 class DateTimeScreen extends StatelessWidget {
-  const DateTimeScreen({Key? key, required this.title}) : super(key: key);
+  const DateTimeScreen({Key? key, required this.title, required this.model})
+      : super(key: key);
   final String title;
+  final ClassCategories model;
   @override
   Widget build(BuildContext context) {
     RxInt _days = (-1).obs;
@@ -38,48 +41,29 @@ class DateTimeScreen extends StatelessWidget {
                       bottom: Get.height / 25,
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        InkWell(
-                          onTap: () => _days.value = 0,
-                          child: Obx(
-                            () => Container(
-                              alignment: Alignment.center,
-                              width: Get.width / 2.6,
-                              height: Get.height / 8,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: _days.value == 0
-                                      ? Colors.green
-                                      : const Color(0xffcfcfcf)),
-                              child: Text(
-                                "روزهای فرد",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: Get.width / 24),
-                              ),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () => _days.value = 1,
-                          child: Obx(() => Container(
-                                alignment: Alignment.center,
-                                width: Get.width / 2.6,
-                                height: Get.height / 8,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    color: _days.value == 1
-                                        ? Colors.green
-                                        : const Color(0xffcfcfcf)),
-                                child: Text(
-                                  "روزهای زوج",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: Get.width / 24),
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: List.generate(
+                          model.days?.length ?? 0,
+                          (index) => InkWell(
+                              onTap: () => _days.value = index,
+                              child: Obx(
+                                () => Container(
+                                  alignment: Alignment.center,
+                                  width: Get.width / 2.6,
+                                  height: Get.height / 8,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: _days.value == index
+                                          ? Colors.green
+                                          : const Color(0xffcfcfcf)),
+                                  child: Text(
+                                    model.days?[index] ?? "",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: Get.width / 24),
+                                  ),
                                 ),
                               )),
-                        ),
-                      ],
-                    ),
+                        )),
                   ),
                 ],
               ),
@@ -114,7 +98,7 @@ class DateTimeScreen extends StatelessWidget {
                         child: ListView.builder(
                           physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
-                          itemCount: 1,
+                          itemCount: model.hours?.length ?? 0,
                           itemBuilder: (_, index) => InkWell(
                             onTap: () => _hoursIndex.value = index,
                             child: Obx(
@@ -130,7 +114,7 @@ class DateTimeScreen extends StatelessWidget {
                                         ? Colors.green
                                         : const Color(0xffcfcfcf)),
                                 child: Text(
-                                  "ساعت 17 الی 21",
+                                  model.hours?[index] ?? "",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(fontSize: Get.width / 24),
                                 ),
@@ -151,7 +135,11 @@ class DateTimeScreen extends StatelessWidget {
               child: Align(
             alignment: Alignment.bottomCenter,
             child: InkWell(
-              onTap: () => Get.to(() => SubcategoryDetailScreen(title: title),
+              onTap: () => Get.to(
+                  () => SubcategoryDetailScreen(
+                        title: title,
+                        model: model,
+                      ),
                   transition: Transition.leftToRight),
               child: Container(
                 width: Get.width,

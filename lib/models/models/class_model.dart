@@ -1,4 +1,3 @@
-
 class ClassModel {
   String? title;
   List<ClassCategories>? classCategories;
@@ -9,7 +8,11 @@ class ClassModel {
 
   ClassModel.fromJson(Map<String, dynamic> json) {
     title = json["Title"];
-    classCategories = json["ClassCategories"] == null ? null : (json["ClassCategories"] as List).map((e) => ClassCategories.fromJson(e)).toList();
+    classCategories = json["ClassCategories"] == null
+        ? null
+        : (json["ClassCategories"] as List)
+            .map((e) => ClassCategories.fromJson(e))
+            .toList();
     imageName = json["ImageName"];
     id = json["Id"];
   }
@@ -17,8 +20,9 @@ class ClassModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
     _data["Title"] = title;
-    if(classCategories != null) {
-      _data["ClassCategories"] = classCategories?.map((e) => e.toJson()).toList();
+    if (classCategories != null) {
+      _data["ClassCategories"] =
+          classCategories?.map((e) => e.toJson()).toList();
     }
     _data["ImageName"] = imageName;
     _data["Id"] = id;
@@ -29,8 +33,8 @@ class ClassModel {
 class ClassCategories {
   String? classId;
   String? title;
-  List<dynamic>? hours;
-  List<dynamic>? days;
+  List<String>? hours;
+  List<String>? days;
   String? totallHours;
   String? timeHolding;
   String? price;
@@ -40,13 +44,29 @@ class ClassCategories {
   List<dynamic>? usersReserved;
   String? id;
 
-  ClassCategories({this.classId, this.title, this.hours, this.days, this.totallHours, this.timeHolding, this.price, this.prePaid, this.installmentNumber, this.installmentPrice, this.usersReserved, this.id});
+  ClassCategories(
+      {this.classId,
+      this.title,
+      this.hours,
+      this.days,
+      this.totallHours,
+      this.timeHolding,
+      this.price,
+      this.prePaid,
+      this.installmentNumber,
+      this.installmentPrice,
+      this.usersReserved,
+      this.id});
 
   ClassCategories.fromJson(Map<String, dynamic> json) {
     classId = json["ClassId"];
     title = json["Title"];
-    hours = json["Hours"] ?? [];
-    days = json["Days"] ?? [];
+    hours = json["Hours"] == null || json["Hours"] == ""
+        ? []
+        : json["Hours"].toString().split(',');
+    days = json["Days"] == null || json["Days"] == ""
+        ? []
+        : json["Days"].toString().split(',');
     totallHours = json["TotallHours"];
     timeHolding = json["TimeHolding"];
     price = json["Price"];
@@ -61,19 +81,18 @@ class ClassCategories {
     final Map<String, dynamic> _data = <String, dynamic>{};
     _data["ClassId"] = classId;
     _data["Title"] = title;
-    if(hours != null) {
-      _data["Hours"] = hours;
-    }
-    if(days != null) {
-      _data["Days"] = days;
-    }
+
+    _data["Hours"] = hours;
+
+    _data["Days"] = days;
+
     _data["TotallHours"] = totallHours;
     _data["TimeHolding"] = timeHolding;
     _data["Price"] = price;
     _data["PrePaid"] = prePaid;
     _data["InstallmentNumber"] = installmentNumber;
     _data["InstallmentPrice"] = installmentPrice;
-    if(usersReserved != null) {
+    if (usersReserved != null) {
       _data["UsersReserved"] = usersReserved;
     }
     _data["Id"] = id;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
+import 'package:rayaniyaresh/viewmodels/reserve_class/information_form_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/payment_widget.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
@@ -11,11 +12,12 @@ class InformationFormScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RxInt education = (-1).obs;
+    final _controller = Get.put(InformationFormViewModel());
+
     final TextEditingController textInputController = TextEditingController();
     return Scaffold(
       appBar: screensAppbar(context: context, title: "اطلاعات شخصی"),
-      body: ListView(
+      body:_controller.obx((status)=> ListView(
         physics: const BouncingScrollPhysics(),
         children: [
           Padding(
@@ -79,7 +81,7 @@ class InformationFormScreen extends StatelessWidget {
                               itemCount: 6,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (_, index) => InkWell(
-                                    onTap: () => education.value = index,
+                                    onTap: () => _controller.education.value = index,
                                     child: Obx(() => Container(
                                           width: Get.width / 5.5,
                                           margin: EdgeInsets.symmetric(
@@ -90,7 +92,7 @@ class InformationFormScreen extends StatelessWidget {
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(10),
-                                              color: education.value == index
+                                              color: _controller.education.value == index
                                                   ? Colors.green
                                                   : const Color(0xffe5e5e5)),
                                           child: Text(
@@ -151,7 +153,7 @@ class InformationFormScreen extends StatelessWidget {
             ),
           ),
         ],
-      ),
+      )),
     );
   }
 }
