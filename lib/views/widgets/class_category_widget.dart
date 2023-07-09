@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rayaniyaresh/models/constants/urls.dart';
 
 class ClassCategoryWidget extends StatelessWidget {
   const ClassCategoryWidget(
@@ -10,7 +11,7 @@ class ClassCategoryWidget extends StatelessWidget {
       : super(key: key);
   final void Function()? onTap;
   final bool enable;
-  final String title, image;
+  final String? title, image;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -22,11 +23,11 @@ class ClassCategoryWidget extends StatelessWidget {
         decoration: BoxDecoration(
             // color: Colors.blue,
             borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-                image: AssetImage(
-                  image,
-                ),
-                fit: BoxFit.fill)),
+            image: image == null
+                ? null
+                : DecorationImage(
+                    image: NetworkImage(imagebaseUrl + (image ?? "")),
+                    fit: BoxFit.fill)),
         child: Container(
           alignment: Alignment.center,
           height: MediaQuery.of(context).size.height / 15,
@@ -45,7 +46,7 @@ class ClassCategoryWidget extends StatelessWidget {
                     Color.fromRGBO(0, 0, 0, 0.2),
                   ])),
           child: Text(
-            title,
+            title ?? "",
             maxLines: 1,
             textAlign: TextAlign.center,
             style: TextStyle(

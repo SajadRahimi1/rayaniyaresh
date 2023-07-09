@@ -2,10 +2,9 @@ class NurseModel {
   String? name;
   String? locations;
   String? about;
-  dynamic days;
+  List? days;
   dynamic image;
   double? rating;
-  List<dynamic>? reserveNurses;
   String? id;
 
   NurseModel({
@@ -15,7 +14,6 @@ class NurseModel {
     this.days,
     this.image,
     this.rating,
-    this.reserveNurses,
     this.id,
   });
 
@@ -23,10 +21,9 @@ class NurseModel {
         name: json['Name'] as String?,
         locations: json['Locations'] as String?,
         about: json['About'] as String?,
-        days: json['Days'] as dynamic,
+        days: json['Days'] == null ? [] : json['Days'].toString().split(","),
         image: json['Image'] as dynamic,
         rating: json['Rating'] as double?,
-        reserveNurses: json['ReserveNurses'] as List<dynamic>?,
         id: json['Id'] as String?,
       );
 
@@ -37,7 +34,6 @@ class NurseModel {
         'Days': days,
         'Image': image,
         'Rating': rating,
-        'ReserveNurses': reserveNurses,
         'Id': id,
       };
 }

@@ -15,8 +15,8 @@ class ShowNurseViewmodel extends GetxController with StateMixin {
   Future<void> getData() async {
     final _request = await getNurses();
     if (_request.statusCode == 200) {
-      nurseModel = List.generate(_request.body.length,
-          (index) => NurseModel.fromJson(_request.body[index] ?? ""));
+      nurseModel = List<NurseModel>.from(
+          _request.body.map((x) => NurseModel.fromJson(x)));
       change(null, status: RxStatus.success());
     } else {
       change(null, status: RxStatus.error());

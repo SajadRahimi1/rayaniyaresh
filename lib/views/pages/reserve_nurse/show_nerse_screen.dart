@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/models/models/nurse_model.dart';
 import 'package:rayaniyaresh/viewmodels/reserve_nurse/show_nurse_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/reserve_nurse/nurse_detail_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
@@ -19,7 +20,9 @@ class ShowNerseScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             itemBuilder: (_, index) => NurseWidget(
                 model: _controller.nurseModel[index],
-                onTap: () => Get.to(() =>  NurseDetailScreen(model:),
+                onTap: () => Get.to(
+                    () => NurseDetailScreen(
+                        nurseModel: _controller.nurseModel[index]),
                     transition: Transition.leftToRight)))));
   }
 }
