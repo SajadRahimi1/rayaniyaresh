@@ -45,4 +45,6 @@ class InformationFormViewModel extends GetxController with StateMixin {
     textEditingController[7].text = userModel?.phoneNumber ?? "";
     textEditingController[8].text = userModel?.emergancyNumber ?? "";
   }
+
+  Future<void> updateInformation() async {}
 }

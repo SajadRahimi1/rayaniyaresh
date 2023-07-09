@@ -3,7 +3,10 @@ import 'package:rayaniyaresh/models/constants/get_connect.dart';
 import 'package:rayaniyaresh/models/constants/urls.dart';
 
 Future<Response<dynamic>> checkToken(String token) async {
-  final _request =
-      await getConnect.get(getUserUrl, headers: {"Authorization": token});
-  return _request;
+  return await getConnect.get(getUserUrl, headers: {"Authorization": token});
+}
+
+Future<Response<dynamic>> updateUser(Map user, String token) async {
+  return await getConnect
+      .put(updateUserUrl, user, headers: {"Authorization": token});
 }
