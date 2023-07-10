@@ -1,4 +1,3 @@
-
 class UserModel {
   String? token;
   String? name;
@@ -15,7 +14,21 @@ class UserModel {
   List<dynamic>? reserveNurses;
   String? id;
 
-  UserModel({this.token, this.name, this.phoneNumber, this.fatherName, this.birthday, this.bornCity, this.nationalCode, this.nationalNumber, this.education, this.address, this.emergancyNumber,  this.reservedClasses, this.reserveNurses, this.id});
+  UserModel(
+      {this.token,
+      this.name,
+      this.phoneNumber,
+      this.fatherName,
+      this.birthday,
+      this.bornCity,
+      this.nationalCode,
+      this.nationalNumber,
+      this.education,
+      this.address,
+      this.emergancyNumber,
+      this.reservedClasses,
+      this.reserveNurses,
+      this.id});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     token = json["Token"];
@@ -46,6 +59,8 @@ class UserModel {
     _data["Education"] = education;
     _data["Address"] = address;
     _data["EmergancyNumber"] = emergancyNumber;
+    _data["Id"] = id;
+
     return _data;
   }
 }

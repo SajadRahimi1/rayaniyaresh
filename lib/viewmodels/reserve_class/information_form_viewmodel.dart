@@ -6,10 +6,22 @@ import 'package:rayaniyaresh/core/services/user_service.dart' as user_service;
 import 'package:rayaniyaresh/models/models/user_model.dart';
 
 class InformationFormViewModel extends GetxController with StateMixin {
+  InformationFormViewModel({required this.isReserving});
+  final bool isReserving;
+
   final GetStorage _getStorage = GetStorage();
   List<TextEditingController> textEditingController =
       List.generate(9, (index) => TextEditingController());
+  final TextEditingController birthdayController = TextEditingController();
 
+  List educationStrings = [
+    "سیکل",
+    "دیپلم",
+    "فوق دیپلم",
+    "لیسانس",
+    "فوق لیسانس",
+    "دکترا",
+  ];
   UserModel? userModel;
   RxInt education = (-1).obs;
   String token = "";
@@ -27,8 +39,8 @@ class InformationFormViewModel extends GetxController with StateMixin {
     final _request = await user_service.checkToken(token);
     if (_request.statusCode == 200) {
       userModel = UserModel.fromJson(_request.body);
-      fillText();
       change(null, status: RxStatus.success());
+      fillText();
     } else {
       networkErrorMessage();
     }
@@ -44,7 +56,15 @@ class InformationFormViewModel extends GetxController with StateMixin {
     textEditingController[6].text = userModel?.address ?? "";
     textEditingController[7].text = userModel?.phoneNumber ?? "";
     textEditingController[8].text = userModel?.emergancyNumber ?? "";
+    education.value = educationStrings.indexOf(userModel?.education);
   }
 
-  Future<void> updateInformation() async {}
+  Future<void> updateInformation() async {
+    userModel?.education = educationStrings[education.value];
+    // print(userModel?.toJson());
+    final _request =
+        await user_service.updateUser(userModel?.toJson() ?? {}, token);
+    if (_request.statusCode == 200) {
+    } else {}
+  }
 }

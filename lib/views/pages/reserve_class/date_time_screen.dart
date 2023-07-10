@@ -12,8 +12,8 @@ class DateTimeScreen extends StatelessWidget {
   final ClassCategories model;
   @override
   Widget build(BuildContext context) {
-    RxInt _days = (-1).obs;
-    RxInt _hoursIndex = (-1).obs;
+    RxInt _days = (0).obs;
+    RxInt _hoursIndex = (0).obs;
     return Scaffold(
       appBar: screensAppbar(context: context, title: title),
       body: Column(

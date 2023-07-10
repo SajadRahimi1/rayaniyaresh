@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/models/nurse_model.dart';
+import 'package:rayaniyaresh/viewmodels/reserve_nurse/reserve_nurse_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/nurse_widget.dart';
 
@@ -11,7 +12,9 @@ class NurseDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RxList<bool> daysSelected = List.generate(7, (index) => false).obs;
+    final _controller =
+        Get.put(ReserveNurseViewModel(nurseId: nurseModel.id ?? ""));
+
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
       appBar: screensAppbar(context: context, title: "جزییات پرستار"),
@@ -62,8 +65,8 @@ class NurseDetailScreen extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) => InkWell(
-                          onTap: () =>
-                              daysSelected[index] = !daysSelected[index],
+                          onTap: () => _controller.daysSelected[index] =
+                              !_controller.daysSelected[index],
                           child: Obx(() => Container(
                                 // width: MediaQuery.of(
                                 //             context)
@@ -73,7 +76,7 @@ class NurseDetailScreen extends StatelessWidget {
                                 height: MediaQuery.of(context).size.height,
                                 margin: const EdgeInsets.only(left: 5),
                                 decoration: BoxDecoration(
-                                  color: daysSelected[index]
+                                  color: _controller.daysSelected[index]
                                       ? const Color(0xff62E067)
                                       : const Color(0xffF5F5F5),
                                   borderRadius: const BorderRadius.all(
@@ -83,15 +86,7 @@ class NurseDetailScreen extends StatelessWidget {
                                     child: Text(
                                   nurseModel.days?[index],
                                   // "\t" +
-                                  //     [
-                                  //       "شنبه",
-                                  //       "یکشنبه",
-                                  //       "دوشنبه",
-                                  //       "سه شنبه",
-                                  //       "چهارشنبه",
-                                  //       "پنجشنبه",
-                                  //       "جمعه",
-                                  //     ][index] +
+                                  //     [index] +
                                   //     "\t",
                                   style: TextStyle(
                                       fontSize:
@@ -106,21 +101,24 @@ class NurseDetailScreen extends StatelessWidget {
             ),
           ),
           // button
-          Container(
-            alignment: Alignment.center,
-            width: Get.width,
-            height: Get.height / 13.5,
-            decoration: const BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15))),
-            child: Text(
-              "رزرو پرستار",
-              style: TextStyle(
-                  fontSize: Get.width / 24,
-                  color: Color(0xffffffff),
-                  fontWeight: FontWeight.bold),
+          InkWell(
+            onTap: _controller.reserveNurse,
+            child: Container(
+              alignment: Alignment.center,
+              width: Get.width,
+              height: Get.height / 13.5,
+              decoration: const BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15))),
+              child: Text(
+                "رزرو پرستار",
+                style: TextStyle(
+                    fontSize: Get.width / 24,
+                    color:const Color(0xffffffff),
+                    fontWeight: FontWeight.bold),
+              ),
             ),
           )
         ],

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:rayaniyaresh/views/pages/reserve_class/information_form_screen.dart';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({Key? key}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
@@ -10,12 +13,24 @@ class MoreScreen extends StatelessWidget {
       body: ListView.builder(
           itemCount: 10,
           padding:
-              EdgeInsets.symmetric(horizontal: 5) + EdgeInsets.only(top: 5),
+             const EdgeInsets.symmetric(horizontal: 5) +const EdgeInsets.only(top: 5),
           itemBuilder: (_, index) => Card(
                 elevation: 3,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),
                 child: ListTile(
+                  onTap: () {
+                    switch (index) {
+                      case 0:
+                        break;
+                      case 1:
+                        Get.to(() => const InformationFormScreen(
+                              isReserving: false,
+                            ));
+                        break;
+                      default:
+                    }
+                  },
                   leading: Icon([
                     Icons.paste,
                     Icons.person_add,

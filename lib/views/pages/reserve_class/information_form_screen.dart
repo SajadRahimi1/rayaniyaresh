@@ -8,152 +8,190 @@ import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart' as picker;
 
 class InformationFormScreen extends StatelessWidget {
-  const InformationFormScreen({Key? key}) : super(key: key);
-
+  const InformationFormScreen({Key? key, this.subcategoryId,this.isReserving=true}) : super(key: key);
+  final String? subcategoryId;
+  final bool isReserving;
   @override
   Widget build(BuildContext context) {
-    final _controller = Get.put(InformationFormViewModel());
+    final _controller = Get.put(InformationFormViewModel(isReserving:isReserving));
 
-    final TextEditingController textInputController = TextEditingController();
     return Scaffold(
       appBar: screensAppbar(context: context, title: "اطلاعات شخصی"),
-      body:_controller.obx((status)=> ListView(
-        physics: const BouncingScrollPhysics(),
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: Get.width / 25, vertical: Get.height / 35),
-            child: Column(
-              children: [
-                ProfileTextInput(
-                    text: "نام و نام خانوادگی",
-                    icon: Icon(
-                      Icons.person,
-                    )),
-                ProfileTextInput(
-                  text: "نام پدر",
-                  icon: Icon(Icons.family_restroom),
+      body: _controller.obx((status) => ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: Get.width / 25, vertical: Get.height / 35),
+                child: Column(
+                  children: [
+                    ProfileTextInput(
+                      controller: _controller.textEditingController[0],
+                      text: "نام و نام خانوادگی",
+                      icon: Icon(
+                        Icons.person,
+                      ),
+                      onChanged: (value) {
+                        _controller.userModel?.name = value;
+                      },
+                    ),
+                    ProfileTextInput(
+                      controller: _controller.textEditingController[1],
+                      text: "نام پدر",
+                      icon: Icon(Icons.family_restroom),
+                      onChanged: (value) {
+                        _controller.userModel?.fatherName = value;
+                      },
+                    ),
+                    ProfileTextInput(
+                        text: "تاریخ تولد",
+                        enable: false,
+                        controller: _controller.textEditingController[2],
+                        ontap: () async {
+                          picker.Jalali? picked =
+                              await picker.showPersianDatePicker(
+                            context: context,
+                            initialDate: picker.Jalali.now(),
+                            firstDate: picker.Jalali(1330, 8),
+                            lastDate: picker.Jalali.now(),
+                          );
+                          if (picked != null) {
+                            // _controller.birthday.value = picked.formatCompactDate();
+                            _controller.textEditingController[2].text =
+                                picked.formatCompactDate();
+                            _controller.userModel?.birthday =
+                                picked.formatCompactDate();
+                          }
+                        },
+                        icon: Icon(
+                          Icons.calendar_month,
+                        )),
+                    ProfileTextInput(
+                      controller: _controller.textEditingController[3],
+                      text: "محل صدور",
+                      icon: Icon(Icons.location_city),
+                      onChanged: (value) {
+                        _controller.userModel?.bornCity = value;
+                      },
+                    ),
+                    ProfileTextInput(
+                      controller: _controller.textEditingController[4],
+                      text: "کد ملی",
+                      icon: Icon(Icons.public),
+                      maxLength: 11,
+                      keyboardType: TextInputType.number,
+                      onChanged: (value) {
+                        _controller.userModel?.nationalCode = value;
+                      },
+                    ),
+                    ProfileTextInput(
+                      controller: _controller.textEditingController[5],
+                      text: "شماره شناسنامه",
+                      icon: Icon(Icons.public_sharp),
+                      maxLength: 11,
+                      keyboardType: TextInputType.number,
+                      onChanged: (value) {
+                        _controller.userModel?.nationalNumber = value;
+                      },
+                    ),
+                    SizedBox(
+                      width: Get.width,
+                      height: Get.height / 10,
+                      child: Row(
+                        children: [
+                          const Text("میزان تحصیلات : ",
+                              style: TextStyle(fontSize: 14)),
+                          Expanded(
+                              child: ListView.builder(
+                                  physics: const BouncingScrollPhysics(),
+                                  itemCount: 6,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (_, index) => InkWell(
+                                        onTap: () =>
+                                            _controller.education.value = index,
+                                        child: Obx(() => Container(
+                                              width: Get.width / 5.5,
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal: 3,
+                                                  vertical: Get.height / 80),
+                                              height: Get.height,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  color: _controller.education
+                                                              .value ==
+                                                          index
+                                                      ? Colors.green
+                                                      : const Color(
+                                                          0xffe5e5e5)),
+                                              child: Text(
+                                                _controller
+                                                    .educationStrings[index],
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(fontSize: 14),
+                                              ),
+                                            )),
+                                      )))
+                        ],
+                      ),
+                    ),
+                    ProfileTextInput(
+                      controller: _controller.textEditingController[6],
+                      text: "آدرس محل سکونت",
+                      icon: Icon(Icons.pin_drop),
+                      onChanged: (value) {
+                        _controller.userModel?.address = value;
+                      },
+                    ),
+                    ProfileTextInput(
+                      controller: _controller.textEditingController[7],
+                      text: "شماره تلفن همراه",
+                      icon: Icon(Icons.phone_android),
+                      keyboardType: TextInputType.number,
+                      enable: false,
+                      maxLength: 11,
+                      onChanged: (value) {
+                        _controller.userModel?.phoneNumber = value;
+                      },
+                    ),
+                    ProfileTextInput(
+                      controller: _controller.textEditingController[8],
+                      text: "شماره ضروری",
+                      icon: Icon(Icons.phone),
+                      keyboardType: TextInputType.number,
+                      maxLength: 11,
+                      onChanged: (value) {
+                        _controller.userModel?.emergancyNumber = value;
+                      },
+                    ),
+                  ],
                 ),
-                ProfileTextInput(
-                    text: "تاریخ تولد",
-                    enable: false,
-                    controller: textInputController,
-                    ontap: () async {
-                      picker.Jalali? picked =
-                          await picker.showPersianDatePicker(
-                        context: context,
-                        initialDate: picker.Jalali.now(),
-                        firstDate: picker.Jalali(1330, 8),
-                        lastDate: picker.Jalali.now(),
-                      );
-                      if (picked != null) {
-                        // _controller.birthday.value = picked.formatCompactDate();
-                        textInputController.text = picked.formatCompactDate();
-                      }
-                    },
-                    icon: Icon(
-                      Icons.calendar_month,
-                    )),
-                ProfileTextInput(
-                    text: "محل صدور", icon: Icon(Icons.location_city)),
-                ProfileTextInput(
-                  text: "کد ملی",
-                  icon: Icon(Icons.public),
-                  maxLength: 11,
-                  keyboardType: TextInputType.number,
-                ),
-                ProfileTextInput(
-                  text: "شماره شناسنامه",
-                  icon: Icon(Icons.public_sharp),
-                  maxLength: 11,
-                  keyboardType: TextInputType.number,
-                ),
-                SizedBox(
+              ),
+              // button
+              InkWell(
+                onTap: () async {
+                  await _controller.updateInformation();
+                  // Get.dialog(PaymentWidget());
+                },
+                child: Container(
                   width: Get.width,
-                  height: Get.height / 10,
-                  child: Row(
-                    children: [
-                      const Text("میزان تحصیلات : ",
-                          style: TextStyle(fontSize: 14)),
-                      Expanded(
-                          child: ListView.builder(
-                              physics: const BouncingScrollPhysics(),
-                              itemCount: 6,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (_, index) => InkWell(
-                                    onTap: () => _controller.education.value = index,
-                                    child: Obx(() => Container(
-                                          width: Get.width / 5.5,
-                                          margin: EdgeInsets.symmetric(
-                                              horizontal: 3,
-                                              vertical: Get.height / 80),
-                                          height: Get.height,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              color: _controller.education.value == index
-                                                  ? Colors.green
-                                                  : const Color(0xffe5e5e5)),
-                                          child: Text(
-                                            [
-                                              "سیکل",
-                                              "دیپلم",
-                                              "فوق دیپلم",
-                                              "لیسانس",
-                                              "فوق لیسانس",
-                                              "دکترا",
-                                            ][index],
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(fontSize: 14),
-                                          ),
-                                        )),
-                                  )))
-                    ],
+                  height: Get.height / 13,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(15),
+                          topRight: Radius.circular(15)),
+                      color: buttonColor),
+                  child: Text(
+                  isReserving?  "مرحله بعدی":"ثبت اطلاعات",
+                    style: TextStyle(
+                        color:const Color(0xffffffff), fontSize: Get.width / 22),
                   ),
                 ),
-                ProfileTextInput(
-                  text: "آدرس محل سکونت",
-                  icon: Icon(Icons.pin_drop),
-                ),
-                ProfileTextInput(
-                  text: "شماره تلفن همراه",
-                  icon: Icon(Icons.phone_android),
-                  keyboardType: TextInputType.number,
-                  maxLength: 11,
-                ),
-                ProfileTextInput(
-                  text: "شماره ضروری",
-                  icon: Icon(Icons.phone),
-                  keyboardType: TextInputType.number,
-                  maxLength: 11,
-                ),
-              ],
-            ),
-          ),
-          // button
-          InkWell(
-            onTap: () {
-              Get.dialog(PaymentWidget());
-            },
-            child: Container(
-              width: Get.width,
-              height: Get.height / 13,
-              alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15)),
-                  color: buttonColor),
-              child: Text(
-                "مرحله بعدی",
-                style: TextStyle(
-                    color: Color(0xffffffff), fontSize: Get.width / 22),
               ),
-            ),
-          ),
-        ],
-      )),
+            ],
+          )),
     );
   }
 }
