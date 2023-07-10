@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/views/pages/more/reserved_list_screen.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/information_form_screen.dart';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({Key? key}) : super(key: key);
-  
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +12,8 @@ class MoreScreen extends StatelessWidget {
       backgroundColor: const Color(0xffffffff),
       body: ListView.builder(
           itemCount: 10,
-          padding:
-             const EdgeInsets.symmetric(horizontal: 5) +const EdgeInsets.only(top: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 5) +
+              const EdgeInsets.only(top: 5),
           itemBuilder: (_, index) => Card(
                 elevation: 3,
                 shape: RoundedRectangleBorder(
@@ -22,6 +22,7 @@ class MoreScreen extends StatelessWidget {
                   onTap: () {
                     switch (index) {
                       case 0:
+                        Get.to(() => const ReservedListScreen());
                         break;
                       case 1:
                         Get.to(() => const InformationFormScreen(

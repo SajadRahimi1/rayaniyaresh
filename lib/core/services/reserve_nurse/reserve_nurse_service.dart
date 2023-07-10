@@ -9,3 +9,10 @@ Future<Response<dynamic>> reserveNurses(
       reserveNurseUrl, {"userId": userId, "nurseId": nurseId, "days": days},
       headers: tokenHeader(token));
 }
+
+
+Future<Response<dynamic>> getReserveNurses( String token) async {
+  return await getConnect.get(
+      getReserveNurseUrl,
+      headers: tokenHeader(token));
+}

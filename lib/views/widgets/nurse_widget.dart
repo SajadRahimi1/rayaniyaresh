@@ -2,10 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:rayaniyaresh/models/models/nurse_model.dart';
 
 class NurseWidget extends StatelessWidget {
-  const NurseWidget({Key? key, this.onTap, this.evalation, this.model}) : super(key: key);
+  const NurseWidget(
+      {Key? key,
+      this.onTap,
+      this.evalation,
+      this.model,
+      this.days = const [],
+      this.isReserved = false})
+      : super(key: key);
   final void Function()? onTap;
   final double? evalation;
   final NurseModel? model;
+  final bool isReserved;
+  final List days;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -37,7 +46,7 @@ class NurseWidget extends StatelessWidget {
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width / 18,
               ),
-              // text an other
+              // other text
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
@@ -47,7 +56,7 @@ class NurseWidget extends StatelessWidget {
                     children: [
                       // name
                       Text(
-                        model?.name??"",
+                        model?.name ?? "",
                         style: TextStyle(
                           color: Color(0xff000000),
                           fontWeight: FontWeight.bold,
@@ -65,28 +74,58 @@ class NurseWidget extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       // star rate
-                      Container(
-                        padding: const EdgeInsets.symmetric(vertical: 1),
-                        width: MediaQuery.of(context).size.width / 6.8,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: const Color(0xff62E067)),
-                        child: Row(children: [
-                          const Icon(
-                            Icons.star,
-                            color: Colors.green,
-                          ),
-                          Text(
-                           (model?.rating??0).toString(),
-                            style: TextStyle(
-                              color: const Color(0xff000000),
-                              fontWeight: FontWeight.bold,
-                              fontSize: MediaQuery.of(context).size.width / 28,
+                      isReserved
+                          ? SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height / 22,
+                              child: ListView.builder(
+                                itemCount: days.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (_, index) => Container(
+                                  alignment: Alignment.center,
+                                  margin: const EdgeInsets.only(left: 5), 
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: const Color(0xff62E067)),
+                                  child: Text(
+                                    days[index],
+                                    style: TextStyle(
+                                      color: const Color(0xff000000),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize:
+                                          MediaQuery.of(context).size.width /
+                                              28,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Container(
+                              padding: const EdgeInsets.symmetric(vertical: 1),
+                              width: MediaQuery.of(context).size.width / 6.8,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: const Color(0xff62E067)),
+                              child: Row(children: [
+                                const Icon(
+                                  Icons.star,
+                                  color: Colors.green,
+                                ),
+                                Text(
+                                  (model?.rating ?? 0).toString(),
+                                  style: TextStyle(
+                                    color: const Color(0xff000000),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 28,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                )
+                              ]),
                             ),
-                            overflow: TextOverflow.ellipsis,
-                          )
-                        ]),
-                      ),
                       // location text
                       Row(
                         children: [
@@ -95,7 +134,7 @@ class NurseWidget extends StatelessWidget {
                             color: Color(0xffa0a0a0),
                           ),
                           Text(
-                            model?.locations??"",
+                            model?.locations ?? "",
                             style: TextStyle(
                               color: const Color(0xffa0a0a0),
                               fontSize: MediaQuery.of(context).size.width / 28,
