@@ -8,4 +8,5 @@ const String getUserUrl = "$baseUrl/user";
 const String updateUserUrl = "$baseUrl/user/update";
 const String getClassesUrl = "$baseUrl/Class";
 const String imagebaseUrl = "$baseUrl/uploads/";
+const String getMessagesUrl = "$baseUrl/Message/";
 
