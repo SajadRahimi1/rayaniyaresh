@@ -61,7 +61,10 @@ class ReservedListScreen extends StatelessWidget {
                   child: TabBarView(
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
-                      Container(),
+                      Container(
+                        alignment: Alignment.center,
+                        child: const Text("کلاسی رزرو نکردید"),
+                      ),
                       ListView.builder(
                           padding: const EdgeInsets.all(8),
                           itemCount: _controller.nurseModels.length,

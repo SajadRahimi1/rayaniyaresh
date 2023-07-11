@@ -7,13 +7,13 @@ import 'package:rayaniyaresh/views/pages/home/home_screen.dart';
 import 'package:rayaniyaresh/views/pages/home/more_screen.dart';
 import 'package:rayaniyaresh/views/pages/home/profile_screen.dart';
 import 'package:rayaniyaresh/views/pages/home/reserve_screen.dart';
+import 'package:rayaniyaresh/views/pages/home/support_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/menu.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key, this.initPage = 2}) : super(key: key);
   final int initPage;
-  
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -85,7 +85,7 @@ class _MainScreenState extends State<MainScreen> {
                           HomeScreen(
                               onShopTap: () =>
                                   _controller.currentPage.value = 1),
-                          Container(),
+                          const SupportScreen(),
                           const MoreScreen(),
                         ],
                       )),
