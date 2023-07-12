@@ -86,7 +86,9 @@ class _MainScreenState extends State<MainScreen> {
                               onShopTap: () =>
                                   _controller.currentPage.value = 1),
                           const SupportScreen(),
-                          const MoreScreen(),
+                          MoreScreen(
+                              onReserveTap: () =>
+                                  _controller.currentPage.value = 0),
                         ],
                       )),
                     ]),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/viewmodels/home/profile_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -7,6 +8,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _controller = Get.put(ProfileViewmodel());
     RxBool isMan = true.obs;
     return SafeArea(
       child: Scaffold(
@@ -115,16 +117,19 @@ class ProfileScreen extends StatelessWidget {
                       )),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15),
-                    child: CircleAvatar(
-                      radius: MediaQuery.of(context).size.width / 6,
-                      backgroundColor: Colors.white,
-                      backgroundImage: const NetworkImage(
-                          "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"),
-                      // child: Icon(
-                      //   Icons.person_rounded,
-                      //   color: const Color(0xff004D55),
-                      //   size: MediaQuery.of(context).size.width / 4,
-                      // ),
+                    child: InkWell(
+                      onTap: _controller.updateImage,
+                      child: CircleAvatar(
+                        radius: MediaQuery.of(context).size.width / 6,
+                        backgroundColor: Colors.white,
+                        backgroundImage: const NetworkImage(
+                            "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"),
+                        // child: Icon(
+                        //   Icons.person_rounded,
+                        //   color: const Color(0xff004D55),
+                        //   size: MediaQuery.of(context).size.width / 4,
+                        // ),
+                      ),
                     ),
                   ),
                   // Padding(

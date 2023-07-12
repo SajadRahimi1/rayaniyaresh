@@ -5,8 +5,8 @@ import 'package:rayaniyaresh/views/pages/more/reserved_list_screen.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/information_form_screen.dart';
 
 class MoreScreen extends StatelessWidget {
-  const MoreScreen({Key? key}) : super(key: key);
-
+  const MoreScreen({Key? key, required this.onReserveTap}) : super(key: key);
+  final void Function() onReserveTap;
   @override
   Widget build(BuildContext context) {
     final _controller = Get.put(MoreViewModel());
@@ -38,6 +38,9 @@ class MoreScreen extends StatelessWidget {
                         break;
                       case 4:
                         _controller.gotoSubcategory("بهداشت", "بهداشت و ایمنی");
+                        break;
+                      case 5:
+                        onReserveTap();
                         break;
                       default:
                     }
