@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart' show ScrollController;
+import 'package:flutter/material.dart'
+    show ScrollController, TextEditingController;
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
@@ -9,9 +10,9 @@ import 'package:rayaniyaresh/models/models/message_model.dart';
 class SupportViewModel extends GetxController with StateMixin {
   final GetStorage _getStorage = GetStorage();
   String token = "";
-  List<MessageModel> messagesList = [];
-    final ScrollController scrollController = ScrollController();
-
+  RxList<MessageModel> messagesList = <MessageModel>[].obs;
+  final ScrollController scrollController = ScrollController();
+  final TextEditingController textEditingController = TextEditingController();
 
   @override
   void onInit() async {
@@ -25,10 +26,32 @@ class SupportViewModel extends GetxController with StateMixin {
   Future<void> getMessages() async {
     final _request = await service.getMessages(token);
     if (_request.statusCode == 200) {
-      messagesList =
+      messagesList.value =
           List.from(_request.body.map((x) => MessageModel.fromJson(x)));
+      messagesList.value = messagesList.reversed.toList();
       change(null, status: RxStatus.success());
     } else {
+      networkErrorMessage();
+    }
+  }
+
+  Future<void> sendMessage(String message) async {
+    var messageModel = MessageModel(
+      content: message,
+      isUserSend: true,
+      messageType: "text",
+      isSent: false,
+      success: true,
+    );
+    messagesList.insert(0, messageModel);
+    final _request = await service.sendMessage(token, message);
+    int indexOfMessage = messagesList.indexOf(messageModel);
+    if (_request.statusCode == 200) {
+      messageModel = MessageModel.fromJson(_request.body);
+      messagesList[indexOfMessage] = messageModel;
+    } else {
+      messagesList[indexOfMessage].isSent = true;
+      messagesList[indexOfMessage].success = false;
       networkErrorMessage();
     }
   }

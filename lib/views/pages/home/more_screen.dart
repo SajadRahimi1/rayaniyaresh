@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/viewmodels/more/more_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/more/reserved_list_screen.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/information_form_screen.dart';
 
@@ -8,6 +9,8 @@ class MoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _controller = Get.put(MoreViewModel());
+
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
       body: ListView.builder(
@@ -28,6 +31,13 @@ class MoreScreen extends StatelessWidget {
                         Get.to(() => const InformationFormScreen(
                               isReserving: false,
                             ));
+
+                        break;
+                      case 3:
+                        _controller.gotoSubcategory("آموزشی", "خدمات آموزشی");
+                        break;
+                      case 4:
+                        _controller.gotoSubcategory("بهداشت", "بهداشت و ایمنی");
                         break;
                       default:
                     }
@@ -37,6 +47,7 @@ class MoreScreen extends StatelessWidget {
                     Icons.person_add,
                     Icons.search,
                     Icons.cast_for_education,
+                    Icons.sick,
                     Icons.cases_outlined,
                     Icons.public,
                     Icons.bookmark_added,

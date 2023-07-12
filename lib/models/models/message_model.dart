@@ -4,6 +4,8 @@ class MessageModel {
   dynamic supportId;
   bool? isUserSend;
   bool? seen;
+  bool? isSent;
+  bool? success;
   String? id;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -15,6 +17,8 @@ class MessageModel {
       this.isUserSend,
       this.seen,
       this.id,
+      this.success = true,
+      this.isSent=true,
       this.createdAt,
       this.updatedAt});
 

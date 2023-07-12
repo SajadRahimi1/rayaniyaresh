@@ -7,6 +7,7 @@ const String getReserveNurseUrl = "$baseUrl/Nurse/nurses-reserved";
 const String getUserUrl = "$baseUrl/user";
 const String updateUserUrl = "$baseUrl/user/update";
 const String getClassesUrl = "$baseUrl/Class";
+const String getSingleClassUrl = "$baseUrl/Class/get-single";
 const String imagebaseUrl = "$baseUrl/uploads/";
 const String getMessagesUrl = "$baseUrl/Message/";
-
+const String sendMessageUrl = "$baseUrl/Message/send";

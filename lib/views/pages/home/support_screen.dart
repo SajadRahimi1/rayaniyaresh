@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/viewmodels/home/support_viewmodel.dart';
+import 'package:rayaniyaresh/views/widgets/message_icon_widget.dart';
+import 'package:rayaniyaresh/views/widgets/message_widget.dart';
 
 class SupportScreen extends StatelessWidget {
   const SupportScreen({Key? key}) : super(key: key);
@@ -15,79 +17,35 @@ class SupportScreen extends StatelessWidget {
             height: Get.height,
             child: Column(children: [
               Expanded(
-                child: ListView.builder(
+                  child: Obx(
+                () => ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   controller: _controller.scrollController,
                   reverse: true,
                   itemCount: _controller.messagesList.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Align(
-                      alignment:
-                          _controller.messagesList[index].isUserSend ?? true
-                              ? Alignment.centerRight
-                              : Alignment.centerLeft,
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 4.0, horizontal: 8.0),
-                        padding: const EdgeInsets.all(12.0),
-                        decoration: BoxDecoration(
-                          color:
-                              _controller.messagesList[index].isUserSend ?? true
-                                  ? Colors.blue
-                                  : Colors.grey[300],
-                          borderRadius: BorderRadius.only(
-                            topLeft: const Radius.circular(10.0),
-                            topRight: const Radius.circular(10.0),
-                            bottomRight:
-                                _controller.messagesList[index].isUserSend ??
-                                        true
-                                    ? Radius.zero
-                                    : const Radius.circular(10.0),
-                            bottomLeft:
-                                _controller.messagesList[index].isUserSend ??
-                                        true
-                                    ? const Radius.circular(10.0)
-                                    : Radius.zero,
-                          ),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              _controller.messagesList[index].content ?? "",
-                              style: TextStyle(
-                                  color: _controller
-                                              .messagesList[index].isUserSend ??
-                                          true
-                                      ? Colors.white
-                                      : Colors.black),
-                            ),
-                            Text(
-                              (_controller.messagesList[index].createdAt ??
-                                          DateTime.now())
-                                      .toUtc()
-                                      .hour
-                                      .toString() +
-                                  ':' +
-                                  (_controller.messagesList[index].createdAt ??
-                                          DateTime.now())
-                                      .toUtc()
-                                      .minute
-                                      .toString(),
-                              style: TextStyle(
-                                  color: _controller
-                                              .messagesList[index].isUserSend ??
-                                          true
-                                      ? Colors.white
-                                      : Colors.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
+                    return Messagewidget(
+                        isUserSend:
+                            _controller.messagesList[index].isUserSend ?? true,
+                        text: _controller.messagesList[index].content ?? "",
+                        time: (_controller.messagesList[index].createdAt ??
+                                    DateTime.now())
+                                .toUtc()
+                                .hour
+                                .toString() +
+                            ':' +
+                            (_controller.messagesList[index].createdAt ??
+                                    DateTime.now())
+                                .toUtc()
+                                .minute
+                                .toString(),
+                        messageIcon: messageIcon(
+                            _controller.messagesList[index].success ?? true,
+                            _controller.messagesList[index].isSent ?? true,
+                            _controller.messagesList[index].seen ?? false));
                   },
                 ),
-              ),
+              )),
               const Divider(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -97,6 +55,7 @@ class SupportScreen extends StatelessWidget {
                       child: SizedBox(
                         height: Get.height / 15,
                         child: TextFormField(
+                          controller: _controller.textEditingController,
                           textInputAction: TextInputAction.done,
                           textAlignVertical: TextAlignVertical.bottom,
                           maxLines: 2,
@@ -107,18 +66,15 @@ class SupportScreen extends StatelessWidget {
                             focusColor: Colors.green,
                             alignLabelWithHint: true,
                             suffixIcon: IconButton(
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.send,
                                 color: Colors.green,
                               ),
-                              onPressed: () {
-                                // final ScrollPosition position =
-                                //     _controller.scrollController.position;
-                                // position.animateTo(
-                                //   position.maxScrollExtent,
-                                //   duration: const Duration(milliseconds: 500),
-                                //   curve: Curves.easeOut,
-                                // );
+                              onPressed: () async {
+                                var message =
+                                    _controller.textEditingController.text;
+                                _controller.textEditingController.clear();
+                                await _controller.sendMessage(message);
                               },
                             ),
                             hintText: 'پیام خود را بنویس',
