@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/models/constants/singleton_class.dart';
+import 'package:rayaniyaresh/models/constants/urls.dart';
 import 'package:rayaniyaresh/viewmodels/home/profile_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 
@@ -120,16 +123,21 @@ class ProfileScreen extends StatelessWidget {
                     child: InkWell(
                       onTap: _controller.updateImage,
                       child: CircleAvatar(
-                        radius: MediaQuery.of(context).size.width / 6,
-                        backgroundColor: Colors.white,
-                        backgroundImage: const NetworkImage(
-                            "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"),
-                        // child: Icon(
-                        //   Icons.person_rounded,
-                        //   color: const Color(0xff004D55),
-                        //   size: MediaQuery.of(context).size.width / 4,
-                        // ),
-                      ),
+                          radius: MediaQuery.of(context).size.width / 6,
+                          backgroundColor: Colors.white,
+                          backgroundImage: SingletonClass().imageUrl.isEmpty
+                              ? null
+                              : CachedNetworkImageProvider(baseUrl +
+                                  '/uploads/' +
+                                  SingletonClass().imageUrl)
+                          //  const NetworkImage(
+                          //     "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"),
+                          // child: Icon(
+                          //   Icons.person_rounded,
+                          //   color: const Color(0xff004D55),
+                          //   size: MediaQuery.of(context).size.width / 4,
+                          // ),
+                          ),
                     ),
                   ),
                   // Padding(

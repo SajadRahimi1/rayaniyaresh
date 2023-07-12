@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/models/constants/singleton_class.dart';
+import 'package:rayaniyaresh/models/constants/urls.dart';
 import 'package:rayaniyaresh/views/pages/home/profile_screen.dart';
 import 'package:rayaniyaresh/views/pages/login/get_phone_number_screen.dart';
 import 'package:rayaniyaresh/views/pages/menu/aboutus_screen.dart';
@@ -43,11 +46,14 @@ class Menu extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CircleAvatar(
-                              radius: MediaQuery.of(context).size.width / 8,
-                              backgroundColor: Colors.white,
-                              backgroundImage: const NetworkImage(
-                                  "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"),
-                            ),
+                                radius: MediaQuery.of(context).size.width / 8,
+                                backgroundColor: Colors.white,
+                                backgroundImage:
+                                    SingletonClass().imageUrl.isEmpty
+                                        ? null
+                                        : CachedNetworkImageProvider(baseUrl +
+                                            '/uploads/' +
+                                            SingletonClass().imageUrl)),
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: Text(

@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
+import 'package:rayaniyaresh/models/constants/singleton_class.dart';
+import 'package:rayaniyaresh/models/models/user_model.dart';
 import 'package:rayaniyaresh/views/pages/home/main_screen.dart';
 import 'package:rayaniyaresh/views/pages/login/validation_screen.dart';
 import 'package:rayaniyaresh/views/widgets/loading_widget.dart';
@@ -30,6 +32,8 @@ class GetPhoneViewModel extends GetxController with StateMixin {
   Future<void> checkToken() async {
     final _request = await user_service.checkToken(token);
     if (_request.statusCode == 200) {
+      
+     SingletonClass().imageUrl= UserModel.fromJson(_request.body).ImageUrl??"";
       Get.offAll(() => const MainScreen());
     } else {
       change(null, status: RxStatus.success());

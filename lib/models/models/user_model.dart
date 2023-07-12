@@ -10,6 +10,8 @@ class UserModel {
   String? education;
   String? address;
   String? emergancyNumber;
+
+  String? ImageUrl;
   List<dynamic>? reservedClasses;
   List<dynamic>? reserveNurses;
   String? id;
@@ -26,6 +28,7 @@ class UserModel {
       this.education,
       this.address,
       this.emergancyNumber,
+      this.ImageUrl,
       this.reservedClasses,
       this.reserveNurses,
       this.id});
@@ -37,6 +40,7 @@ class UserModel {
     fatherName = json["FatherName"];
     birthday = json["Birthday"];
     bornCity = json["BornCity"];
+    ImageUrl = json['ImageUrl'];
     nationalCode = json["NationalCode"];
     nationalNumber = json["NationalNumber"];
     education = json["Education"];
@@ -57,6 +61,7 @@ class UserModel {
     _data["NationalCode"] = nationalCode;
     _data["NationalNumber"] = nationalNumber;
     _data["Education"] = education;
+    _data['ImageUrl'] = ImageUrl;
     _data["Address"] = address;
     _data["EmergancyNumber"] = emergancyNumber;
     _data["Id"] = id;

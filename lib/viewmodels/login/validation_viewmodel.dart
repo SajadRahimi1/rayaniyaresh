@@ -3,7 +3,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:flutter/material.dart' show TextEditingController;
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
+import 'package:rayaniyaresh/models/constants/singleton_class.dart';
 import 'package:rayaniyaresh/models/extensions/lisr_extentions.dart';
+import 'package:rayaniyaresh/models/models/user_model.dart';
 import 'package:rayaniyaresh/views/pages/home/main_screen.dart';
 import 'package:rayaniyaresh/core/services/login/sms_service.dart' as service;
 
@@ -58,6 +60,8 @@ class ValidateViewModel extends GetxController {
     if (_request.statusCode == 200) {
       await _storage.write("token", _request.body['Token']);
       await _storage.write("id", _request.body['Id']);
+      SingletonClass().imageUrl =
+          UserModel.fromJson(_request.body).ImageUrl ?? "";
       Get.to(() => const MainScreen());
     } else if (_request.statusCode == 400) {
       showMessage(message: "کد وارد شده صحیح نیست");
