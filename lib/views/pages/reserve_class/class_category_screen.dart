@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
-import 'package:rayaniyaresh/models/constants/class_services.dart';
 import 'package:rayaniyaresh/viewmodels/reserve_class/class_category_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/class_subcategory_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';

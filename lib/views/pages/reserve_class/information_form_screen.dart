@@ -36,7 +36,7 @@ class InformationFormScreen extends StatelessWidget {
                     ProfileTextInput(
                       controller: _controller.textEditingController[0],
                       text: "نام و نام خانوادگی",
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.person,
                       ),
                       onChanged: (value) {
@@ -46,7 +46,7 @@ class InformationFormScreen extends StatelessWidget {
                     ProfileTextInput(
                       controller: _controller.textEditingController[1],
                       text: "نام پدر",
-                      icon: Icon(Icons.family_restroom),
+                      icon: const Icon(Icons.family_restroom),
                       onChanged: (value) {
                         _controller.userModel?.fatherName = value;
                       },
@@ -71,13 +71,13 @@ class InformationFormScreen extends StatelessWidget {
                                 picked.formatCompactDate();
                           }
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.calendar_month,
                         )),
                     ProfileTextInput(
                       controller: _controller.textEditingController[3],
                       text: "محل صدور",
-                      icon: Icon(Icons.location_city),
+                      icon: const Icon(Icons.location_city),
                       onChanged: (value) {
                         _controller.userModel?.bornCity = value;
                       },
@@ -85,7 +85,7 @@ class InformationFormScreen extends StatelessWidget {
                     ProfileTextInput(
                       controller: _controller.textEditingController[4],
                       text: "کد ملی",
-                      icon: Icon(Icons.public),
+                      icon: const Icon(Icons.public),
                       maxLength: 11,
                       keyboardType: TextInputType.number,
                       onChanged: (value) {
@@ -95,7 +95,7 @@ class InformationFormScreen extends StatelessWidget {
                     ProfileTextInput(
                       controller: _controller.textEditingController[5],
                       text: "شماره شناسنامه",
-                      icon: Icon(Icons.public_sharp),
+                      icon: const Icon(Icons.public_sharp),
                       maxLength: 11,
                       keyboardType: TextInputType.number,
                       onChanged: (value) {
@@ -137,7 +137,7 @@ class InformationFormScreen extends StatelessWidget {
                                                 _controller
                                                     .educationStrings[index],
                                                 textAlign: TextAlign.center,
-                                                style: TextStyle(fontSize: 14),
+                                                style: const TextStyle(fontSize: 14),
                                               ),
                                             )),
                                       )))
@@ -147,7 +147,7 @@ class InformationFormScreen extends StatelessWidget {
                     ProfileTextInput(
                       controller: _controller.textEditingController[6],
                       text: "آدرس محل سکونت",
-                      icon: Icon(Icons.pin_drop),
+                      icon: const Icon(Icons.pin_drop),
                       onChanged: (value) {
                         _controller.userModel?.address = value;
                       },
@@ -155,7 +155,7 @@ class InformationFormScreen extends StatelessWidget {
                     ProfileTextInput(
                       controller: _controller.textEditingController[7],
                       text: "شماره تلفن همراه",
-                      icon: Icon(Icons.phone_android),
+                      icon: const Icon(Icons.phone_android),
                       keyboardType: TextInputType.number,
                       enable: false,
                       maxLength: 11,
@@ -166,7 +166,7 @@ class InformationFormScreen extends StatelessWidget {
                     ProfileTextInput(
                       controller: _controller.textEditingController[8],
                       text: "شماره ضروری",
-                      icon: Icon(Icons.phone),
+                      icon: const Icon(Icons.phone),
                       keyboardType: TextInputType.number,
                       maxLength: 11,
                       onChanged: (value) {
@@ -183,7 +183,7 @@ class InformationFormScreen extends StatelessWidget {
                     await _controller.updateInformation();
                   } else {
                     bool isInstallment =
-                        await Get.dialog<bool>(PaymentWidget()) ?? false;
+                        await Get.dialog<bool>(const PaymentWidget()) ?? false;
                     await _controller.reserveClass(isInstallment);
                   }
                 },

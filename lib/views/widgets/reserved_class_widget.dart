@@ -45,7 +45,7 @@ class ReservedClass extends StatelessWidget {
                             : "خدمات آموزشی",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Color(0xffffffff),
+                            color: const Color(0xffffffff),
                             fontSize: MediaQuery.of(context).size.width / 20),
                       ),
                     ),
@@ -68,7 +68,7 @@ class ReservedClass extends StatelessWidget {
                       Text(
                         model?.classCategory?.title ?? "",
                         style: TextStyle(
-                          color: Color(0xff000000),
+                          color: const Color(0xff000000),
                           fontWeight: FontWeight.bold,
                           fontSize: MediaQuery.of(context).size.width / 25,
                         ),
@@ -80,7 +80,7 @@ class ReservedClass extends StatelessWidget {
                             (model?.classCategory?.price ?? "") +
                             " تومان",
                         style: TextStyle(
-                          color: Color(0xff0f0f0f),
+                          color: const Color(0xff0f0f0f),
                           fontSize: MediaQuery.of(context).size.width / 28,
                         ),
                         overflow: TextOverflow.ellipsis,

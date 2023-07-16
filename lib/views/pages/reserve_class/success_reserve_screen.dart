@@ -19,7 +19,7 @@ class SuccessReserveScreen extends StatelessWidget {
             child: Text(
           "کارشناسان ما در کمتر از 24 ساعت آینده با شما در تماس خواهند بود",
           textAlign: TextAlign.center,
-          style: TextStyle(color: Color(0xff000000), fontSize: Get.width / 22),
+          style: TextStyle(color: const Color(0xff000000), fontSize: Get.width / 22),
         )),
       ),
     );

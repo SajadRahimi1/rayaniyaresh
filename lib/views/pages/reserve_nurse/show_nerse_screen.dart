@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rayaniyaresh/models/models/nurse_model.dart';
 import 'package:rayaniyaresh/viewmodels/reserve_nurse/show_nurse_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/reserve_nurse/nurse_detail_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';

@@ -5,7 +5,6 @@ import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/viewmodels/home/main_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/home/home_screen.dart';
 import 'package:rayaniyaresh/views/pages/home/more_screen.dart';
-import 'package:rayaniyaresh/views/pages/home/profile_screen.dart';
 import 'package:rayaniyaresh/views/pages/home/reserve_screen.dart';
 import 'package:rayaniyaresh/views/pages/home/support_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';

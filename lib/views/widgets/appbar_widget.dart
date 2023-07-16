@@ -28,7 +28,7 @@ AppBar screensAppbar({required BuildContext context, String title = ""}) =>
       centerTitle: true,
       elevation: 5,
       iconTheme: const IconThemeData(color: Color(0xff000000)),
-      actions: [
+      actions: const [
         // Padding(
         //   padding: const EdgeInsets.only(left: 8),
         //   child: IconButton(

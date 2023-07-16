@@ -11,7 +11,7 @@ Future<Response<dynamic>> getSingleClass(String title) async {
   return await getConnect.get(getSingleClassUrl, query: {'title': title});
 }
 
-Future<Response<dynamic>> ReserveClass(
+Future<Response<dynamic>> reserveClass(
     {required String token,
     required String day,
     required String hours,

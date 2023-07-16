@@ -7,7 +7,6 @@ import 'package:rayaniyaresh/core/services/reserve_class/class_service.dart'
     as class_service;
 import 'package:rayaniyaresh/models/models/reserve_class_model.dart';
 import 'package:rayaniyaresh/models/models/user_model.dart';
-import 'package:rayaniyaresh/views/pages/home/main_screen.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/success_reserve_screen.dart';
 
 class InformationFormViewModel extends GetxController with StateMixin {
@@ -76,7 +75,7 @@ class InformationFormViewModel extends GetxController with StateMixin {
 
   Future<void> reserveClass(bool isInstallment) async {
     if (reserveClassModel != null) {
-      final _request = await class_service.ReserveClass(
+      final _request = await class_service.reserveClass(
           token: token,
           day: reserveClassModel?.day ?? "",
           hours: reserveClassModel?.hours ?? "",

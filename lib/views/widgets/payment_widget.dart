@@ -30,7 +30,7 @@ class PaymentWidget extends StatelessWidget {
                     "assets/images/icons/cash.png",
                     width: MediaQuery.of(context).size.width / 4,
                   ),
-                  Text(
+                  const Text(
                     "پرداخت نقدی \n(آنلاین)",
                     textAlign: TextAlign.center,
                   )
@@ -54,7 +54,7 @@ class PaymentWidget extends StatelessWidget {
                     "assets/images/icons/installment.png",
                     width: MediaQuery.of(context).size.width / 4.5,
                   ),
-                  Text(
+                  const Text(
                     "پرداخت اقساط \n(آنلاین)",
                     textAlign: TextAlign.center,
                   )

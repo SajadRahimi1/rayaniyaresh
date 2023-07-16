@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class ProfileTextInput extends StatelessWidget {
   const ProfileTextInput({
@@ -33,9 +32,9 @@ class ProfileTextInput extends StatelessWidget {
           enabled: enable,
           controller: controller,
           keyboardType: keyboardType,
-          inputFormatters: [
+          // inputFormatters: [
             // FilteringTextInputFormatter.deny(RegExp("[a-zA-Z]")),
-          ],
+          // ],
           onChanged: onChanged,
           style: TextStyle(
             fontSize: MediaQuery.of(context).size.width / 27,

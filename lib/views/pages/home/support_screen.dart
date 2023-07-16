@@ -84,7 +84,7 @@ class SupportScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(width: 8.0),
+                    const SizedBox(width: 8.0),
                   ],
                 ),
               ),

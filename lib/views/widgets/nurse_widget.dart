@@ -58,7 +58,7 @@ class NurseWidget extends StatelessWidget {
                       Text(
                         model?.name ?? "",
                         style: TextStyle(
-                          color: Color(0xff000000),
+                          color: const Color(0xff000000),
                           fontWeight: FontWeight.bold,
                           fontSize: MediaQuery.of(context).size.width / 25,
                         ),
@@ -68,7 +68,7 @@ class NurseWidget extends StatelessWidget {
                       Text(
                         "پرستار",
                         style: TextStyle(
-                          color: Color(0xffa0a0a0),
+                          color: const Color(0xffa0a0a0),
                           fontSize: MediaQuery.of(context).size.width / 28,
                         ),
                         overflow: TextOverflow.ellipsis,

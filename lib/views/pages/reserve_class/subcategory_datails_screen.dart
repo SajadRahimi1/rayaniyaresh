@@ -80,7 +80,7 @@ class SubcategoryDetailScreen extends StatelessWidget {
                 child: Text(
                   "مرحله بعدی",
                   style: TextStyle(
-                      color: Color(0xffffffff), fontSize: Get.width / 22),
+                      color: const Color(0xffffffff), fontSize: Get.width / 22),
                 ),
               ),
             ),

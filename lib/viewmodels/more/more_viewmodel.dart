@@ -7,11 +7,6 @@ import 'package:rayaniyaresh/views/pages/reserve_class/class_subcategory_screen.
 import 'package:rayaniyaresh/views/widgets/loading_widget.dart';
 
 class MoreViewModel extends GetxController with StateMixin {
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-  }
 
   Future<void> gotoSubcategory(String title, String appBarTitle) async {
     loading();
