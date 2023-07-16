@@ -182,9 +182,10 @@ class InformationFormScreen extends StatelessWidget {
                   if (subcategoryId == null) {
                     await _controller.updateInformation();
                   } else {
-                    await _controller.reserveClass();
+                    bool isInstallment =
+                        await Get.dialog<bool>(PaymentWidget()) ?? false;
+                    await _controller.reserveClass(isInstallment);
                   }
-                  // Get.dialog(PaymentWidget());
                 },
                 child: Container(
                   width: Get.width,

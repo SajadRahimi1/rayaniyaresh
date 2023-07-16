@@ -4,6 +4,8 @@ import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/viewmodels/more/reserved_list_viewModel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/nurse_widget.dart';
+import 'package:rayaniyaresh/views/widgets/reserved_class_widget.dart';
+import 'package:rayaniyaresh/views/widgets/reserved_nurse_woidget.dart';
 
 class ReservedListScreen extends StatelessWidget {
   const ReservedListScreen({Key? key}) : super(key: key);
@@ -61,17 +63,27 @@ class ReservedListScreen extends StatelessWidget {
                   child: TabBarView(
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
-                      Container(
-                        alignment: Alignment.center,
-                        child: const Text("کلاسی رزرو نکردید"),
-                      ),
                       ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: _controller
+                                  .reservedModel?.reservedClasses?.length ??
+                              0,
+                          itemBuilder: (_, index) => ReservedClass(
+                                model: _controller
+                                    .reservedModel?.reservedClasses?[index],
+                              )),
+                      ListView.builder(
+                          physics: const BouncingScrollPhysics(),
                           padding: const EdgeInsets.all(8),
-                          itemCount: _controller.nurseModels.length,
-                          itemBuilder: (_, index) => NurseWidget(
+                          itemCount: _controller
+                                  .reservedModel?.reserveNurses?.length ??
+                              0,
+                          itemBuilder: (_, index) => ReservedNurseWidget(
                                 isReserved: true,
-                                model: _controller.nurseModels[index].nurse,
-                                days: _controller.nurseModels[index].days
+                                model: _controller
+                                    .reservedModel?.reserveNurses?[index].nurse,
+                                days: _controller.reservedModel
+                                        ?.reserveNurses?[index].days
                                         ?.split(',') ??
                                     [],
                               ))

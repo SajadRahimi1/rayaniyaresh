@@ -28,13 +28,13 @@ AppBar screensAppbar({required BuildContext context, String title = ""}) =>
       centerTitle: true,
       elevation: 5,
       iconTheme: const IconThemeData(color: Color(0xff000000)),
-      // actions: [
-      //   Padding(
-      //     padding: const EdgeInsets.only(left: 8),
-      //     child: IconButton(
-      //       icon: const Icon(Icons.arrow_forward, color: Color(0xff000000)),
-      //       onPressed: () => Navigator.pop(context),
-      //     ),
-      //   )
-      // ],
+      actions: [
+        // Padding(
+        //   padding: const EdgeInsets.only(left: 8),
+        //   child: IconButton(
+        //     icon: const Icon(Icons.arrow_forward, color: Color(0xff000000)),
+        //     onPressed: () => Navigator.pop(context),
+        //   ),
+        // )
+      ],
     );

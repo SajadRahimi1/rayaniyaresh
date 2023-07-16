@@ -21,3 +21,7 @@ Future<Response<dynamic>> updateImage(
   return await getConnect.post(updateUserImageUrl, formData,
       headers: tokenHeader(token));
 }
+
+Future<Response<dynamic>> getReserved(String token) async {
+  return await getConnect.get(getReservedUrl, headers: {"Authorization": token});
+}

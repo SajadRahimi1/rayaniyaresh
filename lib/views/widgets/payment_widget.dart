@@ -21,18 +21,21 @@ class PaymentWidget extends StatelessWidget {
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             // cash pay
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Image.asset(
-                  "assets/images/icons/cash.png",
-                  width: MediaQuery.of(context).size.width / 4,
-                ),
-                Text(
-                  "پرداخت نقدی \n(آنلاین)",
-                  textAlign: TextAlign.center,
-                )
-              ],
+            InkWell(
+              onTap: ()=>Navigator.pop(context,false),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Image.asset(
+                    "assets/images/icons/cash.png",
+                    width: MediaQuery.of(context).size.width / 4,
+                  ),
+                  Text(
+                    "پرداخت نقدی \n(آنلاین)",
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              ),
             ),
 
             // splitter
@@ -42,18 +45,21 @@ class PaymentWidget extends StatelessWidget {
               color: Colors.black,
             ),
             // installment pay
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Image.asset(
-                  "assets/images/icons/installment.png",
-                  width: MediaQuery.of(context).size.width / 4.5,
-                ),
-                Text(
-                  "پرداخت اقساط \n(آنلاین)",
-                  textAlign: TextAlign.center,
-                )
-              ],
+            InkWell(
+              onTap: ()=>Navigator.pop(context,true),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Image.asset(
+                    "assets/images/icons/installment.png",
+                    width: MediaQuery.of(context).size.width / 4.5,
+                  ),
+                  Text(
+                    "پرداخت اقساط \n(آنلاین)",
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              ),
             )
           ]),
         ),
