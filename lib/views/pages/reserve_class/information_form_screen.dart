@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
+import 'package:rayaniyaresh/models/models/reserve_class_model.dart';
 import 'package:rayaniyaresh/viewmodels/reserve_class/information_form_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/payment_widget.dart';
@@ -8,12 +9,19 @@ import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart' as picker;
 
 class InformationFormScreen extends StatelessWidget {
-  const InformationFormScreen({Key? key, this.subcategoryId,this.isReserving=true}) : super(key: key);
+  const InformationFormScreen(
+      {Key? key,
+      this.subcategoryId,
+      this.isReserving = true,
+      this.reserveClassModel})
+      : super(key: key);
   final String? subcategoryId;
   final bool isReserving;
+  final ReserveClassModel? reserveClassModel;
   @override
   Widget build(BuildContext context) {
-    final _controller = Get.put(InformationFormViewModel(isReserving:isReserving));
+    final _controller = Get.put(InformationFormViewModel(
+        isReserving: isReserving, reserveClassModel: reserveClassModel));
 
     return Scaffold(
       appBar: screensAppbar(context: context, title: "اطلاعات شخصی"),
@@ -171,7 +179,11 @@ class InformationFormScreen extends StatelessWidget {
               // button
               InkWell(
                 onTap: () async {
-                  await _controller.updateInformation();
+                  if (subcategoryId == null) {
+                    await _controller.updateInformation();
+                  } else {
+                    await _controller.reserveClass();
+                  }
                   // Get.dialog(PaymentWidget());
                 },
                 child: Container(
@@ -184,9 +196,10 @@ class InformationFormScreen extends StatelessWidget {
                           topRight: Radius.circular(15)),
                       color: buttonColor),
                   child: Text(
-                  isReserving?  "مرحله بعدی":"ثبت اطلاعات",
+                    isReserving ? "مرحله بعدی" : "ثبت اطلاعات",
                     style: TextStyle(
-                        color:const Color(0xffffffff), fontSize: Get.width / 22),
+                        color: const Color(0xffffffff),
+                        fontSize: Get.width / 22),
                   ),
                 ),
               ),

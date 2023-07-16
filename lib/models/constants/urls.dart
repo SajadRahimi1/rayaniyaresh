@@ -8,6 +8,7 @@ const String getUserUrl = "$baseUrl/user";
 const String updateUserUrl = "$baseUrl/user/update";
 const String updateUserImageUrl = "$baseUrl/user/update-image";
 const String getClassesUrl = "$baseUrl/Class";
+const String reserveClassUrl = "$baseUrl/ClassCategory/Reserve";
 const String getSingleClassUrl = "$baseUrl/Class/get-single";
 const String imagebaseUrl = "$baseUrl/uploads/";
 const String getMessagesUrl = "$baseUrl/Message/";

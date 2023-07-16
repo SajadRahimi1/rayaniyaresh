@@ -2,16 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/models/class_model.dart';
+import 'package:rayaniyaresh/models/models/reserve_class_model.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/information_form_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/subcategory_cons_widget.dart';
 
 class SubcategoryDetailScreen extends StatelessWidget {
   const SubcategoryDetailScreen(
-      {Key? key, required this.title, required this.model})
+      {Key? key,
+      required this.title,
+      required this.model,
+      required this.reserveModel})
       : super(key: key);
   final String title;
   final ClassCategories model;
+  final ReserveClassModel reserveModel;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +62,11 @@ class SubcategoryDetailScreen extends StatelessWidget {
               child: Align(
             alignment: Alignment.bottomCenter,
             child: InkWell(
-              onTap: () => Get.to(() => const InformationFormScreen(),
+              onTap: () => Get.to(
+                  () => InformationFormScreen(
+                        reserveClassModel: reserveModel,
+                        subcategoryId: model.id,
+                      ),
                   transition: Transition.leftToRight),
               child: Container(
                 width: Get.width,

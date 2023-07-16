@@ -3,11 +3,16 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/core/services/user_service.dart' as user_service;
+import 'package:rayaniyaresh/core/services/reserve_class/class_service.dart'
+    as class_service;
+import 'package:rayaniyaresh/models/models/reserve_class_model.dart';
 import 'package:rayaniyaresh/models/models/user_model.dart';
+import 'package:rayaniyaresh/views/pages/home/main_screen.dart';
 
 class InformationFormViewModel extends GetxController with StateMixin {
-  InformationFormViewModel({required this.isReserving});
+  InformationFormViewModel({required this.isReserving, this.reserveClassModel});
   final bool isReserving;
+  final ReserveClassModel? reserveClassModel;
 
   final GetStorage _getStorage = GetStorage();
   List<TextEditingController> textEditingController =
@@ -66,5 +71,21 @@ class InformationFormViewModel extends GetxController with StateMixin {
         await user_service.updateUser(userModel?.toJson() ?? {}, token);
     if (_request.statusCode == 200) {
     } else {}
+  }
+
+  Future<void> reserveClass() async {
+    if (reserveClassModel != null) {
+      final _request = await class_service.ReserveClass(
+          token: token,
+          day: reserveClassModel?.day ?? "",
+          hours: reserveClassModel?.hours ?? "",
+          classCategoryId: reserveClassModel?.classCategoryId ?? "");
+      if (_request.statusCode == 200) {
+        Get.offAll(() => const MainScreen());
+        showMessage(
+            message: "کلاس شما با موفقیت ثبت نام شد",
+            type: MessageType.success);
+      }
+    }
   }
 }

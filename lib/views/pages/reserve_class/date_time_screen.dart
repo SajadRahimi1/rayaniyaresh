@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/models/class_model.dart';
+import 'package:rayaniyaresh/models/models/reserve_class_model.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/subcategory_datails_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 
@@ -12,8 +13,10 @@ class DateTimeScreen extends StatelessWidget {
   final ClassCategories model;
   @override
   Widget build(BuildContext context) {
-    RxInt _days = (0).obs;
+    var reserveModel = ReserveClassModel();
+    RxInt _daysIndex = (0).obs;
     RxInt _hoursIndex = (0).obs;
+
     return Scaffold(
       appBar: screensAppbar(context: context, title: title),
       body: Column(
@@ -45,7 +48,7 @@ class DateTimeScreen extends StatelessWidget {
                         children: List.generate(
                           model.days?.length ?? 0,
                           (index) => InkWell(
-                              onTap: () => _days.value = index,
+                              onTap: () => _daysIndex.value = index,
                               child: Obx(
                                 () => Container(
                                   alignment: Alignment.center,
@@ -53,7 +56,7 @@ class DateTimeScreen extends StatelessWidget {
                                   height: Get.height / 8,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
-                                      color: _days.value == index
+                                      color: _daysIndex.value == index
                                           ? Colors.green
                                           : const Color(0xffcfcfcf)),
                                   child: Text(
@@ -135,12 +138,18 @@ class DateTimeScreen extends StatelessWidget {
               child: Align(
             alignment: Alignment.bottomCenter,
             child: InkWell(
-              onTap: () => Get.to(
-                  () => SubcategoryDetailScreen(
-                        title: title,
-                        model: model,
-                      ),
-                  transition: Transition.leftToRight),
+              onTap: () {
+                reserveModel.day = model.days?[_daysIndex.value];
+                reserveModel.hours = model.hours?[_hoursIndex.value];
+                reserveModel.classCategoryId = model.id;
+                Get.to(
+                    () => SubcategoryDetailScreen(
+                          title: title,
+                          model: model,
+                          reserveModel: reserveModel,
+                        ),
+                    transition: Transition.leftToRight);
+              },
               child: Container(
                 width: Get.width,
                 height: Get.height / 13,
