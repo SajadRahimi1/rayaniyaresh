@@ -61,7 +61,7 @@ class ValidateViewModel extends GetxController {
       await _storage.write("token", _request.body['Token']);
       await _storage.write("id", _request.body['Id']);
       SingletonClass().imageUrl =
-          UserModel.fromJson(_request.body).ImageUrl ?? "";
+          UserModel.fromJson(_request.body).imageUrl ?? "";
       Get.to(() => const MainScreen());
     } else if (_request.statusCode == 400) {
       showMessage(message: "کد وارد شده صحیح نیست");

@@ -32,8 +32,8 @@ class GetPhoneViewModel extends GetxController with StateMixin {
   Future<void> checkToken() async {
     final _request = await user_service.checkToken(token);
     if (_request.statusCode == 200) {
-      
-     SingletonClass().imageUrl= UserModel.fromJson(_request.body).ImageUrl??"";
+      SingletonClass().imageUrl =
+          UserModel.fromJson(_request.body).imageUrl ?? "";
       Get.offAll(() => const MainScreen());
     } else {
       change(null, status: RxStatus.success());
