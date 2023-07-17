@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
-import 'package:rayaniyaresh/viewmodels/more/reserved_list_viewModel.dart';
+import 'package:rayaniyaresh/viewmodels/more/reserved_list_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/reserved_class_widget.dart';
 import 'package:rayaniyaresh/views/widgets/reserved_nurse_woidget.dart';
