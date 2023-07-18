@@ -10,7 +10,8 @@ class BioScreenn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: screensAppbar(context: context),
+      appBar:
+          screensAppbar(context: context, title: "بیوگرافی هلدینگ آسیاسلامت"),
       body: Column(children: [
         Container(
           margin: EdgeInsets.only(left: 11, right: 11, top: Get.height / 25),

@@ -10,6 +10,7 @@ class ProfileTextInput extends StatelessWidget {
     this.controller,
     this.keyboardType,
     this.ontap,
+    this.textAlign = TextAlign.start,
     this.maxLength,
     this.enable = true,
   }) : super(key: key);
@@ -22,6 +23,7 @@ class ProfileTextInput extends StatelessWidget {
   final TextInputType? keyboardType;
   final Widget? icon;
   final int? maxLength;
+  final TextAlign textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -33,17 +35,18 @@ class ProfileTextInput extends StatelessWidget {
           controller: controller,
           keyboardType: keyboardType,
           // inputFormatters: [
-            // FilteringTextInputFormatter.deny(RegExp("[a-zA-Z]")),
+          // FilteringTextInputFormatter.deny(RegExp("[a-zA-Z]")),
           // ],
           onChanged: onChanged,
           style: TextStyle(
             fontSize: MediaQuery.of(context).size.width / 27,
           ),
+          textAlign: textAlign,
           decoration: InputDecoration(
             counter: const SizedBox(),
             icon: icon,
             labelText: text,
-            labelStyle: const TextStyle(color: Color(0xff9A7ACD), fontSize: 13),
+            labelStyle: const TextStyle(color: Color(0xff000000), fontSize: 14),
             enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
               color: error ? const Color(0xffff0000) : const Color(0xffe5e5e5),
