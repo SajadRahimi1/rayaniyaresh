@@ -47,7 +47,7 @@ class ServiceWidget extends StatelessWidget {
                         : Padding(
                             padding: const EdgeInsets.only(top: 3),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(10),
                               child: Image.network(image
                                   // fit: BoxFit.cover,
                                   ),

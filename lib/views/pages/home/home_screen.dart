@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
+import 'package:rayaniyaresh/views/pages/bio_screen.dart';
 import 'package:rayaniyaresh/views/widgets/banner_slider.dart';
 import 'package:rayaniyaresh/views/widgets/service_widget.dart';
 
@@ -85,6 +86,7 @@ class HomeScreen extends StatelessWidget {
                         isImageAsset: false,
                         onTap: () {
                           FocusScope.of(context).unfocus();
+                          Get.to(() => const BioScreenn());
                         },
                         image: "https://loremflickr.com/320/240",
                         title: [
