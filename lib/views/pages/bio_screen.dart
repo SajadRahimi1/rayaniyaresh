@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
+import 'package:rayaniyaresh/views/pages/nurse_service/nurse_category_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 
 class BioScreenn extends StatelessWidget {
@@ -35,13 +36,8 @@ class BioScreenn extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           child: InkWell(
             onTap: () {
-              // Get.to(
-              //     () => SubcategoryDetailScreen(
-              //           title: title,
-              //           model: model,
-              //           reserveModel: reserveModel,
-              //         ),
-              //     transition: Transition.leftToRight);
+              Get.to(() => const NurseCategoryScreen(),
+                  transition: Transition.leftToRight);
             },
             child: Container(
               width: Get.width,
