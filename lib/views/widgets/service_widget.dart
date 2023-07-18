@@ -25,19 +25,16 @@ class ServiceWidget extends StatelessWidget {
           ),
         ),
         child: Container(
-            width: MediaQuery.of(context).size.width / 5.5,
+            width: MediaQuery.of(context).size.width / 5.2,
             height: MediaQuery.of(context).size.width / 4,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: Color(0xfffcfcfc),
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30),
-              ),
+              borderRadius: BorderRadius.circular(15),
             ),
             child: Column(
               children: [
                 Expanded(
-                    flex: 2,
+                    flex: 5,
                     child: image.isNotEmpty && isImageAsset
                         ? SizedBox.square(
                             dimension: MediaQuery.of(context).size.width / 10,
@@ -57,15 +54,19 @@ class ServiceWidget extends StatelessWidget {
                             ),
                           )),
                 Expanded(
-                    child: Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  overflow: TextOverflow.clip,
-                  style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.width / 32,
-                  ),
-                ))
+                    flex: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 3),
+                      child: Text(
+                        title,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.clip,
+                        style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width / 32,
+                        ),
+                      ),
+                    ))
               ],
             )),
       ),

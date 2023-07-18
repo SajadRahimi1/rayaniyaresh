@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: SizedBox(
           child: ListView(
             physics: const BouncingScrollPhysics(),
@@ -69,26 +69,35 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 // height: MediaQuery.of(context).size.height / 2.5,
-                height: MediaQuery.of(context).size.width / 3.9 * (9 ~/ 2),
+                height: MediaQuery.of(context).size.width / 3.5 * (9 ~/ 2),
                 child: GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
-                      mainAxisExtent: MediaQuery.of(context).size.height / 6.8,
-                      mainAxisSpacing: MediaQuery.of(context).size.width / 40,
-                      crossAxisSpacing: MediaQuery.of(context).size.width / 30,
+                      mainAxisExtent: MediaQuery.of(context).size.height / 6.1,
+                      mainAxisSpacing: MediaQuery.of(context).size.width / 50,
+                      crossAxisSpacing: MediaQuery.of(context).size.width / 70,
                     ),
                     itemCount: 9,
                     // itemCount: 7,
                     // _controller.categories.data.categories.length,
                     itemBuilder: (context, index) => ServiceWidget(
-                          isImageAsset: false,
-                          onTap: () {
-                            FocusScope.of(context).unfocus();
-                          },
-                          image: "https://loremflickr.com/320/240",
-                          title: "خدمت $index",
-                        )),
+                        isImageAsset: false,
+                        onTap: () {
+                          FocusScope.of(context).unfocus();
+                        },
+                        image: "https://loremflickr.com/320/240",
+                        title: [
+                          "خدمات پرستاری",
+                          "خدمات پزشکی (بزودی)",
+                          "استخدام پرستار",
+                          "مجتمع فنی آسیا سلامت (بزودی)",
+                          "خدمات آموزشی",
+                          "فروشی پکیج آموشی",
+                          "اجاره تجهیزات پزشکی",
+                          "فروش تجهیزات پزشکی",
+                          "فروش دوربین مداربسته",
+                        ][index])),
               ),
 
               InkWell(
