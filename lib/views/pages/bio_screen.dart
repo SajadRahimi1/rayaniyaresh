@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/nurse_category_screen.dart';
+import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_information_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 
 class BioScreenn extends StatelessWidget {
-  const BioScreenn({Key? key}) : super(key: key);
-
+  const BioScreenn({Key? key, required this.nurse}) : super(key: key);
+  final bool nurse;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,8 +38,13 @@ class BioScreenn extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           child: InkWell(
             onTap: () {
-              Get.to(() => const NurseCategoryScreen(),
-                  transition: Transition.leftToRight);
+              if (nurse) {
+                Get.to(() => const NurseCategoryScreen(),
+                    transition: Transition.leftToRight);
+              } else {
+                Get.to(() => const NurseInformationScreen(),
+                    transition: Transition.leftToRight);
+              }
             },
             child: Container(
               width: Get.width,

@@ -86,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                         isImageAsset: false,
                         onTap: () {
                           FocusScope.of(context).unfocus();
-                          Get.to(() => const BioScreenn());
+                          Get.to(() => BioScreenn(nurse: index == 0));
                         },
                         image: "https://loremflickr.com/320/240",
                         title: [

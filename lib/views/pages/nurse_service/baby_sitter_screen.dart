@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
+import 'package:rayaniyaresh/views/pages/nurse_service/final_step_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 
@@ -15,7 +17,7 @@ class BabySitterScreen extends StatelessWidget {
     RxBool camera = false.obs;
     return Scaffold(
         appBar: screensAppbar(context: context, title: "پرستار کودک"),
-        body: ListView(children: [
+        body: ListView(physics: const BouncingScrollPhysics(), children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10) +
                 const EdgeInsets.only(top: 20),
@@ -44,7 +46,7 @@ class BabySitterScreen extends StatelessWidget {
                   ],
                 ),
 
-                const Divider(),
+                const Divider(thickness: 1),
 
                 // child gender
                 Row(
@@ -80,7 +82,7 @@ class BabySitterScreen extends StatelessWidget {
                   ],
                 ),
 
-                const Divider(),
+                const Divider(thickness: 1),
 
                 // children ages
                 Obx(() => Row(
@@ -97,7 +99,7 @@ class BabySitterScreen extends StatelessWidget {
                               )),
                     )),
 
-                const Divider(),
+                const Divider(thickness: 1),
 
                 // child gender
                 SizedBox(
@@ -138,7 +140,7 @@ class BabySitterScreen extends StatelessWidget {
                   ),
                 ),
 
-                const Divider(),
+                const Divider(thickness: 1),
 
                 // hour of work
                 Row(
@@ -162,7 +164,7 @@ class BabySitterScreen extends StatelessWidget {
                   ],
                 ),
 
-                const Divider(),
+                const Divider(thickness: 1),
 
                 // person in home
                 SizedBox(
@@ -183,7 +185,7 @@ class BabySitterScreen extends StatelessWidget {
                           )
                         ]))),
 
-                const Divider(),
+                const Divider(thickness: 1),
 
                 // camera
                 SizedBox(
@@ -210,28 +212,89 @@ class BabySitterScreen extends StatelessWidget {
                                   camera.value = value)),
                         ]))),
 
+                const Divider(thickness: 1),
+
+                // address
+                SizedBox(
+                  width: Get.width,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        const Text("محدوده محل سکونت:  "),
+                        const Text("استان:  "),
+                        SizedBox(
+                            width: Get.width / 6.5,
+                            child: const ProfileTextInput(
+                              textAlign: TextAlign.center,
+                              text: "",
+                              keyboardType: TextInputType.number,
+                            )),
+                        const Text("شهر:  "),
+                        SizedBox(
+                            width: Get.width / 7,
+                            child: const ProfileTextInput(
+                              textAlign: TextAlign.center,
+                              text: "",
+                              keyboardType: TextInputType.number,
+                            )),
+                        const Text("محله:  "),
+                        SizedBox(
+                            width: Get.width / 7,
+                            child: const ProfileTextInput(
+                              textAlign: TextAlign.center,
+                              text: "",
+                              keyboardType: TextInputType.number,
+                            )),
+                      ],
+                    ),
+                  ),
+                ),
+
+                const Divider(thickness: 1),
+
+                // description
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: Get.height / 45),
+                  child: SizedBox(
+                    width: Get.width,
+                    height: Get.height / 8,
+                    child: TextFormField(
+                      maxLines: 5,
+                      textInputAction: TextInputAction.done,
+                      decoration: InputDecoration(
+                          labelText: "توضیحات",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10))),
+                    ),
+                  ),
+                ),
+
                 // button
-                // InkWell(
-                //   onTap: () async {},
-                //   child: Container(
-                //     width: Get.width,
-                //     height: Get.height / 13,
-                //     alignment: Alignment.center,
-                //     decoration: const BoxDecoration(
-                //         borderRadius: BorderRadius.only(
-                //             topLeft: Radius.circular(15),
-                //             topRight: Radius.circular(15)),
-                //         color: buttonColor),
-                //     child: Text(
-                //       "ثبت نهایی",
-                //       style: TextStyle(
-                //           color: const Color(0xffffffff), fontSize: Get.width / 22),
-                //     ),
-                //   ),
-                // ),
               ],
             ),
-          )
+          ),
+          InkWell(
+            onTap: () {
+              FocusNode().unfocus();
+              Get.to(() => const FinalStepScreen());
+            },
+            child: Container(
+              width: Get.width,
+              height: Get.height / 13,
+              alignment: Alignment.center,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15)),
+                  color: buttonColor),
+              child: Text(
+                "مرحله بعدی",
+                style: TextStyle(
+                    color: const Color(0xffffffff), fontSize: Get.width / 22),
+              ),
+            ),
+          ),
         ]));
   }
 }
