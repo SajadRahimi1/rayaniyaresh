@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/route_manager.dart';
+import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_uploads_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
+import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 
 class NurseSelectSreen extends StatelessWidget {
   const NurseSelectSreen({Key? key}) : super(key: key);
@@ -9,57 +12,104 @@ class NurseSelectSreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RxInt categorySelect = (3).obs;
+    RxBool secondQuestion = false.obs;
     return Scaffold(
       appBar: screensAppbar(context: context),
-      body: ListView(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(children: [
               // child categorySelect
-              Text("لطفا گزینه مورد نظر را در خصوص مراقبت انتخاب بفرمایید :"
-                  "  "),
-              Row(
+              const Text(
+                "\nلطفا گزینه مورد نظر را در خصوص مراقبت انتخاب بفرمایید :\n",
+                style: TextStyle(fontSize: 16),
+              ),
+              Column(
                 children: [
-                  const Text("پرستار کودک"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const Text("پرستار کودک"),
+                      Obx(() => Checkbox(
+                            value: categorySelect.value == 0,
+                            onChanged: (value) {
+                              if (value != null) {
+                                categorySelect.value = 0;
+                              }
+                            },
+                          )),
+                      const Text("پرستار سالمند"),
+                      Obx(() => Checkbox(
+                            value: categorySelect.value == 1,
+                            onChanged: (value) {
+                              if (value != null) {
+                                categorySelect.value = 1;
+                              }
+                            },
+                          )),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const Text("پرستار بیمار"),
+                      Obx(() => Checkbox(
+                            value: categorySelect.value == 2,
+                            onChanged: (value) {
+                              if (value != null) {
+                                categorySelect.value = 2;
+                              }
+                            },
+                          )),
+                      const Text("همه موارد"),
+                      Obx(() => Checkbox(
+                            value: categorySelect.value == 3,
+                            onChanged: (value) {
+                              if (value != null) {
+                                categorySelect.value = 3;
+                              }
+                            },
+                          )),
+                    ],
+                  )
+                ],
+              ),
+
+              const Text(
+                "\nآیا کودک - سالمند و یا بیمار از پوشک و یا لگن استفاده کند شما میتوانید انجام دهید؟\n",
+                style: TextStyle(fontSize: 16),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const Text("بله"),
                   Obx(() => Checkbox(
-                        value: categorySelect.value == 0,
+                        value: secondQuestion.value,
                         onChanged: (value) {
                           if (value != null) {
-                            categorySelect.value = 0;
+                            secondQuestion.value = true;
                           }
                         },
                       )),
-                  const Text("پرستار سالمند"),
+                  const Text("خیر"),
                   Obx(() => Checkbox(
-                        value: categorySelect.value == 1,
+                        value: !secondQuestion.value,
                         onChanged: (value) {
                           if (value != null) {
-                            categorySelect.value = 1;
-                          }
-                        },
-                      )),
-                  const Text("پرستار بمار"),
-                  Obx(() => Checkbox(
-                        value: categorySelect.value == 2,
-                        onChanged: (value) {
-                          if (value != null) {
-                            categorySelect.value = 2;
-                          }
-                        },
-                      )),
-                  const Text("همه موارد"),
-                  Obx(() => Checkbox(
-                        value: categorySelect.value == 3,
-                        onChanged: (value) {
-                          if (value != null) {
-                            categorySelect.value = 3;
+                            secondQuestion.value = false;
                           }
                         },
                       )),
                 ],
               ),
             ]),
+          ),
+          NextStepButton(
+            title: "مرحله بعدی",
+            onTap: () => Get.to(() => const NurseUploadsScreen(),
+                transition: Transition.leftToRight),
           )
         ],
       ),

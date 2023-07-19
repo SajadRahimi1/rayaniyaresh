@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_select_screen.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_uploads_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
@@ -99,7 +100,7 @@ class NurseQuestionScreen extends StatelessWidget {
           ),
           NextStepButton(
             title: "مرحله بعدی",
-            onTap: () => Get.to(() => const NurseUploadsScreen(),
+            onTap: () => Get.to(() => const NurseSelectSreen(),
                 transition: Transition.leftToRight),
           )
         ],
