@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/viewmodels/signup_nurse/nurse_information_viewmodel.dart';
+import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_questions_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/payment_widget.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
@@ -169,13 +170,8 @@ class NurseInformationScreen extends StatelessWidget {
           // button
           InkWell(
             onTap: () async {
-              // if (subcategoryId == null) {
-              //   await _controller.updateInformation();
-              // } else {
-              //   bool isInstallment =
-              //       await Get.dialog<bool>(const PaymentWidget()) ?? false;
-              //   await _controller.reserveClass(isInstallment);
-              // }
+              Get.to(() => const NurseQuestionScreen(),
+                  transition: Transition.leftToRight);
             },
             child: Container(
               width: Get.width,
