@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_guarantee_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 
@@ -83,7 +84,10 @@ class NurseUploadsScreen extends StatelessWidget {
               ),
             ]),
           ),
-          NextStepButton(title: "مرحله بعدی")
+          NextStepButton(
+            title: "مرحله بعدی",
+            onTap: () => Get.to(() => const NurseGuaranteeScreen()),
+          )
         ],
       ),
     );
