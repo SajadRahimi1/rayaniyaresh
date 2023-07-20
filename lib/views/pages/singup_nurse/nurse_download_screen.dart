@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_rules_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 
@@ -59,7 +60,10 @@ class NurseDownloadScreen extends StatelessWidget {
               ],
             ),
           ),
-         const NextStepButton(title: "مرحله بعدی"),
+          NextStepButton(
+            title: "مرحله بعدی",
+            onTap: () => Get.to(() => const NurseRulesScreen()),
+          ),
         ],
       ),
     );
