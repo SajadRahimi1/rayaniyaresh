@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
+import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/final_step_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
@@ -15,6 +16,8 @@ class BabySitterScreen extends StatelessWidget {
     RxInt childNumber = (1).obs;
     RxInt shiftWork = (1).obs;
     RxBool camera = false.obs;
+    String province = "", city = "", neighbourhood = "";
+    final RequestNurseModel model = RequestNurseModel();
     return Scaffold(
         appBar: screensAppbar(context: context, title: "پرستار کودک"),
         body: ListView(physics: const BouncingScrollPhysics(), children: [
@@ -54,19 +57,21 @@ class BabySitterScreen extends StatelessWidget {
                     Text("جنسیت:" "  "),
                     const Text("پسر"),
                     Obx(() => Checkbox(
-                          value: gender == 0,
+                          value: gender.value == 0,
                           onChanged: (value) {
                             if (value != null) {
                               gender.value = 0;
+                              model.gender = Gender.Male;
                             }
                           },
                         )),
                     const Text("دختر"),
                     Obx(() => Checkbox(
-                          value: gender == 1,
+                          value: gender.value == 1,
                           onChanged: (value) {
                             if (value != null) {
                               gender.value = 1;
+                              model.gender = Gender.Female;
                             }
                           },
                         )),
@@ -76,6 +81,7 @@ class BabySitterScreen extends StatelessWidget {
                           onChanged: (value) {
                             if (value != null) {
                               gender.value = 2;
+                              model.gender = Gender.Both;
                             }
                           },
                         )),
@@ -101,7 +107,7 @@ class BabySitterScreen extends StatelessWidget {
 
                 const Divider(thickness: 1),
 
-                // child gender
+                // shift
                 SizedBox(
                   height: Get.height / 30,
                   width: Get.width,
@@ -115,6 +121,7 @@ class BabySitterScreen extends StatelessWidget {
                             onChanged: (value) {
                               if (value != null) {
                                 shiftWork.value = 0;
+                                model.shift = Shift.Boarding;
                               }
                             },
                           )),
@@ -124,6 +131,7 @@ class BabySitterScreen extends StatelessWidget {
                             onChanged: (value) {
                               if (value != null) {
                                 shiftWork.value = 1;
+                                model.shift = Shift.Night;
                               }
                             },
                           )),
@@ -133,6 +141,7 @@ class BabySitterScreen extends StatelessWidget {
                             onChanged: (value) {
                               if (value != null) {
                                 shiftWork.value = 2;
+                                model.shift = Shift.Hour;
                               }
                             },
                           )),
@@ -179,8 +188,9 @@ class BabySitterScreen extends StatelessWidget {
                           ),
                           SizedBox(
                             width: Get.width / 2.5,
-                            child: const ProfileTextInput(
+                            child: ProfileTextInput(
                               text: "",
+                              onChanged: (value) => model.peopleInHuse = value,
                             ),
                           )
                         ]))),
@@ -208,8 +218,10 @@ class BabySitterScreen extends StatelessWidget {
                               value: camera.value,
                               elevation: 5,
                               // style: TextStyle(fontSize: Get.width / 23),
-                              onChanged: <bool>(value) =>
-                                  camera.value = value)),
+                              onChanged: <bool>(value) {
+                                camera.value = value;
+                                model.cctv = value;
+                              })),
                         ]))),
 
                 const Divider(thickness: 1),
@@ -260,6 +272,7 @@ class BabySitterScreen extends StatelessWidget {
                     width: Get.width,
                     height: Get.height / 8,
                     child: TextFormField(
+                      onChanged: (value) => model.description,
                       maxLines: 5,
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
@@ -276,6 +289,9 @@ class BabySitterScreen extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
+              model.address = "";
+              model.hourse = "";
+              model.age = "";
               FocusNode().unfocus();
               Get.to(() => const FinalStepScreen());
             },
