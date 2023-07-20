@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_download_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
@@ -66,14 +67,14 @@ class NurseGuaranteeScreen extends StatelessWidget {
                 height: 15,
               ),
               const ProfileTextInput(text: "شماره تماس فرزند"),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               const ProfileTextInput(text: "شماره تماس سرپرست خانواده"),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              Divider(
+              const Divider(
                 thickness: 1,
                 color: Color(0xff000000),
               ),
@@ -123,7 +124,10 @@ class NurseGuaranteeScreen extends StatelessWidget {
             ],
           ),
         ),
-        NextStepButton(title: "اتمام")
+        NextStepButton(
+          title: "مرحله بعدی",
+          onTap: () => Get.to(() => const NurseDownloadScreen()),
+        )
       ]),
     );
   }
