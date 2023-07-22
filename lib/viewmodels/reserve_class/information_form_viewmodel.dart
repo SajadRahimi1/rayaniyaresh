@@ -8,6 +8,7 @@ import 'package:rayaniyaresh/core/services/reserve_class/class_service.dart'
 import 'package:rayaniyaresh/models/models/reserve_class_model.dart';
 import 'package:rayaniyaresh/models/models/user_model.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/success_reserve_screen.dart';
+import 'package:rayaniyaresh/views/widgets/loading_widget.dart';
 
 class InformationFormViewModel extends GetxController with StateMixin {
   InformationFormViewModel({required this.isReserving, this.reserveClassModel});
@@ -65,11 +66,16 @@ class InformationFormViewModel extends GetxController with StateMixin {
   }
 
   Future<void> updateInformation() async {
+    loading();
     userModel?.education = educationStrings[education.value];
     // print(userModel?.toJson());
     final _request =
         await user_service.updateUser(userModel?.toJson() ?? {}, token);
     if (_request.statusCode == 200) {
+      showMessage(
+          message: "اطلاعات با موفقیت ویرایش شد",
+          title: "ویرایش اطلاعات",
+          type: MessageType.success);
     } else {}
   }
 
@@ -81,6 +87,7 @@ class InformationFormViewModel extends GetxController with StateMixin {
           hours: reserveClassModel?.hours ?? "",
           isInstallment: isInstallment,
           classCategoryId: reserveClassModel?.classCategoryId ?? "");
+      Get.back();
       if (_request.statusCode == 200) {
         Get.off(() => const SuccessReserveScreen());
       }
