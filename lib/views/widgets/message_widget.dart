@@ -33,12 +33,14 @@ class Messagewidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: RegExp(r'^[\u0600-\u06FF\s]+$').hasMatch(text)
+                  ? CrossAxisAlignment.start
+                  : CrossAxisAlignment.end,
               children: [
                 Text(
                   text,
                   style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.width / 25,
+                      fontSize: MediaQuery.of(context).size.width / 28,
                       color: isUserSend ? Colors.white : Colors.black),
                 ),
                 Row(

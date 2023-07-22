@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:rayaniyaresh/models/constants/urls.dart';
 
 class BannerSlider extends StatelessWidget {
   const BannerSlider({
@@ -18,7 +19,7 @@ class BannerSlider extends StatelessWidget {
           viewportFraction: 0.6,
           enlargeCenterPage: true),
       items: List.generate(
-          3,
+          2,
           (index) => InkWell(
                 child: Container(
                     alignment: Alignment.bottomCenter,
@@ -27,7 +28,11 @@ class BannerSlider extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           image: NetworkImage(
-                            "https://loremflickr.com/32$index/24$index",
+                            baseUrl +
+                                '/uploads/${[
+                                  'educational2_f40b7afc-7805-430d-bfab-58d2c708664f',
+                                  'helthcare2_de5ef50b-bbd5-4b1d-8e9f-ba226900b796'
+                                ][index]}.png',
                           ),
                           fit: BoxFit.fill),
                       borderRadius: BorderRadius.circular(6),
@@ -39,7 +44,7 @@ class BannerSlider extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
-                            "خدمت $index",
+                            ["خدمات آموزشی", "بهداشت و ایمنی"][index],
                             style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.width / 30,

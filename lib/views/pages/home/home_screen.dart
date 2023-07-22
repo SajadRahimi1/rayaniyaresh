@@ -132,7 +132,7 @@ class HomeScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20.0),
                       child: Text(
-                        "خدمات محبوب",
+                        "کلاس های پر طرفدار",
                         style: TextStyle(
                             color: const Color(0xff252525),
                             fontWeight: FontWeight.bold,
