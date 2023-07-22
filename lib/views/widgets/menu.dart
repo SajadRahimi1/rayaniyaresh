@@ -49,11 +49,11 @@ class Menu extends StatelessWidget {
                                 radius: MediaQuery.of(context).size.width / 8,
                                 backgroundColor: Colors.white,
                                 backgroundImage:
-                                    SingletonClass().imageUrl.isEmpty
+                                    SingletonClass().imageUrl?.isEmpty ?? true
                                         ? null
                                         : CachedNetworkImageProvider(baseUrl +
                                             '/uploads/' +
-                                            SingletonClass().imageUrl)),
+                                            (SingletonClass().imageUrl ?? ""))),
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: Text(

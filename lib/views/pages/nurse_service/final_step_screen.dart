@@ -1,24 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
+import 'package:rayaniyaresh/models/constants/singleton_class.dart';
+import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
+import 'package:rayaniyaresh/viewmodels/reserve_nurse/request_nurse_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/success_reserve_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 
 class FinalStepScreen extends StatelessWidget {
-  const FinalStepScreen({Key? key}) : super(key: key);
+  const FinalStepScreen({Key? key, required this.model}) : super(key: key);
+
+  final RequestNurseModel model;
 
   @override
   Widget build(BuildContext context) {
+    final _controller = Get.put(RequestNurseViewmodel(model: model));
+
     return Scaffold(
       appBar: screensAppbar(context: context, title: "پرستار کودک"),
       body: Column(children: [
-        const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-            child: ProfileTextInput(text: "نام و نام خانوادگی")),
-        const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-            child: ProfileTextInput(text: "شماره تماس")),
+        Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+            child: ProfileTextInput(
+              text: "نام و نام خانوادگی",
+              controller:
+                  TextEditingController(text: _controller.singletonClass.name),
+            )),
+        Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+            child: ProfileTextInput(
+                text: "شماره تماس",
+                controller: TextEditingController(
+                    text: _controller.singletonClass.phoneNumber))),
         const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
             child: ProfileTextInput(text: "نحوه آشنایی با ما")),
@@ -26,14 +40,9 @@ class FinalStepScreen extends StatelessWidget {
         // button
         const Expanded(child: SizedBox()),
         InkWell(
-          onTap: () {
+          onTap: () async {
             FocusNode().unfocus();
-            Get.to(
-                () => const SuccessReserveScreen(
-                      message:
-                          "کارشناسان ما در کمتر از 30 دقیقه آینده با شما جهت ارایه توضیحات بیشتر تماس میگیرند",
-                    ),
-                transition: Transition.leftToRight);
+            await _controller.sendData();
           },
           child: Container(
             width: Get.width,

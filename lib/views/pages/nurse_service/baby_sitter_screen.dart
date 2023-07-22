@@ -23,6 +23,7 @@ class BabySitterScreen extends StatelessWidget {
         hours1 = "",
         hours2 = "";
     final RequestNurseModel model = RequestNurseModel()
+      ..peopleInHouse = ""
       ..nurseCategory = NurseCategory.Kid
       ..cctv = false;
     return Scaffold(
@@ -302,15 +303,16 @@ class BabySitterScreen extends StatelessWidget {
           InkWell(
             onTap: () {
               model.address = "استان $province شهر $city محله $neighbourhood";
-              model.hours = "از $hours1 تا $hours2";
+              model.hours = "از ساعت $hours1 تا ساعت $hours2";
               model.age = ages
                   .where((element) => element.isNotEmpty)
                   .toString()
                   .replaceAll('(', '')
                   .replaceAll(')', '');
-              print(model);
-              // FocusNode().unfocus();
-              // Get.to(() => const FinalStepScreen());
+              FocusNode().unfocus();
+              Get.to(() => FinalStepScreen(
+                    model: model,
+                  ));
             },
             child: Container(
               width: Get.width,

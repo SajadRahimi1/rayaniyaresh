@@ -1,3 +1,5 @@
+import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
+
 class ReservedModel {
   String? token;
   String? name;
@@ -13,7 +15,7 @@ class ReservedModel {
   dynamic code;
   dynamic imageUrl;
   List<ReservedClasses>? reservedClasses;
-  List<ReserveNurses>? reserveNurses;
+  List<RequestNurseModel>? reserveNurses;
   List<dynamic>? messages;
   String? id;
   String? createdAt;
@@ -62,7 +64,7 @@ class ReservedModel {
     reserveNurses = json["ReserveNurses"] == null
         ? null
         : (json["ReserveNurses"] as List)
-            .map((e) => ReserveNurses.fromJson(e))
+            .map((e) => RequestNurseModel.fromJson(e))
             .toList();
     messages = json["Messages"] ?? [];
     id = json["Id"];
@@ -89,55 +91,9 @@ class ReservedModel {
       _data["ReservedClasses"] =
           reservedClasses?.map((e) => e.toJson()).toList();
     }
-    if (reserveNurses != null) {
-      _data["ReserveNurses"] = reserveNurses?.map((e) => e.toJson()).toList();
-    }
     if (messages != null) {
       _data["Messages"] = messages;
     }
-    _data["Id"] = id;
-    _data["CreatedAt"] = createdAt;
-    _data["UpdatedAt"] = updatedAt;
-    return _data;
-  }
-}
-
-class ReserveNurses {
-  Nurse? nurse;
-  String? nurseId;
-  String? userId;
-  String? days;
-  String? id;
-  String? createdAt;
-  String? updatedAt;
-
-  ReserveNurses(
-      {this.nurse,
-      this.nurseId,
-      this.userId,
-      this.days,
-      this.id,
-      this.createdAt,
-      this.updatedAt});
-
-  ReserveNurses.fromJson(Map<String, dynamic> json) {
-    nurse = json["Nurse"] == null ? null : Nurse.fromJson(json["Nurse"]);
-    nurseId = json["NurseId"];
-    userId = json["UserId"];
-    days = json["Days"];
-    id = json["Id"];
-    createdAt = json["CreatedAt"];
-    updatedAt = json["UpdatedAt"];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    if (nurse != null) {
-      _data["Nurse"] = nurse?.toJson();
-    }
-    _data["NurseId"] = nurseId;
-    _data["UserId"] = userId;
-    _data["Days"] = days;
     _data["Id"] = id;
     _data["CreatedAt"] = createdAt;
     _data["UpdatedAt"] = updatedAt;

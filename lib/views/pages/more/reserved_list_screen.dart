@@ -4,7 +4,7 @@ import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/viewmodels/more/reserved_list_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/reserved_class_widget.dart';
-import 'package:rayaniyaresh/views/widgets/reserved_nurse_woidget.dart';
+import 'package:rayaniyaresh/views/widgets/reserved_nurse_widget.dart';
 
 class ReservedListScreen extends StatelessWidget {
   const ReservedListScreen({Key? key}) : super(key: key);
@@ -80,11 +80,7 @@ class ReservedListScreen extends StatelessWidget {
                           itemBuilder: (_, index) => ReservedNurseWidget(
                                 isReserved: true,
                                 model: _controller
-                                    .reservedModel?.reserveNurses?[index].nurse,
-                                days: _controller.reservedModel
-                                        ?.reserveNurses?[index].days
-                                        ?.split(',') ??
-                                    [],
+                                    .reservedModel?.reserveNurses?[index],
                               ))
                     ],
                   ),

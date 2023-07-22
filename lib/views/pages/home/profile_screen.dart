@@ -125,11 +125,12 @@ class ProfileScreen extends StatelessWidget {
                       child: CircleAvatar(
                           radius: MediaQuery.of(context).size.width / 6,
                           backgroundColor: Colors.white,
-                          backgroundImage: SingletonClass().imageUrl.isEmpty
-                              ? null
-                              : CachedNetworkImageProvider(baseUrl +
-                                  '/uploads/' +
-                                  SingletonClass().imageUrl)
+                          backgroundImage:
+                              SingletonClass().imageUrl?.isEmpty ?? true
+                                  ? null
+                                  : CachedNetworkImageProvider(baseUrl +
+                                      '/uploads/' +
+                                      (SingletonClass().imageUrl ?? ""))
                           //  const NetworkImage(
                           //     "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"),
                           // child: Icon(
