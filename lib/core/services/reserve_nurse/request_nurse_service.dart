@@ -12,11 +12,11 @@ Future<Response<dynamic>> requestNurses(
         "gender": model.gender,
         "age": model.age,
         "shift": model.shift,
-        "hours": model.hourse,
-        "peopleInHouse": model.peopleInHuse,
+        "hours": model.hours,
+        "peopleInHouse": model.peopleInHouse,
         "cctv": model.cctv,
         "address": model.address,
-        "nurseCategory":model.nurseCategory
+        "nurseCategory": model.nurseCategory
       },
       headers: tokenHeader(token));
 }

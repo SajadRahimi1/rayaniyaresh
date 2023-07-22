@@ -5,16 +5,16 @@ class RequestNurseModel {
       {this.gender,
       this.age,
       this.shift,
-      this.hourse,
-      this.peopleInHuse,
+      this.hours,
+      this.peopleInHouse,
       this.address,
       this.description,
       this.cctv});
   Gender? gender;
   String? age;
   Shift? shift;
-  String? hourse;
-  String? peopleInHuse;
+  String? hours;
+  String? peopleInHouse;
   String? address;
   bool? cctv;
   String? description;

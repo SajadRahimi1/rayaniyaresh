@@ -16,8 +16,15 @@ class BabySitterScreen extends StatelessWidget {
     RxInt childNumber = (1).obs;
     RxInt shiftWork = (1).obs;
     RxBool camera = false.obs;
-    String province = "", city = "", neighbourhood = "";
-    final RequestNurseModel model = RequestNurseModel();
+    List<String> ages = List.generate(4, (index) => "");
+    String province = "",
+        city = "",
+        neighbourhood = "",
+        hours1 = "",
+        hours2 = "";
+    final RequestNurseModel model = RequestNurseModel()
+      ..nurseCategory = NurseCategory.Kid
+      ..cctv = false;
     return Scaffold(
         appBar: screensAppbar(context: context, title: "پرستار کودک"),
         body: ListView(physics: const BouncingScrollPhysics(), children: [
@@ -101,6 +108,7 @@ class BabySitterScreen extends StatelessWidget {
                                   textAlign: TextAlign.center,
                                   keyboardType: TextInputType.number,
                                   text: "سن کودک ${index + 1}",
+                                  onChanged: (value) => ages[index] = value,
                                 ),
                               )),
                     )),
@@ -157,18 +165,20 @@ class BabySitterScreen extends StatelessWidget {
                     const Text("ساعت کاری از   "),
                     SizedBox(
                         width: Get.width / 7,
-                        child: const ProfileTextInput(
+                        child: ProfileTextInput(
                           textAlign: TextAlign.center,
                           text: "ساعت",
                           keyboardType: TextInputType.number,
+                          onChanged: (value) => hours1 = value,
                         )),
                     const Text("  تا      "),
                     SizedBox(
                         width: Get.width / 7,
-                        child: const ProfileTextInput(
+                        child: ProfileTextInput(
                           textAlign: TextAlign.center,
                           text: "ساعت",
                           keyboardType: TextInputType.number,
+                          onChanged: (value) => hours2 = value,
                         )),
                   ],
                 ),
@@ -190,7 +200,7 @@ class BabySitterScreen extends StatelessWidget {
                             width: Get.width / 2.5,
                             child: ProfileTextInput(
                               text: "",
-                              onChanged: (value) => model.peopleInHuse = value,
+                              onChanged: (value) => model.peopleInHouse = value,
                             ),
                           )
                         ]))),
@@ -237,26 +247,28 @@ class BabySitterScreen extends StatelessWidget {
                         const Text("استان:  "),
                         SizedBox(
                             width: Get.width / 6.5,
-                            child: const ProfileTextInput(
+                            child: ProfileTextInput(
                               textAlign: TextAlign.center,
                               text: "",
                               keyboardType: TextInputType.number,
+                              onChanged: (value) => province = value,
                             )),
                         const Text("شهر:  "),
                         SizedBox(
                             width: Get.width / 7,
-                            child: const ProfileTextInput(
-                              textAlign: TextAlign.center,
-                              text: "",
-                              keyboardType: TextInputType.number,
-                            )),
+                            child: ProfileTextInput(
+                                textAlign: TextAlign.center,
+                                text: "",
+                                keyboardType: TextInputType.number,
+                                onChanged: (value) => city = value)),
                         const Text("محله:  "),
                         SizedBox(
                             width: Get.width / 7,
-                            child: const ProfileTextInput(
+                            child: ProfileTextInput(
                               textAlign: TextAlign.center,
                               text: "",
                               keyboardType: TextInputType.number,
+                              onChanged: (value) => neighbourhood = value,
                             )),
                       ],
                     ),
@@ -272,7 +284,7 @@ class BabySitterScreen extends StatelessWidget {
                     width: Get.width,
                     height: Get.height / 8,
                     child: TextFormField(
-                      onChanged: (value) => model.description,
+                      onChanged: (value) => model.description = value,
                       maxLines: 5,
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
@@ -289,11 +301,16 @@ class BabySitterScreen extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              model.address = "";
-              model.hourse = "";
-              model.age = "";
-              FocusNode().unfocus();
-              Get.to(() => const FinalStepScreen());
+              model.address = "استان $province شهر $city محله $neighbourhood";
+              model.hours = "از $hours1 تا $hours2";
+              model.age = ages
+                  .where((element) => element.isNotEmpty)
+                  .toString()
+                  .replaceAll('(', '')
+                  .replaceAll(')', '');
+              print(model);
+              // FocusNode().unfocus();
+              // Get.to(() => const FinalStepScreen());
             },
             child: Container(
               width: Get.width,
