@@ -24,15 +24,13 @@ class FinalStepScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
             child: ProfileTextInput(
               text: "نام و نام خانوادگی",
-              controller:
-                  TextEditingController(text: _controller.singletonClass.name),
+              controller: _controller.textEditingControllers[0],
             )),
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
             child: ProfileTextInput(
                 text: "شماره تماس",
-                controller: TextEditingController(
-                    text: _controller.singletonClass.phoneNumber))),
+                controller: _controller.textEditingControllers[1])),
         const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
             child: ProfileTextInput(text: "نحوه آشنایی با ما")),
