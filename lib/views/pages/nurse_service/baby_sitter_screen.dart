@@ -1,31 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/core/validations/baby_sitter_validation.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/final_step_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 
-class BabySitterScreen extends StatelessWidget {
+class BabySitterScreen extends StatefulWidget {
   const BabySitterScreen({Key? key}) : super(key: key);
 
   @override
+  State<BabySitterScreen> createState() => _BabySitterScreenState();
+}
+
+class _BabySitterScreenState extends State<BabySitterScreen> {
+  RxInt gender = (-1).obs;
+  RxInt childNumber = (1).obs;
+  RxInt shiftWork = (-1).obs;
+  RxBool camera = false.obs;
+  List<String> ages = List.generate(4, (index) => "");
+  String province = "", city = "", neighbourhood = "", hours1 = "", hours2 = "";
+  final RequestNurseModel model = RequestNurseModel();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    model.cctv = camera.value;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    RxInt gender = (-1).obs;
-    RxInt childNumber = (1).obs;
-    RxInt shiftWork = (1).obs;
-    RxBool camera = false.obs;
-    List<String> ages = List.generate(4, (index) => "");
-    String province = "",
-        city = "",
-        neighbourhood = "",
-        hours1 = "",
-        hours2 = "";
-    final RequestNurseModel model = RequestNurseModel()
-      ..peopleInHouse = ""
-      ..nurseCategory = NurseCategory.Kid
-      ..cctv = false;
     return Scaffold(
         appBar: screensAppbar(context: context, title: "پرستار کودک"),
         body: ListView(physics: const BouncingScrollPhysics(), children: [
@@ -302,17 +309,22 @@ class BabySitterScreen extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              model.address = "استان $province شهر $city محله $neighbourhood";
-              model.hours = "از ساعت $hours1 تا ساعت $hours2";
-              model.age = ages
-                  .where((element) => element.isNotEmpty)
-                  .toString()
-                  .replaceAll('(', '')
-                  .replaceAll(')', '');
-              FocusNode().unfocus();
-              Get.to(() => FinalStepScreen(
-                    model: model,
-                  ));
+              model.address = province;
+              model.hours = hours1;
+              model.age = ages[0];
+              if (babySitterValidation(model)) {
+                model.address = "استان $province شهر $city محله $neighbourhood";
+                model.hours = "از ساعت $hours1 تا ساعت $hours2";
+                model.age = ages
+                    .where((element) => element.isNotEmpty)
+                    .toString()
+                    .replaceAll('(', '')
+                    .replaceAll(')', '');
+                FocusNode().unfocus();
+                Get.to(() => FinalStepScreen(
+                      model: model,
+                    ));
+              }
             },
             child: Container(
               width: Get.width,
