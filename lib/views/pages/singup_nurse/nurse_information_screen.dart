@@ -4,7 +4,6 @@ import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/viewmodels/signup_nurse/nurse_information_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_questions_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
-import 'package:rayaniyaresh/views/widgets/payment_widget.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart' as picker;
 
@@ -12,6 +11,8 @@ class NurseInformationScreen extends StatelessWidget {
   const NurseInformationScreen({
     Key? key,
   }) : super(key: key);
+
+
   @override
   Widget build(BuildContext context) {
     final _controller = Get.put(NurseInformationViewmodel());
@@ -167,11 +168,11 @@ class NurseInformationScreen extends StatelessWidget {
               ],
             ),
           ),
+          
           // button
           InkWell(
             onTap: () async {
-              Get.to(() => const NurseQuestionScreen(),
-                  transition: Transition.leftToRight);
+              
             },
             child: Container(
               width: Get.width,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' show TextEditingController;
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_questions_screen.dart';
 
 class NurseInformationViewmodel extends GetxController with StateMixin {
   final List<TextEditingController> textEditingController =
@@ -19,5 +20,10 @@ class NurseInformationViewmodel extends GetxController with StateMixin {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+  }
+
+  void validationForm() {
+    Get.to(() => const NurseQuestionScreen(),
+                  transition: Transition.leftToRight);
   }
 }
