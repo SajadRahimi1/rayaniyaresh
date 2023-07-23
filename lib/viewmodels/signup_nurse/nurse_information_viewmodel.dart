@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart' show TextEditingController;
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_questions_screen.dart';
 
 class NurseInformationViewmodel extends GetxController with StateMixin {
   final List<TextEditingController> textEditingController =
       List.generate(9, (index) => TextEditingController());
+
+  final CreateNurseModel nurseModel = CreateNurseModel();
 
   List educationStrings = [
     "سیکل",
@@ -23,7 +26,7 @@ class NurseInformationViewmodel extends GetxController with StateMixin {
   }
 
   void validationForm() {
-    Get.to(() => const NurseQuestionScreen(),
-                  transition: Transition.leftToRight);
+    Get.to(() => NurseQuestionScreen(nurseModel: nurseModel),
+        transition: Transition.leftToRight);
   }
 }

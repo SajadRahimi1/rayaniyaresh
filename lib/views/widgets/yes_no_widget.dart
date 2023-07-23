@@ -6,7 +6,7 @@ class YesNoWidget extends StatelessWidget {
       : super(key: key);
   final bool value;
   final String title;
-  final void Function(Object?)? onChanged;
+  final void Function(bool?)? onChanged;
 
   @override
   Widget build(BuildContext context) {

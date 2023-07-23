@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/route_manager.dart';
+import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
+import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_uploads_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 
 class NurseSelectSreen extends StatelessWidget {
-  const NurseSelectSreen({Key? key}) : super(key: key);
+  const NurseSelectSreen({Key? key, required this.nurseModel})
+      : super(key: key);
+  final CreateNurseModel nurseModel;
 
   @override
   Widget build(BuildContext context) {
@@ -108,8 +112,13 @@ class NurseSelectSreen extends StatelessWidget {
           ),
           NextStepButton(
             title: "مرحله بعدی",
-            onTap: () => Get.to(() => const NurseUploadsScreen(),
-                transition: Transition.leftToRight),
+            onTap: () {
+              nurseModel.nurseCategory =
+                  NurseCategory.values[categorySelect.value];
+              nurseModel.specialCare = secondQuestion.value;
+              Get.to(() => const NurseUploadsScreen(),
+                  transition: Transition.leftToRight);
+            },
           )
         ],
       ),

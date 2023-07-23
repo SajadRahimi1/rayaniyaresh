@@ -12,7 +12,6 @@ class NurseInformationScreen extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     final _controller = Get.put(NurseInformationViewmodel());
@@ -33,7 +32,7 @@ class NurseInformationScreen extends StatelessWidget {
                     Icons.person,
                   ),
                   onChanged: (value) {
-                    // _controller.userModel?.name = value;
+                    _controller.nurseModel.name = value;
                   },
                 ),
                 ProfileTextInput(
@@ -41,7 +40,7 @@ class NurseInformationScreen extends StatelessWidget {
                   text: "نام پدر",
                   icon: const Icon(Icons.family_restroom),
                   onChanged: (value) {
-                    // _controller.userModel?.fatherName = value;
+                    _controller.nurseModel.fatherName = value;
                   },
                 ),
                 ProfileTextInput(
@@ -60,8 +59,8 @@ class NurseInformationScreen extends StatelessWidget {
                         // _controller.birthday.value = picked.formatCompactDate();
                         _controller.textEditingController[2].text =
                             picked.formatCompactDate();
-                        // _controller.userModel?.birthday =
-                        // picked.formatCompactDate();
+                        _controller.nurseModel.birthday =
+                            picked.formatCompactDate();
                       }
                     },
                     icon: const Icon(
@@ -72,7 +71,7 @@ class NurseInformationScreen extends StatelessWidget {
                   text: "محل صدور",
                   icon: const Icon(Icons.location_city),
                   onChanged: (value) {
-                    // _controller.userModel?.bornCity = value;
+                    _controller.nurseModel.bornCity = value;
                   },
                 ),
                 ProfileTextInput(
@@ -82,7 +81,7 @@ class NurseInformationScreen extends StatelessWidget {
                   maxLength: 11,
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
-                    // _controller.userModel?.nationalCode = value;
+                    _controller.nurseModel.nationalCode = value;
                   },
                 ),
                 ProfileTextInput(
@@ -92,7 +91,7 @@ class NurseInformationScreen extends StatelessWidget {
                   maxLength: 11,
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
-                    // _controller.userModel?.nationalNumber = value;
+                    _controller.nurseModel.nationalNumber = value;
                   },
                 ),
                 SizedBox(
@@ -141,7 +140,7 @@ class NurseInformationScreen extends StatelessWidget {
                   text: "آدرس دقیق منزل",
                   icon: const Icon(Icons.pin_drop),
                   onChanged: (value) {
-                    // _controller.userModel?.address = value;
+                    _controller.nurseModel.address = value;
                   },
                 ),
                 ProfileTextInput(
@@ -149,10 +148,9 @@ class NurseInformationScreen extends StatelessWidget {
                   text: "شماره تلفن همراه",
                   icon: const Icon(Icons.phone_android),
                   keyboardType: TextInputType.number,
-                  enable: false,
                   maxLength: 11,
                   onChanged: (value) {
-                    // _controller.userModel?.phoneNumber = value;
+                    _controller.nurseModel.phoneNumber = value;
                   },
                 ),
                 ProfileTextInput(
@@ -162,18 +160,16 @@ class NurseInformationScreen extends StatelessWidget {
                   keyboardType: TextInputType.number,
                   maxLength: 11,
                   onChanged: (value) {
-                    // _controller.userModel?.emergancyNumber = value;
+                    _controller.nurseModel.homeNumber = value;
                   },
                 ),
               ],
             ),
           ),
-          
+
           // button
           InkWell(
-            onTap: () async {
-              
-            },
+            onTap: _controller.validationForm,
             child: Container(
               width: Get.width,
               height: Get.height / 13,

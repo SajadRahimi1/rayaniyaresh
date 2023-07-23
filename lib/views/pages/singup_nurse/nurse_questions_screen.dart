@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:get/state_manager.dart';
+import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_select_screen.dart';
-import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_uploads_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 import 'package:rayaniyaresh/views/widgets/yes_no_widget.dart';
 
 class NurseQuestionScreen extends StatelessWidget {
-  const NurseQuestionScreen({Key? key}) : super(key: key);
+  const NurseQuestionScreen({
+    Key? key,
+    required this.nurseModel,
+  }) : super(key: key);
+  final CreateNurseModel nurseModel;
 
   @override
   Widget build(BuildContext context) {
+    List<RxBool> questions = List.generate(8, (index) => false.obs);
     return Scaffold(
       appBar: screensAppbar(context: context, title: "استخدام پرستار"),
       body: ListView(
@@ -20,20 +26,40 @@ class NurseQuestionScreen extends StatelessWidget {
             child: Column(
               children: [
                 // drug
-                YesNoWidget(
-                  value: false,
-                  title: "ایا از مواد مخدر استفاده میکنید؟  ",
-                  onChanged: (value) {},
-                ),
+                Obx(() => YesNoWidget(
+                      value: questions[0].value,
+                      title: "ایا از مواد مخدر استفاده میکنید؟  ",
+                      onChanged: (value) {
+                        if (value != null) {
+                          questions[0].value = value;
+                          if (value) {
+                            nurseModel.otherProp =
+                                (nurseModel.otherProp ?? "") + ".موادمخدر";
+                          } else {
+                            nurseModel.otherProp?.replaceAll('.موادمخدر', '');
+                          }
+                        }
+                      },
+                    )),
                 const Divider(
                   thickness: 1,
                 ),
 
                 // cigret
                 YesNoWidget(
-                  value: false,
+                  value: questions[1].value,
                   title: "ایا از سبگاز استفاده میکنید؟  ",
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    if (value != null) {
+                      questions[1].value = value;
+                      if (value) {
+                        nurseModel.otherProp =
+                            (nurseModel.otherProp ?? "") + ".سیگار";
+                      } else {
+                        nurseModel.otherProp?.replaceAll('.سیگار', '');
+                      }
+                    }
+                  },
                 ),
                 const Divider(
                   thickness: 1,
@@ -41,18 +67,38 @@ class NurseQuestionScreen extends StatelessWidget {
 
                 // alcoholic
                 YesNoWidget(
-                  value: false,
+                  value: questions[2].value,
                   title: "ایا از مشروبات الکلی استفاده میکنید؟  ",
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    if (value != null) {
+                      questions[2].value = value;
+                      if (value) {
+                        nurseModel.otherProp =
+                            (nurseModel.otherProp ?? "") + ".الکلی";
+                      } else {
+                        nurseModel.otherProp?.replaceAll('.الکلی', '');
+                      }
+                    }
+                  },
                 ),
                 const Divider(
                   thickness: 1,
                 ),
 
                 YesNoWidget(
-                  value: false,
+                  value: questions[3].value,
                   title: "ایا دارای معلولیت جسمی هستید؟  ",
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    if (value != null) {
+                      questions[3].value = value;
+                      if (value) {
+                        nurseModel.otherProp =
+                            (nurseModel.otherProp ?? "") + ".معلولیت";
+                      } else {
+                        nurseModel.otherProp?.replaceAll('.معلولیت', '');
+                      }
+                    }
+                  },
                 ),
                 const Divider(
                   thickness: 1,
@@ -60,37 +106,77 @@ class NurseQuestionScreen extends StatelessWidget {
 
                 //
                 YesNoWidget(
-                  value: false,
+                  value: questions[4].value,
                   title: "ایا ابیماری خاصی دارید؟  ",
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    if (value != null) {
+                      questions[4].value = value;
+                      if (value) {
+                        nurseModel.otherProp =
+                            (nurseModel.otherProp ?? "") + ".بیماری";
+                      } else {
+                        nurseModel.otherProp?.replaceAll('.بیماری', '');
+                      }
+                    }
+                  },
                 ),
                 const Divider(
                   thickness: 1,
                 ),
 
                 YesNoWidget(
-                  value: false,
+                  value: questions[5].value,
                   title: "ایا دارای سابقه حکومت کیفری هستید؟  ",
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    if (value != null) {
+                      questions[5].value = value;
+                      if (value) {
+                        nurseModel.otherProp =
+                            (nurseModel.otherProp ?? "") + ".کیفری";
+                      } else {
+                        nurseModel.otherProp?.replaceAll('.کیفری', '');
+                      }
+                    }
+                  },
                 ),
                 const Divider(
                   thickness: 1,
                 ),
 
                 YesNoWidget(
-                  value: false,
+                  value: questions[6].value,
                   title:
                       "ایا میخواهید در حین فعالیت یک یا چند نفر از اعضای خانواده شما کنارتان حضور داشته باشد؟  ",
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    if (value != null) {
+                      questions[6].value = value;
+                      if (value) {
+                        nurseModel.otherProp =
+                            (nurseModel.otherProp ?? "") + ".خانواده";
+                      } else {
+                        nurseModel.otherProp?.replaceAll('.خانواده', '');
+                      }
+                    }
+                  },
                 ),
                 const Divider(
                   thickness: 1,
                 ),
 
                 YesNoWidget(
-                  value: false,
+                  value: questions[7].value,
                   title: "ایا مدرک تخصصی در زمینه پرستاری و درمانی دارید؟  ",
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    if (value != null) {
+                      questions[7].value = value;
+                      if (value) {
+                        nurseModel.otherProp =
+                            (nurseModel.otherProp ?? "") + ".مدرک";
+                      } else {
+                        nurseModel.otherProp?.replaceAll('.مدرک', '');
+                      }
+                    }
+                  },
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 15,
@@ -100,7 +186,7 @@ class NurseQuestionScreen extends StatelessWidget {
           ),
           NextStepButton(
             title: "مرحله بعدی",
-            onTap: () => Get.to(() => const NurseSelectSreen(),
+            onTap: () => Get.to(() => NurseSelectSreen(nurseModel: nurseModel),
                 transition: Transition.leftToRight),
           )
         ],

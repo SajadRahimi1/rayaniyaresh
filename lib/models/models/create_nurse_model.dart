@@ -1,3 +1,5 @@
+import 'package:rayaniyaresh/models/extensions/enum_extension.dart';
+import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
 
 class CreateNurseModel {
   String? name;
@@ -12,7 +14,7 @@ class CreateNurseModel {
   String? homeNumber;
   bool? specialCare;
   String? otherProp;
-  String? nurseCategory;
+  NurseCategory? nurseCategory;
 
   CreateNurseModel({this.name, this.fatherName, this.birthday, this.bornCity, this.nationalCode, this.nationalNumber, this.education, this.address, this.phoneNumber, this.homeNumber, this.specialCare, this.otherProp, this.nurseCategory});
 
@@ -46,7 +48,7 @@ class CreateNurseModel {
     _data["homeNumber"] = homeNumber;
     _data["specialCare"] = specialCare;
     _data["otherProp"] = otherProp;
-    _data["nurseCategory"] = nurseCategory;
+    _data["nurseCategory"] = nurseCategory.getValue();
     return _data;
   }
 }
