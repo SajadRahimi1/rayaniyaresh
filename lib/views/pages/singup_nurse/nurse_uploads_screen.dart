@@ -5,7 +5,8 @@ import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 
 class NurseUploadsScreen extends StatelessWidget {
-  const NurseUploadsScreen({Key? key}) : super(key: key);
+  const NurseUploadsScreen({Key? key,required this.nurseId}) : super(key: key);
+  final String nurseId;
 
   @override
   Widget build(BuildContext context) {

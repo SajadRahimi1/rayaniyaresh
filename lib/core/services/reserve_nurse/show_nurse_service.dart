@@ -3,5 +3,5 @@ import 'package:rayaniyaresh/models/constants/get_connect.dart';
 import 'package:rayaniyaresh/models/constants/urls.dart';
 
 Future<Response<dynamic>> getNurses() async {
-  return await getConnect.get(getNurseUrl);
+  return await getConnect.get(nurseUrl);
 }

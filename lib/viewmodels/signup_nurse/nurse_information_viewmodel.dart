@@ -17,7 +17,7 @@ class NurseInformationViewmodel extends GetxController with StateMixin {
     "فوق لیسانس",
     "دکترا",
   ];
-  RxInt education = (-1).obs;
+  RxInt educationIndex = (-1).obs;
 
   @override
   void onInit() {
@@ -26,6 +26,7 @@ class NurseInformationViewmodel extends GetxController with StateMixin {
   }
 
   void validationForm() {
+    nurseModel.education = educationStrings[educationIndex.value];
     Get.to(() => NurseQuestionScreen(nurseModel: nurseModel),
         transition: Transition.leftToRight);
   }

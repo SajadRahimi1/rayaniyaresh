@@ -94,6 +94,8 @@ class NurseInformationScreen extends StatelessWidget {
                     _controller.nurseModel.nationalNumber = value;
                   },
                 ),
+
+                // education
                 SizedBox(
                   width: Get.width,
                   height: Get.height / 10,
@@ -107,8 +109,8 @@ class NurseInformationScreen extends StatelessWidget {
                               itemCount: 6,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (_, index) => InkWell(
-                                    onTap: () =>
-                                        _controller.education.value = index,
+                                    onTap: () => _controller
+                                        .educationIndex.value = index,
                                     child: Obx(() => Container(
                                           width: Get.width / 5.5,
                                           margin: EdgeInsets.symmetric(
@@ -119,8 +121,8 @@ class NurseInformationScreen extends StatelessWidget {
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(10),
-                                              color: _controller
-                                                          .education.value ==
+                                              color: _controller.educationIndex
+                                                          .value ==
                                                       index
                                                   ? Colors.green
                                                   : const Color(0xffe5e5e5)),

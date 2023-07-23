@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_rx/get_rx.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
+import 'package:rayaniyaresh/viewmodels/signup_nurse/create_nurse_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_uploads_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
@@ -15,8 +14,8 @@ class NurseSelectSreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RxInt categorySelect = (3).obs;
-    RxBool secondQuestion = false.obs;
+    final _controller = Get.put(CreateNurrseViewModel(nurseModel));
+
     return Scaffold(
       appBar: screensAppbar(context: context),
       body: Column(
@@ -25,7 +24,7 @@ class NurseSelectSreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(children: [
-              // child categorySelect
+              // child _controller.categorySelect
               const Text(
                 "\nلطفا گزینه مورد نظر را در خصوص مراقبت انتخاب بفرمایید :\n",
                 style: TextStyle(fontSize: 16),
@@ -37,19 +36,19 @@ class NurseSelectSreen extends StatelessWidget {
                     children: [
                       const Text("پرستار کودک"),
                       Obx(() => Checkbox(
-                            value: categorySelect.value == 0,
+                            value: _controller.categorySelect.value == 0,
                             onChanged: (value) {
                               if (value != null) {
-                                categorySelect.value = 0;
+                                _controller.categorySelect.value = 0;
                               }
                             },
                           )),
                       const Text("پرستار سالمند"),
                       Obx(() => Checkbox(
-                            value: categorySelect.value == 1,
+                            value: _controller.categorySelect.value == 1,
                             onChanged: (value) {
                               if (value != null) {
-                                categorySelect.value = 1;
+                                _controller.categorySelect.value = 1;
                               }
                             },
                           )),
@@ -60,19 +59,19 @@ class NurseSelectSreen extends StatelessWidget {
                     children: [
                       const Text("پرستار بیمار"),
                       Obx(() => Checkbox(
-                            value: categorySelect.value == 2,
+                            value: _controller.categorySelect.value == 2,
                             onChanged: (value) {
                               if (value != null) {
-                                categorySelect.value = 2;
+                                _controller.categorySelect.value = 2;
                               }
                             },
                           )),
                       const Text("همه موارد"),
                       Obx(() => Checkbox(
-                            value: categorySelect.value == 3,
+                            value: _controller.categorySelect.value == 3,
                             onChanged: (value) {
                               if (value != null) {
-                                categorySelect.value = 3;
+                                _controller.categorySelect.value = 3;
                               }
                             },
                           )),
@@ -90,19 +89,19 @@ class NurseSelectSreen extends StatelessWidget {
                 children: [
                   const Text("بله"),
                   Obx(() => Checkbox(
-                        value: secondQuestion.value,
+                        value: _controller.secondQuestion.value,
                         onChanged: (value) {
                           if (value != null) {
-                            secondQuestion.value = true;
+                            _controller.secondQuestion.value = true;
                           }
                         },
                       )),
                   const Text("خیر"),
                   Obx(() => Checkbox(
-                        value: !secondQuestion.value,
+                        value: !_controller.secondQuestion.value,
                         onChanged: (value) {
                           if (value != null) {
-                            secondQuestion.value = false;
+                            _controller.secondQuestion.value = false;
                           }
                         },
                       )),
@@ -110,16 +109,7 @@ class NurseSelectSreen extends StatelessWidget {
               ),
             ]),
           ),
-          NextStepButton(
-            title: "مرحله بعدی",
-            onTap: () {
-              nurseModel.nurseCategory =
-                  NurseCategory.values[categorySelect.value];
-              nurseModel.specialCare = secondQuestion.value;
-              Get.to(() => const NurseUploadsScreen(),
-                  transition: Transition.leftToRight);
-            },
-          )
+          NextStepButton(title: "مرحله بعدی", onTap: _controller.createNurse)
         ],
       ),
     );
