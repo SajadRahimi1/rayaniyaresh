@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
+import 'package:rayaniyaresh/core/services/read_json.dart';
 import 'package:rayaniyaresh/core/services/reserve_class/class_service.dart'
     as service;
 import 'package:rayaniyaresh/models/models/class_model.dart';
@@ -14,13 +17,16 @@ class ClassCategoryViewModel extends GetxController with StateMixin {
 
   Future<void> getData() async {
     final _request = await service.getAllClasses();
-    if (_request.statusCode == 200) {
-      classModel = List<ClassModel>.from(
-          _request.body.map((x) => ClassModel.fromJson(x)));
-      change(null, status: RxStatus.success());
-    } else {
-      change(null, status: RxStatus.error());
-      networkErrorMessage();
-    }
+    // if (_request.statusCode == 200) {
+    //   classModel = List<ClassModel>.from(
+    //       _request.body.map((x) => ClassModel.fromJson(x)));
+    classModel = List<ClassModel>.from(
+        jsonDecode(await loadJsonFromAsset("assets/class.json"))
+            .map((e) => ClassModel.fromJson(e)));
+    change(null, status: RxStatus.success());
+    // } else {
+    //   change(null, status: RxStatus.error());
+    //   networkErrorMessage();
+    // }
   }
 }

@@ -34,10 +34,10 @@ class MoreScreen extends StatelessWidget {
 
                         break;
                       case 3:
-                        _controller.gotoSubcategory("آموزشی", "خدمات آموزشی");
+                        // _controller.gotoSubcategory("آموزشی", "خدمات آموزشی");
                         break;
                       case 4:
-                        _controller.gotoSubcategory("بهداشت", "بهداشت و ایمنی");
+                        // _controller.gotoSubcategory("بهداشت", "بهداشت و ایمنی");
                         break;
                       case 5:
                         onReserveTap();

@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
+import 'package:rayaniyaresh/core/services/read_json.dart';
 import 'package:rayaniyaresh/core/services/reserve_nurse/reserve_nurse_service.dart'
     as nurse_service;
 import 'package:rayaniyaresh/core/services/user_service.dart' as user_service;
@@ -36,12 +39,14 @@ class ReservedListViewmodel extends GetxController with StateMixin {
   }
 
   Future<void> getReserved() async {
-    final _request = await user_service.getReserved(token);
-    if (_request.statusCode == 200) {
-      reservedModel = ReservedModel.fromJson(_request.body);
-      change(null, status: RxStatus.success());
-    } else {
-      networkErrorMessage();
-    }
+    // final _request = await user_service.getReserved(token);
+    // if (_request.statusCode == 200) {
+    // reservedModel = ReservedModel.fromJson(_request.body);
+    reservedModel = ReservedModel.fromJson(
+        jsonDecode(await loadJsonFromAsset('assets/reserv.json')));
+    change(null, status: RxStatus.success());
+    // } else {
+    //   networkErrorMessage();
+    // }
   }
 }
