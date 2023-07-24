@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/route_manager.dart';
+import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/success_reserve_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
@@ -156,13 +157,23 @@ class NurseRulesScreen extends StatelessWidget {
               ],
             ),
           ),
-          NextStepButton(
-            title: "تایید نهایی",
-            onTap: () => Get.to(() => const SuccessReserveScreen(
-                  message:
-                      "تایید نهایی از طریق پیامک به شما اطلاع رسانی خواهد شد",
-                )),
-          )
+          Obx(() => NextStepButton(
+                title: "تایید نهایی",
+                enable: accept.value,
+                onTap: () {
+                  if (accept.value) {
+                    Get.to(() => const SuccessReserveScreen(
+                          message:
+                              "تایید نهایی از طریق پیامک به شما اطلاع رسانی خواهد شد",
+                        ));
+                  } else {
+                    showMessage(
+                        title: "خطا",
+                        message: 'باید قوانین را قبول کنید',
+                        type: MessageType.warning);
+                  }
+                },
+              ))
         ],
       ),
     );
