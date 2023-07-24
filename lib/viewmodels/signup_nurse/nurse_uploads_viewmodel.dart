@@ -39,7 +39,9 @@ class NurseUploadsViewModel extends GetxController {
     Get.back();
 
     if (_request.statusCode == 200) {
-      Get.to(() => const NurseGuaranteeScreen());
+      Get.to(() => NurseGuaranteeScreen(
+            nurseid: id,
+          ));
     } else {
       networkErrorMessage();
     }

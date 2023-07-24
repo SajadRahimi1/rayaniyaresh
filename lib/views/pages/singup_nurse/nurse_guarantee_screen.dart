@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/viewmodels/signup_nurse/nurse_guarantee_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_download_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 
 class NurseGuaranteeScreen extends StatelessWidget {
-  const NurseGuaranteeScreen({Key? key}) : super(key: key);
+  const NurseGuaranteeScreen({Key? key, required this.nurseid})
+      : super(key: key);
+  final String nurseid;
 
   @override
   Widget build(BuildContext context) {
+    final _controller = Get.put(NurseGuaranteeViewModel(nurseId: nurseid));
+
     return Scaffold(
       appBar:
           screensAppbar(context: context, title: "اطلاعات دوستان و آشنایان"),
@@ -23,54 +28,90 @@ class NurseGuaranteeScreen extends StatelessWidget {
                 "\nلطفا 3 نفر را معرفی بفرمایید که شما را میشناسد:\n",
                 style: TextStyle(fontSize: Get.width / 22),
               ),
+
+              // 3 person
               SizedBox(
                   width: Get.width,
-                  height: Get.height / 8,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          height: Get.height / 9,
-                          width: Get.width / 4.5,
-                          child: ProfileTextInput(text: "آقا/خانم"),
-                        ),
-                        SizedBox(
-                          width: Get.width / 10,
-                        ),
-                        SizedBox(
-                          height: Get.height / 9,
-                          width: Get.width / 5,
-                          child: ProfileTextInput(text: "نسبت"),
-                        ),
-                        SizedBox(
-                          width: Get.width / 10,
-                        ),
-                        SizedBox(
-                          height: Get.height / 9,
-                          width: Get.width / 5,
-                          child: ProfileTextInput(text: "مدت آشنایی"),
-                        ),
-                        SizedBox(
-                          width: Get.width / 10,
-                        ),
-                        SizedBox(
-                          width: Get.width / 3,
-                          height: Get.height / 9,
-                          child: ProfileTextInput(text: "شماره تماس"),
-                        ),
-                      ],
+                  height: Get.height / 3,
+                  child: Column(
+                      children: List.generate(
+                    3,
+                    (index) => SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            height: Get.height / 9,
+                            width: Get.width / 4.5,
+                            child: ProfileTextInput(
+                              text: "آقا/خانم",
+                              onChanged: (value) => _controller
+                                  .model.nurseParentModels?[index].name = value,
+                            ),
+                          ),
+                          SizedBox(
+                            width: Get.width / 10,
+                          ),
+                          SizedBox(
+                            height: Get.height / 9,
+                            width: Get.width / 5,
+                            child: ProfileTextInput(
+                                text: "نسبت",
+                                onChanged: (value) => _controller
+                                    .model
+                                    .nurseParentModels?[index]
+                                    .information = value),
+                          ),
+                          SizedBox(
+                            width: Get.width / 10,
+                          ),
+                          SizedBox(
+                            height: Get.height / 9,
+                            width: Get.width / 5,
+                            child: ProfileTextInput(
+                                text: "مدت آشنایی",
+                                onChanged: (value) => _controller
+                                    .model
+                                    .nurseParentModels?[index]
+                                    .knowingTime = value),
+                          ),
+                          SizedBox(
+                            width: Get.width / 10,
+                          ),
+                          SizedBox(
+                            width: Get.width / 3,
+                            height: Get.height / 9,
+                            child: ProfileTextInput(
+                                text: "شماره تماس",
+                                onChanged: (value) => _controller
+                                    .model
+                                    .nurseParentModels?[index]
+                                    .phoneNumber = value),
+                          ),
+                        ],
+                      ),
                     ),
-                  )),
-              const ProfileTextInput(text: "شماره تماس همسر"),
+                  ))),
+
+              ProfileTextInput(
+                  text: "شماره تماس همسر",
+                  onChanged: (value) =>
+                      _controller.model.husbandPhoneNumber = value),
               const SizedBox(
                 height: 15,
               ),
-              const ProfileTextInput(text: "شماره تماس فرزند"),
+              ProfileTextInput(
+                  text: "شماره تماس فرزند",
+                  onChanged: (value) =>
+                      _controller.model.childPhoneNumber = value),
               const SizedBox(
                 height: 15,
               ),
-              const ProfileTextInput(text: "شماره تماس سرپرست خانواده"),
+              ProfileTextInput(
+                  text: "شماره تماس سرپرست خانواده",
+                  onChanged: (value) =>
+                      _controller.model.parentPhoneNumber = value),
               const SizedBox(
                 height: 15,
               ),
@@ -88,7 +129,10 @@ class NurseGuaranteeScreen extends StatelessWidget {
                     "سفته (به مبلغ 50 میلیون تومان)",
                     style: TextStyle(fontSize: Get.width / 25),
                   ),
-                  Checkbox(value: false, onChanged: (value) {})
+                  Obx(() => Checkbox(
+                      value: _controller.guaranteeIndex.value == 0,
+                      onChanged: <bool>(value) =>
+                          _controller.guaranteeIndex.value = 0))
                 ],
               ),
               Row(
@@ -97,7 +141,10 @@ class NurseGuaranteeScreen extends StatelessWidget {
                     "چک به ارزش 100 میلیون تومان",
                     style: TextStyle(fontSize: Get.width / 25),
                   ),
-                  Checkbox(value: false, onChanged: (value) {})
+                  Obx(() => Checkbox(
+                      value: _controller.guaranteeIndex.value == 1,
+                      onChanged: (value) =>
+                          _controller.guaranteeIndex.value = 1))
                 ],
               ),
               Row(
@@ -106,7 +153,10 @@ class NurseGuaranteeScreen extends StatelessWidget {
                     "جواز کسب",
                     style: TextStyle(fontSize: Get.width / 25),
                   ),
-                  Checkbox(value: false, onChanged: (value) {})
+                  Obx(() => Checkbox(
+                      value: _controller.guaranteeIndex.value == 2,
+                      onChanged: <bool>(value) =>
+                          _controller.guaranteeIndex.value = 2))
                 ],
               ),
               Row(
@@ -115,7 +165,10 @@ class NurseGuaranteeScreen extends StatelessWidget {
                     "معرف (کارمند دولتی)",
                     style: TextStyle(fontSize: Get.width / 25),
                   ),
-                  Checkbox(value: false, onChanged: (value) {})
+                  Obx(() => Checkbox(
+                      value: _controller.guaranteeIndex.value == 3,
+                      onChanged: <bool>(value) =>
+                          _controller.guaranteeIndex.value = 3))
                 ],
               ),
               SizedBox(
@@ -124,10 +177,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
             ],
           ),
         ),
-        NextStepButton(
-          title: "مرحله بعدی",
-          onTap: () => Get.to(() => const NurseDownloadScreen()),
-        )
+        NextStepButton(title: "مرحله بعدی", onTap: _controller.sendData)
       ]),
     );
   }
