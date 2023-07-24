@@ -23,13 +23,11 @@ class NurseGuaranteeViewModel extends GetxController with StateMixin {
   Future<void> sendData() async {
     model.guarantee = Guarantee.values[guaranteeIndex.value];
     if (validate()) {
-      final _reqeust = await service.updateNurseFamily(model);
-      if (_reqeust.statusCode == 200) {
-        Get.to(() => const NurseDownloadScreen());
-      }
+      // final _reqeust = await service.updateNurseFamily(model);
+      // if (_reqeust.statusCode == 200) {
+      Get.to(() => const NurseDownloadScreen());
+      // }
     } else {}
-
-    //
   }
 
   bool validate() {

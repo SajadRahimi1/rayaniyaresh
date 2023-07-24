@@ -29,21 +29,21 @@ class NurseUploadsViewModel extends GetxController {
   }
 
   Future<void> uploadImages() async {
-    loading();
-    final _request = await service.uploadImages(
-        id,
-        File(imagePaths[0].value),
-        File(imagePaths[1].value),
-        File(imagePaths[2].value),
-        imagePaths[0].isEmpty ? null : File(imagePaths[0].value));
-    Get.back();
+    // loading();
+    // final _request = await service.uploadImages(
+    //     id,
+    //     File(imagePaths[0].value),
+    //     File(imagePaths[1].value),
+    //     File(imagePaths[2].value),
+    //     imagePaths[0].isEmpty ? null : File(imagePaths[0].value));
+    // Get.back();
 
-    if (_request.statusCode == 200) {
-      Get.to(() => NurseGuaranteeScreen(
-            nurseid: id,
-          ));
-    } else {
-      networkErrorMessage();
-    }
+    // if (_request.statusCode == 200) {
+    Get.to(() => NurseGuaranteeScreen(
+          nurseid: id,
+        ));
+    // } else {
+    //   networkErrorMessage();
+    // }
   }
 }

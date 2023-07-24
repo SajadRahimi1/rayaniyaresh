@@ -169,7 +169,7 @@ class NurseRulesScreen extends StatelessWidget {
                   } else {
                     showMessage(
                         title: "خطا",
-                        message: 'باید قوانین را قبول کنید',
+                        message: 'باید  قوانین را قبول کنید',
                         type: MessageType.warning);
                   }
                 },

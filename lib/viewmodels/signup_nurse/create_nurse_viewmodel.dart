@@ -22,12 +22,14 @@ class CreateNurrseViewModel extends GetxController with StateMixin {
   Future<void> createNurse() async {
     nurseModel.nurseCategory = NurseCategory.values[categorySelect.value];
     nurseModel.specialCare = secondQuestion.value;
-    final _request = await service.createNurse(nurseModel);
-    if (_request.statusCode == 200) {
-      Get.to(() => NurseUploadsScreen(nurseId: _request.body['Id']),
-          transition: Transition.leftToRight);
-    } else {
-      networkErrorMessage();
-    }
+    // final _request = await service.createNurse(nurseModel);
+    // if (_request.statusCode == 200) {
+    // Get.to(() => NurseUploadsScreen(nurseId: _request.body['Id']),
+    //     transition: Transition.leftToRight);
+    Get.to(() => NurseUploadsScreen(nurseId: ""),
+        transition: Transition.leftToRight);
+    // } else {
+    //   networkErrorMessage();
+    // }
   }
 }
