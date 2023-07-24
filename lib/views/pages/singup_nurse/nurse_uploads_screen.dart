@@ -84,7 +84,7 @@ class NurseUploadsScreen extends StatelessWidget {
                             vertical: Get.height / 15),
                         decoration: BoxDecoration(
                             color: const Color.fromRGBO(255, 255, 255, 0.7),
-                            border: Border.all(color: Color(0xff000000))),
+                            border: Border.all(color: const Color(0xff000000))),
                         alignment: Alignment.center,
                         child: const Text("انتخاب عکس")),
                   ),
@@ -168,10 +168,7 @@ class NurseUploadsScreen extends StatelessWidget {
               ),
             ]),
           ),
-          NextStepButton(
-            title: "مرحله بعدی",
-            onTap: () => Get.to(() => const NurseGuaranteeScreen()),
-          )
+          NextStepButton(title: "مرحله بعدی", onTap: _controller.uploadImages)
         ],
       ),
     );
