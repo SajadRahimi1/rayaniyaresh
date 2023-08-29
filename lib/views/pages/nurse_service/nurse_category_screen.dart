@@ -18,7 +18,7 @@ class NurseCategoryScreen extends StatelessWidget {
                     onTap: () => Get.to(() => const BabySitterScreen(),
                         transition: Transition.leftToRight),
                     child: Container(
-                      alignment: Alignment.center,
+                      alignment: Alignment.bottomCenter,
                       margin: const EdgeInsets.symmetric(
                         horizontal: 15,
                       ),
@@ -30,10 +30,10 @@ class NurseCategoryScreen extends StatelessWidget {
                             fit: BoxFit.fill,
                             image: AssetImage(
                               "assets/images/images/${[
-                                "baby-sitter",
-                                "oldage",
-                                "patient"
-                              ][index]}2.jpg",
+                                "nurse child.png",
+                                "elderly nurse.png",
+                                "sick nurse.jpg"
+                              ][index]}",
                             ),
                           )),
                       child: Text(
@@ -41,7 +41,7 @@ class NurseCategoryScreen extends StatelessWidget {
                         style: TextStyle(
                             fontSize: Get.width / 15,
                             fontWeight: FontWeight.bold,
-                            color: const Color(0xffffffff)),
+                            color: const Color(0xff000000)),
                       ),
                     ),
                   ))),

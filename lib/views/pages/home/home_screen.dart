@@ -85,7 +85,7 @@ class HomeScreen extends StatelessWidget {
                     // itemCount: 7,
                     // _controller.categories.data.categories.length,
                     itemBuilder: (context, index) => ServiceWidget(
-                        isImageAsset: false,
+                        isImageAsset: true,
                         onTap: () {
                           FocusScope.of(context).unfocus();
                           switch (index) {
@@ -106,7 +106,14 @@ class HomeScreen extends StatelessWidget {
                               break;
                           }
                         },
-                        image: "https://loremflickr.com/320/240",
+                        image: [
+                          "nurse.jpg",
+                          "doctor service.png",
+                          "Hiring a nurse.jpg",
+                          "Asia Salamat Technical Complex.jpg",
+                          "educational services.jpg",
+                          "Class reservation.jpg"
+                        ][index],
                         title: [
                           "خدمات پرستاری",
                           "خدمات پزشکی (بزودی)",

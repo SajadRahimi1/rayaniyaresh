@@ -28,7 +28,7 @@ class ServiceWidget extends StatelessWidget {
             width: MediaQuery.of(context).size.width / 5.2,
             height: MediaQuery.of(context).size.width / 4,
             decoration: BoxDecoration(
-              color: Color(0xfffcfcfc),
+              color: const Color(0xfffcfcfc),
               borderRadius: BorderRadius.circular(15),
             ),
             child: Column(
@@ -37,10 +37,10 @@ class ServiceWidget extends StatelessWidget {
                     flex: 5,
                     child: image.isNotEmpty && isImageAsset
                         ? SizedBox.square(
-                            dimension: MediaQuery.of(context).size.width / 10,
+                            dimension: MediaQuery.of(context).size.width / 5,
                             child: Image.asset(
-                              "assets/images/icons/$image.png",
-                              fit: BoxFit.contain,
+                              "assets/images/images/$image",
+                              fit: BoxFit.fill,
                               filterQuality: FilterQuality.medium,
                             ),
                           )
