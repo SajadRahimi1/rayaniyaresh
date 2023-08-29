@@ -10,7 +10,7 @@ import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/menu.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key, this.initPage = 2}) : super(key: key);
+  const MainScreen({Key? key, this.initPage = 1}) : super(key: key);
   final int initPage;
 
   @override
