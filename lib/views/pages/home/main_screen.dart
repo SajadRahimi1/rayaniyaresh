@@ -5,7 +5,6 @@ import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/viewmodels/home/main_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/home/home_screen.dart';
 import 'package:rayaniyaresh/views/pages/home/more_screen.dart';
-import 'package:rayaniyaresh/views/pages/home/reserve_screen.dart';
 import 'package:rayaniyaresh/views/pages/home/support_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/menu.dart';
@@ -79,12 +78,10 @@ class _MainScreenState extends State<MainScreen> {
                         controller: _controller.pageController,
                         physics: const NeverScrollableScrollPhysics(),
                         children: [
-                          const ReserveScreen(),
-                          Container(),
+                          const SupportScreen(),
                           HomeScreen(
                               onShopTap: () =>
                                   _controller.currentPage.value = 1),
-                          const SupportScreen(),
                           MoreScreen(
                               onReserveTap: () =>
                                   _controller.currentPage.value = 0),
@@ -109,26 +106,18 @@ class _MainScreenState extends State<MainScreen> {
                           showUnselectedLabels: true,
                           // unselectedLabelStyle: TextStyle(color: Color(0xffe3e3e3)),
                           items: List.generate(
-                              5,
+                              3,
                               (index) => BottomNavigationBarItem(
                                     icon: Icon(
                                       [
-                                        Icons.book,
-                                        Icons.shopping_cart,
-                                        Icons.home,
                                         Icons.support_agent_sharp,
+                                        Icons.home,
                                         Icons.more_horiz
                                       ][index],
                                       size: 28,
                                       // filterQuality: FilterQuality.medium,
                                     ),
-                                    label: [
-                                      "رزرو",
-                                      "فروشگاه",
-                                      "خانه",
-                                      "پشتیبانی",
-                                      "بیشتر"
-                                    ][index],
+                                    label: ["پشتیبانی", "خانه", "بیشتر"][index],
                                   )),
                         ))))));
   }

@@ -14,7 +14,7 @@ class MoreScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
       body: ListView.builder(
-          itemCount: 10,
+          itemCount: 5,
           padding: const EdgeInsets.symmetric(horizontal: 5) +
               const EdgeInsets.only(top: 5),
           itemBuilder: (_, index) => Card(
@@ -48,15 +48,15 @@ class MoreScreen extends StatelessWidget {
                   leading: Icon([
                     Icons.paste,
                     Icons.person_add,
-                    Icons.search,
+                    // Icons.search,
                     Icons.cast_for_education,
                     Icons.sick,
                     Icons.cases_outlined,
-                    Icons.public,
-                    Icons.bookmark_added,
-                    Icons.photo,
+                    // Icons.public,
+                    // Icons.bookmark_added,
+                    // Icons.photo,
                     Icons.payment,
-                    Icons.mark_chat_unread_outlined,
+                    // Icons.mark_chat_unread_outlined,
                   ][index]),
                   // leading:
                   //     ImageIcon(AssetImage("assets/images/icons/paste.png")),
@@ -67,15 +67,15 @@ class MoreScreen extends StatelessWidget {
                     [
                       "لیست رزرو ها",
                       "فرم ثبت نام",
-                      "جست و جو",
+                      // "جست و جو",
                       "خدمات آموزشی",
                       "بهداشت و ایمنی",
                       "رزرواسیون",
-                      "اخبار",
-                      "علاقه مندی ها",
-                      "گالری تصاویر",
+                      // "اخبار",
+                      // "علاقه مندی ها",
+                      // "گالری تصاویر",
                       "پرداخت",
-                      "پشتیبانی با رایچت",
+                      // "پشتیبانی با رایچت",
                     ][index],
                     style: const TextStyle(fontSize: 15),
                   ),

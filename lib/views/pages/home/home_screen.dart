@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/views/pages/bio_screen.dart';
+import 'package:rayaniyaresh/views/pages/reserve_class/class_category_screen.dart';
 import 'package:rayaniyaresh/views/widgets/banner_slider.dart';
 import 'package:rayaniyaresh/views/widgets/service_widget.dart';
 
@@ -70,7 +72,7 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 // height: MediaQuery.of(context).size.height / 2.5,
-                height: MediaQuery.of(context).size.width / 3.5 * (9 ~/ 2),
+                height: MediaQuery.of(context).size.width / 3.5 * (6 ~/ 2),
                 child: GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -79,14 +81,30 @@ class HomeScreen extends StatelessWidget {
                       mainAxisSpacing: MediaQuery.of(context).size.width / 50,
                       crossAxisSpacing: MediaQuery.of(context).size.width / 70,
                     ),
-                    itemCount: 9,
+                    itemCount: 6,
                     // itemCount: 7,
                     // _controller.categories.data.categories.length,
                     itemBuilder: (context, index) => ServiceWidget(
                         isImageAsset: false,
                         onTap: () {
                           FocusScope.of(context).unfocus();
-                          Get.to(() => BioScreenn(nurse: index == 0));
+                          switch (index) {
+                            case 0:
+                              Get.to(() => const BioScreenn(nurse: true));
+                              break;
+                            case 2:
+                              Get.to(() => const BioScreenn(nurse: false));
+                              break;
+                            case 5:
+                              Get.to(() => const ClassCategoryScreen());
+                              break;
+                            default:
+                              showMessage(
+                                  title: "به زودی",
+                                  message: "این امکان بزودی فعال میشود",
+                                  type: MessageType.info);
+                              break;
+                          }
                         },
                         image: "https://loremflickr.com/320/240",
                         title: [
@@ -95,10 +113,11 @@ class HomeScreen extends StatelessWidget {
                           "استخدام پرستار",
                           "مجتمع فنی آسیا سلامت (بزودی)",
                           "خدمات آموزشی",
-                          "فروشی پکیج آموشی",
-                          "اجاره تجهیزات پزشکی",
-                          "فروش تجهیزات پزشکی",
-                          "فروش دوربین مداربسته",
+                          "رزرو کلاس"
+                          // "فروشی پکیج آموشی",
+                          // "اجاره تجهیزات پزشکی",
+                          // "فروش تجهیزات پزشکی",
+                          // "فروش دوربین مداربسته",
                         ][index])),
               ),
 
