@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/core/validations/baby_sitter_validation.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
@@ -69,7 +68,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                 // child gender
                 Row(
                   children: [
-                    Text("جنسیت:" "  "),
+                    const Text("جنسیت:" "  "),
                     const Text("پسر"),
                     Obx(() => Checkbox(
                           value: gender.value == 0,
@@ -106,20 +105,28 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                 const Divider(thickness: 1),
 
                 // children ages
-                Obx(() => Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: List.generate(
-                          childNumber.value,
-                          (index) => SizedBox(
-                                width: Get.width / 5,
+                SizedBox(
+                  width: Get.width,
+                  height: Get.height / 10,
+                  child: Obx(
+                    () => ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: childNumber.value,
+                        itemBuilder: (_, index) => Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: SizedBox(
+                                width: Get.width / 3.5,
                                 child: ProfileTextInput(
                                   textAlign: TextAlign.center,
                                   keyboardType: TextInputType.number,
                                   text: "سن کودک ${index + 1}",
                                   onChanged: (value) => ages[index] = value,
                                 ),
-                              )),
-                    )),
+                              ),
+                            )),
+                  ),
+                ),
 
                 const Divider(thickness: 1),
 
@@ -168,28 +175,30 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                 const Divider(thickness: 1),
 
                 // hour of work
-                Row(
-                  children: [
-                    const Text("ساعت کاری از   "),
-                    SizedBox(
-                        width: Get.width / 7,
-                        child: ProfileTextInput(
-                          textAlign: TextAlign.center,
-                          text: "ساعت",
-                          keyboardType: TextInputType.number,
-                          onChanged: (value) => hours1 = value,
-                        )),
-                    const Text("  تا      "),
-                    SizedBox(
-                        width: Get.width / 7,
-                        child: ProfileTextInput(
-                          textAlign: TextAlign.center,
-                          text: "ساعت",
-                          keyboardType: TextInputType.number,
-                          onChanged: (value) => hours2 = value,
-                        )),
-                  ],
-                ),
+                Obx(() => shiftWork.value == 0
+                    ? const SizedBox()
+                    : Row(
+                        children: [
+                          const Text("ساعت کاری از   "),
+                          SizedBox(
+                              width: Get.width / 7,
+                              child: ProfileTextInput(
+                                textAlign: TextAlign.center,
+                                text: "ساعت",
+                                keyboardType: TextInputType.number,
+                                onChanged: (value) => hours1 = value,
+                              )),
+                          const Text("  تا      "),
+                          SizedBox(
+                              width: Get.width / 7,
+                              child: ProfileTextInput(
+                                textAlign: TextAlign.center,
+                                text: "ساعت",
+                                keyboardType: TextInputType.number,
+                                onChanged: (value) => hours2 = value,
+                              )),
+                        ],
+                      )),
 
                 const Divider(thickness: 1),
 

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
-import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
 import 'package:rayaniyaresh/viewmodels/signup_nurse/create_nurse_viewmodel.dart';
-import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_uploads_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 
@@ -36,19 +34,27 @@ class NurseSelectSreen extends StatelessWidget {
                     children: [
                       const Text("پرستار کودک"),
                       Obx(() => Checkbox(
-                            value: _controller.categorySelect.value == 0,
+                            value: _controller.categorySelect.contains(0),
                             onChanged: (value) {
                               if (value != null) {
-                                _controller.categorySelect.value = 0;
+                                if (value) {
+                                  _controller.addCategory(0);
+                                } else {
+                                  _controller.categorySelect.remove(0);
+                                }
                               }
                             },
                           )),
                       const Text("پرستار سالمند"),
                       Obx(() => Checkbox(
-                            value: _controller.categorySelect.value == 1,
+                            value: _controller.categorySelect.contains(1),
                             onChanged: (value) {
                               if (value != null) {
-                                _controller.categorySelect.value = 1;
+                                if (value) {
+                                  _controller.addCategory(1);
+                                } else {
+                                  _controller.categorySelect.remove(1);
+                                }
                               }
                             },
                           )),
@@ -59,19 +65,27 @@ class NurseSelectSreen extends StatelessWidget {
                     children: [
                       const Text("پرستار بیمار"),
                       Obx(() => Checkbox(
-                            value: _controller.categorySelect.value == 2,
+                            value: _controller.categorySelect.contains(2),
                             onChanged: (value) {
                               if (value != null) {
-                                _controller.categorySelect.value = 2;
+                                if (value) {
+                                  _controller.addCategory(2);
+                                } else {
+                                  _controller.categorySelect.remove(2);
+                                }
                               }
                             },
                           )),
                       const Text("همه موارد"),
                       Obx(() => Checkbox(
-                            value: _controller.categorySelect.value == 3,
+                            value: _controller.categorySelect.contains(3),
                             onChanged: (value) {
                               if (value != null) {
-                                _controller.categorySelect.value = 3;
+                                if (value) {
+                                  _controller.addCategory(3);
+                                } else {
+                                  _controller.categorySelect.clear();
+                                }
                               }
                             },
                           )),

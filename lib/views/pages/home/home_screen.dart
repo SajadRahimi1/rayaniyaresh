@@ -107,12 +107,12 @@ class HomeScreen extends StatelessWidget {
                           }
                         },
                         image: [
-                          "nurse.jpg",
-                          "doctor service.png",
-                          "Hiring a nurse.jpg",
-                          "Asia Salamat Technical Complex.jpg",
-                          "educational services.jpg",
-                          "Class reservation.jpg"
+                          "nurse.png",
+                          "services.png",
+                          "hiring.png",
+                          "building.png",
+                          "learning.png",
+                          "reserve-class.png"
                         ][index],
                         title: [
                           "خدمات پرستاری",
@@ -138,7 +138,8 @@ class HomeScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         image: const DecorationImage(
-                            image: AssetImage("assets/images/images/shop.jpg"),
+                            image: AssetImage(
+                                "assets/images/images/shop-banner.jpg"),
                             fit: BoxFit.fill)),
                     child: Text(
                       "فروشگاه",

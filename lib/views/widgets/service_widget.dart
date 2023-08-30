@@ -37,11 +37,11 @@ class ServiceWidget extends StatelessWidget {
                     flex: 5,
                     child: image.isNotEmpty && isImageAsset
                         ? SizedBox.square(
-                            dimension: MediaQuery.of(context).size.width / 5,
+                            dimension: MediaQuery.of(context).size.width / 6,
                             child: Image.asset(
-                              "assets/images/images/$image",
-                              fit: BoxFit.fill,
-                              filterQuality: FilterQuality.medium,
+                              "assets/images/icons/$image",
+                              fit: BoxFit.contain,
+                              filterQuality: FilterQuality.high,
                             ),
                           )
                         : Padding(
