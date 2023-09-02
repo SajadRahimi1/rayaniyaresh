@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rayaniyaresh/models/constants/colors.dart';
 
 class ServiceWidget extends StatelessWidget {
   const ServiceWidget(
@@ -42,6 +43,7 @@ class ServiceWidget extends StatelessWidget {
                               "assets/images/icons/$image",
                               fit: BoxFit.contain,
                               filterQuality: FilterQuality.high,
+                              color: buttonColor,
                             ),
                           )
                         : Padding(

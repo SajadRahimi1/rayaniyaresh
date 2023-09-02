@@ -7,16 +7,17 @@ import 'package:rayaniyaresh/views/pages/nurse_service/final_step_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 
-class BabySitterScreen extends StatefulWidget {
-  const BabySitterScreen({Key? key}) : super(key: key);
+class OldageFormScreen extends StatefulWidget {
+  const OldageFormScreen({Key? key}) : super(key: key);
 
   @override
-  State<BabySitterScreen> createState() => _BabySitterScreenState();
+  State<OldageFormScreen> createState() => _OldageFormScreen();
 }
 
-class _BabySitterScreenState extends State<BabySitterScreen> {
+class _OldageFormScreen extends State<OldageFormScreen> {
   RxInt gender = (-1).obs;
   RxInt childNumber = (1).obs;
+  RxInt oldageFeatures = (1).obs;
   RxInt shiftWork = (-1).obs;
   RxBool camera = false.obs;
   List<String> ages = List.generate(4, (index) => "");
@@ -33,7 +34,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: screensAppbar(context: context, title: "پرستار کودک"),
+        appBar: screensAppbar(context: context, title: "پرستار سالمند"),
         body: ListView(physics: const BouncingScrollPhysics(), children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10) +
@@ -44,7 +45,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                 Row(
                   children: [
                     Text(
-                      "تعداد کودک: " "   ",
+                      "تعداد سالمند: " "   ",
                       style: TextStyle(fontSize: Get.width / 23),
                     ),
                     Obx(() => DropdownButton(
@@ -69,7 +70,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                 Row(
                   children: [
                     const Text("جنسیت:" "  "),
-                    const Text("پسر"),
+                    const Text("مرد"),
                     Obx(() => Checkbox(
                           value: gender.value == 0,
                           onChanged: (value) {
@@ -79,7 +80,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                             }
                           },
                         )),
-                    const Text("دختر"),
+                    const Text("زن"),
                     Obx(() => Checkbox(
                           value: gender.value == 1,
                           onChanged: (value) {
@@ -120,11 +121,74 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                         itemBuilder: (_, index) => ProfileTextInput(
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
-                          text: "سن کودک ${index + 1}",
+                          text: "سن سالمند ${index + 1}",
                           onChanged: (value) => ages[index] = value,
                         ),
                       )),
                 ),
+
+                const Divider(thickness: 1),
+
+                SizedBox(
+                  width: Get.width,
+                  child: const Text(
+                    "سالمند شما کدام یک از موارد زیر را دارا میباشد؟\n",
+                  ),
+                ),
+                Obx(() => SizedBox(
+                    width: Get.width,
+                    height: Get.height / 7,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: List.generate(
+                              4,
+                              (index) => InkWell(
+                                    onTap: () => oldageFeatures.value = index,
+                                    child: Row(
+                                      children: [
+                                        Text([
+                                          "پوشک",
+                                          "لگن",
+                                          "سون",
+                                          "آلزایمر",
+                                        ][index]),
+                                        Checkbox(
+                                            value:
+                                                oldageFeatures.value == index,
+                                            onChanged: (value) =>
+                                                oldageFeatures.value = index)
+                                      ],
+                                    ),
+                                  )),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: List.generate(
+                              3,
+                              (index) => InkWell(
+                                    onTap: () =>
+                                        oldageFeatures.value = index + 4,
+                                    child: Row(
+                                      children: [
+                                        Text([
+                                          "پارکینگ سون",
+                                          "ام اس",
+                                          "هیچ کدام"
+                                        ][index]),
+                                        Checkbox(
+                                            value: oldageFeatures.value - 4 ==
+                                                index,
+                                            onChanged: (value) => oldageFeatures
+                                                .value = index + 4)
+                                      ],
+                                    ),
+                                  )),
+                        )
+                      ],
+                    ))),
 
                 const Divider(thickness: 1),
 

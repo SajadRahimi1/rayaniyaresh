@@ -108,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                         },
                         image: [
                           "nurse.png",
-                          "services.png",
+                          "services2.png",
                           "hiring.png",
                           "building.png",
                           "learning.png",

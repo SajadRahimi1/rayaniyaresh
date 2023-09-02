@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/baby_sitter_screen.dart';
+import 'package:rayaniyaresh/views/pages/nurse_service/oldage_form_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 
 class NurseCategoryScreen extends StatelessWidget {
@@ -15,8 +16,18 @@ class NurseCategoryScreen extends StatelessWidget {
           children: List.generate(
               3,
               (index) => InkWell(
-                    onTap: () => Get.to(() => const BabySitterScreen(),
-                        transition: Transition.leftToRight),
+                    onTap: () {
+                      switch (index) {
+                        case 0:
+                          Get.to(() => const BabySitterScreen(),
+                              transition: Transition.leftToRight);
+                          break;
+                        case 1:
+                          Get.to(() => const OldageFormScreen(),
+                              transition: Transition.leftToRight);
+                          break;
+                      }
+                    },
                     child: Container(
                       alignment: Alignment.bottomCenter,
                       margin: const EdgeInsets.symmetric(
