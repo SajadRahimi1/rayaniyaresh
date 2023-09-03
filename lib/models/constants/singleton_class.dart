@@ -12,12 +12,5 @@ class SingletonClass {
   }
 
   SingletonClass._internal();
-
-  // String get imageUrl {
-  //   return _imageUrl;
-  // }
-
-  // void set imageUrl(String url) {
-  //   _imageUrl = url;
-  // }
+ 
 }

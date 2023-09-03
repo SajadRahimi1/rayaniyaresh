@@ -12,11 +12,10 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _controller = Get.put(ProfileViewmodel());
-    RxBool isMan = true.obs;
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: SizedBox(
+        body:_controller.obx((status)=> SizedBox(
           width: Get.width,
           height: Get.height,
           child: Stack(children: [
@@ -40,16 +39,9 @@ class ProfileScreen extends StatelessWidget {
                         height: Get.height / 35,
                       ),
                       ProfileTextInput(
-                        controller: TextEditingController(text: "رایا"),
-                        text: "نام",
-                        icon: const Icon(Icons.person),
-                      ),
-                      SizedBox(
-                        height: Get.height / 55,
-                      ),
-                      ProfileTextInput(
-                        controller: TextEditingController(text: "نیارش"),
-                        text: "نام خانوادگی",
+                        controller:
+                            TextEditingController(text: SingletonClass().name),
+                        text: "نام و نام خانوادگی",
                         icon: const Icon(Icons.person),
                       ),
                       SizedBox(
@@ -57,37 +49,14 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       ProfileTextInput(
                         text: "شماره تلفن",
-                        controller: TextEditingController(text: "0912123456"),
+                        controller: TextEditingController(
+                            text: SingletonClass().phoneNumber),
                         icon: const Icon(Icons.phone),
                         enable: false,
                       ),
                       SizedBox(
                         height: Get.height / 20,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text("جنسیت:" "      "),
-                          const Text("مرد"),
-                          Obx(() => Checkbox(
-                                value: isMan.value,
-                                onChanged: (value) {
-                                  if (value != null) {
-                                    isMan.value = value;
-                                  }
-                                },
-                              )),
-                          const Text("زن"),
-                          Obx(() => Checkbox(
-                                value: !isMan.value,
-                                onChanged: (value) {
-                                  if (value != null) {
-                                    isMan.value = !value;
-                                  }
-                                },
-                              )),
-                        ],
-                      )
                     ],
                   ),
                 ),
@@ -128,9 +97,8 @@ class ProfileScreen extends StatelessWidget {
                           backgroundImage:
                               SingletonClass().imageUrl?.isEmpty ?? true
                                   ? null
-                                  : CachedNetworkImageProvider(
-                                      // baseUrl +
-                                      //   '/uploads/' +
+                                  : CachedNetworkImageProvider(baseUrl +
+                                      '/uploads/' +
                                       (SingletonClass().imageUrl ?? ""))
                           //  const NetworkImage(
                           //     "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"),
@@ -157,7 +125,7 @@ class ProfileScreen extends StatelessWidget {
             ),
           ]),
         ),
-      ),
+      )),
     );
   }
 }

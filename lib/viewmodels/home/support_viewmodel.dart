@@ -24,15 +24,15 @@ class SupportViewModel extends GetxController with StateMixin {
   }
 
   Future<void> getMessages() async {
-    // final _request = await service.getMessages(token);
-    // if (_request.statusCode == 200) {
-    // messagesList.value =
-    //     List.from(_request.body.map((x) => MessageModel.fromJson(x)));
-    // messagesList.value = messagesList.reversed.toList();
-    change(null, status: RxStatus.success());
-    // } else {
-    //   networkErrorMessage();
-    // }
+    final _request = await service.getMessages(token);
+    if (_request.statusCode == 200) {
+      messagesList.value =
+          List.from(_request.body.map((x) => MessageModel.fromJson(x)));
+      messagesList.value = messagesList.reversed.toList();
+      change(null, status: RxStatus.success());
+    } else {
+      networkErrorMessage();
+    }
   }
 
   Future<void> sendMessage(String message) async {
@@ -40,15 +40,15 @@ class SupportViewModel extends GetxController with StateMixin {
       content: message,
       isUserSend: true,
       messageType: "text",
-      isSent: false, 
+      isSent: false,
       success: true,
     );
     messagesList.insert(0, messageModel);
     final _request = await service.sendMessage(token, message);
     int indexOfMessage = messagesList.indexOf(messageModel);
     if (_request.statusCode == 200) {
-    messageModel = MessageModel.fromJson(_request.body);
-    messagesList[indexOfMessage] = messageModel;
+      messageModel = MessageModel.fromJson(_request.body);
+      messagesList[indexOfMessage] = messageModel;
     } else {
       messagesList[indexOfMessage].isSent = true;
       messagesList[indexOfMessage].success = false;
