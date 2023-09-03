@@ -20,7 +20,7 @@ class GetPhoneViewModel extends GetxController with StateMixin {
     // TODO: implement onInit
     super.onInit();
     await GetStorage.init();
-    token = _getStorage.read("token");
+    token = _getStorage.read("token") ?? "";
     await checkToken();
     phoneNumber.listen((value) {
       if (value.length == 11 && value.startsWith('09')) {
@@ -30,15 +30,19 @@ class GetPhoneViewModel extends GetxController with StateMixin {
   }
 
   Future<void> checkToken() async {
-    final _request = await user_service.checkToken(token);
-    if (_request.statusCode == 200) {
-      SingletonClass _singletonClass = SingletonClass();
-      UserModel _userModel = UserModel.fromJson(_request.body);
-      _singletonClass
-        ..imageUrl = _userModel.imageUrl
-        ..name = _userModel.name
-        ..phoneNumber = _userModel.phoneNumber;
-      Get.offAll(() => const MainScreen());
+    if (token.isNotEmpty) {
+      final _request = await user_service.checkToken(token);
+      if (_request.statusCode == 200) {
+        SingletonClass _singletonClass = SingletonClass();
+        UserModel _userModel = UserModel.fromJson(_request.body);
+        _singletonClass
+          ..imageUrl = _userModel.imageUrl
+          ..name = _userModel.name
+          ..phoneNumber = _userModel.phoneNumber;
+        Get.offAll(() => const MainScreen());
+      } else {
+        change(null, status: RxStatus.success());
+      }
     } else {
       change(null, status: RxStatus.success());
     }
