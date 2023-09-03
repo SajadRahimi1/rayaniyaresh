@@ -19,7 +19,7 @@ class OldageFormScreen extends StatefulWidget {
 class _OldageFormScreen extends State<OldageFormScreen> {
   RxInt gender = (-1).obs;
   RxInt childNumber = (1).obs;
-  RxInt oldageFeatures = (1).obs;
+  RxInt oldageProblem = (1).obs;
   RxInt shiftWork = (-1).obs;
   RxBool camera = false.obs;
   List<String> ages = List.generate(4, (index) => "");
@@ -152,7 +152,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                           children: List.generate(
                               4,
                               (index) => InkWell(
-                                    onTap: () => oldageFeatures.value = index,
+                                    onTap: () => oldageProblem.value = index,
                                     child: Row(
                                       children: [
                                         Text([
@@ -162,10 +162,9 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                                           "آلزایمر",
                                         ][index]),
                                         Checkbox(
-                                            value:
-                                                oldageFeatures.value == index,
+                                            value: oldageProblem.value == index,
                                             onChanged: (value) =>
-                                                oldageFeatures.value = index)
+                                                oldageProblem.value = index)
                                       ],
                                     ),
                                   )),
@@ -176,7 +175,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                               3,
                               (index) => InkWell(
                                     onTap: () =>
-                                        oldageFeatures.value = index + 4,
+                                        oldageProblem.value = index + 4,
                                     child: Row(
                                       children: [
                                         Text([
@@ -185,10 +184,10 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                                           "هیچ کدام"
                                         ][index]),
                                         Checkbox(
-                                            value: oldageFeatures.value - 4 ==
+                                            value: oldageProblem.value - 4 ==
                                                 index,
-                                            onChanged: (value) => oldageFeatures
-                                                .value = index + 4)
+                                            onChanged: (value) =>
+                                                oldageProblem.value = index + 4)
                                       ],
                                     ),
                                   )),
@@ -367,7 +366,6 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                           child: ProfileTextInput(
                             textAlign: TextAlign.center,
                             text: "محله",
-                            keyboardType: TextInputType.number,
                             onChanged: (value) => province = value,
                           )),
                     ],
@@ -399,9 +397,19 @@ class _OldageFormScreen extends State<OldageFormScreen> {
           // button
           InkWell(
             onTap: () {
+              model.nurseCategory = NurseCategory.Oldage;
               model.address = province;
               model.hours = hours1;
               model.age = ages[0];
+              model.problem = [
+                "پوشک",
+                "لگن",
+                "سون",
+                "آلزایمر",
+                "پارکینگ سون",
+                "ام اس",
+                "هیچ کدام"
+              ][oldageProblem.value];
               if (babySitterValidation(model)) {
                 model.address = "استان $province شهر $city محله $neighbourhood";
                 model.hours = "از ساعت $hours1 تا ساعت $hours2";

@@ -12,7 +12,7 @@ import 'package:rayaniyaresh/core/services/user_service.dart' as user_service;
 class GetPhoneViewModel extends GetxController with StateMixin {
   RxString phoneNumber = "".obs;
   RxBool isPhoneValida = false.obs;
-  // final GetStorage _getStorage = GetStorage();
+  final GetStorage _getStorage = GetStorage();
   String token = "";
 
   @override
@@ -20,9 +20,9 @@ class GetPhoneViewModel extends GetxController with StateMixin {
     // TODO: implement onInit
     super.onInit();
     change(null, status: RxStatus.success());
-    // await GetStorage.init();
-    // token = _getStorage.read("token");
-    // await checkToken();
+    await GetStorage.init();
+    token = _getStorage.read("token");
+    await checkToken();
     phoneNumber.listen((value) {
       if (value.length == 11 && value.startsWith('09')) {
         isPhoneValida.value = true;
@@ -46,23 +46,23 @@ class GetPhoneViewModel extends GetxController with StateMixin {
   }
 
   Future<void> sendData() async {
-    // if (isPhoneValida.value) {
-    //   loading();
-    //   final _request = await service.sendSms(phoneNumber.value);
-    //   if (_request.statusCode == 200) {
-    //     Get.back();
+    if (isPhoneValida.value) {
+      loading();
+      final _request = await service.sendSms(phoneNumber.value);
+      if (_request.statusCode == 200) {
+        Get.back();
     Get.to(() => ValidateCodeScreen(
           phoneNumber: phoneNumber.value,
         ));
-    //   } else {
-    //     Get.back();
-    //     networkErrorMessage();
-    //   }
-    // } else {
-    //   showMessage(
-    //       title: "خطا",
-    //       message: "لطفا شماره تلفن را درست وارد کنید",
-    //       type: MessageType.warning);
-    // }
+      } else {
+        Get.back();
+        networkErrorMessage();
+      }
+    } else {
+      showMessage(
+          title: "خطا",
+          message: "لطفا شماره تلفن را درست وارد کنید",
+          type: MessageType.warning);
+    }
   }
 }

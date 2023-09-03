@@ -16,6 +16,7 @@ class DateTimeScreen extends StatelessWidget {
     var reserveModel = ReserveClassModel();
     RxInt _daysIndex = (0).obs;
     RxInt _hoursIndex = (0).obs;
+    model.days = model.days?.where((element) => element.isNotEmpty).toList();
 
     return Scaffold(
       appBar: screensAppbar(context: context, title: title),

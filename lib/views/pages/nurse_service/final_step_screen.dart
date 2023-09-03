@@ -4,7 +4,6 @@ import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/constants/singleton_class.dart';
 import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
 import 'package:rayaniyaresh/viewmodels/reserve_nurse/request_nurse_viewmodel.dart';
-import 'package:rayaniyaresh/views/pages/reserve_class/success_reserve_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 

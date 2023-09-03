@@ -33,16 +33,16 @@ class RequestNurseViewmodel extends GetxController with StateMixin {
   Future<void> sendData() async {
     model.name = textEditingControllers[0].text;
     model.phoneNumber = textEditingControllers[1].text;
-    // final _request = await service.requestNurses(model, token);
-    // if (_request.statusCode == 200) {
-    Get.offAll(
-        () => const SuccessReserveScreen(
-              message:
-                  "کارشناسان ما در کمتر از 30 دقیقه آینده با شما جهت ارایه توضیحات بیشتر تماس میگیرند",
-            ),
-        transition: Transition.leftToRight);
-    // } else {
-    //   networkErrorMessage();
-    // }
+    final _request = await service.requestNurses(model, token);
+    if (_request.statusCode == 200) {
+      Get.offAll(
+          () => const SuccessReserveScreen(
+                message:
+                    "کارشناسان ما در کمتر از 30 دقیقه آینده با شما جهت ارایه توضیحات بیشتر تماس میگیرند",
+              ),
+          transition: Transition.leftToRight);
+    } else {
+      networkErrorMessage();
+    }
   }
 }

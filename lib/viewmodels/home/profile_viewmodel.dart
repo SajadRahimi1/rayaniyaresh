@@ -19,15 +19,15 @@ class ProfileViewmodel extends GetxController with StateMixin {
   }
 
   Future<void> updateImage() async {
-    // final ImagePicker picker = ImagePicker();
-    // final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-    // if (image != null) {
-    //   final _request =
-    //       await service.updateImage(token, File(image.path), image.name);
-    //   if (_request.statusCode == 200) {
-    //   } else {
-    //     networkErrorMessage();
-    //   }
-    // }
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      final _request =
+          await service.updateImage(token, File(image.path), image.name);
+      if (_request.statusCode == 200) {
+      } else {
+        networkErrorMessage();
+      }
+    }
   }
 }

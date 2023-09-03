@@ -26,8 +26,7 @@ class ClassCategoryWidget extends StatelessWidget {
             image: image == null
                 ? null
                 : DecorationImage(
-                    // image: NetworkImage(imagebaseUrl + (image ?? "")),
-                    image: AssetImage('assets/images/images/' + (image ?? "")),
+                    image: NetworkImage(imagebaseUrl + (image ?? "")),
                     fit: BoxFit.fill)),
         child: Container(
           alignment: Alignment.center,

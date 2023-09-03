@@ -5,7 +5,7 @@
 ## Most lines of code in one file: 300
 
 
-- [ ] connect all screen to backend
+- [x] connect all screen to backend
 - [x] selectable address
 - [x] select keyboard type
 - [ ] add finger print login 

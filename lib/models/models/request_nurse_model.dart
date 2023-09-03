@@ -8,6 +8,7 @@ class RequestNurseModel {
       this.hours,
       this.peopleInHouse,
       this.address,
+      this.problem,
       this.description,
       this.cctv});
   Gender? gender;
@@ -20,6 +21,7 @@ class RequestNurseModel {
   String? description;
   String? phoneNumber;
   String? name;
+  String? problem;
   DateTime? createdAt;
   NurseCategory? nurseCategory;
 

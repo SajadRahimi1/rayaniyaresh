@@ -40,19 +40,19 @@ class SupportViewModel extends GetxController with StateMixin {
       content: message,
       isUserSend: true,
       messageType: "text",
-      isSent: true, // TODO: change it to false when connected to backend agian
+      isSent: false, 
       success: true,
     );
     messagesList.insert(0, messageModel);
-    // final _request = await service.sendMessage(token, message);
-    // int indexOfMessage = messagesList.indexOf(messageModel);
-    // if (_request.statusCode == 200) {
-    // messageModel = MessageModel.fromJson(_request.body);
-    // messagesList[indexOfMessage] = messageModel;
-    // } else {
-    //   messagesList[indexOfMessage].isSent = true;
-    //   messagesList[indexOfMessage].success = false;
-    //   networkErrorMessage();
-    // }
+    final _request = await service.sendMessage(token, message);
+    int indexOfMessage = messagesList.indexOf(messageModel);
+    if (_request.statusCode == 200) {
+    messageModel = MessageModel.fromJson(_request.body);
+    messagesList[indexOfMessage] = messageModel;
+    } else {
+      messagesList[indexOfMessage].isSent = true;
+      messagesList[indexOfMessage].success = false;
+      networkErrorMessage();
+    }
   }
 }

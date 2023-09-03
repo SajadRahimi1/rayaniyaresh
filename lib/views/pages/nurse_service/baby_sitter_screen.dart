@@ -330,6 +330,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
           // button
           InkWell(
             onTap: () {
+              model.nurseCategory = NurseCategory.Kid;
               model.address = provinceController.text;
               model.hours = hours1;
               model.age = ages[0];

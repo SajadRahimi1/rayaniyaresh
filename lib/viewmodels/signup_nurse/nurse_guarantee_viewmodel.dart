@@ -23,36 +23,37 @@ class NurseGuaranteeViewModel extends GetxController with StateMixin {
   Future<void> sendData() async {
     model.guarantee = Guarantee.values[guaranteeIndex.value];
     if (validate()) {
-      // final _reqeust = await service.updateNurseFamily(model);
-      // if (_reqeust.statusCode == 200) {
-      Get.to(() => const NurseDownloadScreen());
-      // }
-    } else {}
+      final _reqeust = await service.updateNurseFamily(model);
+      if (_reqeust.statusCode == 200) {
+        Get.to(() => const NurseDownloadScreen());
+        // }
+      } else {}
+    }
+  }
+    bool validate() {
+      if (model.nurseParentModels?.any((element) =>
+              (element.information?.isEmpty ?? true) ||
+              (element.phoneNumber?.isEmpty ?? true) ||
+              (element.knowingTime?.isEmpty ?? true) ||
+              (element.information?.isEmpty ?? true)) ??
+          true) {
+        showMessage(
+            title: "خطا",
+            message: "لطفا همه فیلد ها مربوط به معرف را وارد کنید",
+            type: MessageType.warning);
+        return false;
+      }
+      if ((model.husbandPhoneNumber?.isEmpty ?? true) ||
+          (model.childPhoneNumber?.isEmpty ?? true) ||
+          (model.parentPhoneNumber?.isEmpty ?? true)) {
+        showMessage(
+            title: "خطا",
+            message: "باید حداقل یکی از شماره تلفن ها را وارد کنید",
+            type: MessageType.warning);
+        return false;
+      }
+
+      return true;
+    }
   }
 
-  bool validate() {
-    if (model.nurseParentModels?.any((element) =>
-            (element.information?.isEmpty ?? true) ||
-            (element.phoneNumber?.isEmpty ?? true) ||
-            (element.knowingTime?.isEmpty ?? true) ||
-            (element.information?.isEmpty ?? true)) ??
-        true) {
-      showMessage(
-          title: "خطا",
-          message: "لطفا همه فیلد ها مربوط به معرف را وارد کنید",
-          type: MessageType.warning);
-      return false;
-    }
-    if ((model.husbandPhoneNumber?.isEmpty ?? true) ||
-        (model.childPhoneNumber?.isEmpty ?? true) ||
-        (model.parentPhoneNumber?.isEmpty ?? true)) {
-      showMessage(
-          title: "خطا",
-          message: "باید حداقل یکی از شماره تلفن ها را وارد کنید",
-          type: MessageType.warning);
-      return false;
-    }
-
-    return true;
-  }
-}

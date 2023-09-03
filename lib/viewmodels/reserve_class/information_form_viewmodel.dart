@@ -42,14 +42,14 @@ class InformationFormViewModel extends GetxController with StateMixin {
   }
 
   Future<void> getData() async {
-    // final _request = await user_service.checkToken(token);
-    // if (_request.statusCode == 200) {
-    //   userModel = UserModel.fromJson(_request.body);
+    final _request = await user_service.checkToken(token);
+    if (_request.statusCode == 200) {
+      userModel = UserModel.fromJson(_request.body);
     change(null, status: RxStatus.success());
-    //   fillText();
-    // } else {
-    //   networkErrorMessage();
-    // }
+      fillText();
+    } else {
+      networkErrorMessage();
+    }
   }
 
   void fillText() {
@@ -66,31 +66,31 @@ class InformationFormViewModel extends GetxController with StateMixin {
   }
 
   Future<void> updateInformation() async {
-    // loading();
-    // userModel?.education = educationStrings[education.value];
-    // print(userModel?.toJson());
-    // final _request =
-    //     await user_service.updateUser(userModel?.toJson() ?? {}, token);
-    // if (_request.statusCode == 200) {
-    //   showMessage(
-    //       message: "اطلاعات با موفقیت ویرایش شد",
-    //       title: "ویرایش اطلاعات",
-    //       type: MessageType.success);
-    // } else {}
+    loading();
+    userModel?.education = educationStrings[education.value];
+    print(userModel?.toJson());
+    final _request =
+        await user_service.updateUser(userModel?.toJson() ?? {}, token);
+    if (_request.statusCode == 200) {
+      showMessage(
+          message: "اطلاعات با موفقیت ویرایش شد",
+          title: "ویرایش اطلاعات",
+          type: MessageType.success);
+    } else {}
   }
 
   Future<void> reserveClass(bool isInstallment) async {
-    // if (reserveClassModel != null) {
-    // final _request = await class_service.reserveClass(
-    //     token: token,
-    //     day: reserveClassModel?.day ?? "",
-    //     hours: reserveClassModel?.hours ?? "",
-    //     isInstallment: isInstallment,
-    //     classCategoryId: reserveClassModel?.classCategoryId ?? "");
-    // Get.back();
-    // if (_request.statusCode == 200) {
+    if (reserveClassModel != null) {
+    final _request = await class_service.reserveClass(
+        token: token,
+        day: reserveClassModel?.day ?? "",
+        hours: reserveClassModel?.hours ?? "",
+        isInstallment: isInstallment,
+        classCategoryId: reserveClassModel?.classCategoryId ?? "");
+    Get.back();
+    if (_request.statusCode == 200) {
     Get.off(() => const SuccessReserveScreen());
-    //     }
-    //   }
+        }
+      }
   }
 }
