@@ -6,6 +6,6 @@
 
 
 - [ ] connect all screen to backend
-- [ ] selectable address
-- [ ] select keyboard type
+- [x] selectable address
+- [x] select keyboard type
 - [ ] add finger print login 

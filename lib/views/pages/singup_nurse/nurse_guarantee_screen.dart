@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/viewmodels/signup_nurse/nurse_guarantee_viewmodel.dart';
-import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_download_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
@@ -70,6 +69,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
                             height: Get.height / 9,
                             width: Get.width / 5,
                             child: ProfileTextInput(
+                                keyboardType: TextInputType.number,
                                 text: "مدت آشنایی",
                                 onChanged: (value) => _controller
                                     .model
@@ -83,6 +83,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
                             width: Get.width / 3,
                             height: Get.height / 9,
                             child: ProfileTextInput(
+                                keyboardType: TextInputType.number,
                                 text: "شماره تماس",
                                 onChanged: (value) => _controller
                                     .model
@@ -95,6 +96,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
                   ))),
 
               ProfileTextInput(
+                  keyboardType: TextInputType.number,
                   text: "شماره تماس همسر",
                   onChanged: (value) =>
                       _controller.model.husbandPhoneNumber = value),
@@ -102,6 +104,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
                 height: 15,
               ),
               ProfileTextInput(
+                  keyboardType: TextInputType.number,
                   text: "شماره تماس فرزند",
                   onChanged: (value) =>
                       _controller.model.childPhoneNumber = value),
@@ -109,6 +112,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
                 height: 15,
               ),
               ProfileTextInput(
+                  keyboardType: TextInputType.number,
                   text: "شماره تماس سرپرست خانواده",
                   onChanged: (value) =>
                       _controller.model.parentPhoneNumber = value),
