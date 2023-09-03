@@ -431,5 +431,3 @@ const Map<String, List<String>> cities = {
     "یزد",
   ]
 };
-
-*/

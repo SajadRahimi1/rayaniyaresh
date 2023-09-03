@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/core/validations/baby_sitter_validation.dart';
+import 'package:rayaniyaresh/models/constants/city_constant.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/final_step_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class BabySitterScreen extends StatefulWidget {
   const BabySitterScreen({Key? key}) : super(key: key);
@@ -22,6 +24,8 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
   List<String> ages = List.generate(4, (index) => "");
   String province = "", city = "", neighbourhood = "", hours1 = "", hours2 = "";
   final RequestNurseModel model = RequestNurseModel();
+  final TextEditingController provinceController = TextEditingController();
+  final TextEditingController cityController = TextEditingController();
 
   @override
   void initState() {
@@ -252,41 +256,52 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                 const Divider(thickness: 1),
 
                 // address
-                SizedBox(
-                  width: Get.width,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        const Text("محدوده محل سکونت:  "),
-                        const Text("استان:  "),
-                        SizedBox(
-                            width: Get.width / 6.5,
-                            child: ProfileTextInput(
-                              textAlign: TextAlign.center,
-                              text: "",
-                              keyboardType: TextInputType.number,
-                              onChanged: (value) => province = value,
-                            )),
-                        const Text("شهر:  "),
-                        SizedBox(
-                            width: Get.width / 7,
-                            child: ProfileTextInput(
-                                textAlign: TextAlign.center,
-                                text: "",
-                                keyboardType: TextInputType.number,
-                                onChanged: (value) => city = value)),
-                        const Text("محله:  "),
-                        SizedBox(
-                            width: Get.width / 7,
-                            child: ProfileTextInput(
-                              textAlign: TextAlign.center,
-                              text: "",
-                              keyboardType: TextInputType.number,
-                              onChanged: (value) => neighbourhood = value,
-                            )),
-                      ],
-                    ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Center(child: Text("محدوده محل سکونت")),
+                      // const Text("استان:  "),
+                      SizedBox(
+                          width: Get.width / 1,
+                          child: TypeAheadFormField(
+                            textFieldConfiguration: TextFieldConfiguration(
+                                decoration:
+                                    const InputDecoration(label: Text("استان")),
+                                controller: provinceController),
+                            itemBuilder: (context, itemData) => ListTile(
+                              title: Text(itemData.toString()),
+                            ),
+                            onSuggestionSelected: (suggestion) =>
+                                provinceController.text = suggestion.toString(),
+                            suggestionsCallback: (pattern) => cities.keys
+                                .where((element) => element.contains(pattern)),
+                          )),
+                      SizedBox(
+                          width: Get.width / 1,
+                          child: TypeAheadFormField(
+                              textFieldConfiguration: TextFieldConfiguration(
+                                  decoration:
+                                      const InputDecoration(label: Text("شهر")),
+                                  controller: cityController),
+                              itemBuilder: (context, itemData) => ListTile(
+                                    title: Text(itemData.toString()),
+                                  ),
+                              onSuggestionSelected: (suggestion) =>
+                                  cityController.text = suggestion.toString(),
+                              suggestionsCallback: (pattern) =>
+                                  (cities[provinceController.text] ?? []).where(
+                                      (element) => element.contains(pattern)))),
+                      SizedBox(
+                          width: Get.width / 1,
+                          child: ProfileTextInput(
+                            textAlign: TextAlign.center,
+                            text: "محله",
+                            keyboardType: TextInputType.number,
+                            onChanged: (value) => province = value,
+                          )),
+                    ],
                   ),
                 ),
 
@@ -315,11 +330,12 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
           // button
           InkWell(
             onTap: () {
-              model.address = province;
+              model.address = provinceController.text;
               model.hours = hours1;
               model.age = ages[0];
               if (babySitterValidation(model)) {
-                model.address = "استان $province شهر $city محله $neighbourhood";
+                model.address =
+                    "استان ${provinceController.text} شهر ${cityController.text} محله $neighbourhood";
                 model.hours = "از ساعت $hours1 تا ساعت $hours2";
                 model.age = ages
                     .where((element) => element.isNotEmpty)

@@ -15,7 +15,7 @@ bool babySitterValidation(RequestNurseModel model) {
     errorMessage("لطفا شیفت کاری را وارد کنید");
     return false;
   }
-  if (model.hours?.isEmpty ?? true) {
+  if ((model.hours?.isEmpty ?? true) && model.shift != Shift.Boarding) {
     errorMessage("لطفا ساعت کاری را مشخص کنید");
     return false;
   }
@@ -25,10 +25,6 @@ bool babySitterValidation(RequestNurseModel model) {
   }
   if (model.address?.isEmpty ?? true) {
     errorMessage("لطفا آدرس  را وارد کنید");
-    return false;
-  }
-  if (model.description?.isEmpty ?? true) {
-    errorMessage("لطفا توضیحات را وارد کنید");
     return false;
   }
 

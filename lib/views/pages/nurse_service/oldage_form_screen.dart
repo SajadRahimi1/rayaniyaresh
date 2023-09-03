@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/core/validations/baby_sitter_validation.dart';
+import 'package:rayaniyaresh/models/constants/city_constant.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/final_step_screen.dart';
@@ -23,6 +25,10 @@ class _OldageFormScreen extends State<OldageFormScreen> {
   List<String> ages = List.generate(4, (index) => "");
   String province = "", city = "", neighbourhood = "", hours1 = "", hours2 = "";
   final RequestNurseModel model = RequestNurseModel();
+
+  final TextEditingController provinceController = TextEditingController();
+  final TextEditingController cityController = TextEditingController();
+  final FocusNode cityFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -316,41 +322,55 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                 const Divider(thickness: 1),
 
                 // address
-                SizedBox(
-                  width: Get.width,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        const Text("محدوده محل سکونت:  "),
-                        const Text("استان:  "),
-                        SizedBox(
-                            width: Get.width / 6.5,
-                            child: ProfileTextInput(
-                              textAlign: TextAlign.center,
-                              text: "",
-                              keyboardType: TextInputType.number,
-                              onChanged: (value) => province = value,
-                            )),
-                        const Text("شهر:  "),
-                        SizedBox(
-                            width: Get.width / 7,
-                            child: ProfileTextInput(
-                                textAlign: TextAlign.center,
-                                text: "",
-                                keyboardType: TextInputType.number,
-                                onChanged: (value) => city = value)),
-                        const Text("محله:  "),
-                        SizedBox(
-                            width: Get.width / 7,
-                            child: ProfileTextInput(
-                              textAlign: TextAlign.center,
-                              text: "",
-                              keyboardType: TextInputType.number,
-                              onChanged: (value) => neighbourhood = value,
-                            )),
-                      ],
-                    ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Center(child: Text("محدوده محل سکونت")),
+                      // const Text("استان:  "),
+                      SizedBox(
+                          width: Get.width / 1,
+                          child: TypeAheadFormField(
+                            textFieldConfiguration: TextFieldConfiguration(
+                                decoration:
+                                    const InputDecoration(label: Text("استان")),
+                                controller: provinceController),
+                            itemBuilder: (context, itemData) => ListTile(
+                              title: Text(itemData.toString()),
+                            ),
+                            onSuggestionSelected: (suggestion) {
+                              provinceController.text = suggestion.toString();
+                              cityFocusNode.requestFocus();
+                            },
+                            suggestionsCallback: (pattern) => cities.keys
+                                .where((element) => element.contains(pattern)),
+                          )),
+                      SizedBox(
+                          width: Get.width / 1,
+                          child: TypeAheadFormField(
+                              textFieldConfiguration: TextFieldConfiguration(
+                                  focusNode: cityFocusNode,
+                                  decoration:
+                                      const InputDecoration(label: Text("شهر")),
+                                  controller: cityController),
+                              itemBuilder: (context, itemData) => ListTile(
+                                    title: Text(itemData.toString()),
+                                  ),
+                              onSuggestionSelected: (suggestion) =>
+                                  cityController.text = suggestion.toString(),
+                              suggestionsCallback: (pattern) =>
+                                  (cities[provinceController.text] ?? []).where(
+                                      (element) => element.contains(pattern)))),
+                      SizedBox(
+                          width: Get.width / 1,
+                          child: ProfileTextInput(
+                            textAlign: TextAlign.center,
+                            text: "محله",
+                            keyboardType: TextInputType.number,
+                            onChanged: (value) => province = value,
+                          )),
+                    ],
                   ),
                 ),
 
