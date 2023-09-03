@@ -24,21 +24,35 @@ class NurseUploadsViewModel extends GetxController {
   }
 
   Future<void> uploadImages() async {
-    loading();
-    final _request = await service.uploadImages(
-        id,
-        File(imagePaths[0].value),
-        File(imagePaths[1].value),
-        File(imagePaths[2].value),
-        imagePaths[0].isEmpty ? null : File(imagePaths[0].value));
-    Get.back();
+    if (isImagesNotNull()) {
+      loading();
+      final _request = await service.uploadImages(
+          id,
+          File(imagePaths[0].value),
+          File(imagePaths[1].value),
+          File(imagePaths[2].value),
+          imagePaths[0].isEmpty ? null : File(imagePaths[0].value));
+      Get.back();
 
-    if (_request.statusCode == 200) {
-      Get.to(() => NurseGuaranteeScreen(
-            nurseid: id,
-          ));
+      if (_request.statusCode == 200) {
+        Get.to(() => NurseGuaranteeScreen(
+              nurseid: id,
+            ));
+      } else {
+        networkErrorMessage();
+      }
     } else {
-      networkErrorMessage();
+      showMessage(
+          title: 'خطا',
+          message: 'همه عکس ها را باید انتخاب کنید',
+          type: MessageType.error);
     }
+  }
+
+  bool isImagesNotNull() {
+    if (imagePaths[0].value.isEmpty) return false;
+    if (imagePaths[1].value.isEmpty) return false;
+    if (imagePaths[2].value.isEmpty) return false;
+    return true;
   }
 }

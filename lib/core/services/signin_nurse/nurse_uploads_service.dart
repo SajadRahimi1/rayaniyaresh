@@ -7,13 +7,13 @@ Future<Response<dynamic>> uploadImages(String id, File picture,
     File firstPageImage, File descriptionImage, File? agreementImage) async {
   final formData = FormData({
     'NurseId': id,
-    'Picture': MultipartFile(picture,
+    'Picture': picture.path.isEmpty?null: MultipartFile(picture,
         filename: picture.path.split('/').last,
         contentType: 'multipart/form-data'),
-    'FirstPageImage': MultipartFile(firstPageImage,
+    'FirstPageImage':firstPageImage.path.isEmpty?null: MultipartFile(firstPageImage,
         filename: firstPageImage.path.split('/').last,
         contentType: 'multipart/form-data'),
-    'DescriptionImage': MultipartFile(descriptionImage,
+    'DescriptionImage':descriptionImage.path.isEmpty?null: MultipartFile(descriptionImage,
         filename: descriptionImage.path.split('/').last,
         contentType: 'multipart/form-data'),
     'AgreementImage': agreementImage == null

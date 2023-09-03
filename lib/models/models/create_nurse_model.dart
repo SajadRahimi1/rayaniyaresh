@@ -14,9 +14,22 @@ class CreateNurseModel {
   String? homeNumber;
   bool? specialCare;
   String? otherProp;
-  NurseCategory? nurseCategory;
+  String? nurseCategory;
 
-  CreateNurseModel({this.name, this.fatherName, this.birthday, this.bornCity, this.nationalCode, this.nationalNumber, this.education, this.address, this.phoneNumber, this.homeNumber, this.specialCare, this.otherProp, this.nurseCategory});
+  CreateNurseModel(
+      {this.name,
+      this.fatherName,
+      this.birthday,
+      this.bornCity,
+      this.nationalCode,
+      this.nationalNumber,
+      this.education,
+      this.address,
+      this.phoneNumber,
+      this.homeNumber,
+      this.specialCare,
+      this.otherProp,
+      this.nurseCategory});
 
   CreateNurseModel.fromJson(Map<String, dynamic> json) {
     name = json["name"];
@@ -31,7 +44,7 @@ class CreateNurseModel {
     homeNumber = json["homeNumber"];
     specialCare = json["specialCare"];
     otherProp = json["otherProp"];
-    nurseCategory = json["nurseCategory"];
+    nurseCategory =json["nurseCategory"];
   }
 
   Map<String, dynamic> toJson() {
@@ -48,7 +61,7 @@ class CreateNurseModel {
     _data["homeNumber"] = homeNumber;
     _data["specialCare"] = specialCare;
     _data["otherProp"] = otherProp;
-    _data["nurseCategory"] = nurseCategory.getValue();
+    _data["nurseCategory"] = nurseCategory;
     return _data;
   }
 }

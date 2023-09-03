@@ -1,6 +1,10 @@
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
+import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_uploads_screen.dart';
+import 'package:rayaniyaresh/core/services/signin_nurse/create_nurse_service.dart'
+    as service;
 
 class CreateNurrseViewModel extends GetxController with StateMixin {
   CreateNurrseViewModel(this.nurseModel);
@@ -21,17 +25,19 @@ class CreateNurrseViewModel extends GetxController with StateMixin {
   }
 
   Future<void> createNurse() async {
-    // nurseModel.nurseCategory = NurseCategory.values[categorySelect.value];
+    String nurseCategory = "";
+    for (var index in categorySelect) {
+      nurseCategory += ',${NurseCategory.values[index]}';
+    }
+    nurseModel.nurseCategory = nurseCategory;
     nurseModel.specialCare = secondQuestion.value;
-    // final _request = await service.createNurse(nurseModel);
-    // if (_request.statusCode == 200) {
-    // Get.to(() => NurseUploadsScreen(nurseId: _request.body['Id']),
-    //     transition: Transition.leftToRight);
-    Get.to(() => const NurseUploadsScreen(nurseId: ""),
-        transition: Transition.leftToRight);
-    // } else {
-    //   networkErrorMessage();
-    // }
+    final _request = await service.createNurse(nurseModel);
+    if (_request.statusCode == 200) {
+      Get.to(() => NurseUploadsScreen(nurseId: _request.body['Id']),
+          transition: Transition.leftToRight);
+    } else {
+      networkErrorMessage();
+    }
   }
 
   void addCategory(int index) {

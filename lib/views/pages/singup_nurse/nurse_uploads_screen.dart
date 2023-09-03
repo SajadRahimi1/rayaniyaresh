@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/viewmodels/signup_nurse/nurse_uploads_viewmodel.dart';
-import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_guarantee_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 

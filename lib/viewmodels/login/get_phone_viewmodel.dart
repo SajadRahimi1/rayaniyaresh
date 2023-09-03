@@ -19,7 +19,6 @@ class GetPhoneViewModel extends GetxController with StateMixin {
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
-    change(null, status: RxStatus.success());
     await GetStorage.init();
     token = _getStorage.read("token");
     await checkToken();
@@ -51,9 +50,9 @@ class GetPhoneViewModel extends GetxController with StateMixin {
       final _request = await service.sendSms(phoneNumber.value);
       if (_request.statusCode == 200) {
         Get.back();
-    Get.to(() => ValidateCodeScreen(
-          phoneNumber: phoneNumber.value,
-        ));
+        Get.to(() => ValidateCodeScreen(
+              phoneNumber: phoneNumber.value,
+            ));
       } else {
         Get.back();
         networkErrorMessage();
