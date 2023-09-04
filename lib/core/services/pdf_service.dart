@@ -3,10 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:persian_number_utility/persian_number_utility.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:rayaniyaresh/core/services/message_service.dart';
 
 class PdfService {
-  Future<void> init() async {
+  Future<void> init(
+      {required String name,
+      required String fatherName,
+      required String birthday,
+      required String nn,
+      bool isAddicionForm = true,
+      required String nn2}) async {
     // Create the PDF document
     final pdf = pw.Document();
 
@@ -16,11 +23,11 @@ class PdfService {
         .buffer
         .asUint8List();
 
-// Create MemoryImage
-    final topLeftImage = pw.Image(pw.MemoryImage(imageBytes1),
-        width: 100, height: 100, fit: pw.BoxFit.fill);
+    // Create MemoryImage
+    final image = pw.Image(pw.MemoryImage(imageBytes1),
+        width: 80, height: 110, fit: pw.BoxFit.fill);
 
-// Repeat for second image
+    // Repeat for second image
     final imageBytes2 = (await NetworkAssetBundle(Uri.parse(
                 'http://192.168.1.8:8050/uploads/educational2_f40b7afc-7805-430d-bfab-58d2c708664f.png'))
             .load(''))
@@ -33,54 +40,103 @@ class PdfService {
           width: 60, height: 60, fit: pw.BoxFit.fill),
     );
 
-    final fonts = pw.Font.ttf(await rootBundle.load('assets/fonts/sans.ttf'));
+    final fonts =
+        pw.Font.ttf(await rootBundle.load('assets/fonts/bnazanin.TTF'));
 
-// Add to document
+    // Add to document
     pdf.addPage(pw.Page(
-      textDirection: pw.TextDirection.rtl,
+      // textDirection: pw.TextDirection.rtl,
       margin: const pw.EdgeInsets.all(25),
-      pageFormat: PdfPageFormat.a4,
+      pageFormat: PdfPageFormat.a5,
       build: (pw.Context context) {
         return pw.Column(
-            mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: pw.CrossAxisAlignment.end,
             children: [
+              pw.SizedBox(height: 10),
               pw.SizedBox(
                   width: double.maxFinite,
-                  height: 250,
+                  // height: 160,
                   child: pw.Row(
-                      mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: pw.CrossAxisAlignment.start,
                       children: [
-                        pw.SizedBox(
-                            height: 200,
-                            width: 120,
-                            child: pw.Stack(
-                                children: [topLeftImage, paddedImage])),
                         pw.Text(
-                            'تاریخ: ' +
-                                DateTime.now().toPersianDate() +
-                                '\nشماره: ' +
-                                '12514',
-                            style: pw.TextStyle(
-                                fontFallback: [fonts], font: fonts),
+                            "شماره: 6000\nتاریخ:${DateTime.now().toPersianDate()}\nپیوست:..................",
                             textDirection: pw.TextDirection.rtl,
-                            textAlign: pw.TextAlign.right),
+                            style: pw.TextStyle(
+                                lineSpacing: 5,
+                                fontFallback: [fonts],
+                                font: fonts)),
+                        pw.Expanded(
+                            child: pw.Text("بسمه تعالی",
+                                textDirection: pw.TextDirection.rtl,
+                                textAlign: pw.TextAlign.center,
+                                style: pw.TextStyle(
+                                    fontFallback: [fonts],
+                                    font: fonts,
+                                    fontWeight: pw.FontWeight.bold,
+                                    fontSize: 20))),
+                        image
                       ])),
-              pw.Expanded(
+              pw.SizedBox(height: 35),
+              pw.Text(
+                  isAddicionForm
+                      ? "سرپرست محترم آزمایشگاه:"
+                      : "سرپرست محترم تشخیص هویت",
+                  textDirection: pw.TextDirection.rtl,
+                  style: pw.TextStyle(
+                      fontFallback: [fonts],
+                      font: fonts,
+                      fontWeight: pw.FontWeight.bold,
+                      fontSize: 20)),
+              pw.SizedBox(height: 25),
+              pw.SizedBox(
+                  width: double.maxFinite,
                   child: pw.Text(
-                      "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد کتابهای زیادی در شصت و سه درصد گذشته حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد در این صورت می توان امید داشت که تمام و دشواری موجود در اراه راهکارها و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد",
-                      style: pw.TextStyle(fontFallback: [fonts], font: fonts),
-                      textDirection: pw.TextDirection.rtl))
+                      "باسلام\nاحتراما شرکت آسیا سلامت اندیشان البرز خانم / آقا $name فرزند $fatherName متولد $birthday به شماره شناسنامه $nn و کد ملی $nn2 را جهت ${isAddicionForm ? "انجام آزمایش عدم اعتیاد" : "جهت تاییده عدم سابقه کیفری"} به حضورتان معرفی میگردد.",
+                      textDirection: pw.TextDirection.rtl,
+                      textAlign: pw.TextAlign.justify,
+                      style: pw.TextStyle(
+                          lineSpacing: 20,
+                          fontFallback: [fonts],
+                          font: fonts,
+                          fontSize: 16))),
+              pw.SizedBox(height: 35),
+              pw.Text(
+                  ("کرج: رجایی شهر خیابان آزادی نبش 6 شرقی فاز ۱پلاک186 واحد 1"
+                          "\nکد پستی: 3146983353")
+                      .toPersianDigit(),
+                  textDirection: pw.TextDirection.rtl,
+                  style: pw.TextStyle(
+                      lineSpacing: 10,
+                      fontFallback: [fonts],
+                      font: fonts,
+                      fontSize: 12)),
+              pw.SizedBox(height: 35),
+              pw.SizedBox(
+                  width: 1000,
+                  child: pw.Text("با تشکر",
+                      textDirection: pw.TextDirection.rtl,
+                      style: pw.TextStyle(
+                        fontFallback: [fonts],
+                        font: fonts,
+                      ),
+                      textAlign: pw.TextAlign.left)),
+              pw.SizedBox(height: 25),
             ]);
       },
     ));
 
-    pdf.addPage(pw.Page(
-      build: (pw.Context context) => paddedImage,
-    ));
-    var path = await getApplicationSupportDirectory();
-    print(path.path);
-// Save the PDF
-    File((path.path ?? "") + '/my_doc.pdf').writeAsBytesSync(await pdf.save());
+    var path = await FilePicker.platform.getDirectoryPath();
+    // Save the PDF
+    if (path != null) {
+      File(path + '/my_doc.pdf').writeAsBytesSync(await pdf.save());
+    } else {
+      showMessage(
+          title: 'خطا',
+          message:
+              'حتما با این دو فرم در در حافظه خود ذخیره کنید تا بتوانید آن را پرینت کنید',
+          type: MessageType.error);
+    }
   }
 }

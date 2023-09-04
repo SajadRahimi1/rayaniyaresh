@@ -45,7 +45,7 @@ class InformationFormViewModel extends GetxController with StateMixin {
     final _request = await user_service.checkToken(token);
     if (_request.statusCode == 200) {
       userModel = UserModel.fromJson(_request.body);
-    change(null, status: RxStatus.success());
+      change(null, status: RxStatus.success());
       fillText();
     } else {
       networkErrorMessage();
@@ -81,16 +81,16 @@ class InformationFormViewModel extends GetxController with StateMixin {
 
   Future<void> reserveClass(bool isInstallment) async {
     if (reserveClassModel != null) {
-    final _request = await class_service.reserveClass(
-        token: token,
-        day: reserveClassModel?.day ?? "",
-        hours: reserveClassModel?.hours ?? "",
-        isInstallment: isInstallment,
-        classCategoryId: reserveClassModel?.classCategoryId ?? "");
-    Get.back();
-    if (_request.statusCode == 200) {
-    Get.off(() => const SuccessReserveScreen());
-        }
+      final _request = await class_service.reserveClass(
+          token: token,
+          day: reserveClassModel?.day ?? "",
+          hours: reserveClassModel?.hours ?? "",
+          isInstallment: isInstallment,
+          classCategoryId: reserveClassModel?.classCategoryId ?? "");
+      Get.back();
+      if (_request.statusCode == 200) {
+        Get.off(() => const SuccessReserveScreen());
       }
+    }
   }
 }

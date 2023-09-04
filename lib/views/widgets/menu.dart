@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/core/services/pdf_service.dart';
 import 'package:rayaniyaresh/models/constants/singleton_class.dart';
 import 'package:rayaniyaresh/models/constants/urls.dart';
 import 'package:rayaniyaresh/views/pages/home/profile_screen.dart';
@@ -12,6 +13,7 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(SingletonClass().imageUrl);
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
@@ -254,6 +256,25 @@ class Menu extends StatelessWidget {
                   leading:
                       const Icon(Icons.exit_to_app, color: Color(0xff858585)),
                 ),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 15.0),
+                  child: InkWell(
+                    onTap: () {
+                      PdfService().init(
+                          birthday: "1381/01/18",
+                          fatherName: "سجاد",
+                          name: "سجاد رحیمی",
+                          nn2: "05211111",
+                          isAddicionForm: false,
+                          nn: "0123456");
+                    },
+                    child: const Text(
+                      "توسعه و طراحی توسط رایانیارش کارا",
+                      style: TextStyle(color: Color(0xff9f9f9f)),
+                    ),
+                  ),
+                )
 
                 // child: Row(
                 //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

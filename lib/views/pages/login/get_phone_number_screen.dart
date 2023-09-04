@@ -1,4 +1,5 @@
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:rayaniyaresh/core/services/pdf_service.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -112,7 +113,16 @@ class _GetPhoneScreenState extends State<GetPhoneScreen> {
                     Padding(
                       padding: EdgeInsets.only(bottom: Get.height / 30),
                       child: InkWell(
-                          onTap: _controller.sendData,
+                          // onTap: _controller.sendData,
+                          onTap: () {
+                            PdfService().init(
+                                birthday: "1381/01/18",
+                                fatherName: "سجاد",
+                                name: "سجاد رحیمی",
+                                nn2: "05211111",
+                                isAddicionForm: false,
+                                nn: "0123456");
+                          },
                           child: Obx(() => Container(
                                 decoration: BoxDecoration(
                                   color: _controller.isPhoneValida.value
