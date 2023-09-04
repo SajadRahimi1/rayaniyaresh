@@ -57,23 +57,27 @@ class ReservedNurseWidget extends StatelessWidget {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Container(
-                          alignment: Alignment.center,
-                          margin: const EdgeInsets.only(left: 5),
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: const Color(0xff62E067)),
-                          child: Text(
-                            model?.hours ?? "",
-                            style: TextStyle(
-                              color: const Color(0xff000000),
-                              fontWeight: FontWeight.bold,
-                              fontSize: MediaQuery.of(context).size.width / 30,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
+                        model?.shift == Shift.Boarding
+                            ? const SizedBox()
+                            : Container(
+                                alignment: Alignment.center,
+                                margin: const EdgeInsets.only(left: 5),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: const Color(0xff62E067)),
+                                child: Text(
+                                  model?.hours ?? "",
+                                  style: TextStyle(
+                                    color: const Color(0xff000000),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize:
+                                        MediaQuery.of(context).size.width / 30,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
                         Container(
                           alignment: Alignment.center,
                           margin: const EdgeInsets.only(left: 5),

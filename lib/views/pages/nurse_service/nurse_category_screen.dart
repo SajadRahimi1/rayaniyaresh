@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/baby_sitter_screen.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/oldage_form_screen.dart';
+import 'package:rayaniyaresh/views/pages/nurse_service/patient_form_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 
 class NurseCategoryScreen extends StatelessWidget {
@@ -24,6 +25,10 @@ class NurseCategoryScreen extends StatelessWidget {
                           break;
                         case 1:
                           Get.to(() => const OldageFormScreen(),
+                              transition: Transition.leftToRight);
+                          break;
+                        case 2:
+                          Get.to(() => const PatientFormScreen(),
                               transition: Transition.leftToRight);
                           break;
                       }

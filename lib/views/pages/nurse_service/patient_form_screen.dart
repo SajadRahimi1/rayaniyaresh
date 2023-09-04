@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/core/validations/baby_sitter_validation.dart';
 import 'package:rayaniyaresh/models/constants/city_constant.dart';
@@ -8,27 +7,25 @@ import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/final_step_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-class OldageFormScreen extends StatefulWidget {
-  const OldageFormScreen({Key? key}) : super(key: key);
+class PatientFormScreen extends StatefulWidget {
+  const PatientFormScreen({Key? key}) : super(key: key);
 
   @override
-  State<OldageFormScreen> createState() => _OldageFormScreen();
+  State<PatientFormScreen> createState() => _PatientFormScreen();
 }
 
-class _OldageFormScreen extends State<OldageFormScreen> {
+class _PatientFormScreen extends State<PatientFormScreen> {
   RxInt gender = (-1).obs;
   RxInt childNumber = (1).obs;
-  RxInt oldageProblem = (1).obs;
   RxInt shiftWork = (-1).obs;
   RxBool camera = false.obs;
   List<String> ages = List.generate(4, (index) => "");
   String province = "", city = "", neighbourhood = "", hours1 = "", hours2 = "";
   final RequestNurseModel model = RequestNurseModel();
-
   final TextEditingController provinceController = TextEditingController();
   final TextEditingController cityController = TextEditingController();
-  final FocusNode cityFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -40,7 +37,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: screensAppbar(context: context, title: "پرستار سالمند"),
+        appBar: screensAppbar(context: context, title: "پرستار بیمار"),
         body: ListView(physics: const BouncingScrollPhysics(), children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10) +
@@ -51,7 +48,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                 Row(
                   children: [
                     Text(
-                      "تعداد سالمند: " "   ",
+                      "تعداد بیمار: " "   ",
                       style: TextStyle(fontSize: Get.width / 23),
                     ),
                     Obx(() => DropdownButton(
@@ -98,7 +95,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                         )),
                     const Text("هر دو"),
                     Obx(() => Checkbox(
-                          value: gender == 2,
+                          value: gender.value == 2,
                           onChanged: (value) {
                             if (value != null) {
                               gender.value = 2;
@@ -127,73 +124,11 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                         itemBuilder: (_, index) => ProfileTextInput(
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
-                          text: "سن سالمند ${index + 1}",
+                          text: "سن بیمار ${index + 1}",
                           onChanged: (value) => ages[index] = value,
                         ),
                       )),
                 ),
-
-                const Divider(thickness: 1),
-
-                SizedBox(
-                  width: Get.width,
-                  child: const Text(
-                    "سالمند شما کدام یک از موارد زیر را دارا میباشد؟\n",
-                  ),
-                ),
-                Obx(() => SizedBox(
-                    width: Get.width,
-                    height: Get.height / 7,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: List.generate(
-                              4,
-                              (index) => InkWell(
-                                    onTap: () => oldageProblem.value = index,
-                                    child: Row(
-                                      children: [
-                                        Text([
-                                          "پوشک",
-                                          "لگن",
-                                          "سون",
-                                          "آلزایمر",
-                                        ][index]),
-                                        Checkbox(
-                                            value: oldageProblem.value == index,
-                                            onChanged: (value) =>
-                                                oldageProblem.value = index)
-                                      ],
-                                    ),
-                                  )),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: List.generate(
-                              3,
-                              (index) => InkWell(
-                                    onTap: () =>
-                                        oldageProblem.value = index + 4,
-                                    child: Row(
-                                      children: [
-                                        Text([
-                                          "پارکینگ سون",
-                                          "ام اس",
-                                          "هیچ کدام"
-                                        ][index]),
-                                        Checkbox(
-                                            value: oldageProblem.value - 4 ==
-                                                index,
-                                            onChanged: (value) =>
-                                                oldageProblem.value = index + 4)
-                                      ],
-                                    ),
-                                  )),
-                        )
-                      ],
-                    ))),
 
                 const Divider(thickness: 1),
 
@@ -338,10 +273,8 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                             itemBuilder: (context, itemData) => ListTile(
                               title: Text(itemData.toString()),
                             ),
-                            onSuggestionSelected: (suggestion) {
-                              provinceController.text = suggestion.toString();
-                              cityFocusNode.requestFocus();
-                            },
+                            onSuggestionSelected: (suggestion) =>
+                                provinceController.text = suggestion.toString(),
                             suggestionsCallback: (pattern) => cities.keys
                                 .where((element) => element.contains(pattern)),
                           )),
@@ -349,7 +282,6 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                           width: Get.width / 1,
                           child: TypeAheadFormField(
                               textFieldConfiguration: TextFieldConfiguration(
-                                  focusNode: cityFocusNode,
                                   decoration:
                                       const InputDecoration(label: Text("شهر")),
                                   controller: cityController),
@@ -396,19 +328,10 @@ class _OldageFormScreen extends State<OldageFormScreen> {
           // button
           InkWell(
             onTap: () {
-              model.nurseCategory = NurseCategory.Oldage;
+              model.nurseCategory = NurseCategory.Patient;
               model.address = provinceController.text;
               model.hours = hours1;
               model.age = ages[0];
-              model.problem = [
-                "پوشک",
-                "لگن",
-                "سون",
-                "آلزایمر",
-                "پارکینگ سون",
-                "ام اس",
-                "هیچ کدام"
-              ][oldageProblem.value];
               if (babySitterValidation(model)) {
                 model.address =
                     "استان ${provinceController.text} شهر ${cityController.text} محله $neighbourhood";

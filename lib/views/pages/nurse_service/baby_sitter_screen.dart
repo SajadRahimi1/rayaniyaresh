@@ -95,7 +95,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                         )),
                     const Text("هر دو"),
                     Obx(() => Checkbox(
-                          value: gender == 2,
+                          value: gender.value == 2,
                           onChanged: (value) {
                             if (value != null) {
                               gender.value = 2;
@@ -296,10 +296,8 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                       SizedBox(
                           width: Get.width / 1,
                           child: ProfileTextInput(
-                            textAlign: TextAlign.center,
                             text: "محله",
-                            keyboardType: TextInputType.number,
-                            onChanged: (value) => province = value,
+                            onChanged: (value) => neighbourhood = value,
                           )),
                     ],
                   ),
