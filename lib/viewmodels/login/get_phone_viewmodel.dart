@@ -30,6 +30,7 @@ class GetPhoneViewModel extends GetxController with StateMixin {
   }
 
   Future<void> checkToken() async {
+    print(token);
     if (token.isNotEmpty) {
       final _request = await user_service.checkToken(token);
       if (_request.statusCode == 200) {

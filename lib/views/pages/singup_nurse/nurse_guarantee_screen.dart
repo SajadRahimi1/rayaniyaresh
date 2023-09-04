@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/viewmodels/signup_nurse/nurse_guarantee_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 
 class NurseGuaranteeScreen extends StatelessWidget {
-  const NurseGuaranteeScreen({Key? key, required this.nurseid})
+  const NurseGuaranteeScreen({Key? key, required this.nurseid, required this.nurseModel})
       : super(key: key);
   final String nurseid;
+  final CreateNurseModel nurseModel;
 
   @override
   Widget build(BuildContext context) {
-    final _controller = Get.put(NurseGuaranteeViewModel(nurseId: nurseid));
+    final _controller = Get.put(NurseGuaranteeViewModel(nurseId: nurseid,nurseModel:nurseModel));
 
     return Scaffold(
       appBar:

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:rayaniyaresh/core/services/pdf_service.dart';
+import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_rules_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 
 class NurseDownloadScreen extends StatelessWidget {
-  const NurseDownloadScreen({Key? key}) : super(key: key);
+  const NurseDownloadScreen({Key? key, required this.nurseModel})
+      : super(key: key);
+  final CreateNurseModel nurseModel;
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +28,28 @@ class NurseDownloadScreen extends StatelessWidget {
                   style: TextStyle(fontSize: Get.width / 22),
                 ),
                 // bad background
-                Container(
-                  alignment: Alignment.center,
-                  width: Get.width / 2.2,
-                  height: Get.height / 8,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xff000000))),
-                  child: Text(
-                    "سوء پیشینه",
-                    style: TextStyle(fontSize: Get.width / 24),
+                InkWell(
+                  onTap: () async {
+                    await PdfService().init(
+                        name: nurseModel.name ?? "",
+                        fatherName: nurseModel.fatherName ?? "",
+                        birthday: nurseModel.birthday ?? "",
+                        nn: nurseModel.nationalNumber ?? "",
+                        nn2: nurseModel.nationalCode ?? "",
+                        picture: nurseModel.picture ?? "",
+                        formCode: (nurseModel.formCode ?? 6000).toString(),
+                        isAddicionForm: false);
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: Get.width / 2.2,
+                    height: Get.height / 8,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: const Color(0xff000000))),
+                    child: Text(
+                      "سوء پیشینه",
+                      style: TextStyle(fontSize: Get.width / 24),
+                    ),
                   ),
                 ),
                 Text(
@@ -41,15 +58,28 @@ class NurseDownloadScreen extends StatelessWidget {
                   textAlign: TextAlign.justify,
                 ),
                 // addiction
-                Container(
-                  alignment: Alignment.center,
-                  width: Get.width / 2.2,
-                  height: Get.height / 8,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xff000000))),
-                  child: Text(
-                    "تست اعتیاد",
-                    style: TextStyle(fontSize: Get.width / 24),
+                InkWell(
+                  onTap: () async {
+                    await PdfService().init(
+                        name: nurseModel.name ?? "",
+                        fatherName: nurseModel.fatherName ?? "",
+                        birthday: nurseModel.birthday ?? "",
+                        nn: nurseModel.nationalNumber ?? "",
+                        nn2: nurseModel.nationalCode ?? "",
+                        picture: nurseModel.picture ?? "",
+                        formCode: (nurseModel.formCode ?? 6000).toString(),
+                        isAddicionForm: true);
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: Get.width / 2.2,
+                    height: Get.height / 8,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: const Color(0xff000000))),
+                    child: Text(
+                      "تست اعتیاد",
+                      style: TextStyle(fontSize: Get.width / 24),
+                    ),
                   ),
                 ),
                 Text(

@@ -1,10 +1,10 @@
 import 'dart:io';
-
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/core/services/signin_nurse/nurse_uploads_service.dart'
     as service;
+import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_guarantee_screen.dart';
 import 'package:rayaniyaresh/views/widgets/loading_widget.dart';
 
@@ -35,8 +35,11 @@ class NurseUploadsViewModel extends GetxController {
       Get.back();
 
       if (_request.statusCode == 200) {
+        CreateNurseModel updatedImageNurse =
+            CreateNurseModel.fromJson(_request.body);
         Get.to(() => NurseGuaranteeScreen(
               nurseid: id,
+              nurseModel: updatedImageNurse,
             ));
       } else {
         networkErrorMessage();

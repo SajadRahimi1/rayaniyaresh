@@ -27,21 +27,21 @@ class BannerSlider extends StatelessWidget {
                     width: MediaQuery.of(context).size.width / 1.3,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage(
-                            "assets/images/images/${[
-                              'educational2.png',
-                              'helthcare2.png'
-                            ][index]}",
+                          // image: AssetImage(
+                          //   "assets/images/images/${[
+                          //     'educational2.png',
+                          //     'helthcare2.png'
+                          //   ][index]}",
+                          // ),
+                          // fit: BoxFit.fill),
+                          image: NetworkImage(
+                            baseUrl +
+                                '/uploads/${[
+                                  'educational2_f40b7afc-7805-430d-bfab-58d2c708664f',
+                                  'helthcare2_de5ef50b-bbd5-4b1d-8e9f-ba226900b796'
+                                ][index]}.png',
                           ),
                           fit: BoxFit.fill),
-                      //     image: NetworkImage(
-                      //       baseUrl +
-                      //           '/uploads/${[
-                      //             'educational2_f40b7afc-7805-430d-bfab-58d2c708664f',
-                      //             'helthcare2_de5ef50b-bbd5-4b1d-8e9f-ba226900b796'
-                      //           ][index]}.png',
-                      //     ),
-                      //     fit: BoxFit.fill),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: SizedBox(

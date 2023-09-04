@@ -1,12 +1,14 @@
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
+import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/models/models/nurse_guarantee_model.dart';
 import 'package:rayaniyaresh/core/services/signin_nurse/nurse_family_service.dart'
     as service;
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_download_screen.dart';
 
 class NurseGuaranteeViewModel extends GetxController with StateMixin {
-  NurseGuaranteeViewModel({required this.nurseId});
+  NurseGuaranteeViewModel({required this.nurseModel,required this.nurseId});
+  final CreateNurseModel nurseModel;
   final String nurseId;
   final NurseGuaranteeModel model = NurseGuaranteeModel()
     ..nurseParentModels = List.generate(3, (index) => NurseParentModel());
@@ -25,7 +27,7 @@ class NurseGuaranteeViewModel extends GetxController with StateMixin {
     if (validate()) {
       final _reqeust = await service.updateNurseFamily(model);
       if (_reqeust.statusCode == 200) {
-        Get.to(() => const NurseDownloadScreen());
+        Get.to(() =>  NurseDownloadScreen(nurseModel: nurseModel,));
         // }
       } else {}
     }

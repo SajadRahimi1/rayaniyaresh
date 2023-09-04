@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rayaniyaresh/core/services/pdf_service.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:rayaniyaresh/models/constants/singleton_class.dart';
 import 'package:rayaniyaresh/models/constants/urls.dart';
 import 'package:rayaniyaresh/views/pages/home/profile_screen.dart';
@@ -240,12 +240,11 @@ class Menu extends StatelessWidget {
                   // GetStorage storage = GetStorage();
                   // await GetStorage.init();
                   // storage.remove("token");
-                  onTap: () => Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const GetPhoneScreen(
-                                isExit: true,
-                              ))),
+                  onTap: () async {
+                    await GetStorage.init()
+                        .then((value) => GetStorage().remove('token'));
+                    Get.offAll(() => const GetPhoneScreen());
+                  },
                   // ,
                   title: Text(
                     "خروج",
@@ -260,15 +259,7 @@ class Menu extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 15.0),
                   child: InkWell(
-                    onTap: () {
-                      PdfService().init(
-                          birthday: "1381/01/18",
-                          fatherName: "سجاد",
-                          name: "سجاد رحیمی",
-                          nn2: "05211111",
-                          isAddicionForm: false,
-                          nn: "0123456");
-                    },
+                    onTap: () {},
                     child: const Text(
                       "توسعه و طراحی توسط رایانیارش کارا",
                       style: TextStyle(color: Color(0xff9f9f9f)),

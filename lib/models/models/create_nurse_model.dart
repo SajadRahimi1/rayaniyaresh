@@ -1,6 +1,3 @@
-import 'package:rayaniyaresh/models/extensions/enum_extension.dart';
-import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
-
 class CreateNurseModel {
   String? name;
   String? fatherName;
@@ -14,7 +11,9 @@ class CreateNurseModel {
   String? homeNumber;
   bool? specialCare;
   String? otherProp;
+  int? formCode;
   String? nurseCategory;
+  String? picture;
 
   CreateNurseModel(
       {this.name,
@@ -28,23 +27,28 @@ class CreateNurseModel {
       this.phoneNumber,
       this.homeNumber,
       this.specialCare,
+      this.picture,
+      this.formCode,
       this.otherProp,
       this.nurseCategory});
 
   CreateNurseModel.fromJson(Map<String, dynamic> json) {
-    name = json["name"];
-    fatherName = json["fatherName"];
-    birthday = json["birthday"];
-    bornCity = json["bornCity"];
-    nationalCode = json["nationalCode"];
-    nationalNumber = json["nationalNumber"];
-    education = json["education"];
-    address = json["address"];
-    phoneNumber = json["phoneNumber"];
-    homeNumber = json["homeNumber"];
-    specialCare = json["specialCare"];
-    otherProp = json["otherProp"];
-    nurseCategory =json["nurseCategory"];
+    name = json["Name"];
+    fatherName = json["FatherName"];
+    birthday = json["Birthday"];
+    bornCity = json["BornCity"];
+    nationalCode = json["NationalCode"];
+    nationalNumber = json["NationalNumber"];
+    education = json["Education"];
+    address = json["Address"];
+    formCode = json['formCode'];
+    phoneNumber = json["PhoneNumber"];
+    picture =
+        json['NurseImages'] == null ? null : json['NurseImages']['Picture'];
+    homeNumber = json["HomeNumber"];
+    specialCare = json["SpecialCare"];
+    otherProp = json["OtherProp"];
+    nurseCategory = json["NurseCategory"];
   }
 
   Map<String, dynamic> toJson() {

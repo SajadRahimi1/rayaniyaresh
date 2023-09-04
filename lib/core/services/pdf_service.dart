@@ -5,6 +5,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
+import 'package:rayaniyaresh/models/constants/urls.dart';
 
 class PdfService {
   Future<void> init(
@@ -12,13 +13,15 @@ class PdfService {
       required String fatherName,
       required String birthday,
       required String nn,
+      required String picture,
+      required String formCode,
       bool isAddicionForm = true,
       required String nn2}) async {
     // Create the PDF document
     final pdf = pw.Document();
 
     final imageBytes1 = (await NetworkAssetBundle(Uri.parse(
-                'http://192.168.1.8:8050/uploads/educational2_f40b7afc-7805-430d-bfab-58d2c708664f.png'))
+                baseUrl+'/uploads/'+picture))
             .load(''))
         .buffer
         .asUint8List();
@@ -61,7 +64,7 @@ class PdfService {
                       crossAxisAlignment: pw.CrossAxisAlignment.start,
                       children: [
                         pw.Text(
-                            "شماره: 6000\nتاریخ:${DateTime.now().toPersianDate()}\nپیوست:..................",
+                            "شماره: $formCode\nتاریخ:${DateTime.now().toPersianDate()}\nپیوست:..................",
                             textDirection: pw.TextDirection.rtl,
                             style: pw.TextStyle(
                                 lineSpacing: 5,
@@ -130,7 +133,7 @@ class PdfService {
     var path = await FilePicker.platform.getDirectoryPath();
     // Save the PDF
     if (path != null) {
-      File(path + '/my_doc.pdf').writeAsBytesSync(await pdf.save());
+      File(path + '/asiasalamat-form${isAddicionForm?"2":"1"}.pdf').writeAsBytesSync(await pdf.save());
     } else {
       showMessage(
           title: 'خطا',
