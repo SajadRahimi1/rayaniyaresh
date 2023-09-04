@@ -6,7 +6,7 @@ import 'package:rayaniyaresh/viewmodels/login/get_phone_viewmodel.dart';
 
 class GetPhoneScreen extends StatefulWidget {
   const GetPhoneScreen({Key? key, this.isExit = false}) : super(key: key);
-  final bool isExit;
+  final bool isExit;  
 
   @override
   State<GetPhoneScreen> createState() => _GetPhoneScreenState();

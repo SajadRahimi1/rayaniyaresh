@@ -5,9 +5,11 @@ import 'package:rayaniyaresh/models/constants/singleton_class.dart';
 import 'package:rayaniyaresh/models/models/user_model.dart';
 import 'package:rayaniyaresh/views/pages/home/main_screen.dart';
 import 'package:rayaniyaresh/views/pages/login/validation_screen.dart';
+import 'package:rayaniyaresh/views/pages/reserve_class/success_reserve_screen.dart';
 import 'package:rayaniyaresh/views/widgets/loading_widget.dart';
 import 'package:rayaniyaresh/core/services/login/sms_service.dart' as service;
 import 'package:rayaniyaresh/core/services/user_service.dart' as user_service;
+import 'package:uni_links/uni_links.dart';
 
 class GetPhoneViewModel extends GetxController with StateMixin {
   RxString phoneNumber = "".obs;
@@ -22,6 +24,7 @@ class GetPhoneViewModel extends GetxController with StateMixin {
     await GetStorage.init();
     token = _getStorage.read("token") ?? "";
     await checkToken();
+
     phoneNumber.listen((value) {
       if (value.length == 11 && value.startsWith('09')) {
         isPhoneValida.value = true;
@@ -40,7 +43,19 @@ class GetPhoneViewModel extends GetxController with StateMixin {
           ..imageUrl = _userModel.imageUrl
           ..name = _userModel.name
           ..phoneNumber = _userModel.phoneNumber;
-        Get.offAll(() => const MainScreen());
+        String? link = await getInitialLink();
+        if (link != null) {
+          print(link.split('Status='));
+          if (link.split('Status=').last == 'OK') {
+            Get.offAll(() => const SuccessReserveScreen());
+          } else {
+            Get.offAll(() => const SuccessReserveScreen(
+                  message: 'پرداخت شما موفقیت آمیز نبود',
+                ));
+          }
+        } else {
+          Get.offAll(() => const MainScreen());
+        }
       } else {
         change(null, status: RxStatus.success());
       }

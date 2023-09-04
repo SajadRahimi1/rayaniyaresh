@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' show GetMaterialApp;
 import 'package:rayaniyaresh/views/pages/login/get_phone_number_screen.dart';
 
-void main() {
+void main() async {
   HttpOverrides.global = MyHttpOverrides();
+
   runApp(const MyApp());
 }
 
@@ -15,13 +16,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      theme: ThemeData(
-        fontFamily: "Sans",
-      ),
-      textDirection: TextDirection.rtl,
-      debugShowCheckedModeBanner: false,
-      home: const GetPhoneScreen(),
-    );
+        theme: ThemeData(
+          fontFamily: "Sans",
+        ),
+        textDirection: TextDirection.rtl,
+        debugShowCheckedModeBanner: false,
+        home: const GetPhoneScreen());
   }
 }
 
