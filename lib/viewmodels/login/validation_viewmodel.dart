@@ -60,8 +60,13 @@ class ValidateViewModel extends GetxController {
     if (_request.statusCode == 200) {
       await _storage.write("token", _request.body['Token']);
       await _storage.write("id", _request.body['Id']);
-    UserModel.fromJson(_request.body).imageUrl ?? "";
-    Get.to(() => const MainScreen());
+      SingletonClass _singletonClass = SingletonClass();
+      UserModel _userModel = UserModel.fromJson(_request.body);
+      _singletonClass
+        ..imageUrl = _userModel.imageUrl
+        ..name = _userModel.name
+        ..phoneNumber = _userModel.phoneNumber;
+      Get.to(() => const MainScreen());
     } else if (_request.statusCode == 400) {
       showMessage(message: "کد وارد شده صحیح نیست");
     } else {

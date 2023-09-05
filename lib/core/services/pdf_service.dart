@@ -20,28 +20,21 @@ class PdfService {
     // Create the PDF document
     final pdf = pw.Document();
 
-    final imageBytes1 = (await NetworkAssetBundle(Uri.parse(
-                baseUrl+'/uploads/'+picture))
-            .load(''))
-        .buffer
-        .asUint8List();
+    final imageBytes1 =
+        (await NetworkAssetBundle(Uri.parse(baseUrl + '/uploads/' + picture))
+                .load(''))
+            .buffer
+            .asUint8List();
 
     // Create MemoryImage
     final image = pw.Image(pw.MemoryImage(imageBytes1),
         width: 80, height: 110, fit: pw.BoxFit.fill);
 
     // Repeat for second image
-    final imageBytes2 = (await NetworkAssetBundle(Uri.parse(
-                'http://192.168.1.8:8050/uploads/educational2_f40b7afc-7805-430d-bfab-58d2c708664f.png'))
-            .load(''))
-        .buffer
-        .asUint8List();
+    final imageBytes = await rootBundle.load('assets/images/images/stamp.png');
 
-    final paddedImage = pw.Padding(
-      padding: const pw.EdgeInsets.only(top: 80, left: 70),
-      child: pw.Image(pw.MemoryImage(imageBytes2),
-          width: 60, height: 60, fit: pw.BoxFit.fill),
-    );
+    final stamp = pw.Image(pw.MemoryImage(imageBytes.buffer.asUint8List()),
+        width: 100, height: 40, fit: pw.BoxFit.fill);
 
     final fonts =
         pw.Font.ttf(await rootBundle.load('assets/fonts/bnazanin.TTF'));
@@ -79,7 +72,17 @@ class PdfService {
                                     font: fonts,
                                     fontWeight: pw.FontWeight.bold,
                                     fontSize: 20))),
-                        image
+                        pw.SizedBox(
+                            width: 100,
+                            height: 140,
+                            child: pw.Stack(children: [
+                              pw.Align(
+                                  alignment: pw.Alignment.topCenter,
+                                  child: image),
+                              pw.Align(
+                                  alignment: pw.Alignment.bottomCenter,
+                                  child: stamp),
+                            ]))
                       ])),
               pw.SizedBox(height: 35),
               pw.Text(
@@ -133,7 +136,8 @@ class PdfService {
     var path = await FilePicker.platform.getDirectoryPath();
     // Save the PDF
     if (path != null) {
-      File(path + '/asiasalamat-form${isAddicionForm?"2":"1"}.pdf').writeAsBytesSync(await pdf.save());
+      File(path + '/asiasalamat-form${isAddicionForm ? "2" : "1"}.pdf')
+          .writeAsBytesSync(await pdf.save());
     } else {
       showMessage(
           title: 'خطا',

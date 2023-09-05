@@ -14,7 +14,7 @@ class MoreScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
       body: ListView.builder(
-          itemCount: 5,
+          itemCount: 4,
           padding: const EdgeInsets.symmetric(horizontal: 5) +
               const EdgeInsets.only(top: 5),
           itemBuilder: (_, index) => Card(
@@ -39,9 +39,9 @@ class MoreScreen extends StatelessWidget {
                       case 3:
                         _controller.gotoSubcategory("بهداشت", "بهداشت و ایمنی");
                         break;
-                      case 4:
-                        Get.to(() => const ReservedListScreen());
-                        break;
+                      // case 4:
+                      //   Get.to(() => const ReservedListScreen());
+                      //   break;
                       default:
                     }
                   },
@@ -70,11 +70,11 @@ class MoreScreen extends StatelessWidget {
                       // "جست و جو",
                       "خدمات آموزشی",
                       "بهداشت و ایمنی",
-                      "رزرواسیون",
+                      // "رزرواسیون",
                       // "اخبار",
                       // "علاقه مندی ها",
                       // "گالری تصاویر",
-                      "پرداخت",
+                      // "پرداخت",
                       // "پشتیبانی با رایچت",
                     ][index],
                     style: const TextStyle(fontSize: 15),
