@@ -137,7 +137,8 @@ class InformationFormScreen extends StatelessWidget {
                                                 _controller
                                                     .educationStrings[index],
                                                 textAlign: TextAlign.center,
-                                                style: const TextStyle(fontSize: 14),
+                                                style: const TextStyle(
+                                                    fontSize: 14),
                                               ),
                                             )),
                                       )))
@@ -179,9 +180,8 @@ class InformationFormScreen extends StatelessWidget {
               // button
               InkWell(
                 onTap: () async {
-                  if (subcategoryId == null) {
-                    await _controller.updateInformation();
-                  } else {
+                  bool isUpdatedData = await _controller.updateInformation();
+                  if (isUpdatedData && subcategoryId != null) {
                     bool isInstallment =
                         await Get.dialog<bool>(const PaymentWidget()) ?? false;
                     await _controller.reserveClass(isInstallment);

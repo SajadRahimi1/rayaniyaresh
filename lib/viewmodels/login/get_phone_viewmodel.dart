@@ -68,15 +68,15 @@ class GetPhoneViewModel extends GetxController with StateMixin {
     if (isPhoneValida.value) {
       loading();
       final _request = await service.sendSms(phoneNumber.value);
-      if (_request.statusCode == 200) {
-        Get.back();
-        Get.to(() => ValidateCodeScreen(
-              phoneNumber: phoneNumber.value,
-            ));
-      } else {
-        Get.back();
-        networkErrorMessage();
-      }
+      // if (_request.statusCode == 200) {
+      Get.back();
+      Get.to(() => ValidateCodeScreen(
+            phoneNumber: phoneNumber.value,
+          ));
+      // } else {
+      //   Get.back();
+      //   networkErrorMessage();
+      // }
     } else {
       showMessage(
           title: "خطا",

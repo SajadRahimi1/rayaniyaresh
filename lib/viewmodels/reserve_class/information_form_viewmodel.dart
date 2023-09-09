@@ -65,18 +65,24 @@ class InformationFormViewModel extends GetxController with StateMixin {
     education.value = educationStrings.indexOf(userModel?.education);
   }
 
-  Future<void> updateInformation() async {
-    loading();
-    userModel?.education = educationStrings[education.value];
-    print(userModel?.toJson());
-    final _request =
-        await user_service.updateUser(userModel?.toJson() ?? {}, token);
-    if (_request.statusCode == 200) {
-      showMessage(
-          message: "اطلاعات با موفقیت ویرایش شد",
-          title: "ویرایش اطلاعات",
-          type: MessageType.success);
-    } else {}
+  Future<bool> updateInformation() async {
+    if (isAllFilled()) {
+      loading();
+      education.value > -1
+          ? userModel?.education = educationStrings[education.value]
+          : {};
+      print(userModel?.toJson());
+      final _request =
+          await user_service.updateUser(userModel?.toJson() ?? {}, token);
+      if (_request.statusCode == 200) {
+        showMessage(
+            message: "اطلاعات با موفقیت ویرایش شد",
+            title: "ویرایش اطلاعات",
+            type: MessageType.success);
+      } else {}
+      return true;
+    }
+    return false;
   }
 
   Future<void> reserveClass(bool isInstallment) async {
@@ -92,5 +98,37 @@ class InformationFormViewModel extends GetxController with StateMixin {
         Get.off(() => const SuccessReserveScreen());
       }
     }
+  }
+
+  bool isAllFilled() {
+    if (userModel?.name == null) {
+      showMessage(
+          title: "خطا",
+          message: "لطفا نام را وارد کنبد",
+          type: MessageType.warning);
+      return false;
+    }
+    if (userModel?.fatherName == null) {
+      showMessage(
+          title: "خطا",
+          message: "لطفا نام پدر را وارد کنبد",
+          type: MessageType.warning);
+      return false;
+    }
+    if (userModel?.birthday == null) {
+      showMessage(
+          title: "خطا",
+          message: "لطفا تاریخ تولد را وارد کنبد",
+          type: MessageType.warning);
+      return false;
+    }
+    if (userModel?.nationalCode == null) {
+      showMessage(
+          title: "خطا",
+          message: "لطفا کد ملی را وارد کنبد",
+          type: MessageType.warning);
+      return false;
+    }
+    return true;
   }
 }
