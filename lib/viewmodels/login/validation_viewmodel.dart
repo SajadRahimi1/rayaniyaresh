@@ -8,6 +8,7 @@ import 'package:rayaniyaresh/models/extensions/list_extentions.dart';
 import 'package:rayaniyaresh/models/models/user_model.dart';
 import 'package:rayaniyaresh/views/pages/home/main_screen.dart';
 import 'package:rayaniyaresh/core/services/login/sms_service.dart' as service;
+import 'package:rayaniyaresh/views/widgets/loading_widget.dart';
 
 class ValidateViewModel extends GetxController {
   ValidateViewModel({required this.phoneNumber});
@@ -37,22 +38,6 @@ class ValidateViewModel extends GetxController {
     _timer.cancel();
   }
 
-  Future<void> sendSmsCode() async {
-    showMessage(message: "در حال ارسال کد");
-    var _request = await service.sendSms(phoneNumber);
-    if (_request.statusCode == 201) {
-      time.value = 120;
-      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-        time--;
-        if (time.value == 0) timer.cancel();
-      });
-      Get.closeAllSnackbars();
-      showMessage(message: "کد ارسال شد", type: MessageType.success);
-    } else {
-      print(_request.body);
-    }
-  }
-
   Future<void> validateSmsCode() async {
     showMessage(message: "در حال بررسی کد");
     var _request =
@@ -73,5 +58,12 @@ class ValidateViewModel extends GetxController {
       networkErrorMessage();
     }
   }
-  //
+
+  Future<void> sendSmsCode() async {
+    loading();
+    await service.sendSms(phoneNumber);
+    // if (_request.statusCode == 200) {
+    Get.back();
+    showMessage(message: 'کد با موفقیت ارسال شد', type: MessageType.success);
+  }
 }

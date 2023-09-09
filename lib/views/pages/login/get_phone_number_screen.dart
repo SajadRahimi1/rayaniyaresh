@@ -1,4 +1,5 @@
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:rayaniyaresh/viewmodels/login/get_phone_viewmodel.dart';
 
 class GetPhoneScreen extends StatefulWidget {
   const GetPhoneScreen({Key? key, this.isExit = false}) : super(key: key);
-  final bool isExit;  
+  final bool isExit;
 
   @override
   State<GetPhoneScreen> createState() => _GetPhoneScreenState();
@@ -112,7 +113,16 @@ class _GetPhoneScreenState extends State<GetPhoneScreen> {
                     Padding(
                       padding: EdgeInsets.only(bottom: Get.height / 30),
                       child: InkWell(
-                          onTap: _controller.sendData,
+                          onTap: () {
+                            if (_controller.isPhoneValida.value) {
+                              _controller.sendData();
+                            } else {
+                              showMessage(
+                                  title: 'خطا',
+                                  message: 'شماره تلفن را به درستی وارد کنید',
+                                  type: MessageType.error);
+                            }
+                          },
                           child: Obx(() => Container(
                                 decoration: BoxDecoration(
                                   color: _controller.isPhoneValida.value

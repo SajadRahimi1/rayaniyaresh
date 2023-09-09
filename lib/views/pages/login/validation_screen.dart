@@ -105,7 +105,7 @@ class ValidateCodeScreen extends StatelessWidget {
                         ),
 
                         InkWell(
-                          onTap: () => {},
+                          onTap: _controller.sendSmsCode,
                           child: Obx(() => Text(
                               _controller.time.value == 0
                                   ? "ارسال مجدد کد"

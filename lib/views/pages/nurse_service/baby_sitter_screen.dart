@@ -273,8 +273,10 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                             itemBuilder: (context, itemData) => ListTile(
                               title: Text(itemData.toString()),
                             ),
-                            onSuggestionSelected: (suggestion) =>
-                                provinceController.text = suggestion.toString(),
+                            onSuggestionSelected: (suggestion) {
+                              provinceController.text = suggestion.toString();
+                              cityController.clear();
+                            },
                             suggestionsCallback: (pattern) => cities.keys
                                 .where((element) => element.contains(pattern)),
                           )),
