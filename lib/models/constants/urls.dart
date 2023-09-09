@@ -2,6 +2,7 @@ const String baseUrl = "http://185.110.188.141";
 const String sendSmsUrl = "$baseUrl/send-sms";
 const String checkSmsUrl = "$baseUrl/check-sms";
 const String nurseUrl = "$baseUrl/nurse";
+const String nurseHiringSmsUrl = "$baseUrl/nurse/hiring-sms";
 const String nurseFamilyUrl = "$baseUrl/nurse/family";
 const String nurseUploadsUrl = "$baseUrl/nurse/uploads";
 const String reserveNurseUrl = "$baseUrl/nurse/reserve";

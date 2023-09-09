@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 
 AppBar homeAppBar({
   required BuildContext context,
 }) =>
     AppBar(
-      elevation: 0.2,
-      // backgroundColor: Color(0xff02B8CC),
+        elevation: 0.2,
+        // backgroundColor: Color(0xff02B8CC),
 
-      backgroundColor: const Color(0xffF8FAFB),
-      leading: Builder(builder: (context) {
-        return IconButton(
-            icon: const Icon(Icons.menu, color: Color(0xff000000), size: 26),
-            onPressed: () {
-              FocusScope.of(context).unfocus();
-              Scaffold.of(context).openDrawer();
-            });
-      }),
-    );
+        backgroundColor: const Color(0xffF8FAFB),
+        leading: Builder(builder: (context) {
+          return IconButton(
+              icon: const Icon(Icons.menu, color: Color(0xff000000), size: 26),
+              onPressed: () {
+                FocusScope.of(context).unfocus();
+                Scaffold.of(context).openDrawer();
+              });
+        }),
+        title: Text(
+          "02632406705".toPersianDigit(),
+          style: const TextStyle(color: Colors.black),
+        ));
 
 AppBar screensAppbar({required BuildContext context, String title = ""}) =>
     AppBar(

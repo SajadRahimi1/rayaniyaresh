@@ -163,6 +163,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
                         child: ProfileTextInput(
                             keyboardType: TextInputType.number,
                             text: "شماره تماس",
+                            maxLength: 11,
                             onChanged: (value) => _controller.model
                                 .nurseParentModels?[1].phoneNumber = value),
                       ),

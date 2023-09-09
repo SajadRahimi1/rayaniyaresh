@@ -92,7 +92,9 @@ class NurseDownloadScreen extends StatelessWidget {
           ),
           NextStepButton(
             title: "مرحله بعدی",
-            onTap: () => Get.to(() => const NurseRulesScreen()),
+            onTap: () => Get.to(() => NurseRulesScreen(
+                  phoneNumber: nurseModel.phoneNumber ?? "",
+                )),
           ),
         ],
       ),

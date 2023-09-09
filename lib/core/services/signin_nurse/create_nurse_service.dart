@@ -6,3 +6,7 @@ import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 Future<Response<dynamic>> createNurse(CreateNurseModel model) async {
   return await getConnect.post(nurseUrl, model.toJson());
 }
+
+Future<Response<dynamic>> finalize(String phoneNumber) async {
+  return await getConnect.post(nurseHiringSmsUrl, '"$phoneNumber"');
+}

@@ -5,25 +5,14 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:rayaniyaresh/viewmodels/login/get_phone_viewmodel.dart';
 
-class GetPhoneScreen extends StatefulWidget {
+class GetPhoneScreen extends StatelessWidget {
   const GetPhoneScreen({Key? key, this.isExit = false}) : super(key: key);
   final bool isExit;
 
-  @override
-  State<GetPhoneScreen> createState() => _GetPhoneScreenState();
-}
-
-class _GetPhoneScreenState extends State<GetPhoneScreen> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    print("Init Get Phone Screen");
-  }
 
   @override
   Widget build(BuildContext context) {
-    final _controller = Get.put(GetPhoneViewModel());
+    final _controller = Get.put(GetPhoneViewModel(isExit));
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xffffffff),

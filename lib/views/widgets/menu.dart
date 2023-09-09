@@ -84,31 +84,31 @@ class Menu extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // about us list tile
-                      ListTile(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const AboutusScreen()));
-                        },
-                        title: Text(
-                          "درباره ما",
-                          style: TextStyle(
-                              color: const Color(0xff656565),
-                              fontSize: MediaQuery.of(context).size.width / 32),
-                        ),
-                        leading: SizedBox.square(
-                          dimension: MediaQuery.of(context).size.width / 18,
-                          child: Image.asset(
-                            "assets/images/icons/aboutus.png",
-                          ),
-                        ),
-                      ),
-                      const Divider(
-                        color: Color(0xffe5e5e5),
-                        height: 1,
-                        thickness: 0.5,
-                      ),
+                      // ListTile(
+                      //   onTap: () {
+                      //     Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (context) => const AboutusScreen()));
+                      //   },
+                      //   title: Text(
+                      //     "درباره ما",
+                      //     style: TextStyle(
+                      //         color: const Color(0xff656565),
+                      //         fontSize: MediaQuery.of(context).size.width / 32),
+                      //   ),
+                      //   leading: SizedBox.square(
+                      //     dimension: MediaQuery.of(context).size.width / 18,
+                      //     child: Image.asset(
+                      //       "assets/images/icons/aboutus.png",
+                      //     ),
+                      //   ),
+                      // ),
+                      // const Divider(
+                      //   color: Color(0xffe5e5e5),
+                      //   height: 1,
+                      //   thickness: 0.5,
+                      // ),
                       // contact us list tile
                       ListTile(
                         onTap: () async {
@@ -245,9 +245,10 @@ class Menu extends StatelessWidget {
                   // await GetStorage.init();
                   // storage.remove("token");
                   onTap: () async {
-                    await GetStorage.init()
-                        .then((value) => GetStorage().remove('token'));
-                    Get.offAll(() => const GetPhoneScreen());
+                    await GetStorage.init();
+                    final GetStorage getStorage = GetStorage();
+                    await getStorage.remove('token');
+                    Get.offAll(() => const GetPhoneScreen(isExit:true));
                   },
                   // ,
                   title: Text(

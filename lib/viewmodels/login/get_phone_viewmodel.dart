@@ -12,6 +12,8 @@ import 'package:rayaniyaresh/core/services/user_service.dart' as user_service;
 import 'package:uni_links/uni_links.dart';
 
 class GetPhoneViewModel extends GetxController with StateMixin {
+  GetPhoneViewModel(this.isExit);
+  final bool isExit;
   RxString phoneNumber = "".obs;
   RxBool isPhoneValida = false.obs;
   final GetStorage _getStorage = GetStorage();
@@ -23,7 +25,11 @@ class GetPhoneViewModel extends GetxController with StateMixin {
     super.onInit();
     await GetStorage.init();
     token = _getStorage.read("token") ?? "";
-    await checkToken();
+    if (isExit) {
+      change(null, status: RxStatus.success());
+    } else {
+      await checkToken();
+    }
 
     phoneNumber.listen((value) {
       if (value.length == 11 && value.startsWith('09')) {

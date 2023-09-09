@@ -7,6 +7,7 @@ import 'package:rayaniyaresh/core/services/reserve_nurse/request_nurse_service.d
 import 'package:rayaniyaresh/models/constants/singleton_class.dart';
 import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/success_reserve_screen.dart';
+import 'package:rayaniyaresh/views/widgets/loading_widget.dart';
 
 class RequestNurseViewmodel extends GetxController with StateMixin {
   RequestNurseViewmodel({required this.model});
@@ -31,9 +32,11 @@ class RequestNurseViewmodel extends GetxController with StateMixin {
   }
 
   Future<void> sendData() async {
+    loading();
     model.name = textEditingControllers[0].text;
     model.phoneNumber = textEditingControllers[1].text;
     final _request = await service.requestNurses(model, token);
+    Get.back();
     if (_request.statusCode == 200) {
       Get.offAll(
           () => const SuccessReserveScreen(

@@ -3,12 +3,15 @@ import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
+import 'package:rayaniyaresh/core/services/signin_nurse/create_nurse_service.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/success_reserve_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 
 class NurseRulesScreen extends StatelessWidget {
-  const NurseRulesScreen({Key? key}) : super(key: key);
+  const NurseRulesScreen({Key? key, required this.phoneNumber})
+      : super(key: key);
+  final String phoneNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -160,7 +163,9 @@ class NurseRulesScreen extends StatelessWidget {
           Obx(() => NextStepButton(
                 title: "تایید نهایی",
                 enable: accept.value,
-                onTap: () {
+                onTap: () async {
+                  var request = await finalize(phoneNumber);
+                  print(request.statusCode);
                   if (accept.value) {
                     Get.to(() => const SuccessReserveScreen(
                           message:
