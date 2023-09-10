@@ -42,9 +42,11 @@ class SubcategoryDetailScreen extends StatelessWidget {
             image: "assets/images/icons/checked.png",
             title: "مبلغ شهریه ${model.price} میلیون تومان (نقد و اقساط)",
           ),
-          const Text(
+          Text(
             "شرایط اقساط",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: MediaQuery.sizeOf(context).width / 26,
+                fontWeight: FontWeight.bold),
           ),
           ConsWidget(
             image: "assets/images/icons/checked.png",

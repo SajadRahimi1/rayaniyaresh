@@ -25,7 +25,7 @@ class ReservedNurseWidget extends StatelessWidget {
         child: Container(
           margin: const EdgeInsets.symmetric(vertical: 10),
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height / 5.2,
+          height: MediaQuery.of(context).size.height / 5.5,
           child: Padding(
             padding: const EdgeInsets.all(5),
             child: Column(
@@ -39,12 +39,18 @@ class ReservedNurseWidget extends StatelessWidget {
                       Icons.local_pharmacy,
                       color: Color(0xffa0a0a0),
                     ),
-                    const Text(" نوع پرستار: "),
+                    Text(
+                      " نوع پرستار: ",
+                      style: TextStyle(
+                        color: const Color(0xff000000),
+                        fontSize: MediaQuery.of(context).size.width / 30,
+                      ),
+                    ),
                     Text(
                       model?.nurseCategory.titleFromEnum() ?? "",
                       style: TextStyle(
                         color: const Color(0xff000000),
-                        fontSize: MediaQuery.of(context).size.width / 28,
+                        fontSize: MediaQuery.of(context).size.width / 30,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -53,7 +59,7 @@ class ReservedNurseWidget extends StatelessWidget {
                 // cards
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 22,
+                  height: MediaQuery.of(context).size.height / 24,
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -73,7 +79,7 @@ class ReservedNurseWidget extends StatelessWidget {
                                     color: const Color(0xff000000),
                                     fontWeight: FontWeight.bold,
                                     fontSize:
-                                        MediaQuery.of(context).size.width / 30,
+                                        MediaQuery.of(context).size.width / 33,
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -90,7 +96,7 @@ class ReservedNurseWidget extends StatelessWidget {
                             style: TextStyle(
                               color: const Color(0xff000000),
                               fontWeight: FontWeight.bold,
-                              fontSize: MediaQuery.of(context).size.width / 30,
+                              fontSize: MediaQuery.of(context).size.width / 33,
                             ),
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -98,19 +104,26 @@ class ReservedNurseWidget extends StatelessWidget {
                       ]),
                 ),
 
+                // date request
                 Row(
                   children: [
                     const Icon(
                       Icons.calendar_month,
                       color: Color(0xffa0a0a0),
                     ),
-                    const Text(" تاریخ درخواست: "),
+                    Text(
+                      " تاریخ درخواست: ",
+                      style: TextStyle(
+                        color: const Color(0xff000000),
+                        fontSize: MediaQuery.of(context).size.width / 30,
+                      ),
+                    ),
                     Expanded(
                       child: Text(
                         model?.createdAt?.toPersianDate() ?? "",
                         style: TextStyle(
                           color: const Color(0xff000000),
-                          fontSize: MediaQuery.of(context).size.width / 28,
+                          fontSize: MediaQuery.of(context).size.width / 30,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -131,7 +144,7 @@ class ReservedNurseWidget extends StatelessWidget {
                         model?.address ?? "",
                         style: TextStyle(
                           color: const Color(0xff000000),
-                          fontSize: MediaQuery.of(context).size.width / 28,
+                          fontSize: MediaQuery.of(context).size.width / 30,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

@@ -39,14 +39,17 @@ class ProfileTextInput extends StatelessWidget {
           // ],
           onChanged: onChanged,
           style: TextStyle(
-            fontSize: MediaQuery.of(context).size.width / 27,
+            fontSize: MediaQuery.of(context).size.width / 30,
           ),
           textAlign: textAlign,
           decoration: InputDecoration(
             counter: const SizedBox(),
             icon: icon,
             labelText: text,
-            labelStyle: const TextStyle(color: Color(0xff000000), fontSize: 14),
+            labelStyle: TextStyle(
+              color: const Color(0xff000000),
+              fontSize: MediaQuery.of(context).size.width / 30,
+            ),
             enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
               color: error ? const Color(0xffff0000) : const Color(0xffe5e5e5),

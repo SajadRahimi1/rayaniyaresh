@@ -49,7 +49,7 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                   children: [
                     Text(
                       "تعداد بیمار: " "   ",
-                      style: TextStyle(fontSize: Get.width / 23),
+                      style: TextStyle(fontSize: Get.width / 28),
                     ),
                     Obx(() => DropdownButton(
                         items: List.generate(
@@ -62,7 +62,7 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                                 )),
                         value: childNumber.value,
                         elevation: 5,
-                        // style: TextStyle(fontSize: Get.width / 23),
+                        // style: TextStyle(fontSize: Get.width / 28),
                         onChanged: <int>(value) => childNumber.value = value)),
                   ],
                 ),
@@ -72,8 +72,14 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                 // child gender
                 Row(
                   children: [
-                    const Text("جنسیت:" "  "),
-                    const Text("مرد"),
+                    Text(
+                      "جنسیت:" "  ",
+                      style: TextStyle(fontSize: Get.width / 30),
+                    ),
+                    Text(
+                      "مرد",
+                      style: TextStyle(fontSize: Get.width / 30),
+                    ),
                     Obx(() => Checkbox(
                           value: gender.value == 0,
                           onChanged: (value) {
@@ -83,7 +89,10 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                             }
                           },
                         )),
-                    const Text("زن"),
+                    Text(
+                      "زن",
+                      style: TextStyle(fontSize: Get.width / 30),
+                    ),
                     Obx(() => Checkbox(
                           value: gender.value == 1,
                           onChanged: (value) {
@@ -93,7 +102,10 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                             }
                           },
                         )),
-                    const Text("هر دو"),
+                    Text(
+                      "هر دو",
+                      style: TextStyle(fontSize: Get.width / 30),
+                    ),
                     Obx(() => Checkbox(
                           value: gender.value == 2,
                           onChanged: (value) {
@@ -139,8 +151,14 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      const Text("شیفت کاری:" "  "),
-                      const Text("شبانه روزی"),
+                      Text(
+                        "شیفت کاری:" "  ",
+                        style: TextStyle(fontSize: Get.width / 30),
+                      ),
+                      Text(
+                        "شبانه روزی",
+                        style: TextStyle(fontSize: Get.width / 30),
+                      ),
                       Obx(() => Checkbox(
                             value: shiftWork.value == 0,
                             onChanged: (value) {
@@ -150,7 +168,10 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                               }
                             },
                           )),
-                      const Text("شبانه"),
+                      Text(
+                        "شبانه",
+                        style: TextStyle(fontSize: Get.width / 30),
+                      ),
                       Obx(() => Checkbox(
                             value: shiftWork.value == 1,
                             onChanged: (value) {
@@ -160,7 +181,10 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                               }
                             },
                           )),
-                      const Text("مقطعی"),
+                      Text(
+                        "مقطعی",
+                        style: TextStyle(fontSize: Get.width / 30),
+                      ),
                       Obx(() => Checkbox(
                             value: shiftWork.value == 2,
                             onChanged: (value) {
@@ -181,7 +205,10 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                     ? const SizedBox()
                     : Row(
                         children: [
-                          const Text("ساعت کاری از   "),
+                          Text(
+                            "ساعت کاری از   ",
+                            style: TextStyle(fontSize: Get.width / 30),
+                          ),
                           SizedBox(
                               width: Get.width / 7,
                               child: ProfileTextInput(
@@ -213,7 +240,7 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                         child: Row(children: [
                           Text(
                             "در طول مدت فعالیت نیروی اعزامی چه شخصی داخل منزل حضور دارد:   ",
-                            style: TextStyle(fontSize: Get.width / 28),
+                            style: TextStyle(fontSize: Get.width / 30),
                           ),
                           SizedBox(
                             width: Get.width / 2.5,
@@ -235,7 +262,7 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                         child: Row(children: [
                           Text(
                             "آیا در محل نیروی اعزامی دوربین مداربسته وجود دارد؟:   ",
-                            style: TextStyle(fontSize: Get.width / 28),
+                            style: TextStyle(fontSize: Get.width / 30),
                           ),
                           Obx(() => DropdownButton(
                               items: List.generate(
@@ -246,7 +273,7 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                                       )),
                               value: camera.value,
                               elevation: 5,
-                              // style: TextStyle(fontSize: Get.width / 23),
+                              // style: TextStyle(fontSize: Get.width / 28),
                               onChanged: <bool>(value) {
                                 camera.value = value;
                                 model.cctv = value;
@@ -267,8 +294,11 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                           width: Get.width / 1,
                           child: TypeAheadFormField(
                             textFieldConfiguration: TextFieldConfiguration(
-                                decoration:
-                                    const InputDecoration(label: Text("استان")),
+                                decoration: InputDecoration(
+                                    label: Text(
+                                  "استان",
+                                  style: TextStyle(fontSize: Get.width / 30),
+                                )),
                                 controller: provinceController),
                             itemBuilder: (context, itemData) => ListTile(
                               title: Text(itemData.toString()),
@@ -282,8 +312,11 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                           width: Get.width / 1,
                           child: TypeAheadFormField(
                               textFieldConfiguration: TextFieldConfiguration(
-                                  decoration:
-                                      const InputDecoration(label: Text("شهر")),
+                                  decoration: InputDecoration(
+                                      label: Text(
+                                    "شهر",
+                                    style: TextStyle(fontSize: Get.width / 30),
+                                  )),
                                   controller: cityController),
                               itemBuilder: (context, itemData) => ListTile(
                                     title: Text(itemData.toString()),
@@ -314,6 +347,7 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                     child: TextFormField(
                       onChanged: (value) => model.description = value,
                       maxLines: 5,
+                      style: TextStyle(fontSize: Get.width / 30),
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
                           labelText: "توضیحات",

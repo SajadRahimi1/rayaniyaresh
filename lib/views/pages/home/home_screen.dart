@@ -145,7 +145,7 @@ class HomeScreen extends StatelessWidget {
                       "فروشگاه",
                       style: TextStyle(
                           color: const Color(0xffffffff),
-                          fontSize: Get.width / 10),
+                          fontSize: Get.width / 13),
                     )),
               ),
 

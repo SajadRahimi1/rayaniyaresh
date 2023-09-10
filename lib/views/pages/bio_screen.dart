@@ -30,7 +30,7 @@ class BioScreenn extends StatelessWidget {
           child: Text(
             "هلدینگ آسیاسلامت در سال 1392 تاسیس گردید که در نهایت ار سال 1397 به طور رسمی وارد بازار کار شد. این مجموعه با حمایت شما شهروندان گرامی از سال 1398 افدام به تاسیس شعب در 12 استان ایران عزیزمان نمود",
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: Get.width / 22),
+            style: TextStyle(fontSize: Get.width / 25),
           ),
         ),
         Expanded(

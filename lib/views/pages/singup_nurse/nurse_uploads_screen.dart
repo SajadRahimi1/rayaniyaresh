@@ -8,7 +8,7 @@ import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 
 class NurseUploadsScreen extends StatelessWidget {
   const NurseUploadsScreen({Key? key, required this.nurseId}) : super(key: key);
-  final String nurseId;  
+  final String nurseId;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +23,10 @@ class NurseUploadsScreen extends StatelessWidget {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               // image
-              const Text(
+              Text(
                 "\nتصویر عکس پرسنلی\n",
-                style: TextStyle(fontSize: 16),
+                style:
+                    TextStyle(fontSize: MediaQuery.sizeOf(context).width / 27),
               ),
               Center(
                 child: Obx(() => Container(
@@ -47,7 +48,8 @@ class NurseUploadsScreen extends StatelessWidget {
                                 vertical: Get.height / 15),
                             decoration: BoxDecoration(
                                 color: const Color.fromRGBO(255, 255, 255, 0.7),
-                                border: Border.all(color: Color(0xff000000))),
+                                border:
+                                    Border.all(color: const Color(0xff000000))),
                             alignment: Alignment.center,
                             child: const Text("انتخاب عکس")),
                       ),
@@ -58,9 +60,10 @@ class NurseUploadsScreen extends StatelessWidget {
                 thickness: 1,
               ),
               // first page of national
-              const Text(
+              Text(
                 "\nتصویر صفحه اول شناسنامه\n",
-                style: TextStyle(fontSize: 16),
+                style:
+                    TextStyle(fontSize: MediaQuery.sizeOf(context).width / 27),
               ),
               Center(
                   child: Obx(
@@ -95,9 +98,10 @@ class NurseUploadsScreen extends StatelessWidget {
               ),
 
               // second page of national
-              const Text(
+              Text(
                 "\nتصویر صفحه توضیحات شناسنامه(وضعیت تاهل)\n",
-                style: TextStyle(fontSize: 16),
+                style:
+                    TextStyle(fontSize: MediaQuery.sizeOf(context).width / 27),
               ),
               Center(
                   child: Obx(
@@ -120,7 +124,7 @@ class NurseUploadsScreen extends StatelessWidget {
                             vertical: Get.height / 15),
                         decoration: BoxDecoration(
                             color: const Color.fromRGBO(255, 255, 255, 0.7),
-                            border: Border.all(color: Color(0xff000000))),
+                            border: Border.all(color: const Color(0xff000000))),
                         alignment: Alignment.center,
                         child: const Text("انتخاب عکس")),
                   ),
@@ -131,9 +135,10 @@ class NurseUploadsScreen extends StatelessWidget {
                 thickness: 1,
               ),
 
-              const Text(
+              Text(
                 "تصویر رضایت نامه همسر و یا سرپرست خانواده (ویژه بانوان)",
-                style: TextStyle(fontSize: 16),
+                style:
+                    TextStyle(fontSize: MediaQuery.sizeOf(context).width / 27),
               ),
               Center(
                 child: Obx(() => Container(
@@ -155,7 +160,8 @@ class NurseUploadsScreen extends StatelessWidget {
                                 vertical: Get.height / 15),
                             decoration: BoxDecoration(
                                 color: const Color.fromRGBO(255, 255, 255, 0.7),
-                                border: Border.all(color: Color(0xff000000))),
+                                border:
+                                    Border.all(color: const Color(0xff000000))),
                             alignment: Alignment.center,
                             child: const Text("انتخاب عکس")),
                       ),

@@ -23,16 +23,17 @@ class NurseSelectSreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(children: [
               // child _controller.categorySelect
-              const Text(
+              Text(
                 "\nلطفا گزینه مورد نظر را در خصوص مراقبت انتخاب بفرمایید :\n",
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: Get.width / 27),
               ),
               Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Text("پرستار کودک"),
+                      Text("پرستار کودک",
+                          style: TextStyle(fontSize: Get.width / 30)),
                       Obx(() => Checkbox(
                             value: _controller.categorySelect.contains(0),
                             onChanged: (value) {
@@ -45,7 +46,8 @@ class NurseSelectSreen extends StatelessWidget {
                               }
                             },
                           )),
-                      const Text("پرستار سالمند"),
+                      Text("پرستار سالمند",
+                          style: TextStyle(fontSize: Get.width / 30)),
                       Obx(() => Checkbox(
                             value: _controller.categorySelect.contains(1),
                             onChanged: (value) {
@@ -63,7 +65,8 @@ class NurseSelectSreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Text("پرستار بیمار"),
+                      Text("پرستار بیمار",
+                          style: TextStyle(fontSize: Get.width / 30)),
                       Obx(() => Checkbox(
                             value: _controller.categorySelect.contains(2),
                             onChanged: (value) {
@@ -76,7 +79,8 @@ class NurseSelectSreen extends StatelessWidget {
                               }
                             },
                           )),
-                      const Text("همه موارد"),
+                      Text("همه موارد",
+                          style: TextStyle(fontSize: Get.width / 30)),
                       Obx(() => Checkbox(
                             value: _controller.categorySelect.contains(3),
                             onChanged: (value) {
@@ -94,14 +98,14 @@ class NurseSelectSreen extends StatelessWidget {
                 ],
               ),
 
-              const Text(
+              Text(
                 "\nآیا کودک - سالمند و یا بیمار از پوشک و یا لگن استفاده کند شما میتوانید انجام دهید؟\n",
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: Get.width / 27),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  const Text("بله"),
+                  Text("بله", style: TextStyle(fontSize: Get.width / 30)),
                   Obx(() => Checkbox(
                         value: _controller.secondQuestion.value,
                         onChanged: (value) {
@@ -110,7 +114,7 @@ class NurseSelectSreen extends StatelessWidget {
                           }
                         },
                       )),
-                  const Text("خیر"),
+                  Text("خیر", style: TextStyle(fontSize: Get.width / 30)),
                   Obx(() => Checkbox(
                         value: !_controller.secondQuestion.value,
                         onChanged: (value) {

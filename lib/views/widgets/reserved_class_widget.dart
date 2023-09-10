@@ -25,7 +25,7 @@ class ReservedClass extends StatelessWidget {
         child: Container(
           margin: const EdgeInsets.symmetric(vertical: 10),
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height / 5.6,
+          height: MediaQuery.of(context).size.height / 6,
           child: Row(
             children: [
               // image
@@ -37,7 +37,7 @@ class ReservedClass extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: SizedBox.square(
-                    dimension: MediaQuery.of(context).size.width / 3.2,
+                    dimension: MediaQuery.of(context).size.width / 3.5,
                     child: Center(
                       child: Text(
                         model?.classCategory?.title == "انجام کمک های اولیه"
@@ -46,7 +46,7 @@ class ReservedClass extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: const Color(0xffffffff),
-                            fontSize: MediaQuery.of(context).size.width / 20),
+                            fontSize: MediaQuery.of(context).size.width / 26),
                       ),
                     ),
                   ),
@@ -70,7 +70,7 @@ class ReservedClass extends StatelessWidget {
                         style: TextStyle(
                           color: const Color(0xff000000),
                           fontWeight: FontWeight.bold,
-                          fontSize: MediaQuery.of(context).size.width / 25,
+                          fontSize: MediaQuery.of(context).size.width / 28,
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -81,7 +81,7 @@ class ReservedClass extends StatelessWidget {
                             " تومان",
                         style: TextStyle(
                           color: const Color(0xff0f0f0f),
-                          fontSize: MediaQuery.of(context).size.width / 28,
+                          fontSize: MediaQuery.of(context).size.width / 31,
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -107,7 +107,7 @@ class ReservedClass extends StatelessWidget {
                                     color: const Color(0xff000000),
                                     fontWeight: FontWeight.bold,
                                     fontSize:
-                                        MediaQuery.of(context).size.width / 30,
+                                        MediaQuery.of(context).size.width / 32,
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -121,7 +121,7 @@ class ReservedClass extends StatelessWidget {
                         (model?.isInstallment ?? false) ? "قسطی" : "",
                         style: TextStyle(
                           color: const Color(0xff050505),
-                          fontSize: MediaQuery.of(context).size.width / 26,
+                          fontSize: MediaQuery.of(context).size.width / 29,
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),

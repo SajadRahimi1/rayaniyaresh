@@ -52,7 +52,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                   children: [
                     Text(
                       "تعداد سالمند: " "   ",
-                      style: TextStyle(fontSize: Get.width / 23),
+                      style: TextStyle(fontSize: Get.width / 30),
                     ),
                     Obx(() => DropdownButton(
                         items: List.generate(
@@ -75,8 +75,14 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                 // child gender
                 Row(
                   children: [
-                    const Text("جنسیت:" "  "),
-                    const Text("مرد"),
+                    Text(
+                      "جنسیت:" "  ",
+                      style: TextStyle(fontSize: Get.width / 30),
+                    ),
+                    Text(
+                      "مرد",
+                      style: TextStyle(fontSize: Get.width / 30),
+                    ),
                     Obx(() => Checkbox(
                           value: gender.value == 0,
                           onChanged: (value) {
@@ -86,7 +92,10 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                             }
                           },
                         )),
-                    const Text("زن"),
+                    Text(
+                      "زن",
+                      style: TextStyle(fontSize: Get.width / 30),
+                    ),
                     Obx(() => Checkbox(
                           value: gender.value == 1,
                           onChanged: (value) {
@@ -96,9 +105,12 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                             }
                           },
                         )),
-                    const Text("هر دو"),
+                    Text(
+                      "هر دو",
+                      style: TextStyle(fontSize: Get.width / 30),
+                    ),
                     Obx(() => Checkbox(
-                          value: gender == 2,
+                          value: gender.value == 2,
                           onChanged: (value) {
                             if (value != null) {
                               gender.value = 2;
@@ -137,13 +149,14 @@ class _OldageFormScreen extends State<OldageFormScreen> {
 
                 SizedBox(
                   width: Get.width,
-                  child: const Text(
+                  child: Text(
                     "سالمند شما کدام یک از موارد زیر را دارا میباشد؟\n",
+                    style: TextStyle(fontSize: Get.width / 30),
                   ),
                 ),
                 Obx(() => SizedBox(
                     width: Get.width,
-                    height: Get.height / 7,
+                    height: Get.height / 7.8,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -155,12 +168,16 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                                     onTap: () => oldageProblem.value = index,
                                     child: Row(
                                       children: [
-                                        Text([
-                                          "پوشک",
-                                          "لگن",
-                                          "سون",
-                                          "آلزایمر",
-                                        ][index]),
+                                        Text(
+                                          [
+                                            "پوشک",
+                                            "لگن",
+                                            "سون",
+                                            "آلزایمر",
+                                          ][index],
+                                          style: TextStyle(
+                                              fontSize: Get.width / 30),
+                                        ),
                                         Checkbox(
                                             value: oldageProblem.value == index,
                                             onChanged: (value) =>
@@ -178,11 +195,15 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                                         oldageProblem.value = index + 4,
                                     child: Row(
                                       children: [
-                                        Text([
-                                          "پارکینگ سون",
-                                          "ام اس",
-                                          "هیچ کدام"
-                                        ][index]),
+                                        Text(
+                                          [
+                                            "پارکینگ سون",
+                                            "ام اس",
+                                            "هیچ کدام"
+                                          ][index],
+                                          style: TextStyle(
+                                              fontSize: Get.width / 30),
+                                        ),
                                         Checkbox(
                                             value: oldageProblem.value - 4 ==
                                                 index,
@@ -204,8 +225,14 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      const Text("شیفت کاری:" "  "),
-                      const Text("شبانه روزی"),
+                      Text(
+                        "شیفت کاری:" "  ",
+                        style: TextStyle(fontSize: Get.width / 30),
+                      ),
+                      Text(
+                        "شبانه روزی",
+                        style: TextStyle(fontSize: Get.width / 30),
+                      ),
                       Obx(() => Checkbox(
                             value: shiftWork.value == 0,
                             onChanged: (value) {
@@ -215,7 +242,10 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                               }
                             },
                           )),
-                      const Text("شبانه"),
+                      Text(
+                        "شبانه",
+                        style: TextStyle(fontSize: Get.width / 30),
+                      ),
                       Obx(() => Checkbox(
                             value: shiftWork.value == 1,
                             onChanged: (value) {
@@ -225,7 +255,10 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                               }
                             },
                           )),
-                      const Text("مقطعی"),
+                      Text(
+                        "مقطعی",
+                        style: TextStyle(fontSize: Get.width / 30),
+                      ),
                       Obx(() => Checkbox(
                             value: shiftWork.value == 2,
                             onChanged: (value) {
@@ -246,7 +279,10 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                     ? const SizedBox()
                     : Row(
                         children: [
-                          const Text("ساعت کاری از   "),
+                          Text(
+                            "ساعت کاری از   ",
+                            style: TextStyle(fontSize: Get.width / 30),
+                          ),
                           SizedBox(
                               width: Get.width / 7,
                               child: ProfileTextInput(
@@ -278,7 +314,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                         child: Row(children: [
                           Text(
                             "در طول مدت فعالیت نیروی اعزامی چه شخصی داخل منزل حضور دارد:   ",
-                            style: TextStyle(fontSize: Get.width / 28),
+                            style: TextStyle(fontSize: Get.width / 30),
                           ),
                           SizedBox(
                             width: Get.width / 2.5,
@@ -300,7 +336,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                         child: Row(children: [
                           Text(
                             "آیا در محل نیروی اعزامی دوربین مداربسته وجود دارد؟:   ",
-                            style: TextStyle(fontSize: Get.width / 28),
+                            style: TextStyle(fontSize: Get.width / 30),
                           ),
                           Obx(() => DropdownButton(
                               items: List.generate(
@@ -332,8 +368,11 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                           width: Get.width / 1,
                           child: TypeAheadFormField(
                             textFieldConfiguration: TextFieldConfiguration(
-                                decoration:
-                                    const InputDecoration(label: Text("استان")),
+                                decoration: InputDecoration(
+                                    label: Text(
+                                  "استان",
+                                  style: TextStyle(fontSize: Get.width / 28),
+                                )),
                                 controller: provinceController),
                             itemBuilder: (context, itemData) => ListTile(
                               title: Text(itemData.toString()),
@@ -350,8 +389,10 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                           child: TypeAheadFormField(
                               textFieldConfiguration: TextFieldConfiguration(
                                   focusNode: cityFocusNode,
-                                  decoration:
-                                      const InputDecoration(label: Text("شهر")),
+                                  decoration: InputDecoration(
+                                      label: Text("شهر",
+                                          style: TextStyle(
+                                              fontSize: Get.width / 28))),
                                   controller: cityController),
                               itemBuilder: (context, itemData) => ListTile(
                                     title: Text(itemData.toString()),
@@ -382,6 +423,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                     child: TextFormField(
                       onChanged: (value) => model.description = value,
                       maxLines: 5,
+                      style: TextStyle(fontSize: Get.width / 28),
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
                           labelText: "توضیحات",

@@ -48,7 +48,7 @@ class ValidateCodeScreen extends StatelessWidget {
                             "لطفا کد ارسال شده را وارد کنید",
                             style: TextStyle(
                               color: const Color(0xff404040),
-                              fontSize: MediaQuery.of(context).size.width / 28,
+                              fontSize: MediaQuery.of(context).size.width / 30,
 
                               // fontWeight: FontWei
                             ),

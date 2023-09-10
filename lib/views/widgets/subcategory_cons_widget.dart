@@ -16,6 +16,7 @@ class ConsWidget extends StatelessWidget {
         ),
         title: Text(
           title.toPersianDigit(),
+          style: TextStyle(fontSize: MediaQuery.sizeOf(context).width / 28),
         ),
       ),
     );

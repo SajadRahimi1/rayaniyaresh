@@ -53,7 +53,7 @@ class FinalStepScreen extends StatelessWidget {
             child: Text(
               "ثبت نهایی",
               style: TextStyle(
-                  color: const Color(0xffffffff), fontSize: Get.width / 22),
+                  color: const Color(0xffffffff), fontSize: Get.width / 26),
             ),
           ),
         ),

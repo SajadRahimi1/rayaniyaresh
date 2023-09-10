@@ -19,7 +19,7 @@ class YesNoWidget extends StatelessWidget {
               Text(
                 title,
                 style:
-                    TextStyle(fontSize: MediaQuery.of(context).size.width / 28),
+                    TextStyle(fontSize: MediaQuery.of(context).size.width / 31),
               ),
               DropdownButton(
                   items: List.generate(

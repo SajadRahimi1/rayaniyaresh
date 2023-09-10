@@ -74,6 +74,7 @@ class InformationFormViewModel extends GetxController with StateMixin {
       print(userModel?.toJson());
       final _request =
           await user_service.updateUser(userModel?.toJson() ?? {}, token);
+      Get.back();
       if (_request.statusCode == 200) {
         showMessage(
             message: "اطلاعات با موفقیت ویرایش شد",

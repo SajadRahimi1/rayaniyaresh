@@ -24,7 +24,7 @@ class NextStepButton extends StatelessWidget {
           title,
           style: TextStyle(
               color: const Color(0xffffffff),
-              fontSize: MediaQuery.of(context).size.width / 22),
+              fontSize: MediaQuery.of(context).size.width / 26),
         ),
       ),
     );

@@ -36,7 +36,7 @@ class DateTimeScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     child: Text(
                       "روزهای خود را انتخاب کنید",
-                      style: TextStyle(fontSize: Get.width / 25),
+                      style: TextStyle(fontSize: Get.width / 26),
                     ),
                   ),
                   // days widgets
@@ -53,8 +53,8 @@ class DateTimeScreen extends StatelessWidget {
                               child: Obx(
                                 () => Container(
                                   alignment: Alignment.center,
-                                  width: Get.width / 2.6,
-                                  height: Get.height / 8,
+                                  width: Get.width / 3,
+                                  height: Get.height / 12,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
                                       color: _daysIndex.value == index
@@ -63,7 +63,7 @@ class DateTimeScreen extends StatelessWidget {
                                   child: Text(
                                     model.days?[index] ?? "",
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: Get.width / 24),
+                                    style: TextStyle(fontSize: Get.width / 27),
                                   ),
                                 ),
                               )),
@@ -76,11 +76,10 @@ class DateTimeScreen extends StatelessWidget {
 
           // time select car
           Padding(
-            padding: const EdgeInsets.all(8.0) +
-                EdgeInsets.only(top: Get.height / 35),
+            padding: const EdgeInsets.all(8.0),
             child: SizedBox(
               width: Get.width,
-              height: Get.height / 4,
+              height: Get.height / 5,
               child: Card(
                 elevation: 3,
                 shape: RoundedRectangleBorder(
@@ -91,7 +90,7 @@ class DateTimeScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       child: Text(
                         "ساعت خود را انتخاب کنید",
-                        style: TextStyle(fontSize: Get.width / 25),
+                        style: TextStyle(fontSize: Get.width / 26),
                       ),
                     ),
                     Expanded(
@@ -107,11 +106,13 @@ class DateTimeScreen extends StatelessWidget {
                             onTap: () => _hoursIndex.value = index,
                             child: Obx(
                               () => Container(
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 10),
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                ),
+
                                 alignment: Alignment.center,
-                                width: Get.width / 2.8,
-                                height: Get.height / 9.6,
+                                width: Get.width / 3,
+                                // height: Get.height / 15,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
                                     color: _hoursIndex.value == index

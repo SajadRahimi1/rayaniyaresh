@@ -55,7 +55,7 @@ class NurseCategoryScreen extends StatelessWidget {
                       child: Text(
                         ["پرستار کودک", "پرستار سالمند", "پرستار بیمار"][index],
                         style: TextStyle(
-                            fontSize: Get.width / 15,
+                            fontSize: Get.width / 18,
                             fontWeight: FontWeight.bold,
                             color: const Color(0xff000000)),
                       ),

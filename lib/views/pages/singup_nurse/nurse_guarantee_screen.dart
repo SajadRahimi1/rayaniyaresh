@@ -29,7 +29,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
             children: [
               Text(
                 "\nلطفا 3 نفر را معرفی بفرمایید که شما را میشناسد:\n",
-                style: TextStyle(fontSize: Get.width / 22),
+                style: TextStyle(fontSize: Get.width / 26),
               ),
               /* SizedBox(
                             width: Get.width / 3,
@@ -102,7 +102,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
                             keyboardType: TextInputType.number,
                             maxLength: 11,
                             text: "شماره تماس",
-                            onChanged: (value) => _controller.model 
+                            onChanged: (value) => _controller.model
                                 .nurseParentModels?[0].phoneNumber = value),
                       ),
                       const Divider(
@@ -268,13 +268,13 @@ class NurseGuaranteeScreen extends StatelessWidget {
               ),
               Text(
                 "\nدر صورت مشغول به کار شدن کدام یک از موارد را جهت ضمانت میتوانید نزد شرکت قرار دهید؟\n",
-                style: TextStyle(fontSize: Get.width / 24),
+                style: TextStyle(fontSize: Get.width / 27),
               ),
               Row(
                 children: [
                   Text(
                     "سفته (به مبلغ 50 میلیون تومان)",
-                    style: TextStyle(fontSize: Get.width / 25),
+                    style: TextStyle(fontSize: Get.width / 28),
                   ),
                   Obx(() => Checkbox(
                       value: _controller.guaranteeIndex.value == 0,
@@ -286,7 +286,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
                 children: [
                   Text(
                     "چک به ارزش 100 میلیون تومان",
-                    style: TextStyle(fontSize: Get.width / 25),
+                    style: TextStyle(fontSize: Get.width / 28),
                   ),
                   Obx(() => Checkbox(
                       value: _controller.guaranteeIndex.value == 1,
@@ -298,7 +298,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
                 children: [
                   Text(
                     "جواز کسب",
-                    style: TextStyle(fontSize: Get.width / 25),
+                    style: TextStyle(fontSize: Get.width / 28),
                   ),
                   Obx(() => Checkbox(
                       value: _controller.guaranteeIndex.value == 2,
@@ -310,7 +310,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
                 children: [
                   Text(
                     "معرف (کارمند دولتی)",
-                    style: TextStyle(fontSize: Get.width / 25),
+                    style: TextStyle(fontSize: Get.width / 28),
                   ),
                   Obx(() => Checkbox(
                       value: _controller.guaranteeIndex.value == 3,

@@ -77,7 +77,7 @@ class MoreScreen extends StatelessWidget {
                       // "پرداخت",
                       // "پشتیبانی با رایچت",
                     ][index],
-                    style: const TextStyle(fontSize: 15),
+                    style: TextStyle(fontSize: Get.width / 30),
                   ),
                 ),
               )),

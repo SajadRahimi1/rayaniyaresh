@@ -23,12 +23,15 @@ class SuccessReserveScreen extends StatelessWidget {
           children: [
             Expanded(
               child: Center(
-                  child: Text(
-                message ??
-                    "کارشناسان ما در کمتر از 24 ساعت آینده با شما در تماس خواهند بود",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: const Color(0xff000000), fontSize: Get.width / 22),
+                  child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Text(
+                  message ??
+                      "کارشناسان ما در کمتر از 24 ساعت آینده با شما در تماس خواهند بود",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: const Color(0xff000000), fontSize: Get.width / 22),
+                ),
               )),
             ),
             InkWell(

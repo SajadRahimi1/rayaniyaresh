@@ -50,7 +50,7 @@ class GetPhoneScreen extends StatelessWidget {
                                 style: TextStyle(
                                   color: const Color(0xff404040),
                                   fontSize:
-                                      MediaQuery.of(context).size.width / 28,
+                                      MediaQuery.of(context).size.width / 30,
 
                                   // fontWeight: FontWei
                                 ),
@@ -68,7 +68,7 @@ class GetPhoneScreen extends StatelessWidget {
                               maxLines: 1,
                               style: TextStyle(
                                 fontSize:
-                                    MediaQuery.of(context).size.width / 23,
+                                    MediaQuery.of(context).size.width / 25,
                                 color: const Color(0xff404040),
                               ),
                               keyboardType: TextInputType.number,
@@ -85,7 +85,7 @@ class GetPhoneScreen extends StatelessWidget {
                                 hintStyle: TextStyle(
                                   color: const Color(0xffb5b5b5),
                                   fontSize:
-                                      MediaQuery.of(context).size.width / 35,
+                                      MediaQuery.of(context).size.width / 37,
                                 ),
                                 enabledBorder: const UnderlineInputBorder(
                                   borderSide: BorderSide(

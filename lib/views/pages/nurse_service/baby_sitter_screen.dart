@@ -49,7 +49,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                   children: [
                     Text(
                       "تعداد کودک: " "   ",
-                      style: TextStyle(fontSize: Get.width / 23),
+                      style: TextStyle(fontSize: Get.width / 28),
                     ),
                     Obx(() => DropdownButton(
                         items: List.generate(
@@ -72,8 +72,14 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                 // child gender
                 Row(
                   children: [
-                    const Text("جنسیت:" "  "),
-                    const Text("پسر"),
+                    Text(
+                      "جنسیت:" "  ",
+                      style: TextStyle(fontSize: Get.width / 28),
+                    ),
+                    Text(
+                      "پسر",
+                      style: TextStyle(fontSize: Get.width / 28),
+                    ),
                     Obx(() => Checkbox(
                           value: gender.value == 0,
                           onChanged: (value) {
@@ -83,7 +89,10 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                             }
                           },
                         )),
-                    const Text("دختر"),
+                    Text(
+                      "دختر",
+                      style: TextStyle(fontSize: Get.width / 28),
+                    ),
                     Obx(() => Checkbox(
                           value: gender.value == 1,
                           onChanged: (value) {
@@ -93,7 +102,10 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                             }
                           },
                         )),
-                    const Text("هر دو"),
+                    Text(
+                      "هر دو",
+                      style: TextStyle(fontSize: Get.width / 28),
+                    ),
                     Obx(() => Checkbox(
                           value: gender.value == 2,
                           onChanged: (value) {
@@ -139,8 +151,14 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      const Text("شیفت کاری:" "  "),
-                      const Text("شبانه روزی"),
+                      Text(
+                        "شیفت کاری:" "  ",
+                        style: TextStyle(fontSize: Get.width / 28),
+                      ),
+                      Text(
+                        "شبانه روزی",
+                        style: TextStyle(fontSize: Get.width / 28),
+                      ),
                       Obx(() => Checkbox(
                             value: shiftWork.value == 0,
                             onChanged: (value) {
@@ -150,7 +168,10 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                               }
                             },
                           )),
-                      const Text("شبانه"),
+                      Text(
+                        "شبانه",
+                        style: TextStyle(fontSize: Get.width / 28),
+                      ),
                       Obx(() => Checkbox(
                             value: shiftWork.value == 1,
                             onChanged: (value) {
@@ -160,7 +181,10 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                               }
                             },
                           )),
-                      const Text("مقطعی"),
+                      Text(
+                        "مقطعی",
+                        style: TextStyle(fontSize: Get.width / 28),
+                      ),
                       Obx(() => Checkbox(
                             value: shiftWork.value == 2,
                             onChanged: (value) {
@@ -181,7 +205,10 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                     ? const SizedBox()
                     : Row(
                         children: [
-                          const Text("ساعت کاری از   "),
+                          Text(
+                            "ساعت کاری از   ",
+                            style: TextStyle(fontSize: Get.width / 30),
+                          ),
                           SizedBox(
                               width: Get.width / 7,
                               child: ProfileTextInput(
@@ -190,7 +217,10 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                                 keyboardType: TextInputType.number,
                                 onChanged: (value) => hours1 = value,
                               )),
-                          const Text("  تا      "),
+                          Text(
+                            "  تا      ",
+                            style: TextStyle(fontSize: Get.width / 30),
+                          ),
                           SizedBox(
                               width: Get.width / 7,
                               child: ProfileTextInput(
@@ -213,7 +243,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                         child: Row(children: [
                           Text(
                             "در طول مدت فعالیت نیروی اعزامی چه شخصی داخل منزل حضور دارد:   ",
-                            style: TextStyle(fontSize: Get.width / 28),
+                            style: TextStyle(fontSize: Get.width / 30),
                           ),
                           SizedBox(
                             width: Get.width / 2.5,
@@ -235,7 +265,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                         child: Row(children: [
                           Text(
                             "آیا در محل نیروی اعزامی دوربین مداربسته وجود دارد؟:   ",
-                            style: TextStyle(fontSize: Get.width / 28),
+                            style: TextStyle(fontSize: Get.width / 30),
                           ),
                           Obx(() => DropdownButton(
                               items: List.generate(
@@ -315,6 +345,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                     height: Get.height / 8,
                     child: TextFormField(
                       onChanged: (value) => model.description = value,
+                      style: TextStyle(fontSize: Get.width / 28),
                       maxLines: 5,
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(

@@ -104,11 +104,11 @@ class InformationFormScreen extends StatelessWidget {
                     ),
                     SizedBox(
                       width: Get.width,
-                      height: Get.height / 10,
+                      height: Get.height / 11,
                       child: Row(
                         children: [
-                          const Text("میزان تحصیلات : ",
-                              style: TextStyle(fontSize: 14)),
+                          Text("میزان تحصیلات : ",
+                              style: TextStyle(fontSize: Get.width / 30)),
                           Expanded(
                               child: ListView.builder(
                                   physics: const BouncingScrollPhysics(),
@@ -134,12 +134,12 @@ class InformationFormScreen extends StatelessWidget {
                                                       : const Color(
                                                           0xffe5e5e5)),
                                               child: Text(
-                                                _controller
-                                                    .educationStrings[index],
-                                                textAlign: TextAlign.center,
-                                                style: const TextStyle(
-                                                    fontSize: 14),
-                                              ),
+                                                  _controller
+                                                      .educationStrings[index],
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          Get.width / 30)),
                                             )),
                                       )))
                         ],
@@ -200,7 +200,7 @@ class InformationFormScreen extends StatelessWidget {
                     isReserving ? "مرحله بعدی" : "ثبت اطلاعات",
                     style: TextStyle(
                         color: const Color(0xffffffff),
-                        fontSize: Get.width / 22),
+                        fontSize: Get.width / 26),
                   ),
                 ),
               ),

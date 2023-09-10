@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/viewmodels/signup_nurse/nurse_information_viewmodel.dart';
-import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_questions_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart' as picker;
@@ -98,7 +97,7 @@ class NurseInformationScreen extends StatelessWidget {
                 // education
                 SizedBox(
                   width: Get.width,
-                  height: Get.height / 10,
+                  height: Get.height / 12,
                   child: Row(
                     children: [
                       const Text("میزان تحصیلات : ",
