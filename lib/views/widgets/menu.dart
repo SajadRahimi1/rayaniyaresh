@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:rayaniyaresh/core/services/biometric_service.dart';
+import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/models/constants/singleton_class.dart';
 import 'package:rayaniyaresh/models/constants/urls.dart';
 import 'package:rayaniyaresh/views/pages/home/profile_screen.dart';
@@ -13,6 +15,10 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RxBool biometric = false.obs;
+    final GetStorage getStorage = GetStorage();
+    GetStorage.init().then(
+        (value) => biometric.value = getStorage.read('biometric') ?? false);
     print(SingletonClass().imageUrl);
     return SizedBox(
       width: MediaQuery.of(context).size.width,
@@ -126,6 +132,8 @@ class Menu extends StatelessWidget {
                               color: const Color(0xff656565),
                               fontSize: MediaQuery.of(context).size.width / 32),
                         ),
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 10),
                         leading: SizedBox.square(
                           dimension: MediaQuery.of(context).size.width / 18,
                           child: Image.asset(
@@ -133,11 +141,70 @@ class Menu extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Divider(
-                        color: Color(0xffe5e5e5),
+
+                      Container(
                         height: 1,
-                        thickness: 1,
+                        margin: EdgeInsets.only(
+                            // top: MediaQuery.of(context).size.height / 30,
+                            bottom: MediaQuery.of(context).size.height / 50),
+                        width: MediaQuery.of(context).size.width,
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                          colors: [
+                            Color.fromRGBO(255, 255, 255, 0),
+                            Color(0xff9A7ACD),
+                            Color.fromRGBO(255, 255, 255, 0),
+                          ],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        )),
                       ),
+
+                      ListTile(
+                        leading: SizedBox.square(
+                          dimension: MediaQuery.of(context).size.width / 18,
+                          child: Image.asset(
+                            "assets/images/icons/biometric.png",
+                          ),
+                        ),
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 10),
+                        title: Text(
+                          "ورود با اثر انگشت",
+                          style: TextStyle(
+                              color: const Color(0xff656565),
+                              fontSize: MediaQuery.of(context).size.width / 32),
+                        ),
+                        trailing: Obx(() => Switch(
+                            value: biometric.value,
+                            onChanged: (value) async {
+                              if (value) {
+                                final BiometricService biometricService =
+                                    BiometricService();
+                                await biometricService.fillVariable();
+                                if (biometricService
+                                    .canAuthenticateWithBiometrics) {
+                                  getStorage.write('biometric', value);
+                                  biometric.value = value;
+                                } else {
+                                  showMessage(
+                                      title: 'خطا',
+                                      message:
+                                          'امکان ورود با اثرانگشت در تلفن شما یافت نشد',
+                                      type: MessageType.warning);
+                                }
+                              } else {
+                                biometric.value = value;
+                                getStorage.write('biometric', value);
+                              }
+                            })),
+                        onTap: () async {},
+                      ),
+                      // const Divider(
+                      //   color: Color(0xffe5e5e5),
+                      //   height: 1,
+                      //   thickness: 1,
+                      // ),
                       // rules list tile
                       // ListTile(
                       //   // onTap: () {
@@ -160,11 +227,11 @@ class Menu extends StatelessWidget {
                       //   ),
                       // ),
 
-                      const Divider(
-                        color: Color(0xffe5e5e5),
-                        height: 1,
-                        thickness: 0.5,
-                      ),
+                      // const Divider(
+                      //   color: Color(0xffe5e5e5),
+                      //   height: 1,
+                      //   thickness: 0.5,
+                      // ),
                       // license list tile
 
                       //support list tile
@@ -245,11 +312,11 @@ class Menu extends StatelessWidget {
                   // storage.remove("token");
                   onTap: () async {
                     await GetStorage.init();
-                    final GetStorage getStorage = GetStorage();
                     // await getStorage.remove('token');
                     Get.offAll(() => const GetPhoneScreen(isExit: true));
                   },
                   // ,
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                   title: Text(
                     "خروج",
                     style: TextStyle(

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:rayaniyaresh/core/services/biometric_service.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/models/constants/singleton_class.dart';
 import 'package:rayaniyaresh/models/models/user_model.dart';
@@ -18,6 +19,7 @@ class GetPhoneViewModel extends GetxController with StateMixin {
   RxBool isPhoneValida = false.obs;
   final GetStorage _getStorage = GetStorage();
   String token = "";
+  bool isSecure = false;
 
   @override
   void onInit() async {
@@ -25,6 +27,7 @@ class GetPhoneViewModel extends GetxController with StateMixin {
     super.onInit();
     await GetStorage.init();
     token = _getStorage.read("token") ?? "";
+    isSecure = _getStorage.read('biometric') ?? false;
     // token = "";
     if (isExit) {
       change(null, status: RxStatus.success());
@@ -44,6 +47,19 @@ class GetPhoneViewModel extends GetxController with StateMixin {
     if (token.isNotEmpty) {
       final _request = await user_service.checkToken(token);
       if (_request.statusCode == 200) {
+        if (isSecure) {
+          final BiometricService biometricService = BiometricService();
+          await biometricService.fillVariable();
+          bool isAuthenticate = await biometricService.authenticate();
+          if (isAuthenticate == false) {
+            showMessage(
+                title: 'خطا',
+                message: 'ورود فقط با تایید اثرانگشت فعال شده است',
+                type: MessageType.error);
+            change(null, status: RxStatus.success());
+            return;
+          }
+        }
         SingletonClass _singletonClass = SingletonClass();
         UserModel _userModel = UserModel.fromJson(_request.body);
         _singletonClass
