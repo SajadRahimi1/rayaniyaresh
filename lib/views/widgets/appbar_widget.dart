@@ -1,26 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 AppBar homeAppBar({
   required BuildContext context,
 }) =>
     AppBar(
-        elevation: 0.2,
-        // backgroundColor: Color(0xff02B8CC),
+      elevation: 0.2,
+      // backgroundColor: Color(0xff02B8CC),
 
-        backgroundColor: const Color(0xffF8FAFB),
-        leading: Builder(builder: (context) {
-          return IconButton(
-              icon: const Icon(Icons.menu, color: Color(0xff000000), size: 26),
-              onPressed: () {
-                FocusScope.of(context).unfocus();
-                Scaffold.of(context).openDrawer();
-              });
-        }),
-        title: Text(
-          "02632406705".toPersianDigit(),
-          style: const TextStyle(color: Colors.black),
-        ));
+      backgroundColor: const Color(0xffF8FAFB),
+      leading: Builder(builder: (context) {
+        return IconButton(
+            icon: const Icon(Icons.menu, color: Color(0xff000000), size: 26),
+            onPressed: () {
+              FocusScope.of(context).unfocus();
+              Scaffold.of(context).openDrawer();
+            });
+      }),
+
+      actions: [
+        InkWell(
+          onTap: () => launchUrl(Uri.parse('tel:02632406705')),
+          child: const Icon(
+            Icons.phone,
+            color: Colors.black,
+          ),
+        ),
+        InkWell(
+            onTap: () => launchUrl(Uri.parse('tel:02632406705')),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Center(
+                child: Text(
+                  "02632406705".toPersianDigit(),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            )),
+      ],
+    );
 
 AppBar screensAppbar({required BuildContext context, String title = ""}) =>
     AppBar(
