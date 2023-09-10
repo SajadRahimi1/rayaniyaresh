@@ -25,6 +25,7 @@ class GetPhoneViewModel extends GetxController with StateMixin {
     super.onInit();
     await GetStorage.init();
     token = _getStorage.read("token") ?? "";
+    // token = "";
     if (isExit) {
       change(null, status: RxStatus.success());
     } else {

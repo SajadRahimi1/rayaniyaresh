@@ -9,10 +9,10 @@ class GetPhoneScreen extends StatelessWidget {
   const GetPhoneScreen({Key? key, this.isExit = false}) : super(key: key);
   final bool isExit;
 
-
   @override
   Widget build(BuildContext context) {
     final _controller = Get.put(GetPhoneViewModel(isExit));
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xffffffff),

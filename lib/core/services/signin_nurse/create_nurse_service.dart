@@ -7,6 +7,7 @@ Future<Response<dynamic>> createNurse(CreateNurseModel model) async {
   return await getConnect.post(nurseUrl, model.toJson());
 }
 
-Future<Response<dynamic>> finalize(String phoneNumber) async {
-  return await getConnect.post(nurseHiringSmsUrl, '"$phoneNumber"');
+Future<Response<dynamic>> finalize(String phoneNumber, String name) async {
+  return await getConnect.get(nurseHiringSmsUrl,
+      query: {'name': name, 'phoneNumber': phoneNumber});
 }

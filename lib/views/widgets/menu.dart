@@ -6,7 +6,6 @@ import 'package:rayaniyaresh/models/constants/singleton_class.dart';
 import 'package:rayaniyaresh/models/constants/urls.dart';
 import 'package:rayaniyaresh/views/pages/home/profile_screen.dart';
 import 'package:rayaniyaresh/views/pages/login/get_phone_number_screen.dart';
-import 'package:rayaniyaresh/views/pages/menu/aboutus_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Menu extends StatelessWidget {
@@ -247,8 +246,8 @@ class Menu extends StatelessWidget {
                   onTap: () async {
                     await GetStorage.init();
                     final GetStorage getStorage = GetStorage();
-                    await getStorage.remove('token');
-                    Get.offAll(() => const GetPhoneScreen(isExit:true));
+                    // await getStorage.remove('token');
+                    Get.offAll(() => const GetPhoneScreen(isExit: true));
                   },
                   // ,
                   title: Text(

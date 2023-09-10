@@ -94,6 +94,7 @@ class NurseDownloadScreen extends StatelessWidget {
             title: "مرحله بعدی",
             onTap: () => Get.to(() => NurseRulesScreen(
                   phoneNumber: nurseModel.phoneNumber ?? "",
+                  name: nurseModel.name ?? "",
                 )),
           ),
         ],

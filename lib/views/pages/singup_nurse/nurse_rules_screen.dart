@@ -9,9 +9,10 @@ import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 
 class NurseRulesScreen extends StatelessWidget {
-  const NurseRulesScreen({Key? key, required this.phoneNumber})
+  const NurseRulesScreen(
+      {Key? key, required this.phoneNumber, required this.name})
       : super(key: key);
-  final String phoneNumber;
+  final String phoneNumber, name;
 
   @override
   Widget build(BuildContext context) {
@@ -164,7 +165,7 @@ class NurseRulesScreen extends StatelessWidget {
                 title: "تایید نهایی",
                 enable: accept.value,
                 onTap: () async {
-                  var request = await finalize(phoneNumber);
+                  var request = await finalize(phoneNumber, name);
                   print(request.statusCode);
                   if (accept.value) {
                     Get.to(() => const SuccessReserveScreen(

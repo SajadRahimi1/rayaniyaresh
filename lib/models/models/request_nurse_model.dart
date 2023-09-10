@@ -34,7 +34,7 @@ class RequestNurseModel {
     age = json['Age'];
     shift = json['Shift'] == null ? null : Shift.values[json['Shift']];
     hours = json['Hours'];
-    peopleInHouse = json['PeopleInHouse'];
+    peopleInHouse = json['PeopleInHouse'];    
     cctv = json['CCTV'];
     address = json['Address'];
     createdAt =

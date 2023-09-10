@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:rayaniyaresh/views/pages/login/get_phone_number_screen.dart';
 
 class SplashSrceen extends StatelessWidget {
@@ -6,13 +7,8 @@ class SplashSrceen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(
-        const Duration(milliseconds: 7300),
-        () => Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const GetPhoneScreen(),
-            )));
+    Future.delayed(const Duration(milliseconds: 7300),
+        () => Get.offAll(() => const GetPhoneScreen()));
     return Scaffold(
       body: Center(
         child: Image.asset(
