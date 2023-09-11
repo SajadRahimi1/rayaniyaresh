@@ -6,9 +6,12 @@ AppBar homeAppBar({
     AppBar(
       elevation: 0.2,
       // backgroundColor: Color(0xff02B8CC),
-
+      title: Image.asset(
+        "assets/images/icons/logo-home.png",
+        fit: BoxFit.fitWidth,
+      ),
       backgroundColor: const Color(0xffF8FAFB),
-
+      centerTitle: false,
       actions: [
         Builder(builder: (context) {
           return IconButton(

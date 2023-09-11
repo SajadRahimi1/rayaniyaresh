@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rayaniyaresh/models/constants/colors.dart';
 
 class Messagewidget extends StatelessWidget {
   const Messagewidget(
@@ -20,7 +21,7 @@ class Messagewidget extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
         // padding: const EdgeInsets.all(12.0),
         decoration: BoxDecoration(
-          color: isUserSend ? Colors.blue : Colors.grey[300],
+          color: isUserSend ? const Color(0xffafafaf) : buttonColor,
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(10.0),
             topRight: const Radius.circular(10.0),

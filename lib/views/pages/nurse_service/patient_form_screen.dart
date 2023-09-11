@@ -67,7 +67,10 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                   ],
                 ),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // child gender
                 Row(
@@ -81,7 +84,8 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                       style: TextStyle(fontSize: Get.width / 30),
                     ),
                     Obx(() => Checkbox(
-                          value: gender.value == 0,
+                          activeColor: buttonColor,
+                          value: gender.value == 0 || gender.value == 2,
                           onChanged: (value) {
                             if (value != null) {
                               gender.value = 0;
@@ -94,7 +98,8 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                       style: TextStyle(fontSize: Get.width / 30),
                     ),
                     Obx(() => Checkbox(
-                          value: gender.value == 1,
+                          activeColor: buttonColor,
+                          value: gender.value == 1 || gender.value == 2,
                           onChanged: (value) {
                             if (value != null) {
                               gender.value = 1;
@@ -108,9 +113,14 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                     ),
                     Obx(() => Checkbox(
                           value: gender.value == 2,
+                          activeColor: buttonColor,
                           onChanged: (value) {
                             if (value != null) {
-                              gender.value = 2;
+                              if (value) {
+                                gender.value = 2;
+                              } else {
+                                gender.value = -1;
+                              }
                               model.gender = Gender.Both;
                             }
                           },
@@ -118,7 +128,10 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                   ],
                 ),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // children ages
                 Obx(
@@ -142,8 +155,10 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                       )),
                 ),
 
-                const Divider(thickness: 1),
-
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
                 // shift
                 SizedBox(
                   height: Get.height / 30,
@@ -160,6 +175,7 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                         style: TextStyle(fontSize: Get.width / 30),
                       ),
                       Obx(() => Checkbox(
+                            activeColor: buttonColor,
                             value: shiftWork.value == 0,
                             onChanged: (value) {
                               if (value != null) {
@@ -173,6 +189,7 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                         style: TextStyle(fontSize: Get.width / 30),
                       ),
                       Obx(() => Checkbox(
+                            activeColor: buttonColor,
                             value: shiftWork.value == 1,
                             onChanged: (value) {
                               if (value != null) {
@@ -186,6 +203,7 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                         style: TextStyle(fontSize: Get.width / 30),
                       ),
                       Obx(() => Checkbox(
+                            activeColor: buttonColor,
                             value: shiftWork.value == 2,
                             onChanged: (value) {
                               if (value != null) {
@@ -197,8 +215,6 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                     ],
                   ),
                 ),
-
-                const Divider(thickness: 1),
 
                 // hour of work
                 Obx(() => shiftWork.value == 0
@@ -229,7 +245,10 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                         ],
                       )),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // person in home
                 SizedBox(
@@ -251,7 +270,10 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                           )
                         ]))),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // camera
                 SizedBox(
@@ -280,7 +302,10 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                               })),
                         ]))),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // address
                 Padding(
@@ -336,7 +361,10 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                   ),
                 ),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // description
                 Padding(

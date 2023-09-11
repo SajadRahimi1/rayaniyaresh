@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/viewmodels/home/support_viewmodel.dart';
+import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/message_icon_widget.dart';
 import 'package:rayaniyaresh/views/widgets/message_widget.dart';
 
@@ -12,6 +14,7 @@ class SupportScreen extends StatelessWidget {
     final _controller = Get.put(SupportViewModel());
 
     return Scaffold(
+      appBar: screensAppbar(context: context, title: 'چت آنلاین پشتیبانی'),
       body: _controller.obx((status) => SizedBox(
             width: Get.width,
             height: Get.height,
@@ -66,10 +69,7 @@ class SupportScreen extends StatelessWidget {
                             focusColor: Colors.green,
                             alignLabelWithHint: true,
                             suffixIcon: IconButton(
-                              icon: const Icon(
-                                Icons.send,
-                                color: Colors.green,
-                              ),
+                              icon: const Icon(Icons.send, color: buttonColor),
                               onPressed: () async {
                                 var message =
                                     _controller.textEditingController.text;

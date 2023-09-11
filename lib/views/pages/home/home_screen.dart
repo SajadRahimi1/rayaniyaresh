@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/nurse_category_screen.dart';
@@ -14,6 +17,14 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Rx<int> color = 0.obs;
+    Timer.periodic(const Duration(milliseconds: 500), (timer) {
+      if (color.value == 0) {
+        color.value = 1;
+      } else {
+        color.value = 0;
+      }
+    });
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -29,28 +40,114 @@ class HomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       SizedBox(
-                        width: Get.width / 2.5,
-                        child: Text(" :درخواست های من",
-                            style: TextStyle(
-                                color: buttonColor, fontSize: Get.width / 31)),
+                        width: Get.width / 2.2,
+                        child: Row(
+                          children: [
+                            Container(
+                                // backgroundColor: buttonColor,
+                                // radius: Get.width / 40,
+                                // duration: const Duration(milliseconds: 500),
+                                width: 20,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                    color: buttonColor,
+                                    borderRadius: BorderRadius.circular(25)),
+                                child: Center(
+                                  child: Text(
+                                    "0".toPersianDigit(),
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 12),
+                                  ),
+                                )),
+                            Text(" :درخواست های من",
+                                style: TextStyle(
+                                    color: buttonColor,
+                                    fontSize: Get.width / 31)),
+                          ],
+                        ),
                       ),
                       SizedBox(
-                        width: Get.width / 2.5,
-                        child: Text(" :درخواست های تایید شده",
-                            style: TextStyle(
-                                color: buttonColor, fontSize: Get.width / 31)),
+                        width: Get.width / 2.2,
+                        child: Row(
+                          children: [
+                            Container(
+                                // backgroundColor: buttonColor,
+                                // radius: Get.width / 40,
+                                // duration: const Duration(milliseconds: 500),
+                                width: 20,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                    color: buttonColor,
+                                    borderRadius: BorderRadius.circular(25)),
+                                child: Center(
+                                  child: Text(
+                                    "0".toPersianDigit(),
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 12),
+                                  ),
+                                )),
+                            Text(" :درخواست های تایید شده",
+                                style: TextStyle(
+                                    color: buttonColor,
+                                    fontSize: Get.width / 31)),
+                          ],
+                        ),
                       ),
                       SizedBox(
-                        width: Get.width / 2.5,
-                        child: Text(" :درخواست های رد شده",
-                            style: TextStyle(
-                                color: buttonColor, fontSize: Get.width / 31)),
-                      ),
+                          width: Get.width / 2.2,
+                          child: Row(
+                            children: [
+                              Container(
+                                  // backgroundColor: buttonColor,
+                                  // radius: Get.width / 40,
+                                  // duration: const Duration(milliseconds: 500),
+                                  width: 20,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                      color: buttonColor,
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: Center(
+                                    child: Text(
+                                      "0".toPersianDigit(),
+                                      style: const TextStyle(
+                                          color: Colors.white, fontSize: 12),
+                                    ),
+                                  )),
+                              Text(" :درخواست های رد شده",
+                                  style: TextStyle(
+                                      color: buttonColor,
+                                      fontSize: Get.width / 31)),
+                            ],
+                          )),
                       SizedBox(
-                        width: Get.width / 2.5,
-                        child: Text(" :پیام های من",
-                            style: TextStyle(
-                                color: buttonColor, fontSize: Get.width / 31)),
+                        width: Get.width / 2.2,
+                        child: Row(
+                          children: [
+                            Obx(() => Container(
+                                // backgroundColor: buttonColor,
+                                // radius: Get.width / 40,
+                                // duration: const Duration(milliseconds: 500),
+                                width: 20,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                    color: [
+                                      Colors.red,
+                                      Colors.black
+                                    ][color.value],
+                                    borderRadius: BorderRadius.circular(25)),
+                                child: Center(
+                                  child: Text(
+                                    "5".toPersianDigit(),
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 12),
+                                  ),
+                                ))),
+                            Text(" :پیام های من",
+                                style: TextStyle(
+                                    color: buttonColor,
+                                    fontSize: Get.width / 31)),
+                          ],
+                        ),
                       ),
                     ]),
               ),

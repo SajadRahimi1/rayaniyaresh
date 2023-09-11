@@ -39,10 +39,10 @@ class RequestNurseViewmodel extends GetxController with StateMixin {
       final _request = await service.requestNurses(model, token);
       Get.back();
       if (_request.statusCode == 200) {
-        Get.offAll(
+        Get.to(
             () => const SuccessReserveScreen(
                   message:
-                      "کارشناسان ما در کمتر از 30 دقیقه آینده با شما جهت ارایه توضیحات بیشتر تماس میگیرند",
+                      "کارشناسان ما در کمتر از 30 دقیقه آینده با شما جهت ارائه توضیحات بیشتر تماس میگیرند",
                 ),
             transition: Transition.leftToRight);
       } else {

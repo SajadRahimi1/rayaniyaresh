@@ -16,7 +16,7 @@ class FinalStepScreen extends StatelessWidget {
     final _controller = Get.put(RequestNurseViewmodel(model: model));
 
     return Scaffold(
-      appBar: screensAppbar(context: context, title: "پرستار کودک"),
+      appBar: screensAppbar(context: context, title: "اطلاعات شخصی"),
       body: Column(children: [
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -32,7 +32,10 @@ class FinalStepScreen extends StatelessWidget {
                 controller: _controller.textEditingControllers[1])),
         const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-            child: ProfileTextInput(text: "نحوه آشنایی با ما")),
+            child: ProfileTextInput(
+              text: "نحوه آشنایی با ما",
+              required: true,
+            )),
 
         // button
         const Expanded(child: SizedBox()),

@@ -48,8 +48,7 @@ class ClassSubcategoryScreen extends StatelessWidget {
               width: Get.width,
               height: Get.height / 5,
               decoration: BoxDecoration(
-                  color: randomColor[index],
-                  borderRadius: BorderRadius.circular(10)),
+                  color: buttonColor, borderRadius: BorderRadius.circular(10)),
               child: Text(model[index].title ?? "",
                   textAlign: TextAlign.center,
                   style: const TextStyle(color: Colors.white)),

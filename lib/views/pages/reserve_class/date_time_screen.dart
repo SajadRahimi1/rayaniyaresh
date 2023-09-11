@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/models/class_model.dart';
 import 'package:rayaniyaresh/models/models/reserve_class_model.dart';
@@ -58,7 +59,7 @@ class DateTimeScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
                                       color: _daysIndex.value == index
-                                          ? Colors.green
+                                          ? buttonColor
                                           : const Color(0xffcfcfcf)),
                                   child: Text(
                                     model.days?[index] ?? "",
@@ -116,10 +117,10 @@ class DateTimeScreen extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
                                     color: _hoursIndex.value == index
-                                        ? Colors.green
+                                        ? buttonColor
                                         : const Color(0xffcfcfcf)),
                                 child: Text(
-                                  model.hours?[index] ?? "",
+                                  (model.hours?[index] ?? "").toPersianDigit(),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(fontSize: Get.width / 24),
                                 ),

@@ -35,7 +35,7 @@ class InformationFormScreen extends StatelessWidget {
                   children: [
                     ProfileTextInput(
                       controller: _controller.textEditingController[0],
-                      text: "نام و نام خانوادگی",
+                      text: "نام و نام خانوادگی:",
                       icon: const Icon(
                         Icons.person,
                         color: buttonColor,
@@ -46,7 +46,7 @@ class InformationFormScreen extends StatelessWidget {
                     ),
                     ProfileTextInput(
                       controller: _controller.textEditingController[1],
-                      text: "نام پدر",
+                      text: "نام پدر:",
                       icon: const Icon(
                         Icons.family_restroom,
                         color: buttonColor,
@@ -56,7 +56,7 @@ class InformationFormScreen extends StatelessWidget {
                       },
                     ),
                     ProfileTextInput(
-                        text: "تاریخ تولد",
+                        text: "تاریخ تولد:",
                         enable: false,
                         controller: _controller.textEditingController[2],
                         ontap: () async {
@@ -81,7 +81,7 @@ class InformationFormScreen extends StatelessWidget {
                         )),
                     ProfileTextInput(
                       controller: _controller.textEditingController[3],
-                      text: "محل صدور",
+                      text: "محل صدور:",
                       icon: const Icon(
                         Icons.location_city,
                         color: buttonColor,
@@ -92,7 +92,7 @@ class InformationFormScreen extends StatelessWidget {
                     ),
                     ProfileTextInput(
                       controller: _controller.textEditingController[4],
-                      text: "کد ملی",
+                      text: "کد ملی:",
                       icon: const Icon(
                         Icons.public,
                         color: buttonColor,
@@ -105,7 +105,7 @@ class InformationFormScreen extends StatelessWidget {
                     ),
                     ProfileTextInput(
                       controller: _controller.textEditingController[5],
-                      text: "شماره شناسنامه",
+                      text: "شماره شناسنامه:",
                       icon: const Icon(
                         Icons.public_sharp,
                         color: buttonColor,
@@ -118,24 +118,24 @@ class InformationFormScreen extends StatelessWidget {
                     ),
                     SizedBox(
                       width: Get.width,
-                      height: Get.height / 11,
+                      height: Get.height / 12,
                       child: Row(
                         children: [
-                          Text("میزان تحصیلات : ",
-                              style: TextStyle(fontSize: Get.width / 30)),
+                          const Text("میزان تحصیلات :",
+                              style: TextStyle(fontSize: 10)),
                           Expanded(
                               child: ListView.builder(
                                   physics: const BouncingScrollPhysics(),
-                                  itemCount: 6,
+                                  itemCount: 5,
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (_, index) => InkWell(
                                         onTap: () =>
                                             _controller.education.value = index,
                                         child: Obx(() => Container(
-                                              width: Get.width / 5.5,
+                                              width: Get.width / 8,
                                               margin: EdgeInsets.symmetric(
                                                   horizontal: 3,
-                                                  vertical: Get.height / 80),
+                                                  vertical: Get.height / 70),
                                               height: Get.height,
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
@@ -144,16 +144,16 @@ class InformationFormScreen extends StatelessWidget {
                                                   color: _controller.education
                                                               .value ==
                                                           index
-                                                      ? Colors.green
+                                                      ? buttonColor
                                                       : const Color(
                                                           0xffe5e5e5)),
                                               child: Text(
-                                                  _controller
-                                                      .educationStrings[index],
-                                                  textAlign: TextAlign.center,
-                                                  style: const TextStyle(
-                                                      fontSize:
-                                                          10)),
+                                                _controller
+                                                    .educationStrings[index],
+                                                textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                    fontSize: 9),
+                                              ),
                                             )),
                                       )))
                         ],
@@ -161,7 +161,7 @@ class InformationFormScreen extends StatelessWidget {
                     ),
                     ProfileTextInput(
                       controller: _controller.textEditingController[6],
-                      text: "آدرس محل سکونت",
+                      text: "آدرس محل سکونت:",
                       icon: const Icon(
                         Icons.pin_drop,
                         color: buttonColor,
@@ -172,7 +172,7 @@ class InformationFormScreen extends StatelessWidget {
                     ),
                     ProfileTextInput(
                       controller: _controller.textEditingController[7],
-                      text: "شماره تلفن همراه",
+                      text: "شماره تلفن همراه:",
                       icon: const Icon(
                         Icons.phone_android,
                         color: buttonColor,
@@ -186,7 +186,7 @@ class InformationFormScreen extends StatelessWidget {
                     ),
                     ProfileTextInput(
                       controller: _controller.textEditingController[8],
-                      text: "شماره ضروری",
+                      text: "شماره ضروری:",
                       icon: const Icon(
                         Icons.phone,
                         color: buttonColor,

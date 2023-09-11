@@ -19,7 +19,7 @@ class OldageFormScreen extends StatefulWidget {
 class _OldageFormScreen extends State<OldageFormScreen> {
   RxInt gender = (-1).obs;
   RxInt childNumber = (1).obs;
-  RxInt oldageProblem = (1).obs;
+  RxList<int> oldageProblem = [1].obs;
   RxInt shiftWork = (-1).obs;
   RxBool camera = false.obs;
   List<String> ages = List.generate(4, (index) => "");
@@ -70,7 +70,10 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                   ],
                 ),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // child gender
                 Row(
@@ -84,7 +87,8 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                       style: TextStyle(fontSize: Get.width / 30),
                     ),
                     Obx(() => Checkbox(
-                          value: gender.value == 0,
+                          activeColor: buttonColor,
+                          value: gender.value == 0 || gender.value == 2,
                           onChanged: (value) {
                             if (value != null) {
                               gender.value = 0;
@@ -97,7 +101,8 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                       style: TextStyle(fontSize: Get.width / 30),
                     ),
                     Obx(() => Checkbox(
-                          value: gender.value == 1,
+                          activeColor: buttonColor,
+                          value: gender.value == 1 || gender.value == 2,
                           onChanged: (value) {
                             if (value != null) {
                               gender.value = 1;
@@ -111,9 +116,14 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                     ),
                     Obx(() => Checkbox(
                           value: gender.value == 2,
+                          activeColor: buttonColor,
                           onChanged: (value) {
                             if (value != null) {
-                              gender.value = 2;
+                              if (value) {
+                                gender.value = 2;
+                              } else {
+                                gender.value = -1;
+                              }
                               model.gender = Gender.Both;
                             }
                           },
@@ -121,7 +131,10 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                   ],
                 ),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // children ages
                 Obx(
@@ -145,7 +158,10 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                       )),
                 ),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 SizedBox(
                   width: Get.width,
@@ -165,7 +181,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                           children: List.generate(
                               4,
                               (index) => InkWell(
-                                    onTap: () => oldageProblem.value = index,
+                                    // onTap: () => oldageProblem.value = index,
                                     child: Row(
                                       children: [
                                         Text(
@@ -179,9 +195,19 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                                               fontSize: Get.width / 30),
                                         ),
                                         Checkbox(
-                                            value: oldageProblem.value == index,
-                                            onChanged: (value) =>
-                                                oldageProblem.value = index)
+                                            value:
+                                                oldageProblem.contains(index),
+                                            activeColor: buttonColor,
+                                            onChanged: (value) {
+                                              if (value != null) {
+                                                if (value) {
+                                                  oldageProblem.add(index);
+                                                  oldageProblem.remove(6);
+                                                }
+                                              } else {
+                                                oldageProblem.remove(index);
+                                              }
+                                            })
                                       ],
                                     ),
                                   )),
@@ -191,8 +217,8 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                           children: List.generate(
                               3,
                               (index) => InkWell(
-                                    onTap: () =>
-                                        oldageProblem.value = index + 4,
+                                    // onTap: () =>
+                                    //     oldageProblem.value = index + 4,
                                     child: Row(
                                       children: [
                                         Text(
@@ -205,10 +231,26 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                                               fontSize: Get.width / 30),
                                         ),
                                         Checkbox(
-                                            value: oldageProblem.value - 4 ==
-                                                index,
-                                            onChanged: (value) =>
-                                                oldageProblem.value = index + 4)
+                                            activeColor: buttonColor,
+                                            value: oldageProblem
+                                                .contains(index + 4),
+                                            onChanged: (value) {
+                                              if (value != null) {
+                                                if (value) {
+                                                  if (index == 2) {
+                                                    oldageProblem.value = [];
+                                                    oldageProblem
+                                                        .add(index + 4);
+                                                    return;
+                                                  }
+                                                  oldageProblem.add(index + 4);
+                                                  oldageProblem.remove(6);
+                                                } else {
+                                                  oldageProblem
+                                                      .remove(index + 4);
+                                                }
+                                              }
+                                            })
                                       ],
                                     ),
                                   )),
@@ -216,7 +258,10 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                       ],
                     ))),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // shift
                 SizedBox(
@@ -234,6 +279,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                         style: TextStyle(fontSize: Get.width / 30),
                       ),
                       Obx(() => Checkbox(
+                            activeColor: buttonColor,
                             value: shiftWork.value == 0,
                             onChanged: (value) {
                               if (value != null) {
@@ -247,6 +293,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                         style: TextStyle(fontSize: Get.width / 30),
                       ),
                       Obx(() => Checkbox(
+                            activeColor: buttonColor,
                             value: shiftWork.value == 1,
                             onChanged: (value) {
                               if (value != null) {
@@ -260,6 +307,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                         style: TextStyle(fontSize: Get.width / 30),
                       ),
                       Obx(() => Checkbox(
+                            activeColor: buttonColor,
                             value: shiftWork.value == 2,
                             onChanged: (value) {
                               if (value != null) {
@@ -271,8 +319,6 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                     ],
                   ),
                 ),
-
-                const Divider(thickness: 1),
 
                 // hour of work
                 Obx(() => shiftWork.value == 0
@@ -303,7 +349,10 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                         ],
                       )),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // person in home
                 SizedBox(
@@ -325,7 +374,10 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                           )
                         ]))),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // camera
                 SizedBox(
@@ -354,7 +406,10 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                               })),
                         ]))),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // address
                 Padding(
@@ -412,8 +467,6 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                   ),
                 ),
 
-                const Divider(thickness: 1),
-
                 // description
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: Get.height / 45),
@@ -442,15 +495,19 @@ class _OldageFormScreen extends State<OldageFormScreen> {
               model.address = provinceController.text;
               model.hours = hours1;
               model.age = ages[0];
-              model.problem = [
-                "پوشک",
-                "لگن",
-                "سون",
-                "آلزایمر",
-                "پارکینگ سون",
-                "ام اس",
-                "هیچ کدام"
-              ][oldageProblem.value];
+              var problem = "";
+              for (var item in oldageProblem) {
+                problem += [
+                      "پوشک",
+                      "لگن",
+                      "سون",
+                      "آلزایمر",
+                      "پارکینگ سون",
+                      "ام اس",
+                      "هیچ کدام"
+                    ][item] +
+                    ',';
+              }
               if (babySitterValidation(model)) {
                 model.address =
                     "استان ${provinceController.text} شهر ${cityController.text} محله $neighbourhood";

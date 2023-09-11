@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
+import 'package:rayaniyaresh/views/pages/home/support_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SelectSupportScreen extends StatelessWidget {
   const SelectSupportScreen({Key? key}) : super(key: key);
@@ -14,6 +17,7 @@ class SelectSupportScreen extends StatelessWidget {
         ),
         ListTile(
           minLeadingWidth: 1,
+          onTap: () => launchUrl(Uri.parse('tel:02632406705')),
           title: Row(
             children: [
               const Text("تماس با پشتیبانی : "),
@@ -30,6 +34,7 @@ class SelectSupportScreen extends StatelessWidget {
         ),
         ListTile(
           minLeadingWidth: 1,
+          onTap: () => Get.to(() => const SupportScreen()),
           title: Row(
             children: [
               const Text(

@@ -6,7 +6,6 @@ import 'package:rayaniyaresh/viewmodels/home/main_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/home/home_screen.dart';
 import 'package:rayaniyaresh/views/pages/home/more_screen.dart';
 import 'package:rayaniyaresh/views/pages/home/select_support_screen.dart';
-import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/menu.dart';
 
 class MainScreen extends StatefulWidget {
@@ -67,12 +66,36 @@ class _MainScreenState extends State<MainScreen> {
                     key: _productKey,
                     resizeToAvoidBottomInset: false,
                     drawer: const Menu(),
-                    appBar: homeAppBar(
-                      context: context,
-                    ),
+                    // appBar: homeAppBar(
+                    //   context: context,
+                    // ),
                     drawerEnableOpenDragGesture: false,
                     backgroundColor: const Color(0xffffffff),
                     body: Column(children: [
+                      Card(
+                        elevation: 1,
+                        child: Container(
+                          width: Get.width,
+                          height: AppBar().preferredSize.height,
+                          color: const Color(0xffF8FAFB),
+                          child: Row(children: [
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Image.asset("assets/images/icons/logo-home.png"),
+                            const Spacer(),
+                            Builder(builder: (context) {
+                              return IconButton(
+                                  icon: const Icon(Icons.menu,
+                                      color: Color(0xff000000), size: 26),
+                                  onPressed: () {
+                                    FocusScope.of(context).unfocus();
+                                    Scaffold.of(context).openDrawer();
+                                  });
+                            }),
+                          ]),
+                        ),
+                      ),
                       Expanded(
                           child: PageView(
                         controller: _controller.pageController,

@@ -37,7 +37,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: screensAppbar(context: context, title: "پرستار کودک"),
+        appBar: screensAppbar(context: context, title: "اطلاعات کودک"),
         body: ListView(physics: const BouncingScrollPhysics(), children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10) +
@@ -67,7 +67,10 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                   ],
                 ),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // child gender
                 Row(
@@ -81,7 +84,8 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                       style: TextStyle(fontSize: Get.width / 28),
                     ),
                     Obx(() => Checkbox(
-                          value: gender.value == 0,
+                          activeColor: buttonColor,
+                          value: gender.value == 0 || gender.value == 2,
                           onChanged: (value) {
                             if (value != null) {
                               gender.value = 0;
@@ -94,7 +98,8 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                       style: TextStyle(fontSize: Get.width / 28),
                     ),
                     Obx(() => Checkbox(
-                          value: gender.value == 1,
+                          activeColor: buttonColor,
+                          value: gender.value == 1 || gender.value == 2,
                           onChanged: (value) {
                             if (value != null) {
                               gender.value = 1;
@@ -108,9 +113,14 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                     ),
                     Obx(() => Checkbox(
                           value: gender.value == 2,
+                          activeColor: buttonColor,
                           onChanged: (value) {
                             if (value != null) {
-                              gender.value = 2;
+                              if (value) {
+                                gender.value = 2;
+                              } else {
+                                gender.value = -1;
+                              }
                               model.gender = Gender.Both;
                             }
                           },
@@ -118,7 +128,10 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                   ],
                 ),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // children ages
                 Obx(
@@ -142,7 +155,10 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                       )),
                 ),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // shift
                 SizedBox(
@@ -160,6 +176,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                         style: TextStyle(fontSize: Get.width / 28),
                       ),
                       Obx(() => Checkbox(
+                            activeColor: buttonColor,
                             value: shiftWork.value == 0,
                             onChanged: (value) {
                               if (value != null) {
@@ -173,6 +190,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                         style: TextStyle(fontSize: Get.width / 28),
                       ),
                       Obx(() => Checkbox(
+                            activeColor: buttonColor,
                             value: shiftWork.value == 1,
                             onChanged: (value) {
                               if (value != null) {
@@ -186,6 +204,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                         style: TextStyle(fontSize: Get.width / 28),
                       ),
                       Obx(() => Checkbox(
+                            activeColor: buttonColor,
                             value: shiftWork.value == 2,
                             onChanged: (value) {
                               if (value != null) {
@@ -197,8 +216,6 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                     ],
                   ),
                 ),
-
-                const Divider(thickness: 1),
 
                 // hour of work
                 Obx(() => shiftWork.value == 0
@@ -232,7 +249,10 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                         ],
                       )),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // person in home
                 SizedBox(
@@ -254,7 +274,10 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                           )
                         ]))),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // camera
                 SizedBox(
@@ -283,7 +306,10 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                               })),
                         ]))),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // address
                 Padding(
@@ -335,7 +361,10 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                   ),
                 ),
 
-                const Divider(thickness: 1),
+                const Divider(
+                  thickness: 1,
+                  color: buttonColor,
+                ),
 
                 // description
                 Padding(
