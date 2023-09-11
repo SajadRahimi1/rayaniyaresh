@@ -8,7 +8,7 @@ import 'package:rayaniyaresh/models/constants/singleton_class.dart';
 import 'package:rayaniyaresh/models/constants/urls.dart';
 import 'package:rayaniyaresh/views/pages/home/profile_screen.dart';
 import 'package:rayaniyaresh/views/pages/login/get_phone_number_screen.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:rayaniyaresh/views/pages/menu/contact_us_screen.dart';
 
 class Menu extends StatelessWidget {
   const Menu({Key? key}) : super(key: key);
@@ -115,9 +115,11 @@ class Menu extends StatelessWidget {
                       //   thickness: 0.5,
                       // ),
                       // contact us list tile
+
                       ListTile(
                         onTap: () async {
-                          await launchUrl(Uri.parse('tel:02632406705'));
+                          // await launchUrl(Uri.parse('tel:02632406705'));
+                          Get.to(() => ContactusScreen());
                         },
                         //   Get.to(() => const ContactScreen(),
                         //       transition: Transition.noTransition);

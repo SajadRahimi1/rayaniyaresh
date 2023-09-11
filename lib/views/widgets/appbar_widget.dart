@@ -20,28 +20,7 @@ AppBar homeAppBar({
       }),
 
       actions: [
-        InkWell(
-          onTap: () => launchUrl(Uri.parse('tel:02632406705')),
-          child: const Icon(
-            Icons.phone,
-            color: Colors.black,
-          ),
-        ),
-        InkWell(
-            onTap: () => launchUrl(Uri.parse('tel:02632406705')),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Center(
-                child: Text(
-                  "02632406705".toPersianDigit(),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            )),
+        
       ],
     );
 

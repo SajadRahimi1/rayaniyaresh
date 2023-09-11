@@ -21,7 +21,7 @@ class BioScreenn extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: const DecorationImage(
-                  image: AssetImage("assets/images/images/a.png"),
+                  image: AssetImage("assets/images/images/banner.jpg"),
                   fit: BoxFit.fill)),
         ),
         Padding(

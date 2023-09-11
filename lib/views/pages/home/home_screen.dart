@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
-import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/views/pages/bio_screen.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/class_category_screen.dart';
 import 'package:rayaniyaresh/views/widgets/banner_slider.dart';
@@ -21,6 +20,7 @@ class HomeScreen extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             children: [
               // search input
+              /*
               Padding(
                 padding: EdgeInsets.only(
                     top: 20, bottom: MediaQuery.of(context).size.height * 0.05),
@@ -67,7 +67,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     )),
               ),
-
+*/
               // categories
               SizedBox(
                 width: MediaQuery.of(context).size.width,

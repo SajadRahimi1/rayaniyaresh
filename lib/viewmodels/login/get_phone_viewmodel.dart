@@ -95,7 +95,7 @@ class GetPhoneViewModel extends GetxController with StateMixin {
       Get.back();
       Get.to(() => ValidateCodeScreen(
             phoneNumber: phoneNumber.value,
-          ));
+          )); 
       // } else {
       //   Get.back();
       //   networkErrorMessage();
