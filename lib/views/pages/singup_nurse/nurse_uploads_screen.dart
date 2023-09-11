@@ -16,7 +16,7 @@ class NurseUploadsScreen extends StatelessWidget {
     final _controller = Get.put(NurseUploadsViewModel(id: nurseId));
 
     return Scaffold(
-      appBar: screensAppbar(context: context),
+      appBar: screensAppbar(context: context, title: 'بارگزاری تصویر'),
       body: ListView(
         children: [
           Padding(
@@ -27,7 +27,7 @@ class NurseUploadsScreen extends StatelessWidget {
               Text(
                 "\nتصویر عکس پرسنلی :",
                 style:
-                    TextStyle(fontSize: MediaQuery.sizeOf(context).width / 30),
+                    TextStyle(fontSize: MediaQuery.sizeOf(context).width / 32),
               ),
               Center(
                 child: Obx(() => Container(
@@ -72,7 +72,7 @@ class NurseUploadsScreen extends StatelessWidget {
               Text(
                 "\nتصویر صفحه اول شناسنامه :",
                 style:
-                    TextStyle(fontSize: MediaQuery.sizeOf(context).width / 30),
+                    TextStyle(fontSize: MediaQuery.sizeOf(context).width / 32),
               ),
               Center(
                   child: Obx(
@@ -117,7 +117,7 @@ class NurseUploadsScreen extends StatelessWidget {
               Text(
                 "\nتصویر صفحه توضیحات شناسنامه : (وضعیت تاهل)",
                 style:
-                    TextStyle(fontSize: MediaQuery.sizeOf(context).width / 30),
+                    TextStyle(fontSize: MediaQuery.sizeOf(context).width / 32),
               ),
               Center(
                   child: Obx(
@@ -161,7 +161,7 @@ class NurseUploadsScreen extends StatelessWidget {
               Text(
                 "\nتصویر رضایت نامه همسر و یا سرپرست خانواده : (ویژه بانوان)",
                 style:
-                    TextStyle(fontSize: MediaQuery.sizeOf(context).width / 30),
+                    TextStyle(fontSize: MediaQuery.sizeOf(context).width / 32),
               ),
               Center(
                 child: Obx(() => Container(

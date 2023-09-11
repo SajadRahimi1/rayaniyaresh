@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
+import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/nurse_category_screen.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/class_category_screen.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_information_screen.dart';
@@ -20,6 +21,39 @@ class HomeScreen extends StatelessWidget {
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: [
+              SizedBox(
+                height: Get.height / 5,
+                width: Get.width,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                        width: Get.width / 2.5,
+                        child: Text(" :درخواست های من",
+                            style: TextStyle(
+                                color: buttonColor, fontSize: Get.width / 31)),
+                      ),
+                      SizedBox(
+                        width: Get.width / 2.5,
+                        child: Text(" :درخواست های تایید شده",
+                            style: TextStyle(
+                                color: buttonColor, fontSize: Get.width / 31)),
+                      ),
+                      SizedBox(
+                        width: Get.width / 2.5,
+                        child: Text(" :درخواست های رد شده",
+                            style: TextStyle(
+                                color: buttonColor, fontSize: Get.width / 31)),
+                      ),
+                      SizedBox(
+                        width: Get.width / 2.5,
+                        child: Text(" :پیام های من",
+                            style: TextStyle(
+                                color: buttonColor, fontSize: Get.width / 31)),
+                      ),
+                    ]),
+              ),
               // search input
               /*
               Padding(
@@ -71,9 +105,108 @@ class HomeScreen extends StatelessWidget {
 */
               // categories
               SizedBox(
-                width: MediaQuery.of(context).size.width,
-                // height: MediaQuery.of(context).size.height / 2.5,
-                height: MediaQuery.of(context).size.width / 3.5 * (6 ~/ 2),
+                  width: MediaQuery.of(context).size.width,
+                  // height: MediaQuery.of(context).size.height / 2.5,
+                  height: MediaQuery.of(context).size.width / 3.5 * (6 ~/ 2),
+                  child: Column(
+                    children: [
+                      Container(
+                        // margin: const EdgeInsets.symmetric(vertical: 15),
+                        width: Get.width,
+                        height: 3,
+                        color: buttonColor,
+                      ),
+                      SizedBox(
+                        width: Get.width,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: List.generate(
+                              3,
+                              (index) => ServiceWidget(
+                                  isImageAsset: true,
+                                  onTap: () {
+                                    FocusScope.of(context).unfocus();
+                                    switch (index) {
+                                      case 0:
+                                        Get.to(
+                                            () => const NurseCategoryScreen());
+                                        break;
+                                      case 1:
+                                        Get.to(() =>
+                                            const NurseInformationScreen());
+                                        break;
+                                      case 2:
+                                        Get.to(
+                                            () => const ClassCategoryScreen());
+                                        break;
+                                      default:
+                                        showMessage(
+                                            title: "به زودی",
+                                            message:
+                                                "این امکان بزودی فعال میشود",
+                                            type: MessageType.info);
+                                        break;
+                                    }
+                                  },
+                                  image: [
+                                    "nurse.png",
+                                    "hiring.png",
+                                    "learning.png",
+                                    "services2.png",
+                                    "building.png",
+                                    "reserve-class.png",
+                                  ][index],
+                                  title: [
+                                    "خدمات پرستاری",
+                                    "استخدام پرستار",
+                                    "آموزشگاه",
+                                    "خدمات پزشکی (بزودی)",
+                                    "اجاره تجهیزات پزشکی(بزودی)",
+                                    "فروش تجهیزات پزشکی(بزودی)",
+                                    // "فروشی پکیج آموشی",
+                                    // "اجاره تجهیزات پزشکی",
+                                    // "فروش تجهیزات پزشکی",
+                                    // "فروش دوربین مداربسته",
+                                  ][index])),
+                        ),
+                      ),
+                      Center(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(vertical: 15),
+                          width: Get.width / 1.5,
+                          height: 3,
+                          color: buttonColor,
+                        ),
+                      ),
+                      SizedBox(
+                        width: Get.width,
+                        child: Row(
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: List.generate(
+                              3,
+                              (index) => ServiceWidget(
+                                  isImageAsset: true,
+                                  enable: false,
+                                  onTap: () {},
+                                  image: [
+                                    "services2.png",
+                                    "building.png",
+                                    "reserve-class.png",
+                                  ][index],
+                                  title: [
+                                    "خدمات پزشکی (بزودی)",
+                                    "اجاره تجهیزات پزشکی(بزودی)",
+                                    "فروش تجهیزات پزشکی(بزودی)",
+                                    // "فروشی پکیج آموشی",
+                                    // "اجاره تجهیزات پزشکی",
+                                    // "فروش تجهیزات پزشکی",
+                                    // "فروش دوربین مداربسته",
+                                  ][index])),
+                        ),
+                      )
+                    ],
+                  )),
+              /*
                 child: GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -93,10 +226,10 @@ class HomeScreen extends StatelessWidget {
                             case 0:
                               Get.to(() => const NurseCategoryScreen());
                               break;
-                            case 2:
+                            case 1:
                               Get.to(() => const NurseInformationScreen());
                               break;
-                            case 5:
+                            case 2:
                               Get.to(() => const ClassCategoryScreen());
                               break;
                             default:
@@ -109,26 +242,26 @@ class HomeScreen extends StatelessWidget {
                         },
                         image: [
                           "nurse.png",
-                          "services2.png",
                           "hiring.png",
-                          "building.png",
                           "learning.png",
-                          "reserve-class.png"
+                          "services2.png",
+                          "building.png",
+                          "reserve-class.png",
                         ][index],
                         title: [
                           "خدمات پرستاری",
-                          "خدمات پزشکی (بزودی)",
                           "استخدام پرستار",
-                          "مجتمع فنی آسیا سلامت (بزودی)",
-                          "خدمات آموزشی",
-                          "رزرو کلاس"
+                          "آموزشگاه",
+                          "خدمات پزشکی (بزودی)",
+                          "اجاره تجهیزات پزشکی(بزودی)",
+                          "فروش تجهیزات پزشکی(بزودی)",
                           // "فروشی پکیج آموشی",
                           // "اجاره تجهیزات پزشکی",
                           // "فروش تجهیزات پزشکی",
                           // "فروش دوربین مداربسته",
                         ][index])),
               ),
-
+*/
               InkWell(
                 onTap: onShopTap,
                 child: Container(

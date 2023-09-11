@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:persian_number_utility/persian_number_utility.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 AppBar homeAppBar({
   required BuildContext context,
@@ -10,17 +8,16 @@ AppBar homeAppBar({
       // backgroundColor: Color(0xff02B8CC),
 
       backgroundColor: const Color(0xffF8FAFB),
-      leading: Builder(builder: (context) {
-        return IconButton(
-            icon: const Icon(Icons.menu, color: Color(0xff000000), size: 26),
-            onPressed: () {
-              FocusScope.of(context).unfocus();
-              Scaffold.of(context).openDrawer();
-            });
-      }),
 
       actions: [
-        
+        Builder(builder: (context) {
+          return IconButton(
+              icon: const Icon(Icons.menu, color: Color(0xff000000), size: 26),
+              onPressed: () {
+                FocusScope.of(context).unfocus();
+                Scaffold.of(context).openDrawer();
+              });
+        }),
       ],
     );
 

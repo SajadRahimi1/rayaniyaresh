@@ -16,7 +16,7 @@ class NurseSelectSreen extends StatelessWidget {
     final _controller = Get.put(CreateNurrseViewModel(nurseModel));
 
     return Scaffold(
-      appBar: screensAppbar(context: context),
+      appBar: screensAppbar(context: context, title: 'شرایط همکاری'),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

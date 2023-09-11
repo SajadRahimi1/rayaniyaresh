@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
+import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/viewmodels/signup_nurse/nurse_guarantee_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
@@ -28,7 +30,8 @@ class NurseGuaranteeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "\nلطفا 3 نفر را معرفی بفرمایید که شما را میشناسد:\n",
+                "\nلطفا 3 نفر را معرفی بفرمایید که شما را میشناسد:\n"
+                    .toPersianDigit(),
                 style: TextStyle(fontSize: Get.width / 26),
               ),
               /* SizedBox(
@@ -105,9 +108,10 @@ class NurseGuaranteeScreen extends StatelessWidget {
                             onChanged: (value) => _controller.model
                                 .nurseParentModels?[0].phoneNumber = value),
                       ),
-                      const Divider(
-                        color: Colors.black,
-                        height: 1,
+                      Container(
+                        width: Get.width,
+                        height: 3,
+                        color: buttonColor,
                       ),
 
                       // second
@@ -167,9 +171,10 @@ class NurseGuaranteeScreen extends StatelessWidget {
                             onChanged: (value) => _controller.model
                                 .nurseParentModels?[1].phoneNumber = value),
                       ),
-                      const Divider(
-                        color: Colors.black,
-                        height: 1,
+                      Container(
+                        width: Get.width,
+                        height: 3,
+                        color: buttonColor,
                       ),
                       // third
                       SingleChildScrollView(
@@ -230,15 +235,16 @@ class NurseGuaranteeScreen extends StatelessWidget {
                       ),
                     ],
                   )),
-              const Divider(
-                color: Colors.black,
-                height: 1,
+              Container(
+                width: Get.width,
+                height: 3,
+                color: buttonColor,
               ),
 
               ProfileTextInput(
                   keyboardType: TextInputType.number,
                   maxLength: 11,
-                  text: "شماره تماس همسر",
+                  text: "شماره تماس همسر :",
                   onChanged: (value) =>
                       _controller.model.husbandPhoneNumber = value),
               const SizedBox(
@@ -247,7 +253,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
               ProfileTextInput(
                   keyboardType: TextInputType.number,
                   maxLength: 11,
-                  text: "شماره تماس فرزند",
+                  text: "شماره تماس فرزند :",
                   onChanged: (value) =>
                       _controller.model.childPhoneNumber = value),
               const SizedBox(
@@ -256,15 +262,16 @@ class NurseGuaranteeScreen extends StatelessWidget {
               ProfileTextInput(
                   keyboardType: TextInputType.number,
                   maxLength: 11,
-                  text: "شماره تماس سرپرست خانواده",
+                  text: "شماره تماس سرپرست خانواده :",
                   onChanged: (value) =>
                       _controller.model.parentPhoneNumber = value),
               const SizedBox(
                 height: 15,
               ),
-              const Divider(
-                thickness: 1,
-                color: Color(0xff000000),
+              Container(
+                width: Get.width,
+                height: 3,
+                color: buttonColor,
               ),
               Text(
                 "\nدر صورت مشغول به کار شدن کدام یک از موارد را جهت ضمانت میتوانید نزد شرکت قرار دهید؟\n",
@@ -277,6 +284,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
                     style: TextStyle(fontSize: Get.width / 28),
                   ),
                   Obx(() => Checkbox(
+                      activeColor: buttonColor,
                       value: _controller.guaranteeIndex.value == 0,
                       onChanged: <bool>(value) =>
                           _controller.guaranteeIndex.value = 0))
@@ -290,6 +298,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
                   ),
                   Obx(() => Checkbox(
                       value: _controller.guaranteeIndex.value == 1,
+                      activeColor: buttonColor,
                       onChanged: (value) =>
                           _controller.guaranteeIndex.value = 1))
                 ],
@@ -301,6 +310,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
                     style: TextStyle(fontSize: Get.width / 28),
                   ),
                   Obx(() => Checkbox(
+                      activeColor: buttonColor,
                       value: _controller.guaranteeIndex.value == 2,
                       onChanged: <bool>(value) =>
                           _controller.guaranteeIndex.value = 2))
@@ -313,6 +323,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
                     style: TextStyle(fontSize: Get.width / 28),
                   ),
                   Obx(() => Checkbox(
+                      activeColor: buttonColor,
                       value: _controller.guaranteeIndex.value == 3,
                       onChanged: <bool>(value) =>
                           _controller.guaranteeIndex.value = 3))

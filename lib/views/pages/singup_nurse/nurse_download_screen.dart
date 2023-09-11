@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:rayaniyaresh/core/services/pdf_service.dart';
+import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_rules_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
@@ -48,13 +49,14 @@ class NurseDownloadScreen extends StatelessWidget {
                         border: Border.all(color: const Color(0xff000000))),
                     child: Text(
                       "سوء پیشینه",
-                      style: TextStyle(fontSize: Get.width / 24),
+                      style: TextStyle(
+                          fontSize: Get.width / 24, color: buttonColor),
                     ),
                   ),
                 ),
                 Text(
                   "\nپس از دانلود فایل سوءپیشینه ، پرینت آن را بگیرید و به یکی از نزدیکترین دفاتر خدمات قضایی نزدیک محل سکونتتان مراجعه برمایید.\n",
-                  style: TextStyle(fontSize: Get.width / 22),
+                  style: TextStyle(fontSize: Get.width / 27),
                   textAlign: TextAlign.justify,
                 ),
                 // addiction
@@ -78,13 +80,14 @@ class NurseDownloadScreen extends StatelessWidget {
                         border: Border.all(color: const Color(0xff000000))),
                     child: Text(
                       "تست اعتیاد",
-                      style: TextStyle(fontSize: Get.width / 24),
+                      style: TextStyle(
+                          fontSize: Get.width / 24, color: buttonColor),
                     ),
                   ),
                 ),
                 Text(
                   "\nپس از دانلود فایل تست اعتیاد ، پرینت آن را بگیرید و به یکی از نزدیکترین آزمایشگاه های نزدیک محل سکونتتان مراجعه برمایید.",
-                  style: TextStyle(fontSize: Get.width / 22),
+                  style: TextStyle(fontSize: Get.width / 27),
                   textAlign: TextAlign.justify,
                 ),
               ],

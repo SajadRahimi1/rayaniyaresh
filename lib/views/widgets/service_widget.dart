@@ -7,11 +7,12 @@ class ServiceWidget extends StatelessWidget {
       this.onTap,
       required this.image,
       required this.title,
+      this.enable = true,
       required this.isImageAsset})
       : super(key: key);
   final void Function()? onTap;
   final String image, title;
-  final bool isImageAsset;
+  final bool isImageAsset, enable;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -26,8 +27,8 @@ class ServiceWidget extends StatelessWidget {
           ),
         ),
         child: Container(
-            width: MediaQuery.of(context).size.width / 5.2,
-            height: MediaQuery.of(context).size.width / 4,
+            width: MediaQuery.of(context).size.width / (enable ? 3.4 : 4.6),
+            height: MediaQuery.of(context).size.height / (enable ? 6.3 : 7.9),
             decoration: BoxDecoration(
               color: const Color(0xfffcfcfc),
               borderRadius: BorderRadius.circular(15),
@@ -65,8 +66,11 @@ class ServiceWidget extends StatelessWidget {
                         maxLines: 2,
                         overflow: TextOverflow.clip,
                         style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width / 32,
-                        ),
+                            fontSize: MediaQuery.of(context).size.width /
+                                (enable ? 32 : 37),
+                            color: enable
+                                ? Colors.black
+                                : const Color(0xffafafaf)),
                       ),
                     ))
               ],

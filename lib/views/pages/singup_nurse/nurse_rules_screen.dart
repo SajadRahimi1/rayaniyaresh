@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/route_manager.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/core/services/signin_nurse/create_nurse_service.dart';
+import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/success_reserve_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
@@ -26,135 +28,168 @@ class NurseRulesScreen extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "\nاینجانب متعد میگردم راس ساعت قید شده در محل کار ورود و خروج داشته باشم.",
+                  "\n1 - اینجانب متعهد میگردم راس ساعت قید شده در محل کار ورود و خروج داشته باشم.",
                   textAlign: TextAlign.justify,
-                  style: TextStyle(fontSize: Get.width / 24),
+                  style: TextStyle(fontSize: Get.width / 32),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Divider(
-                    thickness: 1,
-                  ),
-                ),
+                // const Padding(
+                //   padding: EdgeInsets.only(top: 10.0),
+                //   child: Divider(
+                //     thickness: 1,
+                //   ),
+                // ),
                 Text(
-                  "\nاینجانب متعهد میگردم خارج از شرایط قرارداد خدمات ارائه ندهم.",
+                  "2 - اینجانب متعهد میگردم خارج از شرایط قرارداد خدمات ارائه ندهم چنانچه در صورت عدم تعهدات شرکت آسیاسلامت مجاز به برخورد قانونی می باشد",
                   textAlign: TextAlign.justify,
-                  style: TextStyle(fontSize: Get.width / 24),
+                  style: TextStyle(fontSize: Get.width / 32),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Divider(
-                    thickness: 1,
-                  ),
-                ),
+
+                // const Padding(
+                //   padding: EdgeInsets.only(top: 10.0),
+                //   child: Divider(
+                //     thickness: 1,
+                //   ),
+                // ),
+
                 Text(
-                  "\nاینجانب متعهد میگردم درخواست وام ، ضمانت ، حقوق بیشتر از طرف اول قرارداد ( کارفرما ) نداشته باشم.",
+                  "3 - اینجانب متعهد میگردم درخواست وام ، ضمانت ، حقوق بیشتر از طرف اول قرارداد ( کارفرما ) نداشته باشم.",
                   textAlign: TextAlign.justify,
-                  style: TextStyle(fontSize: Get.width / 24),
+                  style: TextStyle(fontSize: Get.width / 32),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Divider(
-                    thickness: 1,
-                  ),
-                ),
+                // const Padding(
+                //   padding: EdgeInsets.only(top: 10.0),
+                //   child: Divider(
+                //     thickness: 1,
+                //   ),
+                // ),
+
                 Text(
-                  "\nاینجانب متعهد میگردم در طول مدت ساعت کاری از محل کار بدون اطالع به شرکت خارج نشوم.",
+                  "4 - اینجانب متعهد میگردم در طول مدت ساعت کاری از محل کار بدون اطلاع به شرکت خارج نشوم.",
                   textAlign: TextAlign.justify,
-                  style: TextStyle(fontSize: Get.width / 24),
+                  style: TextStyle(fontSize: Get.width / 32),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Divider(
-                    thickness: 1,
-                  ),
-                ),
+
+                // const Padding(
+                //   padding: EdgeInsets.only(top: 10.0),
+                //   child: Divider(
+                //     thickness: 1,
+                //   ),
+                // ),
+
                 Text(
-                  "\nاینجانب متعهد میگردم در صورت درخواست مرخصی و یا ترک کار ۷۲ ساعت قبل به شرکت و کارفرما اطالع رسانی نمایم.",
+                  "5 - اینجانب متعهد میگردم در صورت درخواست مرخصی و یا ترک کار ۷۲ ساعت قبل به شرکت و کارفرما اطلاع رسانی نمایم.",
                   textAlign: TextAlign.justify,
-                  style: TextStyle(fontSize: Get.width / 24),
+                  style: TextStyle(fontSize: Get.width / 32),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Divider(
-                    thickness: 1,
-                  ),
-                ),
+
+                // const Padding(
+                //   padding: EdgeInsets.only(top: 10.0),
+                //   child: Divider(
+                //     thickness: 1,
+                //   ),
+                // ),
+
                 Text(
-                  "\nاینجانب متعهد میگردم در صورت اتمام قرارداد محل کار را ترک نمایم و بدون قرارداد شرکت در آن مکان ) قرارداد قید شده ( به فعالیت خود ادامه ندهم.",
+                  "6 - اینجانب متعهد میگردم در صورت اتمام قرارداد محل کار را ترک نمایم و بدون قرارداد شرکت در آن مکان ( قرارداد قید شده ) به فعالیت خود ادامه ندهم.",
                   textAlign: TextAlign.justify,
-                  style: TextStyle(fontSize: Get.width / 24),
+                  style: TextStyle(fontSize: Get.width / 32),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Divider(
-                    thickness: 1,
-                  ),
-                ),
+
+                // const Padding(
+                //   padding: EdgeInsets.only(top: 10.0),
+                //   child: Divider(
+                //     thickness: 1,
+                //   ),
+                // ),
+
                 Text(
-                  "\nاینجانب متعهد میگردم پیشنهاد تبانی از سمت کارفرما ، شرکت را مطلع نمایم.",
+                  "7 - اینجانب متعهد میگردم پیشنهاد تبانی از سمت کارفرما ، شرکت را مطلع نمایم.",
                   textAlign: TextAlign.justify,
-                  style: TextStyle(fontSize: Get.width / 24),
+                  style: TextStyle(fontSize: Get.width / 32),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Divider(
-                    thickness: 1,
-                  ),
-                ),
+
+                // const Padding(
+                //   padding: EdgeInsets.only(top: 10.0),
+                //   child: Divider(
+                //     thickness: 1,
+                //   ),
+                // ),
+
                 Text(
-                  "\nاینجانب متعهد میگردم بدون دستور پزشک هیچ اقدام خود سرانه ای انجام ندهم.",
+                  "8 - اینجانب متعهد میگردم بدون دستور پزشک و طرف اول قرارداد هیچ اقدام خود سرانه ای انجام ندهم.",
                   textAlign: TextAlign.justify,
-                  style: TextStyle(fontSize: Get.width / 24),
+                  style: TextStyle(fontSize: Get.width / 32),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Divider(
-                    thickness: 1,
-                  ),
-                ),
+
+                // const Padding(
+                //   padding: EdgeInsets.only(top: 10.0),
+                //   child: Divider(
+                //     thickness: 1,
+                //   ),
+                // ),
+
                 Text(
-                  "\nاینجانب متعهد میگردم در صورت بروز هر مشکلی شرکت را مطلع نمایم.",
+                  "9 - اینجانب متعهد میگردم در صورت بروز هر مشکلی شرکت را مطلع نمایم.",
                   textAlign: TextAlign.justify,
-                  style: TextStyle(fontSize: Get.width / 24),
+                  style: TextStyle(fontSize: Get.width / 32),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Divider(
-                    thickness: 1,
-                  ),
-                ),
+
+                // const Padding(
+                //   padding: EdgeInsets.only(top: 10.0),
+                //   child: Divider(
+                //     thickness: 1,
+                //   ),
+                // ),
+
                 Text(
-                  "\nاینجانب تمام جزئیات فرم ثبت نام را مطالعه نموده و تمام اطالعات را وارد شده را به صورت واقعیت اعالم نموده.",
+                  "10 - اینجانب تمام جزئیات فرم ثبت نام را مطالعه نموده و تمام اطلاعات را وارد شده را به صورت واقعیت اعلام نموده.",
                   textAlign: TextAlign.justify,
-                  style: TextStyle(fontSize: Get.width / 24),
+                  style: TextStyle(fontSize: Get.width / 32),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Divider(
-                    thickness: 1,
-                  ),
-                ),
+
+                // const Padding(
+                //   padding: EdgeInsets.only(top: 10.0),
+                //   child: Divider(
+                //     thickness: 1,
+                //   ),
+                // ),
+
                 Text(
-                  "\nاینجانب متعهد میگردم تمام شرایط و قوانین شرکت را انجام دهم در غیر این صورت در برابر شرکت هیچ ادعا و شکایتی نیز نداشته و شرکت میتواند با توجه به سندیات و شواهد موجود نسبت به مدارک ضمانتی اینجانب از طریق مراجع ذیصالح اقدام نماید.",
+                  "11 - اینجانب متعهد میگردم تمام شرایط و قوانین شرکت را انجام دهم در غیر این صورت در برابر شرکت هیچ ادعا و شکایتی نیز نداشته و شرکت میتواند با توجه به سندیات و شواهد موجود نسبت به مدارک ضمانتی اینجانب از طریق مراجع ذیصالح اقدام نماید.",
                   textAlign: TextAlign.justify,
-                  style: TextStyle(fontSize: Get.width / 24),
+                  style: TextStyle(fontSize: Get.width / 32),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Divider(
-                    thickness: 1,
-                  ),
-                ),
+
+                // const Padding(
+                //   padding: EdgeInsets.only(top: 10.0),
+                //   child: Divider(
+                //     thickness: 1,
+                //   ),
+                // ),
+
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: Get.height / 40),
                   child: Row(children: [
                     Obx(() => Checkbox(
                         value: accept.value,
+                        activeColor: buttonColor,
                         onChanged: (value) => accept.value = value ?? false)),
-                    Text(
-                      "شرایط را قبول دارم.",
-                      style: TextStyle(fontSize: Get.width / 24),
+                    const Row(
+                      children: [
+                        Text(
+                          "شرایط را ",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "قبول",
+                          style: TextStyle(
+                              color: buttonColor, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          " دارم.",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )
+                      ],
                     )
                   ]),
                 ),
@@ -168,9 +203,10 @@ class NurseRulesScreen extends StatelessWidget {
                   var request = await finalize(phoneNumber, name);
                   print(request.statusCode);
                   if (accept.value) {
-                    Get.to(() => const SuccessReserveScreen(
+                    Get.to(() => SuccessReserveScreen(
                           message:
-                              "تایید نهایی از طریق پیامک به شما اطلاع رسانی خواهد شد",
+                              "پس از تایید نهایی کارشناسان ما طی 24 ساعت با شما در تماس خواهند بود"
+                                  .toPersianDigit(),
                         ));
                   } else {
                     showMessage(
