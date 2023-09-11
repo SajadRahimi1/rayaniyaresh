@@ -18,7 +18,7 @@ class NurseQuestionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<RxBool> questions = List.generate(8, (index) => false.obs);
     return Scaffold(
-      appBar: screensAppbar(context: context, title: "استخدام پرستار"),
+      appBar: screensAppbar(context: context, title: "سوابق شخصی"),
       body: ListView(
         children: [
           Padding(
@@ -28,7 +28,7 @@ class NurseQuestionScreen extends StatelessWidget {
                 // drug
                 Obx(() => YesNoWidget(
                       value: questions[0].value,
-                      title: "ایا از مواد مخدر استفاده میکنید؟  ",
+                      title: "آیا از مواد مخدر استفاده میکنید؟  ",
                       onChanged: (value) {
                         if (value != null) {
                           questions[0].value = value;
@@ -48,7 +48,7 @@ class NurseQuestionScreen extends StatelessWidget {
                 // cigret
                 YesNoWidget(
                   value: questions[1].value,
-                  title: "ایا از سبگاز استفاده میکنید؟  ",
+                  title: "آیا از سیگار استفاده میکنید؟  ",
                   onChanged: (value) {
                     if (value != null) {
                       questions[1].value = value;
@@ -68,7 +68,7 @@ class NurseQuestionScreen extends StatelessWidget {
                 // alcoholic
                 YesNoWidget(
                   value: questions[2].value,
-                  title: "ایا از مشروبات الکلی استفاده میکنید؟  ",
+                  title: "آیا از مشروبات الکلی استفاده میکنید؟  ",
                   onChanged: (value) {
                     if (value != null) {
                       questions[2].value = value;
@@ -87,7 +87,7 @@ class NurseQuestionScreen extends StatelessWidget {
 
                 YesNoWidget(
                   value: questions[3].value,
-                  title: "ایا دارای معلولیت جسمی هستید؟  ",
+                  title: "آیا دارای معلولیت جسمی هستید؟  ",
                   onChanged: (value) {
                     if (value != null) {
                       questions[3].value = value;
@@ -107,7 +107,7 @@ class NurseQuestionScreen extends StatelessWidget {
                 //
                 YesNoWidget(
                   value: questions[4].value,
-                  title: "ایا ابیماری خاصی دارید؟  ",
+                  title: "آیا بیماری خاصی دارید؟  ",
                   onChanged: (value) {
                     if (value != null) {
                       questions[4].value = value;
@@ -126,7 +126,7 @@ class NurseQuestionScreen extends StatelessWidget {
 
                 YesNoWidget(
                   value: questions[5].value,
-                  title: "ایا دارای سابقه حکومت کیفری هستید؟  ",
+                  title: "آیا دارای سابقه حکومت کیفری هستید؟  ",
                   onChanged: (value) {
                     if (value != null) {
                       questions[5].value = value;
@@ -146,7 +146,7 @@ class NurseQuestionScreen extends StatelessWidget {
                 YesNoWidget(
                   value: questions[6].value,
                   title:
-                      "ایا میخواهید در حین فعالیت یک یا چند نفر از اعضای خانواده شما کنارتان حضور داشته باشد؟  ",
+                      "آیا میخواهید در حین فعالیت یک یا چند نفر از اعضای خانواده شما کنارتان حضور داشته باشد؟  ",
                   onChanged: (value) {
                     if (value != null) {
                       questions[6].value = value;
@@ -165,7 +165,7 @@ class NurseQuestionScreen extends StatelessWidget {
 
                 YesNoWidget(
                   value: questions[7].value,
-                  title: "ایا مدرک تخصصی در زمینه پرستاری و درمانی دارید؟  ",
+                  title: "آیا مدرک تخصصی در زمینه پرستاری و درمانی دارید؟  ",
                   onChanged: (value) {
                     if (value != null) {
                       questions[7].value = value;

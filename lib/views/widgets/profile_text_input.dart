@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rayaniyaresh/models/constants/colors.dart';
 
 class ProfileTextInput extends StatelessWidget {
   const ProfileTextInput({
@@ -9,13 +10,14 @@ class ProfileTextInput extends StatelessWidget {
     this.onChanged,
     this.controller,
     this.keyboardType,
+    this.required = true,
     this.ontap,
     this.textAlign = TextAlign.start,
     this.maxLength,
     this.enable = true,
   }) : super(key: key);
   final String text;
-  final bool error;
+  final bool error, required;
   final void Function(String)? onChanged;
   final TextEditingController? controller;
   final bool enable;
@@ -45,7 +47,16 @@ class ProfileTextInput extends StatelessWidget {
           decoration: InputDecoration(
             counter: const SizedBox(),
             icon: icon,
-            labelText: text,
+            prefixIcon: required
+                ? const Text(
+                    "*",
+                    style: TextStyle(color: Colors.red),
+                  )
+                : null,
+            contentPadding: EdgeInsets.zero,
+            prefixIconConstraints: const BoxConstraints(maxWidth: 0),
+            iconColor: buttonColor,
+            labelText: " " + text,
             labelStyle: TextStyle(
               color: const Color(0xff000000),
               fontSize: MediaQuery.of(context).size.width / 30,

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
-import 'package:rayaniyaresh/views/pages/bio_screen.dart';
+import 'package:rayaniyaresh/views/pages/nurse_service/nurse_category_screen.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/class_category_screen.dart';
+import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_information_screen.dart';
 import 'package:rayaniyaresh/views/widgets/banner_slider.dart';
 import 'package:rayaniyaresh/views/widgets/service_widget.dart';
 
@@ -90,10 +91,10 @@ class HomeScreen extends StatelessWidget {
                           FocusScope.of(context).unfocus();
                           switch (index) {
                             case 0:
-                              Get.to(() => const BioScreenn(nurse: true));
+                              Get.to(() => const NurseCategoryScreen());
                               break;
                             case 2:
-                              Get.to(() => const BioScreenn(nurse: false));
+                              Get.to(() => const NurseInformationScreen());
                               break;
                             case 5:
                               Get.to(() => const ClassCategoryScreen());
@@ -131,22 +132,16 @@ class HomeScreen extends StatelessWidget {
               InkWell(
                 onTap: onShopTap,
                 child: Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.only(bottom: Get.height / 25),
-                    width: Get.width,
-                    height: Get.height / 4.5,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: const DecorationImage(
-                            image: AssetImage(
-                                "assets/images/images/shop-banner.jpg"),
-                            fit: BoxFit.fill)),
-                    child: Text(
-                      "فروشگاه",
-                      style: TextStyle(
-                          color: const Color(0xffffffff),
-                          fontSize: Get.width / 13),
-                    )),
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.only(bottom: Get.height / 25),
+                  width: Get.width,
+                  height: Get.height / 4.5,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: const DecorationImage(
+                          image: AssetImage("assets/images/images/banner.jpg"),
+                          fit: BoxFit.fill)),
+                ),
               ),
 
               // favorites services

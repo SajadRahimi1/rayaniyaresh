@@ -26,7 +26,7 @@ class NurseInformationScreen extends StatelessWidget {
               children: [
                 ProfileTextInput(
                   controller: _controller.textEditingController[0],
-                  text: "نام و نام خانوادگی",
+                  text: "نام و نام خانوادگی:",
                   icon: const Icon(
                     Icons.person,
                   ),
@@ -36,14 +36,14 @@ class NurseInformationScreen extends StatelessWidget {
                 ),
                 ProfileTextInput(
                   controller: _controller.textEditingController[1],
-                  text: "نام پدر",
+                  text: "نام پدر:",
                   icon: const Icon(Icons.family_restroom),
                   onChanged: (value) {
                     _controller.nurseModel.fatherName = value;
                   },
                 ),
                 ProfileTextInput(
-                    text: "تاریخ تولد",
+                    text: "تاریخ تولد:",
                     enable: false,
                     controller: _controller.textEditingController[2],
                     ontap: () async {
@@ -67,7 +67,7 @@ class NurseInformationScreen extends StatelessWidget {
                     )),
                 ProfileTextInput(
                   controller: _controller.textEditingController[3],
-                  text: "محل صدور",
+                  text: "محل صدور:",
                   icon: const Icon(Icons.location_city),
                   onChanged: (value) {
                     _controller.nurseModel.bornCity = value;
@@ -75,7 +75,7 @@ class NurseInformationScreen extends StatelessWidget {
                 ),
                 ProfileTextInput(
                   controller: _controller.textEditingController[4],
-                  text: "کد ملی",
+                  text: "کد ملی:",
                   icon: const Icon(Icons.public),
                   maxLength: 11,
                   keyboardType: TextInputType.number,
@@ -85,7 +85,7 @@ class NurseInformationScreen extends StatelessWidget {
                 ),
                 ProfileTextInput(
                   controller: _controller.textEditingController[5],
-                  text: "شماره شناسنامه",
+                  text: "شماره شناسنامه:",
                   icon: const Icon(Icons.public_sharp),
                   maxLength: 11,
                   keyboardType: TextInputType.number,
@@ -100,21 +100,21 @@ class NurseInformationScreen extends StatelessWidget {
                   height: Get.height / 12,
                   child: Row(
                     children: [
-                      const Text("میزان تحصیلات : ",
-                          style: TextStyle(fontSize: 14)),
+                      const Text("میزان تحصیلات :",
+                          style: TextStyle(fontSize: 10)),
                       Expanded(
                           child: ListView.builder(
                               physics: const BouncingScrollPhysics(),
-                              itemCount: 6,
+                              itemCount: 5,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (_, index) => InkWell(
                                     onTap: () => _controller
                                         .educationIndex.value = index,
                                     child: Obx(() => Container(
-                                          width: Get.width / 5.5,
+                                          width: Get.width / 8,
                                           margin: EdgeInsets.symmetric(
                                               horizontal: 3,
-                                              vertical: Get.height / 80),
+                                              vertical: Get.height / 70),
                                           height: Get.height,
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
@@ -123,13 +123,12 @@ class NurseInformationScreen extends StatelessWidget {
                                               color: _controller.educationIndex
                                                           .value ==
                                                       index
-                                                  ? Colors.green
+                                                  ? buttonColor
                                                   : const Color(0xffe5e5e5)),
                                           child: Text(
                                             _controller.educationStrings[index],
                                             textAlign: TextAlign.center,
-                                            style:
-                                                const TextStyle(fontSize: 14),
+                                            style: const TextStyle(fontSize: 9),
                                           ),
                                         )),
                                   )))
@@ -146,7 +145,7 @@ class NurseInformationScreen extends StatelessWidget {
                 ),
                 ProfileTextInput(
                   controller: _controller.textEditingController[7],
-                  text: "شماره تلفن همراه",
+                  text: "شماره تلفن همراه:",
                   icon: const Icon(Icons.phone_android),
                   keyboardType: TextInputType.number,
                   maxLength: 11,
@@ -156,8 +155,9 @@ class NurseInformationScreen extends StatelessWidget {
                 ),
                 ProfileTextInput(
                   controller: _controller.textEditingController[8],
-                  text: "شماره تلفن منزل",
+                  text: "شماره تلفن منزل:",
                   icon: const Icon(Icons.phone),
+                  required: false,
                   keyboardType: TextInputType.number,
                   maxLength: 11,
                   onChanged: (value) {
@@ -167,7 +167,6 @@ class NurseInformationScreen extends StatelessWidget {
               ],
             ),
           ),
-
           // button
           InkWell(
             onTap: _controller.validationForm,

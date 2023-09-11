@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rayaniyaresh/views/pages/bio_screen.dart';
+import 'package:rayaniyaresh/views/pages/nurse_service/nurse_category_screen.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/class_category_screen.dart';
 import 'package:rayaniyaresh/views/pages/reserve_nurse/show_nerse_screen.dart';
 
@@ -24,7 +24,7 @@ class ReserveScreen extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () => Get.to(() => const BioScreenn(nurse: true),
+              onTap: () => Get.to(() => NurseCategoryScreen(),
                   transition: Transition.downToUp),
               child: Container(
                 width: Get.width / 1.1,

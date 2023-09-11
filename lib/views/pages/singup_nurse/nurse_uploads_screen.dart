@@ -24,7 +24,7 @@ class NurseUploadsScreen extends StatelessWidget {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               // image
               Text(
-                "\nتصویر عکس پرسنلی\n",
+                "\nتصویر عکس پرسنلی :\n",
                 style:
                     TextStyle(fontSize: MediaQuery.sizeOf(context).width / 27),
               ),
@@ -61,7 +61,7 @@ class NurseUploadsScreen extends StatelessWidget {
               ),
               // first page of national
               Text(
-                "\nتصویر صفحه اول شناسنامه\n",
+                "\nتصویر صفحه اول شناسنامه :\n",
                 style:
                     TextStyle(fontSize: MediaQuery.sizeOf(context).width / 27),
               ),
@@ -99,7 +99,7 @@ class NurseUploadsScreen extends StatelessWidget {
 
               // second page of national
               Text(
-                "\nتصویر صفحه توضیحات شناسنامه(وضعیت تاهل)\n",
+                "\nتصویر صفحه توضیحات شناسنامه : (وضعیت تاهل)\n",
                 style:
                     TextStyle(fontSize: MediaQuery.sizeOf(context).width / 27),
               ),
@@ -136,7 +136,7 @@ class NurseUploadsScreen extends StatelessWidget {
               ),
 
               Text(
-                "تصویر رضایت نامه همسر و یا سرپرست خانواده (ویژه بانوان)",
+                "تصویر رضایت نامه همسر و یا سرپرست خانواده : (ویژه بانوان)",
                 style:
                     TextStyle(fontSize: MediaQuery.sizeOf(context).width / 27),
               ),

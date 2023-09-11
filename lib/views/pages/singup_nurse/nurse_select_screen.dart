@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/viewmodels/signup_nurse/create_nurse_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
@@ -21,11 +22,12 @@ class NurseSelectSreen extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Column(children: [
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               // child _controller.categorySelect
               Text(
                 "\nلطفا گزینه مورد نظر را در خصوص مراقبت انتخاب بفرمایید :\n",
-                style: TextStyle(fontSize: Get.width / 27),
+                style: TextStyle(fontSize: Get.width / 30),
               ),
               Column(
                 children: [
@@ -35,6 +37,7 @@ class NurseSelectSreen extends StatelessWidget {
                       Text("پرستار کودک",
                           style: TextStyle(fontSize: Get.width / 30)),
                       Obx(() => Checkbox(
+                            activeColor: buttonColor,
                             value: _controller.categorySelect.contains(0),
                             onChanged: (value) {
                               if (value != null) {
@@ -49,6 +52,7 @@ class NurseSelectSreen extends StatelessWidget {
                       Text("پرستار سالمند",
                           style: TextStyle(fontSize: Get.width / 30)),
                       Obx(() => Checkbox(
+                            activeColor: buttonColor,
                             value: _controller.categorySelect.contains(1),
                             onChanged: (value) {
                               if (value != null) {
@@ -68,6 +72,7 @@ class NurseSelectSreen extends StatelessWidget {
                       Text("پرستار بیمار",
                           style: TextStyle(fontSize: Get.width / 30)),
                       Obx(() => Checkbox(
+                            activeColor: buttonColor,
                             value: _controller.categorySelect.contains(2),
                             onChanged: (value) {
                               if (value != null) {
@@ -82,6 +87,7 @@ class NurseSelectSreen extends StatelessWidget {
                       Text("همه موارد",
                           style: TextStyle(fontSize: Get.width / 30)),
                       Obx(() => Checkbox(
+                            activeColor: buttonColor,
                             value: _controller.categorySelect.contains(3),
                             onChanged: (value) {
                               if (value != null) {
@@ -100,22 +106,26 @@ class NurseSelectSreen extends StatelessWidget {
 
               Text(
                 "\nآیا کودک - سالمند و یا بیمار از پوشک و یا لگن استفاده کند شما میتوانید انجام دهید؟\n",
-                style: TextStyle(fontSize: Get.width / 27),
+                style: TextStyle(fontSize: Get.width / 30),
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  const Spacer(),
                   Text("بله", style: TextStyle(fontSize: Get.width / 30)),
                   Obx(() => Checkbox(
                         value: _controller.secondQuestion.value,
+                        activeColor: buttonColor,
                         onChanged: (value) {
                           if (value != null) {
                             _controller.secondQuestion.value = true;
                           }
                         },
                       )),
+                  const Spacer(),
                   Text("خیر", style: TextStyle(fontSize: Get.width / 30)),
                   Obx(() => Checkbox(
+                        activeColor: buttonColor,
                         value: !_controller.secondQuestion.value,
                         onChanged: (value) {
                           if (value != null) {
@@ -123,6 +133,7 @@ class NurseSelectSreen extends StatelessWidget {
                           }
                         },
                       )),
+                  const Spacer(),
                 ],
               ),
             ]),

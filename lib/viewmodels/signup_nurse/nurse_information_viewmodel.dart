@@ -15,7 +15,7 @@ class NurseInformationViewmodel extends GetxController with StateMixin {
     "فوق دیپلم",
     "لیسانس",
     "فوق لیسانس",
-    "دکترا",
+    // "دکترا",
   ];
   RxInt educationIndex = (0).obs;
 

@@ -12,7 +12,7 @@ class YesNoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height / 10,
+        height: MediaQuery.of(context).size.height / 14,
         child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(children: [

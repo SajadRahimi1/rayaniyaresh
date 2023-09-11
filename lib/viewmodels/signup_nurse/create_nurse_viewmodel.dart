@@ -40,6 +40,7 @@ class CreateNurrseViewModel extends GetxController with StateMixin {
     }
     nurseModel.nurseCategory = nurseCategory;
     nurseModel.specialCare = secondQuestion.value;
+
     final _request = await service.createNurse(nurseModel);
     Get.back();
     if (_request.statusCode == 200) {
