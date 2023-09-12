@@ -7,7 +7,9 @@ import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_questions_screen.dar
 class NurseInformationViewmodel extends GetxController with StateMixin {
   final List<TextEditingController> textEditingController =
       List.generate(9, (index) => TextEditingController());
-
+  final TextEditingController provinceController = TextEditingController(),
+      cityController = TextEditingController();
+  String neighbourhood = "";
   final CreateNurseModel nurseModel = CreateNurseModel();
 
   List educationStrings = [
@@ -28,6 +30,8 @@ class NurseInformationViewmodel extends GetxController with StateMixin {
 
   void validationForm() {
     nurseModel.education = educationStrings[educationIndex.value];
+    nurseModel.address =
+        "استان ${provinceController.text} شهر ${cityController.text} محله $neighbourhood";
     if (validation()) {
       Get.to(() => NurseQuestionScreen(nurseModel: nurseModel),
           transition: Transition.leftToRight);
@@ -63,8 +67,8 @@ class NurseInformationViewmodel extends GetxController with StateMixin {
           type: MessageType.warning);
       return false;
     }
-    if (nurseModel.nationalCode?.isEmpty ??
-        true && (nurseModel.nationalCode?.length ?? 0) < 11) {
+    if ((nurseModel.nationalCode?.isEmpty ?? true) ||
+        (nurseModel.nationalCode?.length ?? 0) < 11) {
       showMessage(
           title: 'خطا',
           message: 'لطفا کد ملی را درست وارد کنید',
@@ -78,10 +82,24 @@ class NurseInformationViewmodel extends GetxController with StateMixin {
           type: MessageType.warning);
       return false;
     }
-    if (nurseModel.address?.isEmpty ?? true) {
+    if (provinceController.text.isEmpty) {
       showMessage(
           title: 'خطا',
-          message: 'لطفا آدرس را وارد کنید',
+          message: 'لطفا استان خود را وارد کنید',
+          type: MessageType.warning);
+      return false;
+    }
+    if (cityController.text.isEmpty) {
+      showMessage(
+          title: 'خطا',
+          message: 'لطفا شهر خود را وارد کنید',
+          type: MessageType.warning);
+      return false;
+    }
+    if (neighbourhood.isEmpty) {
+      showMessage(
+          title: 'خطا',
+          message: 'لطفا محله خود را وارد کنید',
           type: MessageType.warning);
       return false;
     }

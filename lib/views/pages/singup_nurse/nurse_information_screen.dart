@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/models/constants/city_constant.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/viewmodels/signup_nurse/nurse_information_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
@@ -135,14 +137,95 @@ class NurseInformationScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                ProfileTextInput(
-                  controller: _controller.textEditingController[6],
-                  text: "آدرس دقیق منزل",
-                  icon: const Icon(Icons.pin_drop),
-                  onChanged: (value) {
-                    _controller.nurseModel.address = value;
-                  },
+
+                // ProfileTextInput(
+                //   controller: _controller.textEditingController[6],
+                //   text: "آدرس دقیق منزل",
+                //   icon: const Icon(Icons.pin_drop),
+                //   onChanged: (value) {
+                //     _controller.nurseModel.address = value;
+                //   },
+                // ),
+
+                // address
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // const Text("استان:  "),
+                      SizedBox(
+                          width: Get.width / 1,
+                          child: TypeAheadFormField(
+                            textFieldConfiguration: TextFieldConfiguration(
+                              decoration: InputDecoration(
+                                  prefixIcon: const Text(
+                                    "*",
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                  contentPadding: EdgeInsets.zero,
+                                  prefixIconConstraints:
+                                      const BoxConstraints(maxWidth: 0),
+                                  label: Text(
+                                    " استان",
+                                    style: TextStyle(
+                                        fontSize: Get.width / 30,
+                                        color: Colors.black),
+                                  )),
+
+                              // controller: provinceController
+                            ),
+                            itemBuilder: (context, itemData) => ListTile(
+                              title: Text(itemData.toString()),
+                            ),
+                            onSuggestionSelected: (suggestion) => _controller
+                                .provinceController
+                                .text = suggestion.toString(),
+                            suggestionsCallback: (pattern) => cities.keys
+                                .where((element) => element.contains(pattern)),
+                          )),
+                      SizedBox(
+                          width: Get.width / 1,
+                          child: TypeAheadFormField(
+                              textFieldConfiguration: TextFieldConfiguration(
+                                decoration: InputDecoration(
+                                    prefixIcon: const Text(
+                                      "*",
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                    contentPadding: EdgeInsets.zero,
+                                    prefixIconConstraints:
+                                        const BoxConstraints(maxWidth: 0),
+                                    label: Text(
+                                      " شهر",
+                                      style: TextStyle(
+                                          fontSize: Get.width / 30,
+                                          color: Colors.black),
+                                    )),
+                                // controller: cityController
+                              ),
+                              itemBuilder: (context, itemData) => ListTile(
+                                    title: Text(itemData.toString()),
+                                  ),
+                              onSuggestionSelected: (suggestion) => _controller
+                                  .cityController.text = suggestion.toString(),
+                              suggestionsCallback: (pattern) => (cities[
+                                          _controller
+                                              .provinceController.text] ??
+                                      [])
+                                  .where(
+                                      (element) => element.contains(pattern)))),
+                      SizedBox(
+                          width: Get.width / 1,
+                          child: ProfileTextInput(
+                            text: "محله",
+                            onChanged: (value) =>
+                                _controller.neighbourhood = value,
+                          )),
+                    ],
+                  ),
                 ),
+
                 ProfileTextInput(
                   controller: _controller.textEditingController[7],
                   text: "شماره تلفن همراه:",
