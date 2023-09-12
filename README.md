@@ -9,8 +9,8 @@
 - [x] selectable address
 - [x] select keyboard type
 - [x] add finger print login 
-- [ ] nurse information screen required message
-- [ ] home phone number required removed from server
+- [x] nurse information screen required message
+- [x] home phone number required removed from server
 - [ ] nurse information screen address specific with auto complete city and province
 - [ ] next page and previous button all screen
 - [ ] sliver app bar home screen

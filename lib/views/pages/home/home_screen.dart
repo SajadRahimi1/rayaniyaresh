@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
@@ -18,13 +16,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Rx<int> color = 0.obs;
-    Timer.periodic(const Duration(milliseconds: 500), (timer) {
-      if (color.value == 0) {
-        color.value = 1;
-      } else {
-        color.value = 0;
-      }
-    });
+    // Timer.periodic(const Duration(milliseconds: 500), (timer) {
+    //   if (color.value == 0) {
+    //     color.value = 1;
+    //   } else {
+    //     color.value = 0;
+    //   }
+    // });
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),

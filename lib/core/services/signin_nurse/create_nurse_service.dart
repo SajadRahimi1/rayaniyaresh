@@ -7,7 +7,7 @@ Future<Response<dynamic>> createNurse(CreateNurseModel model) async {
   return await getConnect.post(nurseUrl, model.toJson());
 }
 
-Future<Response<dynamic>> finalize(String phoneNumber, String name) async {
-  return await getConnect.get(nurseHiringSmsUrl,
-      query: {'name': name, 'phoneNumber': phoneNumber});
+Future<Response<dynamic>> acceptRules(String id) async {
+  return await getConnect
+      .get(nurseRulesUrl, query: {'id': id}, headers: {'accept': '*/*'});
 }

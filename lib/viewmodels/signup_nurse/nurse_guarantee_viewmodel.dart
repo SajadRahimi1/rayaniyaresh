@@ -27,6 +27,7 @@ class NurseGuaranteeViewModel extends GetxController with StateMixin {
     if (validate()) {
       final _reqeust = await service.updateNurseFamily(model);
       if (_reqeust.statusCode == 200) {
+        nurseModel.id = _reqeust.body['Id'];
         Get.to(() => NurseDownloadScreen(
               nurseModel: nurseModel,
             ));

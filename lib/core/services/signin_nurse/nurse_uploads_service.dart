@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:get/get_connect.dart';
 import 'package:rayaniyaresh/models/constants/get_connect.dart';
 import 'package:rayaniyaresh/models/constants/urls.dart';
@@ -24,4 +25,16 @@ Future<Response<dynamic>> uploadImages(String id, File picture,
   });
 
   return await getConnect.put(nurseUploadsUrl, formData);
+}
+
+Future<Response<dynamic>> uploadPdfFile(Uint8List fileBytes,String id,String fileName) async {
+
+  final formData = FormData({
+    'nurseId': id,
+    'pdf': MultipartFile(fileBytes,
+        filename:fileName,
+        contentType: 'multipart/form-data'),
+  });
+
+  return await getConnect.post(nurseUploadPdfUrl, formData);
 }

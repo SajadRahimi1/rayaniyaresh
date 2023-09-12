@@ -1,5 +1,6 @@
 class CreateNurseModel {
   String? name;
+  String? id;
   String? fatherName;
   String? birthday;
   String? bornCity;
@@ -20,6 +21,7 @@ class CreateNurseModel {
       this.fatherName,
       this.birthday,
       this.bornCity,
+      this.id,
       this.nationalCode,
       this.nationalNumber,
       this.education,
@@ -35,6 +37,7 @@ class CreateNurseModel {
   CreateNurseModel.fromJson(Map<String, dynamic> json) {
     name = json["Name"];
     fatherName = json["FatherName"];
+    id = json['id'];
     birthday = json["Birthday"];
     bornCity = json["BornCity"];
     nationalCode = json["NationalCode"];
@@ -62,7 +65,7 @@ class CreateNurseModel {
     _data["education"] = education;
     _data["address"] = address;
     _data["phoneNumber"] = phoneNumber;
-    _data["homeNumber"] = homeNumber;
+    _data["homeNumber"] = homeNumber ?? "";
     _data["specialCare"] = specialCare;
     _data["otherProp"] = otherProp;
     _data["nurseCategory"] = nurseCategory;

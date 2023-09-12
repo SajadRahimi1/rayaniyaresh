@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_rx/get_rx.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:get/route_manager.dart';
-import 'package:persian_number_utility/persian_number_utility.dart';
+import 'package:get/get.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
-import 'package:rayaniyaresh/core/services/signin_nurse/create_nurse_service.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
-import 'package:rayaniyaresh/views/pages/reserve_class/success_reserve_screen.dart';
+import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
+import 'package:rayaniyaresh/viewmodels/signup_nurse/nurse_rules_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 
 class NurseRulesScreen extends StatelessWidget {
-  const NurseRulesScreen(
-      {Key? key, required this.phoneNumber, required this.name})
-      : super(key: key);
-  final String phoneNumber, name;
+  const NurseRulesScreen({Key? key, required this.model}) : super(key: key);
+  final CreateNurseModel model;
 
   @override
   Widget build(BuildContext context) {
-    RxBool accept = false.obs;
+    final controller = Get.put(NurseRulesViewModel(model.id ?? ""));
+
     return Scaffold(
       appBar: screensAppbar(context: context, title: "شرایط و قوانین"),
       body: ListView(
@@ -171,9 +167,10 @@ class NurseRulesScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: Get.height / 40),
                   child: Row(children: [
                     Obx(() => Checkbox(
-                        value: accept.value,
+                        value: controller.accept.value,
                         activeColor: buttonColor,
-                        onChanged: (value) => accept.value = value ?? false)),
+                        onChanged: (value) =>
+                            controller.accept.value = value ?? false)),
                     const Row(
                       children: [
                         Text(
@@ -198,16 +195,10 @@ class NurseRulesScreen extends StatelessWidget {
           ),
           Obx(() => NextStepButton(
                 title: "تایید نهایی",
-                enable: accept.value,
+                enable: controller.accept.value,
                 onTap: () async {
-                  var request = await finalize(phoneNumber, name);
-                  print(request.statusCode);
-                  if (accept.value) {
-                    Get.to(() => SuccessReserveScreen(
-                          message:
-                              "پس از تایید نهایی کارشناسان ما طی 24 ساعت با شما در تماس خواهند بود"
-                                  .toPersianDigit(),
-                        ));
+                  if (controller.accept.value) {
+                    await controller.sendData();
                   } else {
                     showMessage(
                         title: "خطا",
