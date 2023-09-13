@@ -358,7 +358,7 @@ class HomeScreen extends StatelessWidget {
               ),
 */
               InkWell(
-                onTap: onShopTap,
+                // onTap: onShopTap,
                 child: Container(
                   alignment: Alignment.center,
                   margin: EdgeInsets.only(bottom: Get.height / 25),

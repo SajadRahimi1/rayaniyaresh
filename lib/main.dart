@@ -1,17 +1,25 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' show GetMaterialApp;
+import 'package:rayaniyaresh/views/pages/login/get_phone_number_screen.dart';
 import 'package:rayaniyaresh/views/pages/splash_screen.dart';
+import 'package:uni_links/uni_links.dart';
 
 void main() async {
   HttpOverrides.global = MyHttpOverrides();
-
-  runApp(const MyApp());
+  String? link;
+  try {
+    link = await getInitialLink();
+    print(link);
+  } catch (_) {}
+  runApp(MyApp(
+    url: link,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+  const MyApp({Key? key, required this.url}) : super(key: key);
+  final String? url;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -22,7 +30,7 @@ class MyApp extends StatelessWidget {
       textDirection: TextDirection.rtl,
       debugShowCheckedModeBanner: false,
       // home: const GetPhoneScreen()
-      home: const SplashSrceen(),
+      home: url == null ? const SplashSrceen() : const GetPhoneScreen(),
     );
   }
 }

@@ -7,8 +7,8 @@ import 'package:rayaniyaresh/core/services/reserve_class/class_service.dart'
     as class_service;
 import 'package:rayaniyaresh/models/models/reserve_class_model.dart';
 import 'package:rayaniyaresh/models/models/user_model.dart';
-import 'package:rayaniyaresh/views/pages/reserve_class/success_reserve_screen.dart';
 import 'package:rayaniyaresh/views/widgets/loading_widget.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class InformationFormViewModel extends GetxController with StateMixin {
   InformationFormViewModel({required this.isReserving, this.reserveClassModel});
@@ -86,8 +86,8 @@ class InformationFormViewModel extends GetxController with StateMixin {
     return false;
   }
 
-  Future<void> reserveClass(bool isInstallment) async {
-    if (reserveClassModel != null) {
+  Future<void> reserveClass(bool? isInstallment) async {
+    if (reserveClassModel != null && isInstallment != null) {
       final _request = await class_service.reserveClass(
           token: token,
           day: reserveClassModel?.day ?? "",
@@ -96,7 +96,8 @@ class InformationFormViewModel extends GetxController with StateMixin {
           classCategoryId: reserveClassModel?.classCategoryId ?? "");
       Get.back();
       if (_request.statusCode == 200) {
-        Get.off(() => const SuccessReserveScreen());
+        // Get.off(() => const SuccessReserveScreen());
+        launchUrlString(_request.bodyString ?? "");
       }
     }
   }

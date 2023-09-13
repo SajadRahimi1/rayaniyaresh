@@ -205,8 +205,8 @@ class InformationFormScreen extends StatelessWidget {
                 onTap: () async {
                   bool isUpdatedData = await _controller.updateInformation();
                   if (isUpdatedData && subcategoryId != null) {
-                    bool isInstallment =
-                        await Get.dialog<bool>(const PaymentWidget()) ?? false;
+                    bool? isInstallment =
+                        await Get.dialog<bool>(const PaymentWidget());
                     await _controller.reserveClass(isInstallment);
                   }
                 },
