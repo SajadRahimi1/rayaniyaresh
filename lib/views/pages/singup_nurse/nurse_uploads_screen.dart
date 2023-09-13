@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/viewmodels/signup_nurse/nurse_uploads_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
-import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
+import 'package:rayaniyaresh/views/widgets/next_button.dart';
 
 class NurseUploadsScreen extends StatelessWidget {
   const NurseUploadsScreen({Key? key, required this.nurseId}) : super(key: key);
@@ -200,7 +200,12 @@ class NurseUploadsScreen extends StatelessWidget {
               ),
             ]),
           ),
-          NextStepButton(title: "مرحله بعدی", onTap: _controller.uploadImages)
+          SizedBox(
+            width: Get.width,
+            height: Get.height / 10,
+            child: NextButton(onNext: _controller.uploadImages),
+          )
+          // NextStepButton(title: "مرحله بعدی", onTap: _controller.uploadImages)
         ],
       ),
     );

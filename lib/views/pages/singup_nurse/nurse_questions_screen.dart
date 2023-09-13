@@ -4,7 +4,7 @@ import 'package:get/state_manager.dart';
 import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_select_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
-import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
+import 'package:rayaniyaresh/views/widgets/next_button.dart';
 import 'package:rayaniyaresh/views/widgets/yes_no_widget.dart';
 
 class NurseQuestionScreen extends StatelessWidget {
@@ -184,11 +184,20 @@ class NurseQuestionScreen extends StatelessWidget {
               ],
             ),
           ),
-          NextStepButton(
-            title: "مرحله بعدی",
-            onTap: () => Get.to(() => NurseSelectSreen(nurseModel: nurseModel),
-                transition: Transition.leftToRight),
+          SizedBox(
+            width: Get.width,
+            height: Get.height / 10,
+            child: NextButton(
+              onNext: () => Get.to(
+                  () => NurseSelectSreen(nurseModel: nurseModel),
+                  transition: Transition.leftToRight),
+            ),
           )
+          // NextStepButton(
+          //   title: "مرحله بعدی",
+          //   onTap: () => Get.to(() => NurseSelectSreen(nurseModel: nurseModel),
+          //       transition: Transition.leftToRight),
+          // )
         ],
       ),
     );

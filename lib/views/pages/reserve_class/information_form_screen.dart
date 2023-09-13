@@ -4,6 +4,7 @@ import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/models/reserve_class_model.dart';
 import 'package:rayaniyaresh/viewmodels/reserve_class/information_form_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
+import 'package:rayaniyaresh/views/widgets/next_button.dart';
 import 'package:rayaniyaresh/views/widgets/payment_widget.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart' as picker;
@@ -200,33 +201,52 @@ class InformationFormScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              // button
-              InkWell(
-                onTap: () async {
-                  bool isUpdatedData = await _controller.updateInformation();
-                  if (isUpdatedData && subcategoryId != null) {
-                    bool? isInstallment =
-                        await Get.dialog<bool>(const PaymentWidget());
-                    await _controller.reserveClass(isInstallment);
-                  }
-                },
-                child: Container(
-                  width: Get.width,
-                  height: Get.height / 13,
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(15),
-                          topRight: Radius.circular(15)),
-                      color: buttonColor),
-                  child: Text(
-                    isReserving ? "مرحله بعدی" : "ثبت اطلاعات",
-                    style: TextStyle(
-                        color: const Color(0xffffffff),
-                        fontSize: Get.width / 26),
-                  ),
-                ),
-              ),
+              isReserving
+                  ? SizedBox(
+                      width: Get.width,
+                      height: Get.height / 10,
+                      child: NextButton(
+                        onNext: () async {
+                          bool isUpdatedData =
+                              await _controller.updateInformation();
+                          if (isUpdatedData && subcategoryId != null) {
+                            bool? isInstallment =
+                                await Get.dialog<bool>(const PaymentWidget());
+                            await _controller.reserveClass(isInstallment);
+                          }
+                        },
+                      ),
+                    )
+                  :
+                  // button
+
+                  InkWell(
+                      onTap: () async {
+                        bool isUpdatedData =
+                            await _controller.updateInformation();
+                        if (isUpdatedData && subcategoryId != null) {
+                          bool? isInstallment =
+                              await Get.dialog<bool>(const PaymentWidget());
+                          await _controller.reserveClass(isInstallment);
+                        }
+                      },
+                      child: Container(
+                        width: Get.width,
+                        height: Get.height / 13,
+                        alignment: Alignment.center,
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(15),
+                                topRight: Radius.circular(15)),
+                            color: buttonColor),
+                        child: Text(
+                          "ثبت اطلاعات",
+                          style: TextStyle(
+                              color: const Color(0xffffffff),
+                              fontSize: Get.width / 26),
+                        ),
+                      ),
+                    ),
             ],
           )),
     );

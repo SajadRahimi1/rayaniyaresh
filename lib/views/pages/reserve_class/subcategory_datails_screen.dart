@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/models/class_model.dart';
 import 'package:rayaniyaresh/models/models/reserve_class_model.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/information_form_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
+import 'package:rayaniyaresh/views/widgets/next_button.dart';
 import 'package:rayaniyaresh/views/widgets/subcategory_cons_widget.dart';
 
 class SubcategoryDetailScreen extends StatelessWidget {
@@ -61,6 +61,15 @@ class SubcategoryDetailScreen extends StatelessWidget {
             title: "مبلغ قسط ماهانه: ${model.installmentPrice} میلیون ریال",
           ),
           Expanded(
+            child: NextButton(
+              onNext: () => Get.to(
+                  () => InformationFormScreen(
+                        reserveClassModel: reserveModel,
+                        subcategoryId: model.id,
+                      ),
+                  transition: Transition.leftToRight),
+            ),
+            /*
               child: Align(
             alignment: Alignment.bottomCenter,
             child: InkWell(
@@ -86,7 +95,8 @@ class SubcategoryDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
-          ))
+          )*/
+          )
         ],
       ),
     );

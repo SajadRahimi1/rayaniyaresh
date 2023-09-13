@@ -4,6 +4,7 @@ import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
 import 'package:rayaniyaresh/viewmodels/reserve_nurse/request_nurse_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
+import 'package:rayaniyaresh/views/widgets/next_button.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 
 class FinalStepScreen extends StatelessWidget {
@@ -38,7 +39,18 @@ class FinalStepScreen extends StatelessWidget {
             )),
 
         // button
-        const Expanded(child: SizedBox()),
+        const Spacer(),
+        SizedBox(
+          width: Get.width,
+          height: Get.height / 10,
+          child: NextButton(
+            onNext: () async {
+              FocusNode().unfocus();
+              await _controller.sendData();
+            },
+          ),
+        )
+        /*
         InkWell(
           onTap: () async {
             FocusNode().unfocus();
@@ -59,7 +71,7 @@ class FinalStepScreen extends StatelessWidget {
                   color: const Color(0xffffffff), fontSize: Get.width / 26),
             ),
           ),
-        ),
+        ),*/
       ]),
     );
   }

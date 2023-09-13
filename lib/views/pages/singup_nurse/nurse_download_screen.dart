@@ -6,6 +6,7 @@ import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/viewmodels/signup_nurse/nurse_pdf_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_rules_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
+import 'package:rayaniyaresh/views/widgets/next_button.dart';
 import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 
 class NurseDownloadScreen extends StatelessWidget {
@@ -85,12 +86,21 @@ class NurseDownloadScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              NextStepButton(
+              SizedBox(
+            width: Get.width,
+            height: Get.height / 10,
+            child: NextButton(
+              onNext:  () => Get.to(() => NurseRulesScreen(
+                      model: nurseModel,
+                    )
+            )),
+          )
+              /*NextStepButton(
                 title: "مرحله بعدی",
                 onTap: () => Get.to(() => NurseRulesScreen(
                       model: nurseModel,
                     )),
-              ),
+              ),*/
             ],
           )),
     );

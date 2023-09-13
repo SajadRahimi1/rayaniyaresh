@@ -4,7 +4,7 @@ import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/viewmodels/signup_nurse/create_nurse_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
-import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
+import 'package:rayaniyaresh/views/widgets/next_button.dart';
 
 class NurseSelectSreen extends StatelessWidget {
   const NurseSelectSreen({Key? key, required this.nurseModel})
@@ -138,7 +138,12 @@ class NurseSelectSreen extends StatelessWidget {
               ),
             ]),
           ),
-          NextStepButton(title: "مرحله بعدی", onTap: _controller.createNurse)
+          SizedBox(
+            width: Get.width,
+            height: Get.height / 10,
+            child: NextButton(onNext: _controller.createNurse),
+          )
+          // NextStepButton(title: "مرحله بعدی", onTap: _controller.createNurse)
         ],
       ),
     );

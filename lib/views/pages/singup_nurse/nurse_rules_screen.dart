@@ -5,7 +5,7 @@ import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/viewmodels/signup_nurse/nurse_rules_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
-import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
+import 'package:rayaniyaresh/views/widgets/next_button.dart';
 
 class NurseRulesScreen extends StatelessWidget {
   const NurseRulesScreen({Key? key, required this.model}) : super(key: key);
@@ -193,7 +193,24 @@ class NurseRulesScreen extends StatelessWidget {
               ],
             ),
           ),
-          Obx(() => NextStepButton(
+          SizedBox(
+            width: Get.width,
+            height: Get.height / 10,
+            child: NextButton(
+              onNext: () async {
+                if (controller.accept.value) {
+                  await controller.sendData();
+                } else {
+                  showMessage(
+                      title: "خطا",
+                      message: 'باید  قوانین را قبول کنید',
+                      type: MessageType.warning);
+                }
+              },
+            ),
+          )
+
+          /*Obx(() => NextStepButton(
                 title: "تایید نهایی",
                 enable: controller.accept.value,
                 onTap: () async {
@@ -206,7 +223,7 @@ class NurseRulesScreen extends StatelessWidget {
                         type: MessageType.warning);
                   }
                 },
-              ))
+              ))*/
         ],
       ),
     );

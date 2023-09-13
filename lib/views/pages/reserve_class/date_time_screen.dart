@@ -6,6 +6,7 @@ import 'package:rayaniyaresh/models/models/class_model.dart';
 import 'package:rayaniyaresh/models/models/reserve_class_model.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/subcategory_datails_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
+import 'package:rayaniyaresh/views/widgets/next_button.dart';
 
 class DateTimeScreen extends StatelessWidget {
   const DateTimeScreen({Key? key, required this.title, required this.model})
@@ -137,7 +138,21 @@ class DateTimeScreen extends StatelessWidget {
           ),
 
           // button
-          Expanded(
+          Expanded(child: NextButton(
+            onNext: () {
+              reserveModel.day = model.days?[_daysIndex.value];
+              reserveModel.hours = model.hours?[_hoursIndex.value];
+              reserveModel.classCategoryId = model.id;
+              Get.to(
+                  () => SubcategoryDetailScreen(
+                        title: title,
+                        model: model,
+                        reserveModel: reserveModel,
+                      ),
+                  transition: Transition.leftToRight);
+            },
+          )
+              /*
               child: Align(
             alignment: Alignment.bottomCenter,
             child: InkWell(
@@ -169,7 +184,8 @@ class DateTimeScreen extends StatelessWidget {
                 ),
               ),
             ),
-          ))
+          )*/
+              )
         ],
       ),
     );

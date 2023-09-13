@@ -5,6 +5,7 @@ import 'package:rayaniyaresh/models/constants/city_constant.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/viewmodels/signup_nurse/nurse_information_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
+import 'package:rayaniyaresh/views/widgets/next_button.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart' as picker;
 
@@ -158,23 +159,21 @@ class NurseInformationScreen extends StatelessWidget {
                           width: Get.width / 1,
                           child: TypeAheadFormField(
                             textFieldConfiguration: TextFieldConfiguration(
-                              decoration: InputDecoration(
-                                  prefixIcon: const Text(
-                                    "*",
-                                    style: TextStyle(color: Colors.red),
-                                  ),
-                                  contentPadding: EdgeInsets.zero,
-                                  prefixIconConstraints:
-                                      const BoxConstraints(maxWidth: 0),
-                                  label: Text(
-                                    " استان",
-                                    style: TextStyle(
-                                        fontSize: Get.width / 30,
-                                        color: Colors.black),
-                                  )),
-
-                              // controller: provinceController
-                            ),
+                                decoration: InputDecoration(
+                                    prefixIcon: const Text(
+                                      "*",
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                    contentPadding: EdgeInsets.zero,
+                                    prefixIconConstraints:
+                                        const BoxConstraints(maxWidth: 0),
+                                    label: Text(
+                                      " استان",
+                                      style: TextStyle(
+                                          fontSize: Get.width / 30,
+                                          color: Colors.black),
+                                    )),
+                                controller: _controller.provinceController),
                             itemBuilder: (context, itemData) => ListTile(
                               title: Text(itemData.toString()),
                             ),
@@ -188,22 +187,21 @@ class NurseInformationScreen extends StatelessWidget {
                           width: Get.width / 1,
                           child: TypeAheadFormField(
                               textFieldConfiguration: TextFieldConfiguration(
-                                decoration: InputDecoration(
-                                    prefixIcon: const Text(
-                                      "*",
-                                      style: TextStyle(color: Colors.red),
-                                    ),
-                                    contentPadding: EdgeInsets.zero,
-                                    prefixIconConstraints:
-                                        const BoxConstraints(maxWidth: 0),
-                                    label: Text(
-                                      " شهر",
-                                      style: TextStyle(
-                                          fontSize: Get.width / 30,
-                                          color: Colors.black),
-                                    )),
-                                // controller: cityController
-                              ),
+                                  decoration: InputDecoration(
+                                      prefixIcon: const Text(
+                                        "*",
+                                        style: TextStyle(color: Colors.red),
+                                      ),
+                                      contentPadding: EdgeInsets.zero,
+                                      prefixIconConstraints:
+                                          const BoxConstraints(maxWidth: 0),
+                                      label: Text(
+                                        " شهر",
+                                        style: TextStyle(
+                                            fontSize: Get.width / 30,
+                                            color: Colors.black),
+                                      )),
+                                  controller: _controller.cityController),
                               itemBuilder: (context, itemData) => ListTile(
                                     title: Text(itemData.toString()),
                                   ),
@@ -251,6 +249,12 @@ class NurseInformationScreen extends StatelessWidget {
             ),
           ),
           // button
+          SizedBox(
+            width: Get.width,
+            height: Get.height / 10,
+            child: NextButton(onNext: _controller.validationForm),
+          )
+          /*
           InkWell(
             onTap: _controller.validationForm,
             child: Container(
@@ -268,7 +272,7 @@ class NurseInformationScreen extends StatelessWidget {
                     color: const Color(0xffffffff), fontSize: Get.width / 22),
               ),
             ),
-          ),
+          ),*/
         ],
       ),
     );

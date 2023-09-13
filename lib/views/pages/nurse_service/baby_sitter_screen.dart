@@ -6,6 +6,7 @@ import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/final_step_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
+import 'package:rayaniyaresh/views/widgets/next_button.dart';
 import 'package:rayaniyaresh/views/widgets/profile_text_input.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
@@ -387,7 +388,33 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
               ],
             ),
           ),
-          // button
+          SizedBox(
+            width: Get.width,
+            height: Get.height / 10,
+            child: NextButton(
+              onNext: () {
+                model.nurseCategory = NurseCategory.Kid;
+                model.address = provinceController.text;
+                model.hours = hours1;
+                model.age = ages[0];
+                if (babySitterValidation(model)) {
+                  model.address =
+                      "استان ${provinceController.text} شهر ${cityController.text} محله $neighbourhood";
+                  model.hours = "از ساعت $hours1 تا ساعت $hours2";
+                  model.age = ages
+                      .where((element) => element.isNotEmpty)
+                      .toString()
+                      .replaceAll('(', '')
+                      .replaceAll(')', '');
+                  FocusNode().unfocus();
+                  Get.to(() => FinalStepScreen(
+                        model: model,
+                      ));
+                }
+              },
+            ),
+          )
+          /* button
           InkWell(
             onTap: () {
               model.nurseCategory = NurseCategory.Kid;
@@ -424,7 +451,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                     color: const Color(0xffffffff), fontSize: Get.width / 22),
               ),
             ),
-          ),
+          ),*/
         ]));
   }
 }
