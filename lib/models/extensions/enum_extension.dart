@@ -14,6 +14,8 @@ extension ShiftExtension on Shift? {
         return "شبانه";
       case Shift.Hour:
         return "مقطعی";
+      case Shift.Day:
+        return 'روزانه';
       default:
         return "";
     }
@@ -45,4 +47,3 @@ extension CategoryExtension on NurseCategory? {
     return "patient.jpg";
   }
 }
-

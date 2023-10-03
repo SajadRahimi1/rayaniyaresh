@@ -43,5 +43,5 @@ class RequestNurseModel {
 }
 
 enum Gender { Male, Female, Both }
-enum Shift { Boarding, Night, Hour }
+enum Shift { Boarding,Day, Night, Hour }
 enum NurseCategory { Kid, Oldage, Patient, All }

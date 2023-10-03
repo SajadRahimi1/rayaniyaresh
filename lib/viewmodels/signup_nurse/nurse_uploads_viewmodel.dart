@@ -17,7 +17,7 @@ class NurseUploadsViewModel extends GetxController {
   Future<void> selectImage(int index) async {
     final ImagePicker picker = ImagePicker();
     final XFile? image =
-        await picker.pickImage(source: ImageSource.gallery, imageQuality: 40);
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 20);
     if (image != null) {
       imagePaths[index].value = image.path;
     }

@@ -182,6 +182,20 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                             onChanged: (value) {
                               if (value != null) {
                                 shiftWork.value = 0;
+                                model.shift = Shift.Day;
+                              }
+                            },
+                          )),
+                      Text(
+                        "روزانه",
+                        style: TextStyle(fontSize: Get.width / 28),
+                      ),
+                      Obx(() => Checkbox(
+                            activeColor: buttonColor,
+                            value: shiftWork.value == 1,
+                            onChanged: (value) {
+                              if (value != null) {
+                                shiftWork.value = 1;
                                 model.shift = Shift.Boarding;
                               }
                             },
@@ -192,10 +206,10 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                       ),
                       Obx(() => Checkbox(
                             activeColor: buttonColor,
-                            value: shiftWork.value == 1,
+                            value: shiftWork.value == 2,
                             onChanged: (value) {
                               if (value != null) {
-                                shiftWork.value = 1;
+                                shiftWork.value = 2;
                                 model.shift = Shift.Night;
                               }
                             },
@@ -206,10 +220,10 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                       ),
                       Obx(() => Checkbox(
                             activeColor: buttonColor,
-                            value: shiftWork.value == 2,
+                            value: shiftWork.value == 3,  
                             onChanged: (value) {
                               if (value != null) {
-                                shiftWork.value = 2;
+                                shiftWork.value = 3;
                                 model.shift = Shift.Hour;
                               }
                             },

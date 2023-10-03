@@ -9,7 +9,7 @@ class NurseInformationViewmodel extends GetxController with StateMixin {
       List.generate(9, (index) => TextEditingController());
   final TextEditingController provinceController = TextEditingController(),
       cityController = TextEditingController();
-  String neighbourhood = "";
+  String neighbourhood = "",street='',alley='',plate='',number='';
   final CreateNurseModel nurseModel = CreateNurseModel();
 
   List educationStrings = [
@@ -30,9 +30,9 @@ class NurseInformationViewmodel extends GetxController with StateMixin {
 
   void validationForm() {
     nurseModel.education = educationStrings[educationIndex.value];
-    nurseModel.address =
-        "استان ${provinceController.text} شهر ${cityController.text} محله $neighbourhood";
     if (validation()) {
+    nurseModel.address =
+        "استان ${provinceController.text} شهر ${cityController.text} محله $neighbourhood خیابان $street ${alley.isNotEmpty?'کوچه ' +alley:''} پلاک $plate واحد $number";
       Get.to(() => NurseQuestionScreen(nurseModel: nurseModel),
           transition: Transition.leftToRight);
     }
@@ -68,7 +68,7 @@ class NurseInformationViewmodel extends GetxController with StateMixin {
       return false;
     }
     if ((nurseModel.nationalCode?.isEmpty ?? true) ||
-        (nurseModel.nationalCode?.length ?? 0) < 11) {
+        (nurseModel.nationalCode?.length ?? 0) < 10) {
       showMessage(
           title: 'خطا',
           message: 'لطفا کد ملی را درست وارد کنید',
@@ -103,6 +103,25 @@ class NurseInformationViewmodel extends GetxController with StateMixin {
           type: MessageType.warning);
       return false;
     }
+     if (street.isEmpty) {
+      showMessage(
+          title: 'خطا',
+          message: 'لطفا نام خیابان خود را وارد کنید',
+          type: MessageType.warning);
+      return false;
+    } if (plate.isEmpty) {
+      showMessage(
+          title: 'خطا',
+          message: 'لطفا پلاک خود را وارد کنید',
+          type: MessageType.warning);
+      return false;
+    } if (number.isEmpty) {
+      showMessage(
+          title: 'خطا',
+          message: 'لطفا واحد خود را وارد کنید',
+          type: MessageType.warning);
+      return false;
+    } 
     if (nurseModel.phoneNumber?.isEmpty ?? true) {
       showMessage(
           title: 'خطا',

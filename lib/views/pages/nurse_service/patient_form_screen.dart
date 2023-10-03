@@ -160,6 +160,7 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                   thickness: 1,
                   color: buttonColor,
                 ),
+
                 // shift
                 SizedBox(
                   height: Get.height / 30,
@@ -169,11 +170,11 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                     children: [
                       Text(
                         "شیفت کاری:" "  ",
-                        style: TextStyle(fontSize: Get.width / 30),
+                        style: TextStyle(fontSize: Get.width / 28),
                       ),
                       Text(
                         "شبانه روزی",
-                        style: TextStyle(fontSize: Get.width / 30),
+                        style: TextStyle(fontSize: Get.width / 28),
                       ),
                       Obx(() => Checkbox(
                             activeColor: buttonColor,
@@ -181,13 +182,13 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                             onChanged: (value) {
                               if (value != null) {
                                 shiftWork.value = 0;
-                                model.shift = Shift.Boarding;
+                                model.shift = Shift.Day;
                               }
                             },
                           )),
                       Text(
-                        "شبانه",
-                        style: TextStyle(fontSize: Get.width / 30),
+                        "روزانه",
+                        style: TextStyle(fontSize: Get.width / 28),
                       ),
                       Obx(() => Checkbox(
                             activeColor: buttonColor,
@@ -195,13 +196,13 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                             onChanged: (value) {
                               if (value != null) {
                                 shiftWork.value = 1;
-                                model.shift = Shift.Night;
+                                model.shift = Shift.Boarding;
                               }
                             },
                           )),
                       Text(
-                        "مقطعی",
-                        style: TextStyle(fontSize: Get.width / 30),
+                        "شبانه",
+                        style: TextStyle(fontSize: Get.width / 28),
                       ),
                       Obx(() => Checkbox(
                             activeColor: buttonColor,
@@ -209,6 +210,20 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                             onChanged: (value) {
                               if (value != null) {
                                 shiftWork.value = 2;
+                                model.shift = Shift.Night;
+                              }
+                            },
+                          )),
+                      Text(
+                        "مقطعی",
+                        style: TextStyle(fontSize: Get.width / 28),
+                      ),
+                      Obx(() => Checkbox(
+                            activeColor: buttonColor,
+                            value: shiftWork.value == 3,
+                            onChanged: (value) {
+                              if (value != null) {
+                                shiftWork.value = 3;
                                 model.shift = Shift.Hour;
                               }
                             },

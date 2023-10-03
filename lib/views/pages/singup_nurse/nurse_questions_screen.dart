@@ -46,138 +46,139 @@ class NurseQuestionScreen extends StatelessWidget {
                 ),
 
                 // cigret
-                YesNoWidget(
-                  value: questions[1].value,
-                  title: "آیا از سیگار استفاده میکنید؟  ",
-                  onChanged: (value) {
-                    if (value != null) {
-                      questions[1].value = value;
-                      if (value) {
-                        nurseModel.otherProp =
-                            (nurseModel.otherProp ?? "") + ".سیگار";
-                      } else {
-                        nurseModel.otherProp?.replaceAll('.سیگار', '');
-                      }
-                    }
-                  },
-                ),
+                Obx(() => YesNoWidget(
+                      value: questions[1].value,
+                      title: "آیا از سیگار استفاده میکنید؟  ",
+                      onChanged: (value) {
+                        if (value != null) {
+                          questions[1].value = value;
+                          if (value) {
+                            nurseModel.otherProp =
+                                (nurseModel.otherProp ?? "") + ".سیگار";
+                          } else {
+                            nurseModel.otherProp?.replaceAll('.سیگار', '');
+                          }
+                        }
+                      },
+                    )),
                 const Divider(
                   thickness: 1,
                 ),
 
                 // alcoholic
-                YesNoWidget(
-                  value: questions[2].value,
-                  title: "آیا از مشروبات الکلی استفاده میکنید؟  ",
-                  onChanged: (value) {
-                    if (value != null) {
-                      questions[2].value = value;
-                      if (value) {
-                        nurseModel.otherProp =
-                            (nurseModel.otherProp ?? "") + ".الکلی";
-                      } else {
-                        nurseModel.otherProp?.replaceAll('.الکلی', '');
-                      }
-                    }
-                  },
-                ),
+                Obx(() => YesNoWidget(
+                      value: questions[2].value,
+                      title: "آیا از مشروبات الکلی استفاده میکنید؟  ",
+                      onChanged: (value) {
+                        if (value != null) {
+                          questions[2].value = value;
+                          if (value) {
+                            nurseModel.otherProp =
+                                (nurseModel.otherProp ?? "") + ".الکلی";
+                          } else {
+                            nurseModel.otherProp?.replaceAll('.الکلی', '');
+                          }
+                        }
+                      },
+                    )),
                 const Divider(
                   thickness: 1,
                 ),
 
-                YesNoWidget(
-                  value: questions[3].value,
-                  title: "آیا دارای معلولیت جسمی هستید؟  ",
-                  onChanged: (value) {
-                    if (value != null) {
-                      questions[3].value = value;
-                      if (value) {
-                        nurseModel.otherProp =
-                            (nurseModel.otherProp ?? "") + ".معلولیت";
-                      } else {
-                        nurseModel.otherProp?.replaceAll('.معلولیت', '');
-                      }
-                    }
-                  },
-                ),
+                Obx(() => YesNoWidget(
+                      value: questions[3].value,
+                      title: "آیا دارای معلولیت جسمی هستید؟  ",
+                      onChanged: (value) {
+                        if (value != null) {
+                          questions[3].value = value;
+                          if (value) {
+                            nurseModel.otherProp =
+                                (nurseModel.otherProp ?? "") + ".معلولیت";
+                          } else {
+                            nurseModel.otherProp?.replaceAll('.معلولیت', '');
+                          }
+                        }
+                      },
+                    )),
                 const Divider(
                   thickness: 1,
                 ),
 
                 //
-                YesNoWidget(
-                  value: questions[4].value,
-                  title: "آیا بیماری خاصی دارید؟  ",
-                  onChanged: (value) {
-                    if (value != null) {
-                      questions[4].value = value;
-                      if (value) {
-                        nurseModel.otherProp =
-                            (nurseModel.otherProp ?? "") + ".بیماری";
-                      } else {
-                        nurseModel.otherProp?.replaceAll('.بیماری', '');
-                      }
-                    }
-                  },
-                ),
+                Obx(() => YesNoWidget(
+                      value: questions[4].value,
+                      title: "آیا بیماری خاصی دارید؟  ",
+                      onChanged: (value) {
+                        if (value != null) {
+                          questions[4].value = value;
+                          if (value) {
+                            nurseModel.otherProp =
+                                (nurseModel.otherProp ?? "") + ".بیماری";
+                          } else {
+                            nurseModel.otherProp?.replaceAll('.بیماری', '');
+                          }
+                        }
+                      },
+                    )),
                 const Divider(
                   thickness: 1,
                 ),
 
-                YesNoWidget(
-                  value: questions[5].value,
-                  title: "آیا دارای سابقه حکومت کیفری هستید؟  ",
-                  onChanged: (value) {
-                    if (value != null) {
-                      questions[5].value = value;
-                      if (value) {
-                        nurseModel.otherProp =
-                            (nurseModel.otherProp ?? "") + ".کیفری";
-                      } else {
-                        nurseModel.otherProp?.replaceAll('.کیفری', '');
-                      }
-                    }
-                  },
-                ),
+                Obx(() => YesNoWidget(
+                      value: questions[5].value,
+                      title: "آیا دارای سابقه حکومت کیفری هستید؟  ",
+                      onChanged: (value) {
+                        if (value != null) {
+                          questions[5].value = value;
+                          if (value) {
+                            nurseModel.otherProp =
+                                (nurseModel.otherProp ?? "") + ".کیفری";
+                          } else {
+                            nurseModel.otherProp?.replaceAll('.کیفری', '');
+                          }
+                        }
+                      },
+                    )),
                 const Divider(
                   thickness: 1,
                 ),
 
-                YesNoWidget(
-                  value: questions[6].value,
-                  title:
-                      "آیا میخواهید در حین فعالیت یک یا چند نفر از اعضای خانواده شما کنارتان حضور داشته باشد؟  ",
-                  onChanged: (value) {
-                    if (value != null) {
-                      questions[6].value = value;
-                      if (value) {
-                        nurseModel.otherProp =
-                            (nurseModel.otherProp ?? "") + ".خانواده";
-                      } else {
-                        nurseModel.otherProp?.replaceAll('.خانواده', '');
-                      }
-                    }
-                  },
-                ),
+                Obx(() => YesNoWidget(
+                      value: questions[6].value,
+                      title:
+                          "آیا میخواهید در حین فعالیت یک یا چند نفر از اعضای خانواده شما کنارتان حضور داشته باشد؟  ",
+                      onChanged: (value) {
+                        if (value != null) {
+                          questions[6].value = value;
+                          if (value) {
+                            nurseModel.otherProp =
+                                (nurseModel.otherProp ?? "") + ".خانواده";
+                          } else {
+                            nurseModel.otherProp?.replaceAll('.خانواده', '');
+                          }
+                        }
+                      },
+                    )),
                 const Divider(
                   thickness: 1,
                 ),
 
-                YesNoWidget(
-                  value: questions[7].value,
-                  title: "آیا مدرک تخصصی در زمینه پرستاری و درمانی دارید؟  ",
-                  onChanged: (value) {
-                    if (value != null) {
-                      questions[7].value = value;
-                      if (value) {
-                        nurseModel.otherProp =
-                            (nurseModel.otherProp ?? "") + ".مدرک";
-                      } else {
-                        nurseModel.otherProp?.replaceAll('.مدرک', '');
-                      }
-                    }
-                  },
-                ),
+                Obx(() => YesNoWidget(
+                      value: questions[7].value,
+                      title:
+                          "آیا مدرک تخصصی در زمینه پرستاری و درمانی دارید؟  ",
+                      onChanged: (value) {
+                        if (value != null) {
+                          questions[7].value = value;
+                          if (value) {
+                            nurseModel.otherProp =
+                                (nurseModel.otherProp ?? "") + ".مدرک";
+                          } else {
+                            nurseModel.otherProp?.replaceAll('.مدرک', '');
+                          }
+                        }
+                      },
+                    )),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 15,
                 )

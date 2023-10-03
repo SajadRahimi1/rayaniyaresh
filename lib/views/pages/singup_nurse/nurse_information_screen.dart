@@ -80,7 +80,7 @@ class NurseInformationScreen extends StatelessWidget {
                   controller: _controller.textEditingController[4],
                   text: "کد ملی:",
                   icon: const Icon(Icons.public),
-                  maxLength: 11,
+                  maxLength: 10,
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
                     _controller.nurseModel.nationalCode = value;
@@ -219,6 +219,33 @@ class NurseInformationScreen extends StatelessWidget {
                             text: "محله",
                             onChanged: (value) =>
                                 _controller.neighbourhood = value,
+                          )),
+                      SizedBox(
+                          width: Get.width / 1,
+                          child: ProfileTextInput(
+                            text: "نام خیابان",
+                            onChanged: (value) => _controller.street = value,
+                          )),
+                      SizedBox(
+                          width: Get.width / 1,
+                          child: ProfileTextInput(
+                            required: false,
+                            text: "نام کوچه",
+                            onChanged: (value) => _controller.alley = value,
+                          )),
+                      SizedBox(
+                          width: Get.width / 1,
+                          child: ProfileTextInput(
+                            text: "پلاک",
+                            keyboardType: TextInputType.number,
+                            onChanged: (value) => _controller.plate = value,
+                          )),
+                      SizedBox(
+                          width: Get.width / 1,
+                          child: ProfileTextInput(
+                            text: "واحد",
+                            keyboardType: TextInputType.number,
+                            onChanged: (value) => _controller.number = value,
                           )),
                     ],
                   ),

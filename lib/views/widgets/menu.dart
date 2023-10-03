@@ -65,7 +65,7 @@ class Menu extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: Text(
-                                "رایا نیارش",
+                                SingletonClass().name ?? "",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize:
@@ -119,7 +119,7 @@ class Menu extends StatelessWidget {
                       ListTile(
                         onTap: () async {
                           // await launchUrl(Uri.parse('tel:02632406705'));
-                          Get.to(() => ContactusScreen());
+                          Get.to(() => const ContactusScreen());
                         },
                         //   Get.to(() => const ContactScreen(),
                         //       transition: Transition.noTransition);

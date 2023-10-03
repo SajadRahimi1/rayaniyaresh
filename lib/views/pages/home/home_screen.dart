@@ -284,9 +284,9 @@ class HomeScreen extends StatelessWidget {
                                   enable: false,
                                   onTap: () {},
                                   image: [
-                                    "services2.png",
-                                    "building.png",
-                                    "reserve-class.png",
+                                    "service3.png",
+                                    "rent.png",
+                                    "sale.png",
                                   ][index],
                                   title: [
                                     "خدمات پزشکی (بزودی)",

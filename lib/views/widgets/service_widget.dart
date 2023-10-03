@@ -67,7 +67,7 @@ class ServiceWidget extends StatelessWidget {
                         overflow: TextOverflow.clip,
                         style: TextStyle(
                             fontSize: MediaQuery.of(context).size.width /
-                                (enable ? 32 : 37),
+                                (enable ? 30 : 40),
                             color: enable
                                 ? Colors.black
                                 : const Color(0xffafafaf)),

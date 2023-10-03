@@ -9,8 +9,8 @@ import 'package:url_launcher/url_launcher_string.dart';
 class NurseRulesViewModel extends GetxController {
   NurseRulesViewModel(this.id);
   final String id;
-    
-    RxBool accept = false.obs;
+
+  RxBool accept = false.obs;
 
   @override
   void onInit() {
@@ -23,11 +23,13 @@ class NurseRulesViewModel extends GetxController {
     if (request.statusCode == 200) {
       launchUrlString(request.bodyString ?? "",
           mode: LaunchMode.externalApplication);
-           Get.to(() => SuccessReserveScreen(
-                          message:
-                              "پس از تایید نهایی کارشناسان ما طی 24 ساعت با شما در تماس خواهند بود"
-                                  .toPersianDigit(),
-                        ));
+      Future.delayed(
+          const Duration(seconds: 3),
+          () => Get.to(() => SuccessReserveScreen(
+                message:
+                    "پس از تایید نهایی کارشناسان ما طی 24 ساعت با شما در تماس خواهند بود"
+                        .toPersianDigit(),
+              )));
     } else {
       networkErrorMessage();
     }
