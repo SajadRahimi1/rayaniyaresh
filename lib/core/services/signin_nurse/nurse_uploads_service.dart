@@ -24,7 +24,11 @@ Future<Response<dynamic>> uploadImages(String id, File picture,
             contentType: 'multipart/form-data'),
   });
 
-  return await getConnect.put(nurseUploadsUrl, formData);
+  var request =  await  GetConnect(allowAutoSignedCert: true, timeout: const Duration(seconds: 20)).put(nurseUploadsUrl, formData).timeout(const Duration(seconds: 22), onTimeout: () async{   
+    return await uploadImages( id, picture,
+   firstPageImage,  descriptionImage,  agreementImage);
+  });;
+    return request;
 }
 
 Future<Response<dynamic>> uploadPdfFile(Uint8List fileBytes,String id,String fileName) async {
