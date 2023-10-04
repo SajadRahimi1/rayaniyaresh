@@ -1,9 +1,12 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:rayaniyaresh/viewmodels/login/get_phone_viewmodel.dart';
+import 'package:rayaniyaresh/views/pages/privacy_screen.dart';
+import 'package:rayaniyaresh/views/pages/rules_screen.dart';
 
 class GetPhoneScreen extends StatelessWidget {
   const GetPhoneScreen({Key? key, this.isExit = false}) : super(key: key);
@@ -36,7 +39,7 @@ class GetPhoneScreen extends StatelessWidget {
                   children: [
                     Container(
                       width: Get.width,
-                      height: Get.height / 7,
+                      height: Get.height / 5,
                       margin: EdgeInsets.symmetric(horizontal: Get.width / 20) +
                           EdgeInsets.only(top: Get.height / 20),
                       child: Column(
@@ -58,7 +61,9 @@ class GetPhoneScreen extends StatelessWidget {
                                 textDirection: TextDirection.rtl,
                               ),
                             ),
-
+                            SizedBox(
+                              height: Get.height / 45,
+                            ),
                             // text input
                             TextField(
                               onChanged: (value) =>
@@ -97,6 +102,61 @@ class GetPhoneScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
+
+                            SizedBox(
+                              height: Get.height / 30,
+                            ),
+
+                            Expanded(
+                                // width: Get.width,
+                                // height: Get.height / 5,1
+                                child: RichText(
+                                    textScaleFactor:
+                                        MediaQuery.of(context).textScaleFactor,
+                                    textAlign: TextAlign.justify,
+                                    textDirection: TextDirection.rtl,
+                                    softWrap: true,
+                                    text: TextSpan(
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                      children: [
+                                        const TextSpan(
+                                          text:
+                                              "با ورود و یا ثبت نام در آسیاسلامت ",
+                                        ),
+                                        /*Get.to(
+                                            () => const RulesScreen(),
+                                            transition: Transition.noTransition),*/
+                                        TextSpan(
+                                          text: "قوانین و مقررات ",
+                                          style: const TextStyle(
+                                              color: buttonColor),
+                                          recognizer: TapGestureRecognizer()
+                                            ..onTap = () => Get.to(
+                                                () => const RulesScreen(),
+                                                transition:
+                                                    Transition.noTransition),
+                                        ),
+                                        const TextSpan(
+                                          text:
+                                              "استفاده از پلتفرم آسیاسلامت و همچنین قوانین مربوط به ",
+                                        ),
+                                        TextSpan(
+                                          text: "حریم خصوصی ",
+                                          style: const TextStyle(
+                                              color: buttonColor),
+                                          recognizer: TapGestureRecognizer()
+                                            ..onTap = () => Get.to(
+                                                () => const PrivacyScreen(),
+                                                transition:
+                                                    Transition.noTransition),
+                                        ),
+                                        const TextSpan(
+                                          text: "را می پذیرید.",
+                                        )
+                                      ],
+                                    ))),
                           ]),
                     ),
                     Padding(
