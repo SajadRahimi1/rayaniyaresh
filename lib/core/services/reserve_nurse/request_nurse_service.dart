@@ -18,9 +18,9 @@ Future<Response<dynamic>> requestNurses(
         "cctv": model.cctv,
         "address": model.address,
         'description': model.description,
-        'problem':model.problem,
-        'name':model.name,
-        'phoneNumber':model.phoneNumber,
+        'problem': model.problem,
+        'name': model.name,
+        'phoneNumber': model.phoneNumber,
         "nurseCategory": model.nurseCategory.getValue()
       },
       headers: tokenHeader(token));

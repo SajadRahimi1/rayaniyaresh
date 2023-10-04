@@ -285,7 +285,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                             onChanged: (value) {
                               if (value != null) {
                                 shiftWork.value = 0;
-                                model.shift = Shift.Day;
+                                model.shift = Shift.Boarding;
                               }
                             },
                           )),
@@ -299,7 +299,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                             onChanged: (value) {
                               if (value != null) {
                                 shiftWork.value = 1;
-                                model.shift = Shift.Boarding;
+                                model.shift = Shift.Day;
                               }
                             },
                           )),
@@ -525,6 +525,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                         ][item] +
                         ',';
                   }
+                  model.problem = problem;
                   if (babySitterValidation(model)) {
                     model.address =
                         "استان ${provinceController.text} شهر ${cityController.text} محله $neighbourhood";
