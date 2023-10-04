@@ -182,7 +182,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                             onChanged: (value) {
                               if (value != null) {
                                 shiftWork.value = 0;
-                                model.shift = Shift.Day;
+                                model.shift = Shift.Boarding;
                               }
                             },
                           )),
@@ -196,7 +196,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                             onChanged: (value) {
                               if (value != null) {
                                 shiftWork.value = 1;
-                                model.shift = Shift.Boarding;
+                                model.shift = Shift.Day;
                               }
                             },
                           )),
@@ -220,7 +220,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                       ),
                       Obx(() => Checkbox(
                             activeColor: buttonColor,
-                            value: shiftWork.value == 3,  
+                            value: shiftWork.value == 3,
                             onChanged: (value) {
                               if (value != null) {
                                 shiftWork.value = 3;
