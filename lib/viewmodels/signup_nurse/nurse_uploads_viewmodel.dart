@@ -17,7 +17,7 @@ class NurseUploadsViewModel extends GetxController {
   Future<void> selectImage(int index) async {
     final ImagePicker picker = ImagePicker();
     final XFile? image =
-        await picker.pickImage(source: ImageSource.gallery, imageQuality: 20);
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 5);
     if (image != null) {
       imagePaths[index].value = image.path;
     }
@@ -32,7 +32,6 @@ class NurseUploadsViewModel extends GetxController {
           File(imagePaths[1].value),
           File(imagePaths[2].value),
           imagePaths[0].isEmpty ? null : File(imagePaths[0].value));
-      Get.back();
 
       if (_request.statusCode == 200) {
         CreateNurseModel updatedImageNurse =
@@ -44,6 +43,7 @@ class NurseUploadsViewModel extends GetxController {
       } else {
         networkErrorMessage();
       }
+      Get.back();
     } else {
       showMessage(
           title: 'خطا',
