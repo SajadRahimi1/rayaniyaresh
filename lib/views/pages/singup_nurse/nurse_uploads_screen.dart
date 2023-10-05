@@ -16,198 +16,236 @@ class NurseUploadsScreen extends StatelessWidget {
     final _controller = Get.put(NurseUploadsViewModel(id: nurseId));
 
     return Scaffold(
-      appBar: screensAppbar(context: context, title: 'بارگزاری تصویر'),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              // image
-              Text(
-                "\nتصویر عکس پرسنلی :",
-                style:
-                    TextStyle(fontSize: MediaQuery.sizeOf(context).width / 32),
-              ),
-              Center(
-                child: Obx(() => Container(
-                      width: Get.width / 2.5,
-                      height: Get.height / 6.5,
-                      decoration: BoxDecoration(
-                          image: _controller.imagePaths[0].value.isEmpty
-                              ? null
-                              : DecorationImage(
-                                  image: FileImage(
-                                      File(_controller.imagePaths[0].value)))),
-                      child: InkWell(
-                        onTap: () => _controller.selectImage(0),
-                        child: Container(
-                            width: Get.width,
-                            height: Get.height,
-                            margin: EdgeInsets.symmetric(
-                                horizontal: Get.width / 25, vertical: 15),
-                            decoration: BoxDecoration(
-                                color: const Color.fromRGBO(255, 255, 255, 0.7),
-                                border:
-                                    Border.all(color: const Color(0xff000000))),
-                            alignment: Alignment.center,
-                            child: const Text(
-                              "انتخاب عکس",
+        appBar: screensAppbar(context: context, title: 'بارگزاری تصویر'),
+        body: _controller.obx(
+            (status) => ListView(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // image
+                            Text(
+                              "\nتصویر عکس پرسنلی :",
                               style: TextStyle(
-                                  color: buttonColor,
-                                  fontWeight: FontWeight.bold),
-                            )),
-                      ),
-                    )),
-              ),
+                                  fontSize:
+                                      MediaQuery.sizeOf(context).width / 32),
+                            ),
+                            Center(
+                              child: Obx(() => Container(
+                                    width: Get.width / 2.5,
+                                    height: Get.height / 6.5,
+                                    decoration: BoxDecoration(
+                                        image: _controller
+                                                .imagePaths[0].value.isEmpty
+                                            ? null
+                                            : DecorationImage(
+                                                image: FileImage(File(
+                                                    _controller.imagePaths[0]
+                                                        .value)))),
+                                    child: InkWell(
+                                      onTap: () => _controller.selectImage(0),
+                                      child: Container(
+                                          width: Get.width,
+                                          height: Get.height,
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: Get.width / 25,
+                                              vertical: 15),
+                                          decoration: BoxDecoration(
+                                              color: const Color.fromRGBO(
+                                                  255, 255, 255, 0.7),
+                                              border: Border.all(
+                                                  color:
+                                                      const Color(0xff000000))),
+                                          alignment: Alignment.center,
+                                          child: const Text(
+                                            "انتخاب عکس",
+                                            style: TextStyle(
+                                                color: buttonColor,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                    ),
+                                  )),
+                            ),
 
-              Center(
-                child: Container(
-                  width: Get.width / 1.5,
-                  height: 3,
-                  color: buttonColor,
-                ),
-              ),
-              // first page of national
-              Text(
-                "\nتصویر صفحه اول شناسنامه :",
-                style:
-                    TextStyle(fontSize: MediaQuery.sizeOf(context).width / 32),
-              ),
-              Center(
-                  child: Obx(
-                () => Container(
-                  width: Get.width / 2.5,
-                  height: Get.height / 6.5,
-                  decoration: BoxDecoration(
-                      image: _controller.imagePaths[1].value.isEmpty
-                          ? null
-                          : DecorationImage(
-                              image: FileImage(
-                                  File(_controller.imagePaths[1].value)))),
-                  child: InkWell(
-                    onTap: () => _controller.selectImage(1),
-                    child: Container(
-                        width: Get.width,
-                        height: Get.height,
-                        margin: EdgeInsets.symmetric(
-                            horizontal: Get.width / 25, vertical: 15),
-                        decoration: BoxDecoration(
-                            color: const Color.fromRGBO(255, 255, 255, 0.7),
-                            border: Border.all(color: const Color(0xff000000))),
-                        alignment: Alignment.center,
-                        child: const Text(
-                          "انتخاب عکس",
-                          style: TextStyle(
-                              color: buttonColor, fontWeight: FontWeight.bold),
-                        )),
-                  ),
-                ),
-              )),
-
-              Center(
-                child: Container(
-                  width: Get.width / 1.5,
-                  height: 3,
-                  color: buttonColor,
-                ),
-              ),
-
-              // second page of national
-              Text(
-                "\nتصویر صفحه توضیحات شناسنامه : (وضعیت تاهل)",
-                style:
-                    TextStyle(fontSize: MediaQuery.sizeOf(context).width / 32),
-              ),
-              Center(
-                  child: Obx(
-                () => Container(
-                  width: Get.width / 2.5,
-                  height: Get.height / 6.5,
-                  decoration: BoxDecoration(
-                      image: _controller.imagePaths[2].value.isEmpty
-                          ? null
-                          : DecorationImage(
-                              image: FileImage(
-                                  File(_controller.imagePaths[2].value)))),
-                  child: InkWell(
-                    onTap: () => _controller.selectImage(2),
-                    child: Container(
-                        width: Get.width,
-                        height: Get.height,
-                        margin: EdgeInsets.symmetric(
-                            horizontal: Get.width / 25, vertical: 15),
-                        decoration: BoxDecoration(
-                            color: const Color.fromRGBO(255, 255, 255, 0.7),
-                            border: Border.all(color: const Color(0xff000000))),
-                        alignment: Alignment.center,
-                        child: const Text(
-                          "انتخاب عکس",
-                          style: TextStyle(
-                              color: buttonColor, fontWeight: FontWeight.bold),
-                        )),
-                  ),
-                ),
-              )),
-
-              Center(
-                child: Container(
-                  width: Get.width / 1.5,
-                  height: 3,
-                  color: buttonColor,
-                ),
-              ),
-
-              Text(
-                "\nتصویر رضایت نامه همسر و یا سرپرست خانواده : (ویژه بانوان)",
-                style:
-                    TextStyle(fontSize: MediaQuery.sizeOf(context).width / 32),
-              ),
-              Center(
-                child: Obx(() => Container(
-                      width: Get.width / 2.5,
-                      height: Get.height / 6.5,
-                      decoration: BoxDecoration(
-                          image: _controller.imagePaths[3].value.isEmpty
-                              ? null
-                              : DecorationImage(
-                                  image: FileImage(
-                                      File(_controller.imagePaths[3].value)))),
-                      child: InkWell(
-                        onTap: () => _controller.selectImage(3),
-                        child: Container(
-                            width: Get.width,
-                            height: Get.height,
-                            margin: EdgeInsets.symmetric(
-                                horizontal: Get.width / 25, vertical: 15),
-                            decoration: BoxDecoration(
-                                color: const Color.fromRGBO(255, 255, 255, 0.7),
-                                border:
-                                    Border.all(color: const Color(0xff000000))),
-                            alignment: Alignment.center,
-                            child: const Text(
-                              "انتخاب عکس",
+                            Center(
+                              child: Container(
+                                width: Get.width / 1.5,
+                                height: 3,
+                                color: buttonColor,
+                              ),
+                            ),
+                            // first page of national
+                            Text(
+                              "\nتصویر صفحه اول شناسنامه :",
                               style: TextStyle(
-                                  color: buttonColor,
-                                  fontWeight: FontWeight.bold),
+                                  fontSize:
+                                      MediaQuery.sizeOf(context).width / 32),
+                            ),
+                            Center(
+                                child: Obx(
+                              () => Container(
+                                width: Get.width / 2.5,
+                                height: Get.height / 6.5,
+                                decoration: BoxDecoration(
+                                    image: _controller
+                                            .imagePaths[1].value.isEmpty
+                                        ? null
+                                        : DecorationImage(
+                                            image: FileImage(File(_controller
+                                                .imagePaths[1].value)))),
+                                child: InkWell(
+                                  onTap: () => _controller.selectImage(1),
+                                  child: Container(
+                                      width: Get.width,
+                                      height: Get.height,
+                                      margin: EdgeInsets.symmetric(
+                                          horizontal: Get.width / 25,
+                                          vertical: 15),
+                                      decoration: BoxDecoration(
+                                          color: const Color.fromRGBO(
+                                              255, 255, 255, 0.7),
+                                          border: Border.all(
+                                              color: const Color(0xff000000))),
+                                      alignment: Alignment.center,
+                                      child: const Text(
+                                        "انتخاب عکس",
+                                        style: TextStyle(
+                                            color: buttonColor,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                ),
+                              ),
                             )),
-                      ),
-                    )),
-              ),
 
-              SizedBox(
-                height: Get.height / 20,
+                            Center(
+                              child: Container(
+                                width: Get.width / 1.5,
+                                height: 3,
+                                color: buttonColor,
+                              ),
+                            ),
+
+                            // second page of national
+                            Text(
+                              "\nتصویر صفحه توضیحات شناسنامه : (وضعیت تاهل)",
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.sizeOf(context).width / 32),
+                            ),
+                            Center(
+                                child: Obx(
+                              () => Container(
+                                width: Get.width / 2.5,
+                                height: Get.height / 6.5,
+                                decoration: BoxDecoration(
+                                    image: _controller
+                                            .imagePaths[2].value.isEmpty
+                                        ? null
+                                        : DecorationImage(
+                                            image: FileImage(File(_controller
+                                                .imagePaths[2].value)))),
+                                child: InkWell(
+                                  onTap: () => _controller.selectImage(2),
+                                  child: Container(
+                                      width: Get.width,
+                                      height: Get.height,
+                                      margin: EdgeInsets.symmetric(
+                                          horizontal: Get.width / 25,
+                                          vertical: 15),
+                                      decoration: BoxDecoration(
+                                          color: const Color.fromRGBO(
+                                              255, 255, 255, 0.7),
+                                          border: Border.all(
+                                              color: const Color(0xff000000))),
+                                      alignment: Alignment.center,
+                                      child: const Text(
+                                        "انتخاب عکس",
+                                        style: TextStyle(
+                                            color: buttonColor,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                ),
+                              ),
+                            )),
+
+                            Center(
+                              child: Container(
+                                width: Get.width / 1.5,
+                                height: 3,
+                                color: buttonColor,
+                              ),
+                            ),
+
+                            Text(
+                              "\nتصویر رضایت نامه همسر و یا سرپرست خانواده : (ویژه بانوان)",
+                              style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.sizeOf(context).width / 32),
+                            ),
+                            Center(
+                              child: Obx(() => Container(
+                                    width: Get.width / 2.5,
+                                    height: Get.height / 6.5,
+                                    decoration: BoxDecoration(
+                                        image: _controller
+                                                .imagePaths[3].value.isEmpty
+                                            ? null
+                                            : DecorationImage(
+                                                image: FileImage(File(
+                                                    _controller.imagePaths[3]
+                                                        .value)))),
+                                    child: InkWell(
+                                      onTap: () => _controller.selectImage(3),
+                                      child: Container(
+                                          width: Get.width,
+                                          height: Get.height,
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: Get.width / 25,
+                                              vertical: 15),
+                                          decoration: BoxDecoration(
+                                              color: const Color.fromRGBO(
+                                                  255, 255, 255, 0.7),
+                                              border: Border.all(
+                                                  color:
+                                                      const Color(0xff000000))),
+                                          alignment: Alignment.center,
+                                          child: const Text(
+                                            "انتخاب عکس",
+                                            style: TextStyle(
+                                                color: buttonColor,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                    ),
+                                  )),
+                            ),
+
+                            SizedBox(
+                              height: Get.height / 20,
+                            ),
+                          ]),
+                    ),
+                    SizedBox(
+                      width: Get.width,
+                      height: Get.height / 10,
+                      child: NextButton(onNext: _controller.uploadImages),
+                    )
+                    // NextStepButton(title: "مرحله بعدی", onTap: _controller.uploadImages)
+                  ],
+                ),
+            onEmpty: const SizedBox.expand(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(
+                    color: buttonColor,
+                    backgroundColor: Color(0xffefefef),
+                  ),
+                  Text("\nدر حال آپلود")
+                ],
               ),
-            ]),
-          ),
-          SizedBox(
-            width: Get.width,
-            height: Get.height / 10,
-            child: NextButton(onNext: _controller.uploadImages),
-          )
-          // NextStepButton(title: "مرحله بعدی", onTap: _controller.uploadImages)
-        ],
-      ),
-    );
+            )));
   }
 }

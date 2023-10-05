@@ -10,6 +10,7 @@ class CreateNurseModel {
   String? address;
   String? phoneNumber;
   String? homeNumber;
+  String? shift;
   bool? specialCare;
   String? otherProp;
   int? formCode;
@@ -28,6 +29,7 @@ class CreateNurseModel {
       this.address,
       this.phoneNumber,
       this.homeNumber,
+      this.shift,
       this.specialCare,
       this.picture,
       this.formCode,
@@ -45,6 +47,7 @@ class CreateNurseModel {
     education = json["Education"];
     address = json["Address"];
     formCode = json['formCode'];
+    shift = json['Shift'];
     phoneNumber = json["PhoneNumber"];
     picture =
         json['NurseImages'] == null ? null : json['NurseImages']['Picture'];
@@ -64,6 +67,7 @@ class CreateNurseModel {
     _data["nationalNumber"] = nationalNumber;
     _data["education"] = education;
     _data["address"] = address;
+    _data["shift"] = shift;
     _data["phoneNumber"] = phoneNumber;
     _data["homeNumber"] = homeNumber ?? "";
     _data["specialCare"] = specialCare;

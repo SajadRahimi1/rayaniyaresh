@@ -136,6 +136,98 @@ class NurseSelectSreen extends StatelessWidget {
                   const Spacer(),
                 ],
               ),
+
+              Text(
+                "\nمیخواهید در کدام شیفت کار کنید :\n",
+                style: TextStyle(fontSize: Get.width / 30),
+              ),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text("شبانه روزی",
+                          style: TextStyle(fontSize: Get.width / 30)),
+                      Obx(() => Checkbox(
+                            activeColor: buttonColor,
+                            value: _controller.shiftSelect.contains(0),
+                            onChanged: (value) {
+                              if (value != null) {
+                                if (value) {
+                                  _controller.addShift(0);
+                                } else {
+                                  _controller.shiftSelect.remove(0);
+                                }
+                              }
+                            },
+                          )),
+                      Text("روزانه",
+                          style: TextStyle(fontSize: Get.width / 30)),
+                      Obx(() => Checkbox(
+                            activeColor: buttonColor,
+                            value: _controller.shiftSelect.contains(1),
+                            onChanged: (value) {
+                              if (value != null) {
+                                if (value) {
+                                  _controller.addShift(1);
+                                } else {
+                                  _controller.shiftSelect.remove(1);
+                                }
+                              }
+                            },
+                          )),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text("شبانه", style: TextStyle(fontSize: Get.width / 30)),
+                      Obx(() => Checkbox(
+                            activeColor: buttonColor,
+                            value: _controller.shiftSelect.contains(2),
+                            onChanged: (value) {
+                              if (value != null) {
+                                if (value) {
+                                  _controller.addShift(2);
+                                } else {
+                                  _controller.shiftSelect.remove(2);
+                                }
+                              }
+                            },
+                          )),
+                      Text("مقطعی", style: TextStyle(fontSize: Get.width / 30)),
+                      Obx(() => Checkbox(
+                            activeColor: buttonColor,
+                            value: _controller.shiftSelect.contains(3),
+                            onChanged: (value) {
+                              if (value != null) {
+                                if (value) {
+                                  _controller.addShift(3);
+                                } else {
+                                  _controller.shiftSelect.remove(3);
+                                }
+                              }
+                            },
+                          )),
+                      Text("همه موارد",
+                          style: TextStyle(fontSize: Get.width / 30)),
+                      Obx(() => Checkbox(
+                            activeColor: buttonColor,
+                            value: _controller.shiftSelect.contains(4) && _controller.shiftSelect.length==5,
+                            onChanged: (value) {
+                              if (value != null) {
+                                if (value) {
+                                  _controller.addShift(4);
+                                } else {
+                                  _controller.shiftSelect.clear();
+                                }
+                              }
+                            },
+                          )),
+                    ],
+                  ),
+                ],
+              ),
             ]),
           ),
           SizedBox(

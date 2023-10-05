@@ -37,6 +37,7 @@ class NurseGuaranteeViewModel extends GetxController with StateMixin {
   }
 
   bool validate() {
+    // checknot null
     if (model.nurseParentModels?.any((element) =>
             (element.information?.isEmpty ?? true) ||
             (element.phoneNumber?.isEmpty ?? true) ||
@@ -49,12 +50,34 @@ class NurseGuaranteeViewModel extends GetxController with StateMixin {
           type: MessageType.warning);
       return false;
     }
+
+// check phone number
     if ((model.husbandPhoneNumber?.isEmpty ?? true) &&
         (model.childPhoneNumber?.isEmpty ?? true) &&
         (model.parentPhoneNumber?.isEmpty ?? true)) {
       showMessage(
           title: "خطا",
           message: "باید حداقل یکی از شماره تلفن ها را وارد کنید",
+          type: MessageType.warning);
+      return false;
+    }
+
+    if ((model.husbandPhoneNumber?.startsWith('09') ?? true) &&
+        (model.childPhoneNumber?.startsWith('09') ?? true) &&
+        (model.parentPhoneNumber?.startsWith('09') ?? true)) {
+      showMessage(
+          title: "خطا",
+          message: "لطفا شماره تماس را درست وارد کنید",
+          type: MessageType.warning);
+      return false;
+    }
+
+    if ((model.husbandPhoneNumber?.length ?? 0) < 11 &&
+        (model.childPhoneNumber?.length ?? 0) < 11 &&
+        (model.parentPhoneNumber?.length ?? 0) < 11) {
+      showMessage(
+          title: "خطا",
+          message: "لطفا شماره تماس را درست وارد کنید",
           type: MessageType.warning);
       return false;
     }

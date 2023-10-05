@@ -12,7 +12,16 @@ class CreateNurrseViewModel extends GetxController with StateMixin {
   final CreateNurseModel nurseModel;
 
   RxList<int> categorySelect = <int>[].obs;
+  RxList<int> shiftSelect = <int>[].obs;
   RxBool secondQuestion = false.obs;
+
+  final List<String> shift = [
+    "شبانه روزی",
+    "روزانه",
+    "شبانه",
+    "مقطعی",
+    "همه موارد"
+  ];
 
   @override
   void onInit() {
@@ -38,6 +47,13 @@ class CreateNurrseViewModel extends GetxController with StateMixin {
     for (var index in categorySelect) {
       nurseCategory += ',${NurseCategory.values[index]}';
     }
+
+    String nurseShift = "";
+    for (var index in shiftSelect) {
+      nurseShift += ',${shift[index]}';
+    }
+
+    nurseModel.shift = nurseShift;
     nurseModel.nurseCategory = nurseCategory;
     nurseModel.specialCare = secondQuestion.value;
 
@@ -60,6 +76,19 @@ class CreateNurrseViewModel extends GetxController with StateMixin {
       if (categorySelect.length > 2) {
         categorySelect.value = [];
         List.generate(4, (index) => categorySelect.add(index));
+      }
+    }
+  }
+
+  void addShift(int index) {
+    if (index == 4) {
+      shiftSelect.value = [];
+      List.generate(5, (index) => shiftSelect.add(index));
+    } else {
+      shiftSelect.add(index);
+      if (shiftSelect.length > 3) {
+        shiftSelect.value = [];
+        List.generate(5, (index) => shiftSelect.add(index));
       }
     }
   }

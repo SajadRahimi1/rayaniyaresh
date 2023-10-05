@@ -13,5 +13,5 @@ void loading(
         ? const Color.fromRGBO(255, 255, 255, 0)
         : const Color.fromRGBO(0, 0, 0, 0.5),
     barrierDismissible: false,
-  ).timeout(const Duration(seconds: 3), onTimeout: () => Get.back());
+  );
 }

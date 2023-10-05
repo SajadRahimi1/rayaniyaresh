@@ -135,7 +135,7 @@ class HomeScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(25)),
                                 child: Center(
                                   child: Text(
-                                    "5".toPersianDigit(),
+                                    "0".toPersianDigit(),
                                     style: const TextStyle(
                                         color: Colors.white, fontSize: 12),
                                   ),

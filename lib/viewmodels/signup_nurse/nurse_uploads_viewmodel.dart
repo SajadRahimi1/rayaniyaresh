@@ -6,13 +6,18 @@ import 'package:rayaniyaresh/core/services/signin_nurse/nurse_uploads_service.da
     as service;
 import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_guarantee_screen.dart';
-import 'package:rayaniyaresh/views/widgets/loading_widget.dart';
 
-class NurseUploadsViewModel extends GetxController {
+class NurseUploadsViewModel extends GetxController with StateMixin {
   NurseUploadsViewModel({required this.id});
   final String id;
 
   List<RxString> imagePaths = List.generate(4, (index) => "".obs);
+
+  @override
+  void onInit() {
+    super.onInit();
+    change(null, status: RxStatus.success());
+  }
 
   Future<void> selectImage(int index) async {
     final ImagePicker picker = ImagePicker();
@@ -25,13 +30,15 @@ class NurseUploadsViewModel extends GetxController {
 
   Future<void> uploadImages() async {
     if (isImagesNotNull()) {
-      loading();
+      change(null, status: RxStatus.empty());
       final _request = await service.uploadImages(
-          id,
-          File(imagePaths[0].value),
-          File(imagePaths[1].value),
-          File(imagePaths[2].value),
-          imagePaths[0].isEmpty ? null : File(imagePaths[0].value));
+        id,
+        File(imagePaths[0].value),
+        File(imagePaths[1].value),
+        File(imagePaths[2].value),
+        imagePaths[0].isEmpty ? null : File(imagePaths[0].value),
+      );
+      change(null, status: RxStatus.success());
 
       if (_request.statusCode == 200) {
         CreateNurseModel updatedImageNurse =
@@ -43,7 +50,6 @@ class NurseUploadsViewModel extends GetxController {
       } else {
         networkErrorMessage();
       }
-      Get.back();
     } else {
       showMessage(
           title: 'خطا',
