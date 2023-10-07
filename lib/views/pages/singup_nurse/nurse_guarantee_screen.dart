@@ -84,7 +84,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
                             ),
                             SizedBox(
                               //height: Get.height / 9,
-                              width: Get.width / 5,
+                              width: Get.width / 3.4,
                               child: ProfileTextInput(
                                   keyboardType: TextInputType.number,
                                   text: "مدت آشنایی",

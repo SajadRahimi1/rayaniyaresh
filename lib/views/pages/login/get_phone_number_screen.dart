@@ -39,7 +39,7 @@ class GetPhoneScreen extends StatelessWidget {
                   children: [
                     Container(
                       width: Get.width,
-                      height: Get.height / 5,
+                      height: Get.height / 2.5,
                       margin: EdgeInsets.symmetric(horizontal: Get.width / 20) +
                           EdgeInsets.only(top: Get.height / 20),
                       child: Column(
