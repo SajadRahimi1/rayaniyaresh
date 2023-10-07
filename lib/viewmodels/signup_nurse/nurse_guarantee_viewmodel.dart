@@ -62,9 +62,9 @@ class NurseGuaranteeViewModel extends GetxController with StateMixin {
       return false;
     }
 
-    if ((model.husbandPhoneNumber?.startsWith('09') ?? true) &&
-        (model.childPhoneNumber?.startsWith('09') ?? true) &&
-        (model.parentPhoneNumber?.startsWith('09') ?? true)) {
+    if (!(model.husbandPhoneNumber?.startsWith('09') ?? true) &&
+        !(model.childPhoneNumber?.startsWith('09') ?? true) &&
+        !(model.parentPhoneNumber?.startsWith('09') ?? true)) {
       showMessage(
           title: "خطا",
           message: "لطفا شماره تماس را درست وارد کنید",
