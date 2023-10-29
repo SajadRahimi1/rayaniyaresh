@@ -43,7 +43,7 @@ class GetPhoneScreen extends StatelessWidget {
                       margin: EdgeInsets.symmetric(horizontal: Get.width / 20) +
                           EdgeInsets.only(top: Get.height / 20),
                       child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween, 
                           children: [
                             // text
                             SizedBox(

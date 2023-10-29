@@ -62,6 +62,7 @@ class GetPhoneViewModel extends GetxController with StateMixin {
         }
         SingletonClass _singletonClass = SingletonClass();
         UserModel _userModel = UserModel.fromJson(_request.body);
+        _singletonClass.userModel = _userModel;
         _singletonClass
           ..imageUrl = _userModel.imageUrl
           ..name = _userModel.name
@@ -95,7 +96,7 @@ class GetPhoneViewModel extends GetxController with StateMixin {
       Get.back();
       Get.to(() => ValidateCodeScreen(
             phoneNumber: phoneNumber.value,
-          )); 
+          ));
       // } else {
       //   Get.back();
       //   networkErrorMessage();

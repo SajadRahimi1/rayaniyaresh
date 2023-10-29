@@ -7,10 +7,11 @@ class SingletonClass {
   String? name = '';
   String? phoneNumber = '';
 
+  UserModel? userModel;
+
   factory SingletonClass() {
     return _instance;
   }
 
   SingletonClass._internal();
- 
 }

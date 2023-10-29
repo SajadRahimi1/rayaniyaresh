@@ -22,7 +22,7 @@ class NurseUploadsViewModel extends GetxController with StateMixin {
   Future<void> selectImage(int index) async {
     final ImagePicker picker = ImagePicker();
     final XFile? image =
-        await picker.pickImage(source: ImageSource.gallery, imageQuality: 5);
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 15);
     if (image != null) {
       imagePaths[index].value = image.path;
     }

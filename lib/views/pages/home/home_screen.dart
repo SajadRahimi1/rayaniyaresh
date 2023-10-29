@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
+import 'package:rayaniyaresh/viewmodels/home/home_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/nurse_category_screen.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/class_category_screen.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_information_screen.dart';
@@ -15,14 +16,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Rx<int> color = 0.obs;
-    // Timer.periodic(const Duration(milliseconds: 500), (timer) {
-    //   if (color.value == 0) {
-    //     color.value = 1;
-    //   } else {
-    //     color.value = 0;
-    //   }
-    // });
+    final controller = Get.put(HomeViewModel());
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -121,25 +115,31 @@ class HomeScreen extends StatelessWidget {
                         width: Get.width / 2.2,
                         child: Row(
                           children: [
-                            Obx(() => Container(
-                                // backgroundColor: buttonColor,
-                                // radius: Get.width / 40,
-                                // duration: const Duration(milliseconds: 500),
-                                width: 20,
-                                height: 20,
-                                decoration: BoxDecoration(
-                                    color: [
-                                      Colors.red,
-                                      Colors.black
-                                    ][color.value],
-                                    borderRadius: BorderRadius.circular(25)),
-                                child: Center(
-                                  child: Text(
-                                    "0".toPersianDigit(),
-                                    style: const TextStyle(
-                                        color: Colors.white, fontSize: 12),
-                                  ),
-                                ))),
+                            InkWell(
+                              onTap: controller.onMessagesClick,
+                              child: Obx(() => Container(
+                                  // backgroundColor: buttonColor,
+                                  // radius: Get.width / 40,
+                                  // duration: const Duration(milliseconds: 500),
+                                  width: 20,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                      color: [
+                                        buttonColor,
+                                        Colors.red,
+                                      ][controller.color.value],
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: Center(
+                                    child: Obx(() => Text(
+                                          controller.messagesLength.value
+                                              .toString()
+                                              .toPersianDigit(),
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 12),
+                                        )),
+                                  ))),
+                            ),
                             Text(" :پیام های من",
                                 style: TextStyle(
                                     color: buttonColor,
