@@ -6,6 +6,7 @@ import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/viewmodels/home/home_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/more/reserved_list_screen.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/nurse_category_screen.dart';
+import 'package:rayaniyaresh/views/pages/nurses/screens/nurses_screen.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/class_category_screen.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_information_screen.dart';
 import 'package:rayaniyaresh/views/widgets/banner_slider.dart';
@@ -49,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                             )),
                       ),
                       InkWell(
-                        onTap: () => Get.to(() => const ReservedListScreen()),
+                        onTap: () => Get.to(() => const NurseScreen()),
                         child: Container(
                             width: Get.width / 2.8,
                             height: Get.height / 24,
