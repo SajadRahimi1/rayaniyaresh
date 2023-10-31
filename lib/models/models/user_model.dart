@@ -82,8 +82,8 @@ class Message {
   bool? isUserSend;
   bool? seen;
   String? id;
-  String? createdAt;
-  String? updatedAt;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
   Message(
       {this.content,
@@ -104,8 +104,8 @@ class Message {
     isUserSend = json["IsUserSend"];
     seen = json["Seen"];
     id = json["Id"];
-    createdAt = json["CreatedAt"];
-    updatedAt = json["UpdatedAt"];
+    createdAt = json["CreatedAt"]==null?null:DateTime.parse( json["CreatedAt"]);
+    updatedAt = json["UpdatedAt"]==null?null:DateTime.parse( json["UpdatedAt"]);
   }
 
   Map<String, dynamic> toJson() {

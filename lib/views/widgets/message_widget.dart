@@ -11,7 +11,7 @@ class Messagewidget extends StatelessWidget {
       : super(key: key);
   final bool isUserSend;
   final String text, time;
-  final Icon messageIcon;
+  final Icon? messageIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +42,11 @@ class Messagewidget extends StatelessWidget {
                   text,
                   style: TextStyle(
                       fontSize: MediaQuery.of(context).size.width / 28,
-                      color: isUserSend ? Colors.white : Colors.black),
+                      color: Colors.white),
                 ),
                 Row(
                   children: [
-                    messageIcon,
+                    messageIcon ?? const SizedBox(),
                     const SizedBox(
                       width: 10,
                     ),
@@ -54,7 +54,7 @@ class Messagewidget extends StatelessWidget {
                       time,
                       style: TextStyle(
                           fontSize: MediaQuery.of(context).size.width / 26,
-                          color: isUserSend ? Colors.white : Colors.black),
+                          color: Colors.white),
                     ),
                   ],
                 ),

@@ -31,6 +31,20 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
+                      Container(
+                          width: Get.width / 2.8,
+                          height: Get.height / 24,
+                          decoration: BoxDecoration(
+                              color: buttonColor,
+                              borderRadius: BorderRadius.circular(8)),
+                          child: const Center(
+                            child: Text(
+                              "درخواست های من",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 12),
+                            ),
+                          )),
+                      /*
                       SizedBox(
                         width: Get.width / 2.2,
                         child: Row(
@@ -110,14 +124,14 @@ class HomeScreen extends StatelessWidget {
                                       color: buttonColor,
                                       fontSize: Get.width / 31)),
                             ],
-                          )),
-                      SizedBox(
-                        width: Get.width / 2.2,
-                        child: Row(
-                          children: [
-                            InkWell(
-                              onTap: controller.onMessagesClick,
-                              child: Obx(() => Container(
+                          )),*/
+                      InkWell(
+                        onTap: controller.onMessagesClick,
+                        child: SizedBox(
+                          width: Get.width / 2.2,
+                          child: Row(
+                            children: [
+                              Obx(() => Container(
                                   // backgroundColor: buttonColor,
                                   // radius: Get.width / 40,
                                   // duration: const Duration(milliseconds: 500),
@@ -139,65 +153,16 @@ class HomeScreen extends StatelessWidget {
                                               fontSize: 12),
                                         )),
                                   ))),
-                            ),
-                            Text(" :پیام های من",
-                                style: TextStyle(
-                                    color: buttonColor,
-                                    fontSize: Get.width / 31)),
-                          ],
+                              Text(" :پیام های من",
+                                  style: TextStyle(
+                                      color: buttonColor,
+                                      fontSize: Get.width / 31)),
+                            ],
+                          ),
                         ),
                       ),
                     ]),
               ),
-              // search input
-              /*
-              Padding(
-                padding: EdgeInsets.only(
-                    top: 20, bottom: MediaQuery.of(context).size.height * 0.05),
-                child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 18,
-                    child: TextField(
-                      onChanged: (value) {
-                        // if (value.isEmpty) {
-                        //   _controller.categories.value =
-                        //       _controller.allSearchCategories;
-                        // } else {
-                        //   _controller.categories.value = [];
-                        //   for (var element in _controller
-                        //       .allCategories.data.categories) {
-                        //     print(element.subCategory);
-                        //     for (var sub in element.subCategory) {
-                        //       if ((sub.title ?? "").contains(value)) {
-                        //         _controller.categories.add(SearchModel(
-                        //             id: sub.id,
-                        //             title: sub.title ?? "",
-                        //             image: sub.image ?? "",
-                        //             description: sub.description ?? "",
-                        //             isCategory: false));
-                        //       }
-                        //     }
-                        //   }
-                        // }
-                      },
-                      maxLines: 1,
-                      style: const TextStyle(fontSize: 12),
-                      decoration: InputDecoration(
-                        suffixIcon: const Icon(
-                          Icons.search,
-                          color: Color(0xff005D67),
-                        ),
-                        hintText: "جستجوی خدمت",
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: purple)),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: purple)),
-                      ),
-                    )),
-              ),
-*/
               // categories
               SizedBox(
                   width: MediaQuery.of(context).size.width,
@@ -301,62 +266,6 @@ class HomeScreen extends StatelessWidget {
                       )
                     ],
                   )),
-              /*
-                child: GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      mainAxisExtent: MediaQuery.of(context).size.height / 6.1,
-                      mainAxisSpacing: MediaQuery.of(context).size.width / 50,
-                      crossAxisSpacing: MediaQuery.of(context).size.width / 70,
-                    ),
-                    itemCount: 6,
-                    // itemCount: 7,
-                    // _controller.categories.data.categories.length,
-                    itemBuilder: (context, index) => ServiceWidget(
-                        isImageAsset: true,
-                        onTap: () {
-                          FocusScope.of(context).unfocus();
-                          switch (index) {
-                            case 0:
-                              Get.to(() => const NurseCategoryScreen());
-                              break;
-                            case 1:
-                              Get.to(() => const NurseInformationScreen());
-                              break;
-                            case 2:
-                              Get.to(() => const ClassCategoryScreen());
-                              break;
-                            default:
-                              showMessage(
-                                  title: "به زودی",
-                                  message: "این امکان بزودی فعال میشود",
-                                  type: MessageType.info);
-                              break;
-                          }
-                        },
-                        image: [
-                          "nurse.png",
-                          "hiring.png",
-                          "learning.png",
-                          "services2.png",
-                          "building.png",
-                          "reserve-class.png",
-                        ][index],
-                        title: [
-                          "خدمات پرستاری",
-                          "استخدام پرستار",
-                          "آموزشگاه",
-                          "خدمات پزشکی (بزودی)",
-                          "اجاره تجهیزات پزشکی(بزودی)",
-                          "فروش تجهیزات پزشکی(بزودی)",
-                          // "فروشی پکیج آموشی",
-                          // "اجاره تجهیزات پزشکی",
-                          // "فروش تجهیزات پزشکی",
-                          // "فروش دوربین مداربسته",
-                        ][index])),
-              ),
-*/
               InkWell(
                 // onTap: onShopTap,
                 child: Container(

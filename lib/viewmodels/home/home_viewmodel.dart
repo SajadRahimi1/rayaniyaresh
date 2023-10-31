@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rayaniyaresh/models/constants/singleton_class.dart';
 import 'package:rayaniyaresh/models/models/user_model.dart';
+import 'package:rayaniyaresh/views/pages/messages/messages_screen.dart';
 
 class HomeViewModel extends GetxController {
   RxInt messagesLength = 0.obs;
@@ -11,6 +12,7 @@ class HomeViewModel extends GetxController {
   Timer? colorChanger;
 
   List<Message> messages = [];
+  List<Message> baseMessages = [];
 
   UserModel? userModel;
   List readMessages = [];
@@ -28,6 +30,10 @@ class HomeViewModel extends GetxController {
 
   void getData() {
     if (userModel != null) {
+      baseMessages = (userModel?.messages
+              ?.where((element) => element.userId == null)
+              .toList()) ??
+          <Message>[];
       for (var ms in userModel?.messages ?? <Message>[]) {
         if (!readMessages.contains(ms.id) && ms.userId == null) {
           messages.add(ms);
@@ -59,5 +65,6 @@ class HomeViewModel extends GetxController {
           'read', messagesString.substring(0, messagesString.length - 1));
       messagesLength.value = 0;
     }
+    Get.to(() => MessagesScreen(messages: baseMessages));
   }
 }

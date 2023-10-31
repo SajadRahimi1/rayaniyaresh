@@ -131,7 +131,36 @@ class _MainScreenState extends State<MainScreen> {
                           items: List.generate(
                               2,
                               (index) => BottomNavigationBarItem(
-                                    icon: Icon(
+                                    icon: [
+                                      const Icon(
+                                        Icons.home,
+                                        size: 28,
+                                      ),
+                                      Stack(
+                                        children: [
+                                          const Icon(
+                                            Icons.support_agent_sharp,
+                                            size: 28,
+                                          ),
+                                          Obx(
+                                            () => _controller
+                                                        .unreadedLength.value ==
+                                                    ""
+                                                ? const SizedBox()
+                                                : CircleAvatar(
+                                                    radius: 8,
+                                                    backgroundColor: Colors.red,
+                                                    child: Text(
+                                                      _controller
+                                                          .unreadedLength.value,
+                                                      style: const TextStyle(
+                                                          fontSize: 12),
+                                                    )),
+                                          )
+                                        ],
+                                      )
+                                    ][index],
+                                    /* Icon(
                                       [
                                         Icons.home,
                                         Icons.support_agent_sharp,
@@ -139,7 +168,7 @@ class _MainScreenState extends State<MainScreen> {
                                       ][index],
                                       size: 28,
                                       // filterQuality: FilterQuality.medium,
-                                    ),
+                                    ),*/
                                     label: ["خانه", "پشتیبانی", "بیشتر"][index],
                                   )),
                         ))))));

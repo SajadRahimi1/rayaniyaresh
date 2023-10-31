@@ -5,6 +5,7 @@ import 'package:rayaniyaresh/viewmodels/home/support_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/message_icon_widget.dart';
 import 'package:rayaniyaresh/views/widgets/message_widget.dart';
+import 'package:rayaniyaresh/models/extensions/date_time_extension.dart';
 
 class SupportScreen extends StatelessWidget {
   const SupportScreen({Key? key}) : super(key: key);
@@ -32,20 +33,14 @@ class SupportScreen extends StatelessWidget {
                             _controller.messagesList[index].isUserSend ?? true,
                         text: _controller.messagesList[index].content ?? "",
                         time: (_controller.messagesList[index].createdAt ??
-                                    DateTime.now())
-                                .toUtc()
-                                .hour
-                                .toString() +
-                            ':' +
-                            (_controller.messagesList[index].createdAt ??
-                                    DateTime.now())
-                                .toUtc()
-                                .minute
-                                .toString(),
+                                DateTime.now())
+                            .getHourMinute(),
                         messageIcon: messageIcon(
                             _controller.messagesList[index].success ?? true,
                             _controller.messagesList[index].isSent ?? true,
-                            _controller.messagesList[index].seen ?? false));
+                            _controller.messagesList[index].seen ?? false,
+                            _controller.messagesList[index].isUserSend ??
+                                true));
                   },
                 ),
               )),
