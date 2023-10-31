@@ -4,6 +4,7 @@ import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/viewmodels/home/home_viewmodel.dart';
+import 'package:rayaniyaresh/views/pages/more/reserved_list_screen.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/nurse_category_screen.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/class_category_screen.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_information_screen.dart';
@@ -31,19 +32,75 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Container(
+                      InkWell(
+                        onTap: () => Get.to(() => const ReservedListScreen()),
+                        child: Container(
+                            width: Get.width / 2.8,
+                            height: Get.height / 24,
+                            decoration: BoxDecoration(
+                                color: buttonColor,
+                                borderRadius: BorderRadius.circular(8)),
+                            child: const Center(
+                              child: Text(
+                                "درخواست های من",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 12),
+                              ),
+                            )),
+                      ),
+                      InkWell(
+                        onTap: () => Get.to(() => const ReservedListScreen()),
+                        child: Container(
+                            width: Get.width / 2.8,
+                            height: Get.height / 24,
+                            decoration: BoxDecoration(
+                                color: buttonColor,
+                                borderRadius: BorderRadius.circular(8)),
+                            child: const Center(
+                              child: Text(
+                                "درخواست های استخدام",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 11),
+                              ),
+                            )),
+                      ),
+                      InkWell(
+                        onTap: controller.onMessagesClick,
+                        child: Container(
                           width: Get.width / 2.8,
                           height: Get.height / 24,
                           decoration: BoxDecoration(
                               color: buttonColor,
                               borderRadius: BorderRadius.circular(8)),
-                          child: const Center(
-                            child: Text(
-                              "درخواست های من",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 12),
-                            ),
-                          )),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("پیام های من : ",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: Get.width / 31)),
+                              Obx(() => Container(
+                                  width: 20,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                      color: [
+                                        Colors.white,
+                                        Colors.red,
+                                      ][controller.color.value],
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: Center(
+                                    child: Obx(() => Text(
+                                          controller.messagesLength.value
+                                              .toString()
+                                              .toPersianDigit(),
+                                          style: const TextStyle(
+                                              color: buttonColor, fontSize: 12),
+                                        )),
+                                  ))),
+                            ],
+                          ),
+                        ),
+                      ),
                       /*
                       SizedBox(
                         width: Get.width / 2.2,
@@ -125,42 +182,6 @@ class HomeScreen extends StatelessWidget {
                                       fontSize: Get.width / 31)),
                             ],
                           )),*/
-                      InkWell(
-                        onTap: controller.onMessagesClick,
-                        child: SizedBox(
-                          width: Get.width / 2.2,
-                          child: Row(
-                            children: [
-                              Obx(() => Container(
-                                  // backgroundColor: buttonColor,
-                                  // radius: Get.width / 40,
-                                  // duration: const Duration(milliseconds: 500),
-                                  width: 20,
-                                  height: 20,
-                                  decoration: BoxDecoration(
-                                      color: [
-                                        buttonColor,
-                                        Colors.red,
-                                      ][controller.color.value],
-                                      borderRadius: BorderRadius.circular(25)),
-                                  child: Center(
-                                    child: Obx(() => Text(
-                                          controller.messagesLength.value
-                                              .toString()
-                                              .toPersianDigit(),
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 12),
-                                        )),
-                                  ))),
-                              Text(" :پیام های من",
-                                  style: TextStyle(
-                                      color: buttonColor,
-                                      fontSize: Get.width / 31)),
-                            ],
-                          ),
-                        ),
-                      ),
                     ]),
               ),
               // categories
