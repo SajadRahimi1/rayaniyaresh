@@ -11,3 +11,8 @@ Future<Response<dynamic>> getSingleNurse(String token, String id) async {
   return await getConnect.get(getSingleNurseUrl,
       query: {'nurseId': id}, headers: tokenHeader(token));
 }
+
+Future<Response<dynamic>> updateNurse(Map body, String token) async {
+  return await getConnect.post(updateNurseUrl, body,
+      headers: tokenHeader(token));
+}

@@ -34,6 +34,13 @@ class _EditScreenState extends State<EditScreen> {
             padding: const EdgeInsets.all(11.0),
             child: TextFormField(
               controller: textEditingController,
+              maxLines: 5,
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8)),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8))),
             ),
           ),
           InkWell(

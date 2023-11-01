@@ -29,7 +29,7 @@ class NurseGuaranteeViewModel extends GetxController with StateMixin {
       if (_reqeust.statusCode == 200) {
         nurseModel.id = _reqeust.body['Id'];
         Get.to(() => NurseDownloadScreen(
-              nurseModel: nurseModel,
+              nurseModel: nurseModel
             ));
         // }
       } else {}

@@ -2,13 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/models/constants/urls.dart';
 import 'package:rayaniyaresh/viewmodels/nurses/nurse_detail_screen.dart';
 import 'package:rayaniyaresh/views/pages/nurses/screens/edit_screen.dart';
 import 'package:rayaniyaresh/views/pages/nurses/widgets/nurse_information_widget.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class NurseInformationScreen extends StatelessWidget {
-  const NurseInformationScreen({Key? key,  required this.id}) : super(key: key);
+  const NurseInformationScreen({Key? key, required this.id}) : super(key: key);
   final String id;
 
   @override
@@ -19,16 +21,16 @@ class NurseInformationScreen extends StatelessWidget {
       color: Colors.white,
       child: controller.obx(
         (status) => Scaffold(
-            appBar:
-                screensAppbar(context: context, title: controller.model?.name ?? ''),
+            appBar: screensAppbar(
+                context: context, title: controller.model?.name ?? ''),
             body: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListView(children: [
-                NurseInformationWidget(
-                  isPayment: true,
-                  title: 'وضعیت پرداخت',
-                  value: controller.paidStatus.value,
-                ),
+                Obx(() => NurseInformationWidget(
+                      isPayment: true,
+                      title: 'وضعیت پرداخت',
+                      value: controller.paidStatus.value,
+                    )),
                 Obx(() => NurseInformationWidget(
                     showEditIcon: controller.showEditIcon.value,
                     title: 'شماره',
@@ -424,30 +426,61 @@ class NurseInformationScreen extends StatelessWidget {
                     value: (controller.model?.nurseFamily?.length ?? 0) < 3
                         ? ''
                         : controller.model?.nurseFamily?[2].phoneNumber ?? '')),
-               Center(
-                   child: InkWell(
-                 onTap: () {
-                   if (controller.showEditIcon.value) {
-                     controller.showEditIcon.value = false;
-                     controller.updateNurse();
-                   } else {
-                     controller.showEditIcon.value = true;
-                   }
-                 },
-                 child: Container(
-                   margin: const EdgeInsets.only(top: 20),
-                   width: MediaQuery.sizeOf(context).width / 3.5,
-                   height: MediaQuery.sizeOf(context).height / 17,
-                   color: Colors.grey,
-                   alignment: Alignment.center,
-                   child: Obx(() => Text(
-                         controller.showEditIcon.value
-                             ? 'ذخیره'
-                             : "ویرایش",
-                         style: const TextStyle(color: Colors.white),
-                       )),
-                 ),
-               )),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // edit and save button
+                    InkWell(
+                      onTap: () {
+                        if (controller.showEditIcon.value) {
+                          controller.showEditIcon.value = false;
+                          controller.updateNurse();
+                        } else {
+                          controller.showEditIcon.value = true;
+                        }
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 20),
+                        width: MediaQuery.sizeOf(context).width / 3.5,
+                        height: MediaQuery.sizeOf(context).height / 17,
+                        color: Colors.grey,
+                        alignment: Alignment.center,
+                        child: Obx(() => Text(
+                              controller.showEditIcon.value
+                                  ? 'ذخیره'
+                                  : "ویرایش",
+                              style: const TextStyle(color: Colors.white),
+                            )),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    // download button
+                    InkWell(
+                      onTap: () {
+                        if (controller.model?.pdfLink != null) {
+                          launchUrlString(
+                              '$baseUrl/uploads/${controller.model?.pdfLink}');
+                        }
+                      },
+                      child: Obx(
+                        () => controller.isPaid.value == 'ok'
+                            ? Container(
+                                margin: const EdgeInsets.only(top: 20),
+                                width: MediaQuery.sizeOf(context).width / 3.5,
+                                height: MediaQuery.sizeOf(context).height / 17,
+                                color: Colors.green,
+                                alignment: Alignment.center,
+                                child: const Text(
+                                  "دانلود PDF",
+                                  style: TextStyle(color: Colors.white),
+                                ))
+                            : const SizedBox(),
+                      ),
+                    ),
+                  ],
+                ),
               ]),
             )),
       ),

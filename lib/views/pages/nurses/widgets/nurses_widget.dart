@@ -113,16 +113,16 @@ class NursesWidget extends StatelessWidget {
                 ),
                 if (model.authority != null)
                   Container(
-                    width: MediaQuery.sizeOf(context).width / 4,
+                    width: MediaQuery.sizeOf(context).width / 3.5,
                     height: MediaQuery.sizeOf(context).height / 24,
                     alignment: Alignment.center,
                     margin: const EdgeInsets.only(left: 5),
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: const Color(0xff62E067)),
+                        color: statusColor),
                     child: Text(
-                      "دانلود فرم",
+                      getStatus,
                       style: TextStyle(
                         color: const Color(0xff000000),
                         fontWeight: FontWeight.bold,
@@ -137,5 +137,23 @@ class NursesWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Color get statusColor {
+    if (model.status == null) return Colors.grey;
+    if ((model.status ?? 0) == 0) return Colors.green;
+    return Colors.red;
+  }
+
+  String get getStatus {
+    switch (model.status) {
+      case 0:
+        return "قبول شده";
+      case 1:
+        return "رد شده";
+      case 2:
+        return "حذف شده";
+    }
+    return "در حال بررسی";
   }
 }
