@@ -3,6 +3,7 @@ const String sendSmsUrl = "$baseUrl/send-sms";
 const String checkSmsUrl = "$baseUrl/check-sms";
 const String nurseUrl = "$baseUrl/nurse";
 const String getNursesUrl = "$baseUrl/User/nurse";
+const String getSingleNurseUrl = "$baseUrl/User/single-nurse";
 const String nurseRulesUrl = "$baseUrl/Nurse/payment";
 const String checkPaymentUrl = "$baseUrl/Nurse/check";
 const String nurseFamilyUrl = "$baseUrl/nurse/family";

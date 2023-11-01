@@ -6,3 +6,8 @@ import 'package:rayaniyaresh/models/constants/urls.dart';
 Future<Response<dynamic>> getNurse(String token) async {
   return await getConnect.get(getNursesUrl, headers: tokenHeader(token));
 }
+
+Future<Response<dynamic>> getSingleNurse(String token, String id) async {
+  return await getConnect.get(getSingleNurseUrl,
+      query: {'nurseId': id}, headers: tokenHeader(token));
+}
