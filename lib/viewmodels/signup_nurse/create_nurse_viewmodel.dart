@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
@@ -10,6 +11,9 @@ import 'package:rayaniyaresh/views/widgets/loading_widget.dart';
 class CreateNurrseViewModel extends GetxController with StateMixin {
   CreateNurrseViewModel(this.nurseModel);
   final CreateNurseModel nurseModel;
+
+  GetStorage getStorage = GetStorage();
+  String token = "";
 
   RxList<int> categorySelect = <int>[].obs;
   RxList<int> shiftSelect = <int>[].obs;
@@ -32,6 +36,7 @@ class CreateNurrseViewModel extends GetxController with StateMixin {
         categorySelect.remove(3);
       }
     });
+    token = getStorage.read('token');
   }
 
   Future<void> createNurse() async {
@@ -57,7 +62,7 @@ class CreateNurrseViewModel extends GetxController with StateMixin {
     nurseModel.nurseCategory = nurseCategory;
     nurseModel.specialCare = secondQuestion.value;
 
-    final _request = await service.createNurse(nurseModel);
+    final _request = await service.createNurse(nurseModel, token);
     Get.back();
     if (_request.statusCode == 200) {
       Get.to(() => NurseUploadsScreen(nurseId: _request.body['Id']),

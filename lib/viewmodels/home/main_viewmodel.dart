@@ -33,6 +33,7 @@ class MainViewController extends GetxController {
   }
 
   String get getUnreadedMessage {
+    var s = SingletonClass();
     var length = SingletonClass()
             .userModel
             ?.messages

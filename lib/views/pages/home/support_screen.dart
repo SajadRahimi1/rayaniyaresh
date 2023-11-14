@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
+import 'package:rayaniyaresh/models/constants/urls.dart';
 import 'package:rayaniyaresh/viewmodels/home/support_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/message_icon_widget.dart';
@@ -28,6 +29,24 @@ class SupportScreen extends StatelessWidget {
                   reverse: true,
                   itemCount: _controller.messagesList.length,
                   itemBuilder: (BuildContext context, int index) {
+                    if (_controller.messagesList[index].messageType ==
+                        'image') {
+                      return ImageWidget(
+                          isUserSend:
+                              _controller.messagesList[index].isUserSend ??
+                                  true,
+                          imageUrl:
+                              '$baseUrl/uploads/${_controller.messagesList[index].content ?? ""}',
+                          time: (_controller.messagesList[index].createdAt ??
+                                  DateTime.now())
+                              .getHourMinute(),
+                          messageIcon: messageIcon(
+                              _controller.messagesList[index].success ?? true,
+                              _controller.messagesList[index].isSent ?? true,
+                              _controller.messagesList[index].seen ?? false,
+                              _controller.messagesList[index].isUserSend ??
+                                  true));
+                    }
                     return Messagewidget(
                         isUserSend:
                             _controller.messagesList[index].isUserSend ?? true,
@@ -79,7 +98,12 @@ class SupportScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 8.0),
+                    IconButton(
+                        onPressed: _controller.sendImage,
+                        icon: const Icon(
+                          Icons.image,
+                          color: buttonColor,
+                        ))
                   ],
                 ),
               ),
