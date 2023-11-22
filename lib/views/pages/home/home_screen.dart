@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/viewmodels/home/home_viewmodel.dart';
-import 'package:rayaniyaresh/views/pages/more/reserved_list_screen.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/nurse_category_screen.dart';
-import 'package:rayaniyaresh/views/pages/nurses/screens/nurses_screen.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/class_category_screen.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_information_screen.dart';
 import 'package:rayaniyaresh/views/widgets/banner_slider.dart';
@@ -26,164 +23,16 @@ class HomeScreen extends StatelessWidget {
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: [
-              SizedBox(
-                height: Get.height / 5,
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.symmetric(vertical: Get.height / 35),
                 width: Get.width,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      InkWell(
-                        onTap: () => Get.to(() => const ReservedListScreen()),
-                        child: Container(
-                            width: Get.width / 2.8,
-                            height: Get.height / 24,
-                            decoration: BoxDecoration(
-                                color: buttonColor,
-                                borderRadius: BorderRadius.circular(8)),
-                            child: const Center(
-                              child: Text(
-                                "درخواست های من",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 12),
-                              ),
-                            )),
-                      ),
-                      InkWell(
-                        onTap: () => Get.to(() => const NurseScreen()),
-                        child: Container(
-                            width: Get.width / 2.8,
-                            height: Get.height / 24,
-                            decoration: BoxDecoration(
-                                color: buttonColor,
-                                borderRadius: BorderRadius.circular(8)),
-                            child: const Center(
-                              child: Text(
-                                "درخواست های استخدام",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 11),
-                              ),
-                            )),
-                      ),
-                      InkWell(
-                        onTap: controller.onMessagesClick,
-                        child: Container(
-                          width: Get.width / 2.8,
-                          height: Get.height / 24,
-                          decoration: BoxDecoration(
-                              color: buttonColor,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("پیام های من : ",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: Get.width / 31)),
-                              Obx(() => Container(
-                                  width: 20,
-                                  height: 20,
-                                  decoration: BoxDecoration(
-                                      color: [
-                                        Colors.white,
-                                        Colors.red,
-                                      ][controller.color.value],
-                                      borderRadius: BorderRadius.circular(25)),
-                                  child: Center(
-                                    child: Obx(() => Text(
-                                          controller.messagesLength.value
-                                              .toString()
-                                              .toPersianDigit(),
-                                          style: const TextStyle(
-                                              color: buttonColor, fontSize: 12),
-                                        )),
-                                  ))),
-                            ],
-                          ),
-                        ),
-                      ),
-                      /*
-                      SizedBox(
-                        width: Get.width / 2.2,
-                        child: Row(
-                          children: [
-                            Container(
-                                // backgroundColor: buttonColor,
-                                // radius: Get.width / 40,
-                                // duration: const Duration(milliseconds: 500),
-                                width: 20,
-                                height: 20,
-                                decoration: BoxDecoration(
-                                    color: buttonColor,
-                                    borderRadius: BorderRadius.circular(25)),
-                                child: Center(
-                                  child: Text(
-                                    "0".toPersianDigit(),
-                                    style: const TextStyle(
-                                        color: Colors.white, fontSize: 12),
-                                  ),
-                                )),
-                            Text(" :درخواست های من",
-                                style: TextStyle(
-                                    color: buttonColor,
-                                    fontSize: Get.width / 31)),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: Get.width / 2.2,
-                        child: Row(
-                          children: [
-                            Container(
-                                // backgroundColor: buttonColor,
-                                // radius: Get.width / 40,
-                                // duration: const Duration(milliseconds: 500),
-                                width: 20,
-                                height: 20,
-                                decoration: BoxDecoration(
-                                    color: buttonColor,
-                                    borderRadius: BorderRadius.circular(25)),
-                                child: Center(
-                                  child: Text(
-                                    "0".toPersianDigit(),
-                                    style: const TextStyle(
-                                        color: Colors.white, fontSize: 12),
-                                  ),
-                                )),
-                            Text(" :درخواست های تایید شده",
-                                style: TextStyle(
-                                    color: buttonColor,
-                                    fontSize: Get.width / 31)),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                          width: Get.width / 2.2,
-                          child: Row(
-                            children: [
-                              Container(
-                                  // backgroundColor: buttonColor,
-                                  // radius: Get.width / 40,
-                                  // duration: const Duration(milliseconds: 500),
-                                  width: 20,
-                                  height: 20,
-                                  decoration: BoxDecoration(
-                                      color: buttonColor,
-                                      borderRadius: BorderRadius.circular(25)),
-                                  child: Center(
-                                    child: Text(
-                                      "0".toPersianDigit(),
-                                      style: const TextStyle(
-                                          color: Colors.white, fontSize: 12),
-                                    ),
-                                  )),
-                              Text(" :درخواست های رد شده",
-                                  style: TextStyle(
-                                      color: buttonColor,
-                                      fontSize: Get.width / 31)),
-                            ],
-                          )),*/
-                    ]),
+                height: Get.height / 4.5,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: const DecorationImage(
+                        image: AssetImage("assets/images/images/banner.jpg"),
+                        fit: BoxFit.fill)),
               ),
               // categories
               SizedBox(
@@ -192,12 +41,12 @@ class HomeScreen extends StatelessWidget {
                   height: MediaQuery.of(context).size.width / 3.5 * (6 ~/ 2),
                   child: Column(
                     children: [
-                      Container(
+                      /* Container(
                         // margin: const EdgeInsets.symmetric(vertical: 15),
                         width: Get.width,
                         height: 3,
                         color: buttonColor,
-                      ),
+                      ),*/
                       SizedBox(
                         width: Get.width,
                         child: Row(
@@ -239,8 +88,8 @@ class HomeScreen extends StatelessWidget {
                                     "reserve-class.png",
                                   ][index],
                                   title: [
-                                    "خدمات پرستاری",
-                                    "استخدام پرستار",
+                                    "درخواست پرستار",
+                                    "استخدام غیرحضوری",
                                     "آموزشگاه",
                                     "خدمات پزشکی (بزودی)",
                                     "اجاره تجهیزات پزشکی(بزودی)",
@@ -268,7 +117,6 @@ class HomeScreen extends StatelessWidget {
                               3,
                               (index) => ServiceWidget(
                                   isImageAsset: true,
-                                  enable: false,
                                   onTap: () {},
                                   image: [
                                     "service3.png",
@@ -288,7 +136,7 @@ class HomeScreen extends StatelessWidget {
                       )
                     ],
                   )),
-              InkWell(
+              /*InkWell(
                 // onTap: onShopTap,
                 child: Container(
                   alignment: Alignment.center,
@@ -301,7 +149,7 @@ class HomeScreen extends StatelessWidget {
                           image: AssetImage("assets/images/images/banner.jpg"),
                           fit: BoxFit.fill)),
                 ),
-              ),
+              ),*/
 
               // favorites services
               SizedBox(

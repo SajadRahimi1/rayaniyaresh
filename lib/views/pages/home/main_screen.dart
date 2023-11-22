@@ -82,8 +82,6 @@ class _MainScreenState extends State<MainScreen> {
                             const SizedBox(
                               width: 15,
                             ),
-                            Image.asset("assets/images/icons/logo-home.png"),
-                            const Spacer(),
                             Builder(builder: (context) {
                               return IconButton(
                                   icon: const Icon(Icons.menu,
@@ -93,6 +91,32 @@ class _MainScreenState extends State<MainScreen> {
                                     Scaffold.of(context).openDrawer();
                                   });
                             }),
+                            /*  Obx(() => Visibility(
+                                  visible: _controller.hasNewMessage.value,
+                                  child: IconButton(
+                                      onPressed: _controller.onMessagesClick,
+                                      icon: const Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          Icon(Icons.message),
+                                          Align(
+                                            alignment: Alignment.topRight,
+                                            child: Padding(
+                                              padding: EdgeInsets.all(3.0),
+                                              child: CircleAvatar(
+                                                radius: 5,
+                                                backgroundColor: Colors.red,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      )),
+                                )),*/
+                            const Spacer(),
+                            Padding(
+                                padding: const EdgeInsets.only(left: 15),
+                                child: Image.asset(
+                                    "assets/images/icons/logo-home.png")),
                           ]),
                         ),
                       ),

@@ -11,7 +11,7 @@ class NurseCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: screensAppbar(context: context, title: "خدمات پرستاری"),
+      appBar: screensAppbar(context: context, title: "درخواست پرستار"),
       body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: List.generate(
@@ -33,32 +33,36 @@ class NurseCategoryScreen extends StatelessWidget {
                           break;
                       }
                     },
-                    child: Container(
-                      alignment: Alignment.bottomCenter,
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                      ),
-                      width: Get.width,
-                      height: Get.height / 5,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: AssetImage(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image.asset(
                               "assets/images/images/${[
                                 "nurse child.png",
                                 "elderly nurse.png",
                                 "sick nurse.jpg"
                               ][index]}",
+                              fit: BoxFit.fill,
+                              width: Get.width,
+                              height: Get.height / 5,
                             ),
-                          )),
-                      child: Text(
-                        ["پرستار کودک", "پرستار سالمند", "پرستار بیمار"][index],
-                        style: TextStyle(
-                            fontSize: Get.width / 18,
-                            fontWeight: FontWeight.bold,
-                            color: const Color(0xff000000)),
-                      ),
+                          ),
+                        ),
+                        Text(
+                          [
+                            "پرستار کودک",
+                            "پرستار سالمند",
+                            "پرستار بیمار"
+                          ][index],
+                          style: TextStyle(
+                              fontSize: Get.width / 18,
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xff000000)),
+                        ),
+                      ],
                     ),
                   ))),
     );

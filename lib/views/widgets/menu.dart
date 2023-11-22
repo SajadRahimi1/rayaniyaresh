@@ -9,6 +9,8 @@ import 'package:rayaniyaresh/models/constants/urls.dart';
 import 'package:rayaniyaresh/views/pages/home/profile_screen.dart';
 import 'package:rayaniyaresh/views/pages/login/get_phone_number_screen.dart';
 import 'package:rayaniyaresh/views/pages/menu/contact_us_screen.dart';
+import 'package:rayaniyaresh/views/pages/more/reserved_list_screen.dart';
+import 'package:rayaniyaresh/views/pages/nurses/screens/nurses_screen.dart';
 
 class Menu extends StatelessWidget {
   const Menu({Key? key}) : super(key: key);
@@ -143,12 +145,93 @@ class Menu extends StatelessWidget {
                           ),
                         ),
                       ),
+                      Container(
+                        height: 1,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                          colors: [
+                            Color.fromRGBO(255, 255, 255, 0),
+                            Color(0xff9A7ACD),
+                            Color.fromRGBO(255, 255, 255, 0),
+                          ],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        )),
+                      ),
+
+                      ListTile(
+                        onTap: () async {
+                          // await launchUrl(Uri.parse('tel:02632406705'));
+                          Get.to(() => const ReservedListScreen());
+                        },
+                        //   Get.to(() => const ContactScreen(),
+                        //       transition: Transition.noTransition);
+                        //   // Navigator.push(
+                        //   //     context,
+                        //   //     MaterialPageRoute(
+                        //   //         builder: (context) => const ContactScreen()));
+                        // },
+                        title: Text(
+                          "درخواست های من",
+                          style: TextStyle(
+                              color: const Color(0xff656565),
+                              fontSize: MediaQuery.of(context).size.width / 32),
+                        ),
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 10),
+                        leading: SizedBox.square(
+                          dimension: MediaQuery.of(context).size.width / 18,
+                          child: Image.asset(
+                            "assets/images/icons/contact.png",
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 1,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                          colors: [
+                            Color.fromRGBO(255, 255, 255, 0),
+                            Color(0xff9A7ACD),
+                            Color.fromRGBO(255, 255, 255, 0),
+                          ],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        )),
+                      ),
+
+                      ListTile(
+                        onTap: () async {
+                          // await launchUrl(Uri.parse('tel:02632406705'));
+                          Get.to(() => const NurseScreen());
+                        },
+                        //   Get.to(() => const ContactScreen(),
+                        //       transition: Transition.noTransition);
+                        //   // Navigator.push(
+                        //   //     context,
+                        //   //     MaterialPageRoute(
+                        //   //         builder: (context) => const ContactScreen()));
+                        // },
+                        title: Text(
+                          "درخواست های استخدام",
+                          style: TextStyle(
+                              color: const Color(0xff656565),
+                              fontSize: MediaQuery.of(context).size.width / 32),
+                        ),
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 10),
+                        leading: SizedBox.square(
+                          dimension: MediaQuery.of(context).size.width / 18,
+                          child: Image.asset(
+                            "assets/images/icons/contact.png",
+                          ),
+                        ),
+                      ),
 
                       Container(
                         height: 1,
-                        margin: EdgeInsets.only(
-                            // top: MediaQuery.of(context).size.height / 30,
-                            bottom: MediaQuery.of(context).size.height / 50),
                         width: MediaQuery.of(context).size.width,
                         decoration: const BoxDecoration(
                             gradient: LinearGradient(
@@ -291,9 +374,6 @@ class Menu extends StatelessWidget {
                 // divider line
                 Container(
                   height: 1,
-                  margin: EdgeInsets.only(
-                      // top: MediaQuery.of(context).size.height / 30,
-                      bottom: MediaQuery.of(context).size.height / 50),
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
                       gradient: LinearGradient(
