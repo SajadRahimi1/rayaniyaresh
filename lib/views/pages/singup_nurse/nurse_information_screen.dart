@@ -160,6 +160,10 @@ class NurseInformationScreen extends StatelessWidget {
                           child: TypeAheadFormField(
                             textFieldConfiguration: TextFieldConfiguration(
                                 decoration: InputDecoration(
+                                    icon: const Icon(
+                                      Icons.location_city,
+                                      color: buttonColor,
+                                    ),
                                     prefixIcon: const Text(
                                       "*",
                                       style: TextStyle(color: Colors.red),
@@ -192,6 +196,10 @@ class NurseInformationScreen extends StatelessWidget {
                                         "*",
                                         style: TextStyle(color: Colors.red),
                                       ),
+                                      icon: const Icon(
+                                        Icons.location_city,
+                                        color: buttonColor,
+                                      ),
                                       contentPadding: EdgeInsets.zero,
                                       prefixIconConstraints:
                                           const BoxConstraints(maxWidth: 0),
@@ -216,6 +224,7 @@ class NurseInformationScreen extends StatelessWidget {
                       SizedBox(
                           width: Get.width / 1,
                           child: ProfileTextInput(
+                            // icon: const Icon(Icons.roa),
                             text: "محله",
                             onChanged: (value) =>
                                 _controller.neighbourhood = value,

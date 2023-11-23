@@ -12,26 +12,30 @@ class YesNoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height / 14,
-        child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(children: [
-              Text(
-                title,
-                style:
-                    TextStyle(fontSize: MediaQuery.of(context).size.width / 31),
-              ),
-              DropdownButton(
-                  items: List.generate(
-                      2,
-                      (index) => DropdownMenuItem<bool>(
-                            child: Text(["خیر", "بلی"][index]),
-                            value: [false, true][index],
-                          )),
-                  value: value,
-                  elevation: 5,
-                  // style: TextStyle(fontSize: Get.width / 23),
-                  onChanged: onChanged),
-            ])));
+        height: MediaQuery.of(context).size.height / 10,
+        child: Row(children: [
+          Expanded(
+            flex: 8,
+            child: Text(
+              title,
+              style:
+                  TextStyle(fontSize: MediaQuery.of(context).size.width / 31),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: DropdownButton(
+                items: List.generate(
+                    2,
+                    (index) => DropdownMenuItem<bool>(
+                          child: Text(["خیر", "بلی"][index]),
+                          value: [false, true][index],
+                        )),
+                value: value,
+                elevation: 5,
+                // style: TextStyle(fontSize: Get.width / 23),
+                onChanged: onChanged),
+          ),
+        ]));
   }
 }

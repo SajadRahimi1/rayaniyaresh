@@ -302,7 +302,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                         scrollDirection: Axis.horizontal,
                         child: Row(children: [
                           Text(
-                            "آیا در محل نیروی اعزامی دوربین مداربسته وجود دارد؟:   ",
+                            "در محل نیروی اعزامی دوربین مداربسته وجود دارد؟  ",
                             style: TextStyle(fontSize: Get.width / 30),
                           ),
                           Obx(() => DropdownButton(

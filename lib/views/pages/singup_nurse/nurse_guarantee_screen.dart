@@ -34,17 +34,6 @@ class NurseGuaranteeScreen extends StatelessWidget {
                     .toPersianDigit(),
                 style: TextStyle(fontSize: Get.width / 26),
               ),
-              /* SizedBox(
-                            width: Get.width / 3,
-                            //height: Get.height / 9,
-                            child: ProfileTextInput(
-                                keyboardType: TextInputType.number,
-                                text: "شماره تماس",
-                                onChanged: (value) => _controller
-                                    .model
-                                    .nurseParentModels?[index]
-                                    .phoneNumber = value),
-                          ),*/
 
               // 3 person
               SizedBox(
@@ -52,39 +41,44 @@ class NurseGuaranteeScreen extends StatelessWidget {
                   // height: Get.height / ,
                   child: Column(
                     children: [
-                      SingleChildScrollView(
-                        physics: const BouncingScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ProfileTextInput(
+                              text: "آقا/خانم",
+                              onChanged: (value) => _controller
+                                  .model.nurseParentModels?[0].name = value,
+                            ),
+                          ),
+                          SizedBox(
+                            width: Get.width / 10,
+                          ),
+                          Expanded(
+                            child: ProfileTextInput(
+                                text: "نسبت",
+                                onChanged: (value) => _controller.model
+                                    .nurseParentModels?[0].information = value),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: Get.width,
                         child: Row(
                           children: [
-                            SizedBox(
-                              // //height: Get.height / 9,
-                              width: Get.width / 4.5,
+                            Expanded(
                               child: ProfileTextInput(
-                                text: "آقا/خانم",
-                                onChanged: (value) => _controller
-                                    .model.nurseParentModels?[0].name = value,
-                              ),
-                            ),
-                            SizedBox(
-                              width: Get.width / 10,
-                            ),
-                            SizedBox(
-                              //height: Get.height / 9,
-                              width: Get.width / 5,
-                              child: ProfileTextInput(
-                                  text: "نسبت",
+                                  keyboardType: TextInputType.number,
+                                  maxLength: 11,
+                                  text: "شماره تماس",
                                   onChanged: (value) => _controller
                                       .model
                                       .nurseParentModels?[0]
-                                      .information = value),
+                                      .phoneNumber = value),
                             ),
                             SizedBox(
                               width: Get.width / 10,
                             ),
-                            SizedBox(
-                              //height: Get.height / 9,
-                              width: Get.width / 3.4,
+                            Expanded(
                               child: ProfileTextInput(
                                   keyboardType: TextInputType.number,
                                   text: "مدت آشنایی",
@@ -92,21 +86,9 @@ class NurseGuaranteeScreen extends StatelessWidget {
                                       .model
                                       .nurseParentModels?[0]
                                       .knowingTime = value),
-                            ),
-                            SizedBox(
-                              width: Get.width / 10,
-                            ),
+                            )
                           ],
                         ),
-                      ),
-                      SizedBox(
-                        width: Get.width,
-                        child: ProfileTextInput(
-                            keyboardType: TextInputType.number,
-                            maxLength: 11,
-                            text: "شماره تماس",
-                            onChanged: (value) => _controller.model
-                                .nurseParentModels?[0].phoneNumber = value),
                       ),
                       Container(
                         width: Get.width,
@@ -115,39 +97,44 @@ class NurseGuaranteeScreen extends StatelessWidget {
                       ),
 
                       // second
-                      SingleChildScrollView(
-                        physics: const BouncingScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ProfileTextInput(
+                              text: "آقا/خانم",
+                              onChanged: (value) => _controller
+                                  .model.nurseParentModels?[1].name = value,
+                            ),
+                          ),
+                          SizedBox(
+                            width: Get.width / 10,
+                          ),
+                          Expanded(
+                            child: ProfileTextInput(
+                                text: "نسبت",
+                                onChanged: (value) => _controller.model
+                                    .nurseParentModels?[1].information = value),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: Get.width,
                         child: Row(
                           children: [
-                            SizedBox(
-                              //height: Get.height / 9,
-                              width: Get.width / 4.5,
+                            Expanded(
                               child: ProfileTextInput(
-                                text: "آقا/خانم",
-                                onChanged: (value) => _controller
-                                    .model.nurseParentModels?[1].name = value,
-                              ),
-                            ),
-                            SizedBox(
-                              width: Get.width / 10,
-                            ),
-                            SizedBox(
-                              //height: Get.height / 9,
-                              width: Get.width / 5,
-                              child: ProfileTextInput(
-                                  text: "نسبت",
+                                  keyboardType: TextInputType.number,
+                                  maxLength: 11,
+                                  text: "شماره تماس",
                                   onChanged: (value) => _controller
                                       .model
                                       .nurseParentModels?[1]
-                                      .information = value),
+                                      .phoneNumber = value),
                             ),
                             SizedBox(
                               width: Get.width / 10,
                             ),
-                            SizedBox(
-                              //height: Get.height / 9,
-                              width: Get.width / 5,
+                            Expanded(
                               child: ProfileTextInput(
                                   keyboardType: TextInputType.number,
                                   text: "مدت آشنایی",
@@ -155,61 +142,55 @@ class NurseGuaranteeScreen extends StatelessWidget {
                                       .model
                                       .nurseParentModels?[1]
                                       .knowingTime = value),
-                            ),
-                            SizedBox(
-                              width: Get.width / 10,
-                            ),
+                            )
                           ],
                         ),
-                      ),
-                      SizedBox(
-                        width: Get.width,
-                        child: ProfileTextInput(
-                            keyboardType: TextInputType.number,
-                            text: "شماره تماس",
-                            maxLength: 11,
-                            onChanged: (value) => _controller.model
-                                .nurseParentModels?[1].phoneNumber = value),
                       ),
                       Container(
                         width: Get.width,
                         height: 3,
                         color: buttonColor,
                       ),
+
                       // third
-                      SingleChildScrollView(
-                        physics: const BouncingScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ProfileTextInput(
+                              text: "آقا/خانم",
+                              onChanged: (value) => _controller
+                                  .model.nurseParentModels?[2].name = value,
+                            ),
+                          ),
+                          SizedBox(
+                            width: Get.width / 10,
+                          ),
+                          Expanded(
+                            child: ProfileTextInput(
+                                text: "نسبت",
+                                onChanged: (value) => _controller.model
+                                    .nurseParentModels?[2].information = value),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: Get.width,
                         child: Row(
                           children: [
-                            SizedBox(
-                              //height: Get.height / 9,
-                              width: Get.width / 4.5,
+                            Expanded(
                               child: ProfileTextInput(
-                                text: "آقا/خانم",
-                                onChanged: (value) => _controller
-                                    .model.nurseParentModels?[2].name = value,
-                              ),
-                            ),
-                            SizedBox(
-                              width: Get.width / 10,
-                            ),
-                            SizedBox(
-                              //height: Get.height / 9,
-                              width: Get.width / 5,
-                              child: ProfileTextInput(
-                                  text: "نسبت",
+                                  keyboardType: TextInputType.number,
+                                  maxLength: 11,
+                                  text: "شماره تماس",
                                   onChanged: (value) => _controller
                                       .model
                                       .nurseParentModels?[2]
-                                      .information = value),
+                                      .phoneNumber = value),
                             ),
                             SizedBox(
                               width: Get.width / 10,
                             ),
-                            SizedBox(
-                              //height: Get.height / 9,
-                              width: Get.width / 5,
+                            Expanded(
                               child: ProfileTextInput(
                                   keyboardType: TextInputType.number,
                                   text: "مدت آشنایی",
@@ -217,21 +198,14 @@ class NurseGuaranteeScreen extends StatelessWidget {
                                       .model
                                       .nurseParentModels?[2]
                                       .knowingTime = value),
-                            ),
-                            SizedBox(
-                              width: Get.width / 10,
-                            ),
+                            )
                           ],
                         ),
                       ),
-                      SizedBox(
+                      Container(
                         width: Get.width,
-                        child: ProfileTextInput(
-                            keyboardType: TextInputType.number,
-                            maxLength: 11,
-                            text: "شماره تماس",
-                            onChanged: (value) => _controller.model
-                                .nurseParentModels?[2].phoneNumber = value),
+                        height: 3,
+                        color: buttonColor,
                       ),
                     ],
                   )),

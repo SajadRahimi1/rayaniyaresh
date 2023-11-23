@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/core/services/message_service.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
-import 'package:rayaniyaresh/viewmodels/home/home_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/nurse_service/nurse_category_screen.dart';
 import 'package:rayaniyaresh/views/pages/reserve_class/class_category_screen.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_information_screen.dart';
@@ -15,7 +14,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeViewModel());
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),

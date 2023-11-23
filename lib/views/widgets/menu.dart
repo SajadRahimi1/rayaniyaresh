@@ -21,7 +21,6 @@ class Menu extends StatelessWidget {
     final GetStorage getStorage = GetStorage();
     GetStorage.init().then(
         (value) => biometric.value = getStorage.read('biometric') ?? false);
-    print(SingletonClass().imageUrl);
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
@@ -90,46 +89,10 @@ class Menu extends StatelessWidget {
                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // about us list tile
-                      // ListTile(
-                      //   onTap: () {
-                      //     Navigator.push(
-                      //         context,
-                      //         MaterialPageRoute(
-                      //             builder: (context) => const AboutusScreen()));
-                      //   },
-                      //   title: Text(
-                      //     "درباره ما",
-                      //     style: TextStyle(
-                      //         color: const Color(0xff656565),
-                      //         fontSize: MediaQuery.of(context).size.width / 32),
-                      //   ),
-                      //   leading: SizedBox.square(
-                      //     dimension: MediaQuery.of(context).size.width / 18,
-                      //     child: Image.asset(
-                      //       "assets/images/icons/aboutus.png",
-                      //     ),
-                      //   ),
-                      // ),
-                      // const Divider(
-                      //   color: Color(0xffe5e5e5),
-                      //   height: 1,
-                      //   thickness: 0.5,
-                      // ),
                       // contact us list tile
 
                       ListTile(
-                        onTap: () async {
-                          // await launchUrl(Uri.parse('tel:02632406705'));
-                          Get.to(() => const ContactusScreen());
-                        },
-                        //   Get.to(() => const ContactScreen(),
-                        //       transition: Transition.noTransition);
-                        //   // Navigator.push(
-                        //   //     context,
-                        //   //     MaterialPageRoute(
-                        //   //         builder: (context) => const ContactScreen()));
-                        // },
+                        onTap: () => Get.to(() => const ContactusScreen()),
                         title: Text(
                           "تماس با ما ",
                           style: TextStyle(
@@ -161,17 +124,7 @@ class Menu extends StatelessWidget {
                       ),
 
                       ListTile(
-                        onTap: () async {
-                          // await launchUrl(Uri.parse('tel:02632406705'));
-                          Get.to(() => const ReservedListScreen());
-                        },
-                        //   Get.to(() => const ContactScreen(),
-                        //       transition: Transition.noTransition);
-                        //   // Navigator.push(
-                        //   //     context,
-                        //   //     MaterialPageRoute(
-                        //   //         builder: (context) => const ContactScreen()));
-                        // },
+                        onTap: () => Get.to(() => const ReservedListScreen()),
                         title: Text(
                           "درخواست های من",
                           style: TextStyle(
@@ -182,9 +135,9 @@ class Menu extends StatelessWidget {
                             const EdgeInsets.symmetric(horizontal: 10),
                         leading: SizedBox.square(
                           dimension: MediaQuery.of(context).size.width / 18,
-                          child: Image.asset(
-                            "assets/images/icons/contact.png",
-                          ),
+                          // child: Image.asset(
+                          //   "assets/images/icons/contact.png",
+                          // ),
                         ),
                       ),
                       Container(
@@ -203,17 +156,7 @@ class Menu extends StatelessWidget {
                       ),
 
                       ListTile(
-                        onTap: () async {
-                          // await launchUrl(Uri.parse('tel:02632406705'));
-                          Get.to(() => const NurseScreen());
-                        },
-                        //   Get.to(() => const ContactScreen(),
-                        //       transition: Transition.noTransition);
-                        //   // Navigator.push(
-                        //   //     context,
-                        //   //     MaterialPageRoute(
-                        //   //         builder: (context) => const ContactScreen()));
-                        // },
+                        onTap: () => Get.to(() => const NurseScreen()),
                         title: Text(
                           "درخواست های استخدام",
                           style: TextStyle(
@@ -224,9 +167,9 @@ class Menu extends StatelessWidget {
                             const EdgeInsets.symmetric(horizontal: 10),
                         leading: SizedBox.square(
                           dimension: MediaQuery.of(context).size.width / 18,
-                          child: Image.asset(
-                            "assets/images/icons/contact.png",
-                          ),
+                          // child: Image.asset(
+                          //   "assets/images/icons/contact.png",
+                          // ),
                         ),
                       ),
 
@@ -285,88 +228,6 @@ class Menu extends StatelessWidget {
                             })),
                         onTap: () async {},
                       ),
-                      // const Divider(
-                      //   color: Color(0xffe5e5e5),
-                      //   height: 1,
-                      //   thickness: 1,
-                      // ),
-                      // rules list tile
-                      // ListTile(
-                      //   // onTap: () {
-                      //   //   Navigator.push(
-                      //   //       context,
-                      //   //       MaterialPageRoute(
-                      //   //           builder: (context) => const RulesScreen()));
-                      //   // },
-                      //   title: Text(
-                      //     "قوانین و مقررات",
-                      //     style: TextStyle(
-                      //         color: const Color(0xff656565),
-                      //         fontSize: MediaQuery.of(context).size.width / 32),
-                      //   ),
-                      //   leading: SizedBox.square(
-                      //     dimension: MediaQuery.of(context).size.width / 18,
-                      //     child: Image.asset(
-                      //       "assets/images/icons/rules.png",
-                      //     ),
-                      //   ),
-                      // ),
-
-                      // const Divider(
-                      //   color: Color(0xffe5e5e5),
-                      //   height: 1,
-                      //   thickness: 0.5,
-                      // ),
-                      // license list tile
-
-                      //support list tile
-                      // ListTile(
-                      //   // onTap: () async {
-                      //   //   launchUrl(Uri.parse('tel://02155922169'));
-                      //   // },
-                      //   title: Text(
-                      //     "پشتیبانی",
-                      //     style: TextStyle(
-                      //         color: const Color(0xff656565),
-                      //         fontSize: MediaQuery.of(context).size.width / 32),
-                      //   ),
-                      //   leading: SizedBox.square(
-                      //     dimension: MediaQuery.of(context).size.width / 18,
-                      //     child: Image.asset(
-                      //       "assets/images/icons/support.png",
-                      //     ),
-                      //   ),
-                      // ),
-
-                      // // exit list tile
-                      // const Divider(
-                      //   color: Color(0xffe5e5e5),
-                      //   height: 1,
-                      //   thickness: 0.5,
-                      // ),
-
-                      //share list tile
-                      // ListTile(
-                      //   onTap: () async {
-                      //     Navigator.push(
-                      //         context,
-                      //         MaterialPageRoute(
-                      //             builder: (context) => const ContactScreen()));
-                      //   },
-                      //   title: Text(
-                      //     "معرفی به دوستان",
-                      //     style: TextStyle(
-                      //         color: const Color(0xff656565),
-                      //         fontSize: MediaQuery.of(context).size.width / 32),
-                      //   ),
-                      //   leading: const Icon(Icons.share, color: purple),
-                      //   // SizedBox.square(
-                      //   //   dimension: MediaQuery.of(context).size.width / 18,
-                      //   //   child: Image.asset(
-                      //   //     "assets/images/icons/support.png",
-                      //   //   ),
-                      //   // ),
-                      // ),
                     ],
                   )),
                 ),
@@ -397,7 +258,6 @@ class Menu extends StatelessWidget {
                     // await getStorage.remove('token');
                     Get.offAll(() => const GetPhoneScreen(isExit: true));
                   },
-                  // ,
                   contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                   title: Text(
                     "خروج",
@@ -419,37 +279,9 @@ class Menu extends StatelessWidget {
                     ),
                   ),
                 )
-
-                // child: Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //   textDirection: TextDirection.ltr,
-                //   children: List.generate(
-                //       4,
-                //       (index) => Image.asset(
-                //             "assets/images/icons/${[
-                //               "telegram3.png",
-                //               "instagram3.png",
-                //               "linkedin3.png",
-                //               "whatsapp3.png",
-                //             ][index]}",
-                //             height: MediaQuery.of(context).size.height / 45,
-                //             filterQuality: FilterQuality.medium,
-                //           )),
-                // ),
               ],
             ),
           ),
-
-          // Expanded(
-          //   child: InkWell(
-          //     onTap: () {
-          //       Navigator.pop(context);
-          //     },
-          //     child: Container(
-          //       color: const Color.fromRGBO(9, 21, 22, 0.8),
-          //     ),
-          //   ),
-          // )
         ],
       ),
     );
