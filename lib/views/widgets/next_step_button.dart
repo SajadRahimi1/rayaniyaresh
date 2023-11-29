@@ -19,7 +19,7 @@ class NextStepButton extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(15), topRight: Radius.circular(15)),
-            color: enable ? buttonColor : Color(0xff989898)),
+            color: enable ? buttonColor : const Color(0xff989898)),
         child: Text(
           title,
           style: TextStyle(

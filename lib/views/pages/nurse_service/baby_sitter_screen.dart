@@ -273,21 +273,28 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                 SizedBox(
                     width: Get.width,
                     height: Get.height / 10,
-                    child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(children: [
-                          Text(
-                            "در طول مدت فعالیت نیروی اعزامی چه شخصی داخل منزل حضور دارد:   ",
-                            style: TextStyle(fontSize: Get.width / 30),
+                    child: Row(children: [
+                      Expanded(
+                        flex: 7,
+                        child: Text(
+                          "در طول مدت فعالیت نیروی اعزامی چه شخصی داخل منزل حضور دارد:   ",
+                          style: TextStyle(fontSize: Get.width / 30),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 3,
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: SizedBox(
+                          width: Get.width / 3,
+                          child: ProfileTextInput(
+                            text: "",
+                            onChanged: (value) => model.peopleInHouse = value,
                           ),
-                          SizedBox(
-                            width: Get.width / 2.5,
-                            child: ProfileTextInput(
-                              text: "",
-                              onChanged: (value) => model.peopleInHouse = value,
-                            ),
-                          )
-                        ]))),
+                        ),
+                      )
+                    ])),
 
                 const Divider(
                   thickness: 1,
@@ -298,28 +305,32 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                 SizedBox(
                     width: Get.width,
                     height: Get.height / 10,
-                    child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(children: [
-                          Text(
-                            "در محل نیروی اعزامی دوربین مداربسته وجود دارد؟  ",
-                            style: TextStyle(fontSize: Get.width / 30),
-                          ),
-                          Obx(() => DropdownButton(
-                              items: List.generate(
-                                  2,
-                                  (index) => DropdownMenuItem<bool>(
-                                        child: Text(["خیر", "بلی"][index]),
-                                        value: [false, true][index],
-                                      )),
-                              value: camera.value,
-                              elevation: 5,
-                              // style: TextStyle(fontSize: Get.width / 23),
-                              onChanged: <bool>(value) {
-                                camera.value = value;
-                                model.cctv = value;
-                              })),
-                        ]))),
+                    child: Row(children: [
+                      Expanded(
+                        flex: 7,
+                        child: Text(
+                          "در محل نیروی اعزامی دوربین مداربسته وجود دارد؟  ",
+                          style: TextStyle(fontSize: Get.width / 30),
+                        ),
+                      ),
+                      Obx(() => Expanded(
+                            flex: 2,
+                            child: DropdownButton(
+                                items: List.generate(
+                                    2,
+                                    (index) => DropdownMenuItem<bool>(
+                                          child: Text(["خیر", "بلی"][index]),
+                                          value: [false, true][index],
+                                        )),
+                                value: camera.value,
+                                elevation: 5,
+                                // style: TextStyle(fontSize: Get.width / 23),
+                                onChanged: <bool>(value) {
+                                  camera.value = value;
+                                  model.cctv = value;
+                                }),
+                          )),
+                    ])),
 
                 const Divider(
                   thickness: 1,

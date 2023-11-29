@@ -7,7 +7,6 @@ import 'package:rayaniyaresh/viewmodels/signup_nurse/nurse_pdf_viewmodel.dart';
 import 'package:rayaniyaresh/views/pages/singup_nurse/nurse_rules_screen.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_button.dart';
-import 'package:rayaniyaresh/views/widgets/next_step_button.dart';
 
 class NurseDownloadScreen extends StatelessWidget {
   const NurseDownloadScreen({Key? key, required this.nurseModel})
@@ -34,7 +33,7 @@ class NurseDownloadScreen extends StatelessWidget {
                     // bad background
                     InkWell(
                       onTap: () async {
-                        var pdf = await PdfService().init(
+                        await PdfService().init(
                           name: nurseModel.name ?? "",
                           fatherName: nurseModel.fatherName ?? "",
                           birthday: nurseModel.birthday ?? "",

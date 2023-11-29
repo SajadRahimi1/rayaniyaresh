@@ -79,7 +79,8 @@ class NurseInformationScreen extends StatelessWidget {
                 ProfileTextInput(
                   controller: _controller.textEditingController[4],
                   text: "کد ملی:",
-                  icon: const Icon(Icons.public),
+                  icon: const ImageIcon(
+                      AssetImage("assets/images/icons/card.png")),
                   maxLength: 10,
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
@@ -89,7 +90,8 @@ class NurseInformationScreen extends StatelessWidget {
                 ProfileTextInput(
                   controller: _controller.textEditingController[5],
                   text: "شماره شناسنامه:",
-                  icon: const Icon(Icons.public_sharp),
+                  icon: const ImageIcon(
+                      AssetImage("assets/images/icons/card.png")),
                   maxLength: 11,
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
@@ -138,15 +140,6 @@ class NurseInformationScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-
-                // ProfileTextInput(
-                //   controller: _controller.textEditingController[6],
-                //   text: "آدرس دقیق منزل",
-                //   icon: const Icon(Icons.pin_drop),
-                //   onChanged: (value) {
-                //     _controller.nurseModel.address = value;
-                //   },
-                // ),
 
                 // address
                 Padding(
@@ -233,6 +226,8 @@ class NurseInformationScreen extends StatelessWidget {
                           width: Get.width / 1,
                           child: ProfileTextInput(
                             text: "نام خیابان",
+                            icon: const ImageIcon(
+                                AssetImage("assets/images/icons/road.png")),
                             onChanged: (value) => _controller.street = value,
                           )),
                       SizedBox(
@@ -240,12 +235,17 @@ class NurseInformationScreen extends StatelessWidget {
                           child: ProfileTextInput(
                             required: false,
                             text: "نام کوچه",
+                            icon: const ImageIcon(
+                                AssetImage("assets/images/icons/road2.png")),
                             onChanged: (value) => _controller.alley = value,
                           )),
                       SizedBox(
                           width: Get.width / 1,
                           child: ProfileTextInput(
                             text: "پلاک",
+                            icon: const ImageIcon(
+                              AssetImage("assets/images/icons/home-loc.png"),
+                            ),
                             keyboardType: TextInputType.number,
                             onChanged: (value) => _controller.plate = value,
                           )),
@@ -253,6 +253,8 @@ class NurseInformationScreen extends StatelessWidget {
                           width: Get.width / 1,
                           child: ProfileTextInput(
                             text: "واحد",
+                            icon: const ImageIcon(
+                                AssetImage("assets/images/icons/num.png")),
                             keyboardType: TextInputType.number,
                             onChanged: (value) => _controller.number = value,
                           )),
@@ -290,25 +292,6 @@ class NurseInformationScreen extends StatelessWidget {
             height: Get.height / 10,
             child: NextButton(onNext: _controller.validationForm),
           )
-          /*
-          InkWell(
-            onTap: _controller.validationForm,
-            child: Container(
-              width: Get.width,
-              height: Get.height / 13,
-              alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15)),
-                  color: buttonColor),
-              child: Text(
-                "مرحله بعدی",
-                style: TextStyle(
-                    color: const Color(0xffffffff), fontSize: Get.width / 22),
-              ),
-            ),
-          ),*/
         ],
       ),
     );

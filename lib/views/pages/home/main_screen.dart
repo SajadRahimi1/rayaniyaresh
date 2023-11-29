@@ -91,7 +91,7 @@ class _MainScreenState extends State<MainScreen> {
                                     Scaffold.of(context).openDrawer();
                                   });
                             }),
-                            /*  Obx(() => Visibility(
+                            Obx(() => Visibility(
                                   visible: _controller.hasNewMessage.value,
                                   child: IconButton(
                                       onPressed: _controller.onMessagesClick,
@@ -111,7 +111,7 @@ class _MainScreenState extends State<MainScreen> {
                                           )
                                         ],
                                       )),
-                                )),*/
+                                )),
                             const Spacer(),
                             Padding(
                                 padding: const EdgeInsets.only(left: 15),

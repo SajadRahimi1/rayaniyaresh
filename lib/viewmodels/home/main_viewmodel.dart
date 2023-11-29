@@ -32,9 +32,11 @@ class MainViewController extends GetxController {
 
     currentPage.listen((p0) {
       pageController.jumpToPage(p0);
+      if (p0 == 1) unreadedLength.value = "";
     });
 
     userModel = SingletonClass().userModel;
+    unreadedLength.value = getUnreadedMessage;
     getData();
   }
 
@@ -43,6 +45,22 @@ class MainViewController extends GetxController {
     super.dispose();
     globalKey.currentState?.dispose();
     pageController.dispose();
+  }
+
+  String get getUnreadedMessage {
+    var length = SingletonClass()
+            .userModel
+            ?.messages
+            ?.where((element) =>
+                element.userId != null &&
+                element.isUserSend == false &&
+                element.seen == false)
+            .toList()
+            .length ??
+        0;
+    if (length > 9) return "+9";
+    if (length == 0) return "";
+    return length.toString();
   }
 
   void getData() {
