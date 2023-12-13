@@ -175,8 +175,8 @@ class NurseInformationScreen extends StatelessWidget {
                               title: Text(itemData.toString()),
                             ),
                             onSuggestionSelected: (suggestion) => _controller
-                                .provinceController
-                                .text = suggestion.toString(),
+                                .nurseModel.province
+                                 = suggestion.toString(),
                             suggestionsCallback: (pattern) => cities.keys
                                 .where((element) => element.contains(pattern)),
                           )),
@@ -207,7 +207,7 @@ class NurseInformationScreen extends StatelessWidget {
                                     title: Text(itemData.toString()),
                                   ),
                               onSuggestionSelected: (suggestion) => _controller
-                                  .cityController.text = suggestion.toString(),
+                                  .nurseModel.city = suggestion.toString(),
                               suggestionsCallback: (pattern) => (cities[
                                           _controller
                                               .provinceController.text] ??
@@ -220,7 +220,7 @@ class NurseInformationScreen extends StatelessWidget {
                             // icon: const Icon(Icons.roa),
                             text: "محله",
                             onChanged: (value) =>
-                                _controller.neighbourhood = value,
+                                _controller.nurseModel.neighborhood = value,
                           )),
                       SizedBox(
                           width: Get.width / 1,
@@ -237,7 +237,7 @@ class NurseInformationScreen extends StatelessWidget {
                             text: "نام کوچه",
                             icon: const ImageIcon(
                                 AssetImage("assets/images/icons/road2.png")),
-                            onChanged: (value) => _controller.alley = value,
+                            onChanged: (value) => _controller.nurseModel.alley = value,
                           )),
                       SizedBox(
                           width: Get.width / 1,
@@ -247,7 +247,7 @@ class NurseInformationScreen extends StatelessWidget {
                               AssetImage("assets/images/icons/home-loc.png"),
                             ),
                             keyboardType: TextInputType.number,
-                            onChanged: (value) => _controller.plate = value,
+                            onChanged: (value) => _controller.nurseModel.postalCode = value,
                           )),
                       SizedBox(
                           width: Get.width / 1,
@@ -256,7 +256,7 @@ class NurseInformationScreen extends StatelessWidget {
                             icon: const ImageIcon(
                                 AssetImage("assets/images/icons/num.png")),
                             keyboardType: TextInputType.number,
-                            onChanged: (value) => _controller.number = value,
+                            onChanged: (value) => _controller.nurseModel.unit = value,
                           )),
                     ],
                   ),

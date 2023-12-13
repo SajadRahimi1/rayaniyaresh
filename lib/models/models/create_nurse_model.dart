@@ -1,3 +1,5 @@
+import 'package:rayaniyaresh/models/extensions/enum_extension.dart';
+
 class CreateNurseModel {
   String? name;
   String? id;
@@ -12,29 +14,45 @@ class CreateNurseModel {
   String? homeNumber;
   String? shift;
   bool? specialCare;
+  String? province;
+  String? city;
+  String? unit;
+  String? neighborhood;
+  String? street;
+  List<OtherProps>? otherProps;
+  String? alley;
+  String? postalCode;
   String? otherProp;
   int? formCode;
   String? nurseCategory;
   String? picture;
 
-  CreateNurseModel(
-      {this.name,
-      this.fatherName,
-      this.birthday,
-      this.bornCity,
-      this.id,
-      this.nationalCode,
-      this.nationalNumber,
-      this.education,
-      this.address,
-      this.phoneNumber,
-      this.homeNumber,
-      this.shift,
-      this.specialCare,
-      this.picture,
-      this.formCode,
-      this.otherProp,
-      this.nurseCategory});
+  CreateNurseModel({
+    this.name,
+    this.fatherName,
+    this.birthday,
+    this.bornCity,
+    this.id,
+    this.nationalCode,
+    this.nationalNumber,
+    this.otherProps,
+    this.education,
+    this.address,
+    this.phoneNumber,
+    this.homeNumber,
+    this.shift,
+    this.specialCare,
+    this.picture,
+    this.formCode,
+    this.otherProp,
+    this.nurseCategory,
+    this.alley,
+    this.city,
+    this.neighborhood,
+    this.postalCode,
+    this.province,
+    this.street,
+  });
 
   CreateNurseModel.fromJson(Map<String, dynamic> json) {
     name = json["Name"];
@@ -72,7 +90,26 @@ class CreateNurseModel {
     _data["homeNumber"] = homeNumber ?? "";
     _data["specialCare"] = specialCare;
     _data["otherProp"] = otherProp;
+    _data["otherProps"] = otherProps.toMap();
+    _data["province"] = province;
+    _data["city"] = city;
+    _data["neighborhood"] = neighborhood;
+    _data["street"] = street;
+    _data["alley"] = alley;
+    _data["unit"] = unit;
+    _data["postalCode"] = postalCode;
     _data["nurseCategory"] = nurseCategory;
     return _data;
   }
+}
+
+enum OtherProps {
+  drug,
+  smoke,
+  alcoholic,
+  disability,
+  criminal,
+  specialDisease,
+  family,
+  specializedDegree
 }

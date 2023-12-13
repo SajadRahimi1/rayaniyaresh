@@ -17,6 +17,7 @@ class NurseQuestionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<RxBool> questions = List.generate(8, (index) => false.obs);
+    List<OtherProps> otherProps = [];
     return Scaffold(
       appBar: screensAppbar(context: context, title: "سوابق شخصی"),
       body: ListView(
@@ -33,10 +34,9 @@ class NurseQuestionScreen extends StatelessWidget {
                         if (value != null) {
                           questions[0].value = value;
                           if (value) {
-                            nurseModel.otherProp =
-                                (nurseModel.otherProp ?? "") + ".موادمخدر";
+                            otherProps.add(OtherProps.drug);
                           } else {
-                            nurseModel.otherProp?.replaceAll('.موادمخدر', '');
+                            otherProps.remove(OtherProps.drug);
                           }
                         }
                       },
@@ -45,7 +45,7 @@ class NurseQuestionScreen extends StatelessWidget {
                   thickness: 1,
                 ),
 
-                // cigret
+                // smoke
                 Obx(() => YesNoWidget(
                       value: questions[1].value,
                       title: "آیا از سیگار استفاده میکنید؟  ",
@@ -53,10 +53,9 @@ class NurseQuestionScreen extends StatelessWidget {
                         if (value != null) {
                           questions[1].value = value;
                           if (value) {
-                            nurseModel.otherProp =
-                                (nurseModel.otherProp ?? "") + ".سیگار";
+                            otherProps.add(OtherProps.smoke);
                           } else {
-                            nurseModel.otherProp?.replaceAll('.سیگار', '');
+                            otherProps.remove(OtherProps.smoke);
                           }
                         }
                       },
@@ -73,10 +72,9 @@ class NurseQuestionScreen extends StatelessWidget {
                         if (value != null) {
                           questions[2].value = value;
                           if (value) {
-                            nurseModel.otherProp =
-                                (nurseModel.otherProp ?? "") + ".الکلی";
+                            otherProps.add(OtherProps.alcoholic);
                           } else {
-                            nurseModel.otherProp?.replaceAll('.الکلی', '');
+                            otherProps.remove(OtherProps.alcoholic);
                           }
                         }
                       },
@@ -92,10 +90,9 @@ class NurseQuestionScreen extends StatelessWidget {
                         if (value != null) {
                           questions[3].value = value;
                           if (value) {
-                            nurseModel.otherProp =
-                                (nurseModel.otherProp ?? "") + ".معلولیت";
+                            otherProps.add(OtherProps.disability);
                           } else {
-                            nurseModel.otherProp?.replaceAll('.معلولیت', '');
+                            otherProps.remove(OtherProps.disability);
                           }
                         }
                       },
@@ -112,10 +109,9 @@ class NurseQuestionScreen extends StatelessWidget {
                         if (value != null) {
                           questions[4].value = value;
                           if (value) {
-                            nurseModel.otherProp =
-                                (nurseModel.otherProp ?? "") + ".بیماری";
+                            otherProps.add(OtherProps.specialDisease);
                           } else {
-                            nurseModel.otherProp?.replaceAll('.بیماری', '');
+                            otherProps.remove(OtherProps.specialDisease);
                           }
                         }
                       },
@@ -131,10 +127,9 @@ class NurseQuestionScreen extends StatelessWidget {
                         if (value != null) {
                           questions[5].value = value;
                           if (value) {
-                            nurseModel.otherProp =
-                                (nurseModel.otherProp ?? "") + ".کیفری";
+                            otherProps.add(OtherProps.criminal);
                           } else {
-                            nurseModel.otherProp?.replaceAll('.کیفری', '');
+                            otherProps.remove(OtherProps.criminal);
                           }
                         }
                       },
@@ -151,10 +146,9 @@ class NurseQuestionScreen extends StatelessWidget {
                         if (value != null) {
                           questions[6].value = value;
                           if (value) {
-                            nurseModel.otherProp =
-                                (nurseModel.otherProp ?? "") + ".خانواده";
+                            otherProps.add(OtherProps.family);
                           } else {
-                            nurseModel.otherProp?.replaceAll('.خانواده', '');
+                            otherProps.remove(OtherProps.family);
                           }
                         }
                       },
@@ -171,10 +165,9 @@ class NurseQuestionScreen extends StatelessWidget {
                         if (value != null) {
                           questions[7].value = value;
                           if (value) {
-                            nurseModel.otherProp =
-                                (nurseModel.otherProp ?? "") + ".مدرک";
+                            otherProps.add(OtherProps.specializedDegree);
                           } else {
-                            nurseModel.otherProp?.replaceAll('.مدرک', '');
+                            otherProps.remove(OtherProps.specializedDegree);
                           }
                         }
                       },

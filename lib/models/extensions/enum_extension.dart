@@ -1,3 +1,4 @@
+import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
 import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
 
 extension GenderExtension on Gender? {
@@ -45,5 +46,16 @@ extension CategoryExtension on NurseCategory? {
       default:
     }
     return "patient.jpg";
+  }
+}
+
+extension OtherPropsEnum on List<OtherProps>? {
+  List<String> toMap() {
+    var input = this??[];
+    List<String> output = [];
+    for (var prop in input) {
+      output.add(prop.toString().split('.').last);
+    }
+    return output;
   }
 }
