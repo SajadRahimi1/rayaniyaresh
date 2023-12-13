@@ -202,11 +202,7 @@ class NurseGuaranteeScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Container(
-                        width: Get.width,
-                        height: 3,
-                        color: buttonColor,
-                      ),
+                      
                     ],
                   )),
               Container(

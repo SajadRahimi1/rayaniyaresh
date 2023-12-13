@@ -40,6 +40,7 @@ class _MainScreenState extends State<MainScreen> {
     bool doubleTap = false;
     return WillPopScope(
         onWillPop: () async {
+          print(Get.isDialogOpen ?? false);
           FocusScope.of(context).unfocus();
           if (_productKey.currentState?.isDrawerOpen ?? false) {
             Navigator.of(context).pop();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:rayaniyaresh/core/services/check_version.dart';
 import 'package:rayaniyaresh/models/constants/singleton_class.dart';
 import 'package:rayaniyaresh/models/models/user_model.dart';
 import 'package:rayaniyaresh/views/pages/messages/messages_screen.dart';
@@ -76,6 +77,7 @@ class MainViewController extends GetxController {
       }
       hasNewMessage.value = messages.isNotEmpty;
     }
+    checkVersion();
   }
 
   void onMessagesClick() {

@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rayaniyaresh/models/constants/colors.dart';
 
 enum MessageType {
   info,
@@ -73,3 +76,42 @@ void networkErrorMessage() => showMessage(
     title: "خطا در ارتباط با سرور",
     message: "در ارتباط با سرور مشکلی پیش آمد. دوباره تلاش کنید",
     type: MessageType.error);
+
+void showSnackbar(
+    {String title = '',
+    String message = '',
+    required FutureOr Function(dynamic) onValue,
+    bool isUpdateDialog = false}) {
+  Get.dialog(
+          AlertDialog(
+            actionsAlignment: MainAxisAlignment.end,
+            title: Text(
+              title,
+              textDirection: TextDirection.rtl,
+            ),
+            content: Text(
+              message,
+              textDirection: TextDirection.rtl,
+              // textAlign: TextAlign.right,
+            ),
+            // title: Text(
+            //   "خروج",
+            //   textDirection: TextDirection.rtl,
+            // ),
+
+            actions: [
+              Directionality(
+                child: ElevatedButton(
+                  onPressed: () => Get.back(result: true),
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(buttonColor)),
+                  //return false when click on "NO"
+                  child: const Text('اپدیت'),
+                ),
+                textDirection: TextDirection.rtl,
+              )
+            ],
+          ),
+          barrierDismissible: false)
+      .then(onValue);
+}
