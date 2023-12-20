@@ -9,7 +9,7 @@ class NurseInformationViewmodel extends GetxController with StateMixin {
       List.generate(9, (index) => TextEditingController());
   final TextEditingController provinceController = TextEditingController(),
       cityController = TextEditingController();
-  String neighbourhood = "",street='',alley='',plate='',number='';
+  String neighbourhood = "", street = '', alley = '', plate = '', number = '';
   final CreateNurseModel nurseModel = CreateNurseModel();
 
   List educationStrings = [
@@ -30,9 +30,11 @@ class NurseInformationViewmodel extends GetxController with StateMixin {
 
   void validationForm() {
     nurseModel.education = educationStrings[educationIndex.value];
+    nurseModel.province = provinceController.text;
+    nurseModel.city = cityController.text;
     if (validation()) {
-    nurseModel.address =
-        "استان ${provinceController.text} شهر ${cityController.text} محله $neighbourhood خیابان $street ${alley.isNotEmpty?'کوچه ' +alley:''} پلاک $plate واحد $number";
+      nurseModel.address =
+          "استان ${provinceController.text} شهر ${cityController.text} محله $neighbourhood خیابان $street ${alley.isNotEmpty ? 'کوچه ' + alley : ''} پلاک $plate واحد $number";
       Get.to(() => NurseQuestionScreen(nurseModel: nurseModel),
           transition: Transition.leftToRight);
     }
@@ -96,32 +98,34 @@ class NurseInformationViewmodel extends GetxController with StateMixin {
           type: MessageType.warning);
       return false;
     }
-    if (neighbourhood.isEmpty) {
+    if (nurseModel.neighborhood?.isEmpty ?? false) {
       showMessage(
           title: 'خطا',
           message: 'لطفا محله خود را وارد کنید',
           type: MessageType.warning);
       return false;
     }
-     if (street.isEmpty) {
+    if (nurseModel.street?.isEmpty ?? false) {
       showMessage(
           title: 'خطا',
           message: 'لطفا نام خیابان خود را وارد کنید',
           type: MessageType.warning);
       return false;
-    } if (plate.isEmpty) {
+    }
+    if (nurseModel.postalCode?.isEmpty ?? false) {
       showMessage(
           title: 'خطا',
           message: 'لطفا پلاک خود را وارد کنید',
           type: MessageType.warning);
       return false;
-    } if (number.isEmpty) {
+    }
+    if (nurseModel.unit?.isEmpty ?? false) {
       showMessage(
           title: 'خطا',
           message: 'لطفا واحد خود را وارد کنید',
           type: MessageType.warning);
       return false;
-    } 
+    }
     if (nurseModel.phoneNumber?.isEmpty ?? true) {
       showMessage(
           title: 'خطا',

@@ -1,4 +1,5 @@
 import 'package:rayaniyaresh/models/extensions/enum_extension.dart';
+import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
 
 class CreateNurseModel {
   String? name;
@@ -19,7 +20,9 @@ class CreateNurseModel {
   String? unit;
   String? neighborhood;
   String? street;
+  List<Shift>? shifts;
   List<OtherProps>? otherProps;
+  List<NurseCategory>? nurseCategories;
   String? alley;
   String? postalCode;
   String? otherProp;
@@ -34,8 +37,10 @@ class CreateNurseModel {
     this.bornCity,
     this.id,
     this.nationalCode,
+    this.shifts,
     this.nationalNumber,
     this.otherProps,
+    this.nurseCategories,
     this.education,
     this.address,
     this.phoneNumber,
@@ -98,7 +103,9 @@ class CreateNurseModel {
     _data["alley"] = alley;
     _data["unit"] = unit;
     _data["postalCode"] = postalCode;
-    _data["nurseCategory"] = nurseCategory;
+    _data["nurseCategories"] = nurseCategories.toMap();
+    _data["shifts"] = shifts.toMap();
+    // _data["nurseCategory"] = nurseCategory.toString();
     return _data;
   }
 }

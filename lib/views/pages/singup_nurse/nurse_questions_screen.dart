@@ -181,11 +181,11 @@ class NurseQuestionScreen extends StatelessWidget {
           SizedBox(
             width: Get.width,
             height: Get.height / 10,
-            child: NextButton(
-              onNext: () => Get.to(
-                  () => NurseSelectSreen(nurseModel: nurseModel),
-                  transition: Transition.leftToRight),
-            ),
+            child: NextButton(onNext: () {
+              nurseModel.otherProps = otherProps;
+              Get.to(() => NurseSelectSreen(nurseModel: nurseModel),
+                  transition: Transition.leftToRight);
+            }),
           )
           // NextStepButton(
           //   title: "مرحله بعدی",

@@ -38,8 +38,8 @@ class ReservedListViewmodel extends GetxController with StateMixin {
   Future<void> getReserved() async {
     final _request = await user_service.getReserved(token);
     if (_request.statusCode == 200) {
-    reservedModel = ReservedModel.fromJson(_request.body);
-    change(null, status: RxStatus.success());
+      reservedModel = ReservedModel.fromJson(_request.body);
+      change(null, status: RxStatus.success());
     } else {
       networkErrorMessage();
     }

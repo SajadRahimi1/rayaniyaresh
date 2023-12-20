@@ -15,8 +15,8 @@ class CreateNurrseViewModel extends GetxController with StateMixin {
   GetStorage getStorage = GetStorage();
   String token = "";
 
-  RxList<int> categorySelect = <int>[].obs;
-  RxList<int> shiftSelect = <int>[].obs;
+  RxList<NurseCategory> categorySelect = <NurseCategory>[].obs;
+  RxList<Shift> shiftSelect = <Shift>[].obs;
   RxBool secondQuestion = false.obs;
 
   final List<String> shift = [
@@ -32,8 +32,8 @@ class CreateNurrseViewModel extends GetxController with StateMixin {
     // TODO: implement onInit
     super.onInit();
     categorySelect.listen((p0) {
-      if (p0.length < 4) {
-        categorySelect.remove(3);
+      if (p0.length > 2 && !p0.contains(NurseCategory.All)) {
+        categorySelect.add(NurseCategory.All);
       }
     });
     token = getStorage.read('token');
@@ -48,18 +48,9 @@ class CreateNurrseViewModel extends GetxController with StateMixin {
       return;
     }
     loading();
-    String nurseCategory = "";
-    for (var index in categorySelect) {
-      nurseCategory += ',${NurseCategory.values[index]}';
-    }
 
-    String nurseShift = "";
-    for (var index in shiftSelect) {
-      nurseShift += ',${shift[index]}';
-    }
-
-    nurseModel.shift = nurseShift;
-    nurseModel.nurseCategory = nurseCategory;
+    nurseModel.shifts = shiftSelect;
+    nurseModel.nurseCategories = categorySelect;
     nurseModel.specialCare = secondQuestion.value;
 
     final _request = await service.createNurse(nurseModel, token);
@@ -69,32 +60,6 @@ class CreateNurrseViewModel extends GetxController with StateMixin {
           transition: Transition.leftToRight);
     } else {
       networkErrorMessage();
-    }
-  }
-
-  void addCategory(int index) {
-    if (index == 3) {
-      categorySelect.value = [];
-      List.generate(4, (index) => categorySelect.add(index));
-    } else {
-      categorySelect.add(index);
-      if (categorySelect.length > 2) {
-        categorySelect.value = [];
-        List.generate(4, (index) => categorySelect.add(index));
-      }
-    }
-  }
-
-  void addShift(int index) {
-    if (index == 4) {
-      shiftSelect.value = [];
-      List.generate(5, (index) => shiftSelect.add(index));
-    } else {
-      shiftSelect.add(index);
-      if (shiftSelect.length > 3) {
-        shiftSelect.value = [];
-        List.generate(5, (index) => shiftSelect.add(index));
-      }
     }
   }
 }

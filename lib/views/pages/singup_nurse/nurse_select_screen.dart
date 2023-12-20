@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rayaniyaresh/models/constants/colors.dart';
 import 'package:rayaniyaresh/models/models/create_nurse_model.dart';
+import 'package:rayaniyaresh/models/models/request_nurse_model.dart';
 import 'package:rayaniyaresh/viewmodels/signup_nurse/create_nurse_viewmodel.dart';
 import 'package:rayaniyaresh/views/widgets/appbar_widget.dart';
 import 'package:rayaniyaresh/views/widgets/next_button.dart';
@@ -38,13 +39,16 @@ class NurseSelectSreen extends StatelessWidget {
                           style: TextStyle(fontSize: Get.width / 30)),
                       Obx(() => Checkbox(
                             activeColor: buttonColor,
-                            value: _controller.categorySelect.contains(0),
+                            value: _controller.categorySelect
+                                .contains(NurseCategory.Kid),
                             onChanged: (value) {
                               if (value != null) {
                                 if (value) {
-                                  _controller.addCategory(0);
+                                  _controller.categorySelect
+                                      .add(NurseCategory.Kid);
                                 } else {
-                                  _controller.categorySelect.remove(0);
+                                  _controller.categorySelect
+                                      .remove(NurseCategory.Kid);
                                 }
                               }
                             },
@@ -53,13 +57,16 @@ class NurseSelectSreen extends StatelessWidget {
                           style: TextStyle(fontSize: Get.width / 30)),
                       Obx(() => Checkbox(
                             activeColor: buttonColor,
-                            value: _controller.categorySelect.contains(1),
+                            value: _controller.categorySelect
+                                .contains(NurseCategory.Oldage),
                             onChanged: (value) {
                               if (value != null) {
                                 if (value) {
-                                  _controller.addCategory(1);
+                                  _controller.categorySelect
+                                      .add(NurseCategory.Oldage);
                                 } else {
-                                  _controller.categorySelect.remove(1);
+                                  _controller.categorySelect
+                                      .remove(NurseCategory.Oldage);
                                 }
                               }
                             },
@@ -67,38 +74,44 @@ class NurseSelectSreen extends StatelessWidget {
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text("پرستار بیمار",
                           style: TextStyle(fontSize: Get.width / 30)),
                       Obx(() => Checkbox(
                             activeColor: buttonColor,
-                            value: _controller.categorySelect.contains(2),
+                            value: _controller.categorySelect
+                                .contains(NurseCategory.Patient),
                             onChanged: (value) {
                               if (value != null) {
                                 if (value) {
-                                  _controller.addCategory(2);
+                                  _controller.categorySelect
+                                      .add(NurseCategory.Patient);
                                 } else {
-                                  _controller.categorySelect.remove(2);
+                                  _controller.categorySelect
+                                      .remove(NurseCategory.Patient);
                                 }
                               }
                             },
                           )),
-                      Text("همه موارد",
-                          style: TextStyle(fontSize: Get.width / 30)),
-                      Obx(() => Checkbox(
-                            activeColor: buttonColor,
-                            value: _controller.categorySelect.contains(3),
-                            onChanged: (value) {
-                              if (value != null) {
-                                if (value) {
-                                  _controller.addCategory(3);
-                                } else {
-                                  _controller.categorySelect.clear();
-                                }
-                              }
-                            },
-                          )),
+                      // Text("همه موارد",
+                      //     style: TextStyle(fontSize: Get.width / 30)),
+                      // Obx(() => Checkbox(
+                      //       activeColor: buttonColor,
+                      //       value: _controller.categorySelect
+                      //           .contains(NurseCategory.All),
+                      //       onChanged: (value) {
+                      //         if (value != null) {
+                      //           if (value) {
+                      //             _controller.categorySelect
+                      //                 .add(NurseCategory.All);
+                      //           } else {
+                      //             _controller.categorySelect
+                      //                 .remove(NurseCategory.All);
+                      //           }
+                      //         }
+                      //       },
+                      //     )),
                     ],
                   )
                 ],
@@ -150,13 +163,15 @@ class NurseSelectSreen extends StatelessWidget {
                           style: TextStyle(fontSize: Get.width / 30)),
                       Obx(() => Checkbox(
                             activeColor: buttonColor,
-                            value: _controller.shiftSelect.contains(0),
+                            value: _controller.shiftSelect
+                                .contains(Shift.Boarding),
                             onChanged: (value) {
                               if (value != null) {
                                 if (value) {
-                                  _controller.addShift(0);
+                                  _controller.shiftSelect.add(Shift.Boarding);
                                 } else {
-                                  _controller.shiftSelect.remove(0);
+                                  _controller.shiftSelect
+                                      .remove(Shift.Boarding);
                                 }
                               }
                             },
@@ -165,13 +180,13 @@ class NurseSelectSreen extends StatelessWidget {
                           style: TextStyle(fontSize: Get.width / 30)),
                       Obx(() => Checkbox(
                             activeColor: buttonColor,
-                            value: _controller.shiftSelect.contains(1),
+                            value: _controller.shiftSelect.contains(Shift.Day),
                             onChanged: (value) {
                               if (value != null) {
                                 if (value) {
-                                  _controller.addShift(1);
+                                  _controller.shiftSelect.add(Shift.Day);
                                 } else {
-                                  _controller.shiftSelect.remove(1);
+                                  _controller.shiftSelect.remove(Shift.Day);
                                 }
                               }
                             },
@@ -184,13 +199,14 @@ class NurseSelectSreen extends StatelessWidget {
                       Text("شبانه", style: TextStyle(fontSize: Get.width / 30)),
                       Obx(() => Checkbox(
                             activeColor: buttonColor,
-                            value: _controller.shiftSelect.contains(2),
+                            value:
+                                _controller.shiftSelect.contains(Shift.Night),
                             onChanged: (value) {
                               if (value != null) {
                                 if (value) {
-                                  _controller.addShift(2);
+                                  _controller.shiftSelect.add(Shift.Night);
                                 } else {
-                                  _controller.shiftSelect.remove(2);
+                                  _controller.shiftSelect.remove(Shift.Night);
                                 }
                               }
                             },
@@ -198,32 +214,33 @@ class NurseSelectSreen extends StatelessWidget {
                       Text("مقطعی", style: TextStyle(fontSize: Get.width / 30)),
                       Obx(() => Checkbox(
                             activeColor: buttonColor,
-                            value: _controller.shiftSelect.contains(3),
+                            value: _controller.shiftSelect.contains(Shift.Hour),
                             onChanged: (value) {
                               if (value != null) {
                                 if (value) {
-                                  _controller.addShift(3);
+                                  _controller.shiftSelect.add(Shift.Hour);
                                 } else {
-                                  _controller.shiftSelect.remove(3);
+                                  _controller.shiftSelect.remove(Shift.Hour);
                                 }
                               }
                             },
                           )),
-                      Text("همه موارد",
-                          style: TextStyle(fontSize: Get.width / 30)),
-                      Obx(() => Checkbox(
-                            activeColor: buttonColor,
-                            value: _controller.shiftSelect.contains(4) && _controller.shiftSelect.length==5,
-                            onChanged: (value) {
-                              if (value != null) {
-                                if (value) {
-                                  _controller.addShift(4);
-                                } else {
-                                  _controller.shiftSelect.clear();
-                                }
-                              }
-                            },
-                          )),
+                      // Text("همه موارد",
+                      //     style: TextStyle(fontSize: Get.width / 30)),
+                      // Obx(() => Checkbox(
+                      //       activeColor: buttonColor,
+                      //       value: _controller.shiftSelect.contains(4) &&
+                      //           _controller.shiftSelect.length == 5,
+                      //       onChanged: (value) {
+                      //         if (value != null) {
+                      //           if (value) {
+                      //             _controller.addShift(4);
+                      //           } else {
+                      //             _controller.shiftSelect.clear();
+                      //           }
+                      //         }
+                      //       },
+                      //     )),
                     ],
                   ),
                 ],

@@ -40,7 +40,7 @@ class SubcategoryDetailScreen extends StatelessWidget {
           ),
           ConsWidget(
             image: "assets/images/icons/checked.png",
-            title: "مبلغ شهریه ${model.price} میلیون تومان (نقد و اقساط)",
+            title: "مبلغ شهریه ${model.price} تومان (نقد و اقساط)",
           ),
           Text(
             "شرایط اقساط",
@@ -50,7 +50,7 @@ class SubcategoryDetailScreen extends StatelessWidget {
           ),
           ConsWidget(
             image: "assets/images/icons/checked.png",
-            title: "پیش پرداخت: ${model.prePaid} میلیون ریال",
+            title: "پیش پرداخت: ${model.prePaid} تومان",
           ),
           ConsWidget(
             image: "assets/images/icons/checked.png",
@@ -58,7 +58,7 @@ class SubcategoryDetailScreen extends StatelessWidget {
           ),
           ConsWidget(
             image: "assets/images/icons/checked.png",
-            title: "مبلغ قسط ماهانه: ${model.installmentPrice} میلیون ریال",
+            title: "مبلغ قسط ماهانه: ${model.installmentPrice} تومان",
           ),
           Expanded(
             child: NextButton(
