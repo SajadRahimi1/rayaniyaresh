@@ -106,7 +106,7 @@ void showSnackbar(
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(buttonColor)),
                   //return false when click on "NO"
-                  child: const Text('اپدیت'),
+                  child: const Text('به روز رسانی'),
                 ),
                 textDirection: TextDirection.rtl,
               )

@@ -10,16 +10,25 @@ class RequestNurseModel {
       this.address,
       this.problem,
       this.description,
+      this.problems,
+      this.ages,
       this.cctv});
   Gender? gender;
   String? age;
+  List<int?>? ages;
   Shift? shift;
   String? hours;
+  String? from;
+  String? to;
+  String? province;
+  String? city;
+  String? neighborhood;
   String? peopleInHouse;
   String? address;
   bool? cctv;
   String? description;
   String? phoneNumber;
+  List<int>? problems;
   String? name;
   String? problem;
   DateTime? createdAt;
@@ -34,8 +43,9 @@ class RequestNurseModel {
     age = json['Age'];
     shift = json['Shift'] == null ? null : Shift.values[json['Shift']];
     hours = json['Hours'];
-    peopleInHouse = json['PeopleInHouse'];    
+    peopleInHouse = json['PeopleInHouse'];
     cctv = json['CCTV'];
+    ages = json['ages'];
     address = json['Address'];
     createdAt =
         json['CreatedAt'] == null ? null : DateTime.parse(json['CreatedAt']);
@@ -43,5 +53,7 @@ class RequestNurseModel {
 }
 
 enum Gender { Male, Female, Both }
-enum Shift { Boarding,Day, Night, Hour }
+
+enum Shift { Boarding, Day, Night, Hour }
+
 enum NurseCategory { Kid, Oldage, Patient, All }

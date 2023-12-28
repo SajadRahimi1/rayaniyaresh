@@ -6,7 +6,7 @@ bool babySitterValidation(RequestNurseModel model) {
     errorMessage("لطفا جنسیت را وارد کنید");
     return false;
   }
-  if (model.age?.isEmpty ?? true) {
+  if (model.ages?.isEmpty ?? true) {
     errorMessage("لطفا سن را وارد کنید");
     return false;
   }
@@ -15,7 +15,7 @@ bool babySitterValidation(RequestNurseModel model) {
     errorMessage("لطفا شیفت کاری را وارد کنید");
     return false;
   }
-  if ((model.hours?.isEmpty ?? true) && model.shift != Shift.Boarding) {
+  if ((model.from?.isEmpty ?? true) && model.shift != Shift.Boarding) {
     errorMessage("لطفا ساعت کاری را مشخص کنید");
     return false;
   }
@@ -23,7 +23,7 @@ bool babySitterValidation(RequestNurseModel model) {
     errorMessage("لطفا وضعیت دوربین مداربسته را تعیین کنید");
     return false;
   }
-  if (model.address?.isEmpty ?? true) {
+  if (model.province?.isEmpty ?? true) {
     errorMessage("لطفا آدرس  را وارد کنید");
     return false;
   }

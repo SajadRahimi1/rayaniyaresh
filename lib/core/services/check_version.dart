@@ -48,4 +48,4 @@ void showDialog() => showSnackbar(
     },
     isUpdateDialog: true,
     message: 'برای استفاده از اپ اخرین نسخه را دانلود کنید',
-    title: 'اپدیت');
+    title: 'به روز رسانی');

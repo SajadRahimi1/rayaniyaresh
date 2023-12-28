@@ -23,7 +23,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
   RxList<int> oldageProblem = [1].obs;
   RxInt shiftWork = (-1).obs;
   RxBool camera = false.obs;
-  List<String> ages = List.generate(4, (index) => "");
+  List<int?> ages = List.generate(4, (index) => null);
   String province = "", city = "", neighbourhood = "", hours1 = "", hours2 = "";
   final RequestNurseModel model = RequestNurseModel();
 
@@ -154,7 +154,9 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
                           text: "سن سالمند ${index + 1}",
-                          onChanged: (value) => ages[index] = value,
+                          onChanged: (value) => value.isEmpty
+                              ? {}
+                              : ages[index] = int.parse(value),
                         ),
                       )),
                 ),
@@ -180,7 +182,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: List.generate(
-                              4,
+                              3,
                               (index) => InkWell(
                                     // onTap: () => oldageProblem.value = index,
                                     child: Row(
@@ -189,7 +191,6 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                                           [
                                             "پوشک",
                                             "لگن",
-                                            "سون",
                                             "آلزایمر",
                                           ][index],
                                           style: TextStyle(
@@ -224,7 +225,7 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                                       children: [
                                         Text(
                                           [
-                                            "پارکینگ سون",
+                                            "پارکینسون",
                                             "ام اس",
                                             "هیچ کدام"
                                           ][index],
@@ -515,32 +516,14 @@ class _OldageFormScreen extends State<OldageFormScreen> {
               child: NextButton(
                 onNext: () {
                   model.nurseCategory = NurseCategory.Oldage;
-                  model.address = provinceController.text;
-                  model.hours = hours1;
-                  model.age = ages[0];
-                  var problem = "";
-                  for (var item in oldageProblem) {
-                    problem += [
-                          "پوشک",
-                          "لگن",
-                          "سون",
-                          "آلزایمر",
-                          "پارکینگ سون",
-                          "ام اس",
-                          "هیچ کدام"
-                        ][item] +
-                        ',';
-                  }
-                  model.problem = problem;
+                  model.from = hours1;
+                  model.to = hours2;
+                  model.ages = ages;
+                  model.province = provinceController.text;
+                  model.city = cityController.text;
+                  model.neighborhood = neighbourhood;
+                  model.problems = oldageProblem;
                   if (babySitterValidation(model)) {
-                    model.address =
-                        "استان ${provinceController.text} شهر ${cityController.text} محله $neighbourhood";
-                    model.hours = "از ساعت $hours1 تا ساعت $hours2";
-                    model.age = ages
-                        .where((element) => element.isNotEmpty)
-                        .toString()
-                        .replaceAll('(', '')
-                        .replaceAll(')', '');
                     FocusNode().unfocus();
                     Get.to(() => FinalStepScreen(
                           model: model,

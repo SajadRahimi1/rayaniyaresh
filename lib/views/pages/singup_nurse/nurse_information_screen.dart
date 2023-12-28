@@ -228,7 +228,7 @@ class NurseInformationScreen extends StatelessWidget {
                             text: "نام خیابان",
                             icon: const ImageIcon(
                                 AssetImage("assets/images/icons/road.png")),
-                            onChanged: (value) => _controller.street = value,
+                            onChanged: (value) => _controller.nurseModel.street = value,
                           )),
                       SizedBox(
                           width: Get.width / 1,
