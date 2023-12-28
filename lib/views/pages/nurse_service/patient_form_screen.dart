@@ -22,7 +22,7 @@ class _PatientFormScreen extends State<PatientFormScreen> {
   RxInt childNumber = (1).obs;
   RxInt shiftWork = (-1).obs;
   RxBool camera = false.obs;
-  List<String> ages = List.generate(4, (index) => "");
+  List<int?> ages = List.generate(4, (index) => null);
   String province = "", city = "", neighbourhood = "", hours1 = "", hours2 = "";
   final RequestNurseModel model = RequestNurseModel();
   final TextEditingController provinceController = TextEditingController();
@@ -151,7 +151,9 @@ class _PatientFormScreen extends State<PatientFormScreen> {
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
                           text: "سن بیمار ${index + 1}",
-                          onChanged: (value) => ages[index] = value,
+                          onChanged: (value) => value.isEmpty
+                              ? ages[index] = null
+                              : ages[index] = int.parse(value),
                         ),
                       )),
                 ),
@@ -420,18 +422,14 @@ class _PatientFormScreen extends State<PatientFormScreen> {
               child: NextButton(
                 onNext: () {
                   model.nurseCategory = NurseCategory.Patient;
-                  model.address = provinceController.text;
-                  model.hours = hours1;
-                  model.age = ages[0];
+                  model.from = hours1;
+                  model.to = hours2;
+                  model.province = provinceController.text;
+                  model.city = cityController.text;
+                  model.neighborhood = neighbourhood;
+                  model.ages = ages;
+                  model.shift = Shift.values[shiftWork.value];
                   if (babySitterValidation(model)) {
-                    model.address =
-                        "استان ${provinceController.text} شهر ${cityController.text} محله $neighbourhood";
-                    model.hours = "از ساعت $hours1 تا ساعت $hours2";
-                    model.age = ages
-                        .where((element) => element.isNotEmpty)
-                        .toString()
-                        .replaceAll('(', '')
-                        .replaceAll(')', '');
                     FocusNode().unfocus();
                     Get.to(() => FinalStepScreen(
                           model: model,

@@ -154,10 +154,8 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
                           text: "سن سالمند ${index + 1}",
-                          onChanged: (value) => value.isEmpty
-                              ? {}
-                              : ages[index] = int.parse(value),
-                        ),
+                          onChanged: (value) => value.isEmpty?ages[index]=null: ages[index] = int.parse(value),
+                        )
                       )),
                 ),
 
@@ -523,6 +521,8 @@ class _OldageFormScreen extends State<OldageFormScreen> {
                   model.city = cityController.text;
                   model.neighborhood = neighbourhood;
                   model.problems = oldageProblem;
+
+                   model.shift = Shift.values[shiftWork.value];
                   if (babySitterValidation(model)) {
                     FocusNode().unfocus();
                     Get.to(() => FinalStepScreen(

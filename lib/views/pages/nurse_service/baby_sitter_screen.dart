@@ -152,7 +152,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                           keyboardType: TextInputType.number,
                           text: "سن کودک ${index + 1}",
                           onChanged: (value) => value.isEmpty
-                              ? {}
+                              ? ages[index] = null
                               : ages[index] = int.parse(value),
                         ),
                       )),
@@ -429,6 +429,7 @@ class _BabySitterScreenState extends State<BabySitterScreen> {
                 model.neighborhood = neighbourhood;
                 model.from = hours1;
                 model.to = hours2;
+                model.shift = Shift.values[shiftWork.value];
                 if (babySitterValidation(model)) {
                   // model.address =
                   //     "استان ${provinceController.text} شهر ${cityController.text} محله $neighbourhood";
